@@ -190,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -467,31 +477,32 @@
 <li>4.当虚拟机启动时，用户需要指定一个主类（包含main()方法的类），虚拟机会首先初始化这个类。</li>
 <li>5.使用jdk1.7的动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、RE_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先触发其初始化<br>注意，虚拟机规范使用了“有且只有”这个词描述，这五种情况被称为“主动引用”，除了这五种情况，所有其他的类引用方式都不会触发类初始化，被称为“被动引用”。</li>
 </ul>
-<p><strong><em>被动引用的例子</em></strong><br>通过子类引用父类的静态字段，对于父类属于“主动引用”的第一种情况，对于子类，没有符合“主动引用”的情况，故子类不会进行初始化。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//父类 </span><br><span class="line">public class SuperClass &#123;  </span><br><span class="line">    //静态变量value  </span><br><span class="line">    public static int value = 666;  </span><br><span class="line">    //静态块，父类初始化时会调用  </span><br><span class="line">    static&#123;  </span><br><span class="line">        System.out.println(&quot;父类初始化！&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">//子类 </span><br><span class="line">public class SubClass extends SuperClass&#123;  </span><br><span class="line">    //静态块，子类初始化时会调用  </span><br><span class="line">    static&#123;  </span><br><span class="line">        System.out.println(&quot;子类初始化！&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">//主类 </span><br><span class="line">public class NotInit &#123;  </span><br><span class="line">    public static void main(String[] args)&#123;  </span><br><span class="line">        System.out.println(SubClass.value);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>被动引用的例子</em></strong><br>通过子类引用父类的静态字段，对于父类属于“主动引用”的第一种情况，对于子类，没有符合“主动引用”的情况，故子类不会进行初始化。代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span> </span>&#123;  </span><br><span class="line">    <span class="comment">//静态变量value  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value = <span class="number">666</span>;  </span><br><span class="line">    <span class="comment">//静态块，父类初始化时会调用  </span></span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"父类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//子类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;  </span><br><span class="line">    <span class="comment">//静态块，子类初始化时会调用  </span></span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"子类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//主类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInit</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        System.out.println(SubClass.value);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>输出结果：<br>父类初始化！<br>666</p>
 <blockquote>
 <p>通过数组来引用类，不会触发类的初始化,因为是数组new，而类没有被new，所以没有触发任何“主动引用”条款，属于“被动引用”,代码如下：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//父类 </span><br><span class="line">public class SuperClass &#123;  </span><br><span class="line">    //静态变量value  </span><br><span class="line">    public static int value = 666;  </span><br><span class="line">    //静态块，父类初始化时会调用  </span><br><span class="line">    static&#123;  </span><br><span class="line">        System.out.println(&quot;父类初始化！&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line">//主类 </span><br><span class="line">public class NotInit &#123;  </span><br><span class="line">    public static void main(String[] args)&#123;  </span><br><span class="line">        SuperClass[] test = new SuperClass[10];  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span> </span>&#123;  </span><br><span class="line">    <span class="comment">//静态变量value  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value = <span class="number">666</span>;  </span><br><span class="line">    <span class="comment">//静态块，父类初始化时会调用  </span></span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"父类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//主类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInit</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        SuperClass[] test = <span class="keyword">new</span> SuperClass[<span class="number">10</span>];  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>没有任何输出结果</p>
 <blockquote>
 <p>静态常量在编译阶段就会被存入调用类的常量池中，不会引用到定义常量的类，这是一个特例，不会触发类的初始化！</p>
 </blockquote>
-<pre><code>//常量类  
-public class ConstClass {  
-    static{  
-        System.out.println(&quot;常量类初始化！&quot;);  
+<pre><code class="java"><span class="comment">//常量类  </span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstClass</span> </span>{  
+    <span class="keyword">static</span>{  
+        System.out.println(<span class="string">"常量类初始化！"</span>);  
     }  
 
-    public static final String HELLOWORLD = &quot;hello world!&quot;;  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String HELLOWORLD = <span class="string">"hello world!"</span>;  
 }  
-  //主类 
-public class NotInit {  
-    public static void main(String[] args){  
+  <span class="comment">//主类 </span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInit</span> </span>{  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{  
         System.out.println(ConstClass.HELLOWORLD);  
     }  
 }
 </code></pre>
+
           
         
       
@@ -1588,7 +1599,7 @@ public class NotInit {
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/jinweidaJin" target="_blank" title="GitHub">
+                  <a href="https://github.com/jinweida" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
