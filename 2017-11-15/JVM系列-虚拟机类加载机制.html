@@ -88,7 +88,7 @@
 <meta property="og:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/jvm/jvmloading.png">
-<meta property="og:updated_time" content="2017-12-09T02:55:28.441Z">
+<meta property="og:updated_time" content="2017-12-09T09:13:17.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列-虚拟机类加载机制">
 <meta name="twitter:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
@@ -373,21 +373,7 @@
 <blockquote>
 <p>静态常量在编译阶段就会被存入调用类的常量池中，不会引用到定义常量的类，这是一个特例，不会触发类的初始化！</p>
 </blockquote>
-<pre><code class="java"><span class="comment">//常量类  </span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstClass</span> </span>{  
-    <span class="keyword">static</span>{  
-        System.out.println(<span class="string">"常量类初始化！"</span>);  
-    }  
-
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String HELLOWORLD = <span class="string">"hello world!"</span>;  
-}  
-  <span class="comment">//主类 </span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInit</span> </span>{  
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{  
-        System.out.println(ConstClass.HELLOWORLD);  
-    }  
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常量类  </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstClass</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"常量类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String HELLOWORLD = <span class="string">"hello world!"</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  <span class="comment">//主类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInit</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        System.out.println(ConstClass.HELLOWORLD);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -406,6 +392,15 @@
     
 
     
+      <div align="center">
+        
+          <div class="copyright">
+          <p><span>
+          <b>本文地址：</b><a href="/2017-11-15/JVM系列-虚拟机类加载机制.html" title="JVM系列-虚拟机类加载机制">http://jinweida.github.io/2017-11-15/JVM系列-虚拟机类加载机制.html</a></b>
+          </span></p>
+          </div>
+        
+      </div>
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
