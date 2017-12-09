@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="内存分配与回收策略对象内存分配，往大方向讲就是在堆上分配（也可能经过jit编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的Eden区上，如果启动了本地线程分配缓冲，将按线程优先在TLAB上分配，少数情况也可能分配在老年代中。  对象优先在Eden分配   在大多数情况下，对象在新生代Eden区分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC   相关控制参">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-10T09:52:19.000Z">
+<meta property="og:updated_time" content="2017-12-09T09:32:24.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列-内存分配与回收策略">
 <meta name="twitter:description" content="内存分配与回收策略对象内存分配，往大方向讲就是在堆上分配（也可能经过jit编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的Eden区上，如果启动了本地线程分配缓冲，将按线程优先在TLAB上分配，少数情况也可能分配在老年代中。  对象优先在Eden分配   在大多数情况下，对象在新生代Eden区分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC   相关控制参">
@@ -302,6 +302,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -544,6 +566,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
