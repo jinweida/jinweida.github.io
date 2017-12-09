@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="数字证书," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 2.使用 ISNULL()来判断是否为 NULL 值。注意:NULL ">
-<meta name="keywords" content="mysql">
+<meta name="description" content="证书主要字段介绍Issuer (证书的发布机构) 指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。  Valid from , Valid to (证书的有效期) 也就是证书的有效时间，或者说证书">
+<meta name="keywords" content="数字证书">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql性能优化指南">
-<meta property="og:url" content="http://jinweida.github.io/2017-08-23/mysql性能优化指南.html">
+<meta property="og:title" content="数字证书-构成和原理">
+<meta property="og:url" content="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 2.使用 ISNULL()来判断是否为 NULL 值。注意:NULL 与任何值的直接比较都为 NULL。NULL&amp;lt;&amp;gt;NULL 的返回结果是">
+<meta property="og:description" content="证书主要字段介绍Issuer (证书的发布机构) 指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。  Valid from , Valid to (证书的有效期) 也就是证书的有效时间，或者说证书的使用期限。 过了有效期限，证书就会作废，不能使用了。  Public key">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-24T01:12:21.000Z">
+<meta property="og:image" content="http://jinweida.github.io/images/ssl.jpg">
+<meta property="og:updated_time" content="2017-12-09T08:19:14.197Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql性能优化指南">
-<meta name="twitter:description" content="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 2.使用 ISNULL()来判断是否为 NULL 值。注意:NULL 与任何值的直接比较都为 NULL。NULL&amp;lt;&amp;gt;NULL 的返回结果是">
+<meta name="twitter:title" content="数字证书-构成和原理">
+<meta name="twitter:description" content="证书主要字段介绍Issuer (证书的发布机构) 指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。  Valid from , Valid to (证书的有效期) 也就是证书的有效时间，或者说证书的使用期限。 过了有效期限，证书就会作废，不能使用了。  Public key">
+<meta name="twitter:image" content="http://jinweida.github.io/images/ssl.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-08-23/mysql性能优化指南.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html"/>
 
 
 
 
 
-  <title>mysql性能优化指南 | 金声玉振</title>
+  <title>数字证书-构成和原理 | 金声玉振</title>
   
 
 
@@ -263,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-23/mysql性能优化指南.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mysql性能优化指南</h1>
+          <h1 class="post-title" itemprop="name headline">数字证书-构成和原理</h1>
         
 
         <div class="post-meta">
@@ -292,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T17:16:48+08:00">
-                2017-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T16:14:11+08:00">
+                2017-12-09
               </time>
             
 
@@ -311,8 +313,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-08-23/mysql性能优化指南.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-23/mysql性能优化指南.html" itemprop="commentCount"></span>
+                <a href="/2017-12-09/数字证书-构成和原理.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/数字证书-构成和原理.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,14 +342,29 @@
       
 
       
-        <h5 id="1-count-会统计值为NULL行，count-列名-不会统计NULL行"><a href="#1-count-会统计值为NULL行，count-列名-不会统计NULL行" class="headerlink" title="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行"></a>1.count(*)会统计值为NULL行，count(列名)不会统计NULL行</h5><p>count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0</p>
-<h5 id="2-使用-ISNULL-来判断是否为-NULL-值。"><a href="#2-使用-ISNULL-来判断是否为-NULL-值。" class="headerlink" title="2.使用 ISNULL()来判断是否为 NULL 值。"></a>2.使用 ISNULL()来判断是否为 NULL 值。</h5><p>注意:NULL 与任何值的直接比较都为 NULL。<br>NULL&lt;&gt;NULL 的返回结果是 NULL，不是 false。<br>NULL=NULL 的返回结果是 NULL，不是 true。<br>NULL&lt;&gt;1 的返回结果是 NULL，而不是 true<br>now()&lt;’2017-08-23’ 不包含NULL</p>
-<h5 id="3-mysql主要索引类型"><a href="#3-mysql主要索引类型" class="headerlink" title="3.mysql主要索引类型"></a>3.mysql主要索引类型</h5><p>在mysql索引是在存储引擎层而不是在Server层实现，不是所有引擎都支持索引。</p>
-<p>1）B-tree索引：最常见的索引类型，基于B-Tree数据结构。B-Tree的基本思想是，所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据，而且可以直接支持数据排序（ORDER BY）。但是当索引多列时，列的顺序特别重要，需要格外注意。InnoDB和MyISAM都支持B-Tree索引。InnoDB用的是一个变种B+Tree，而MyISAM为了节省空间对索引进行了压缩，从而牺牲了性能。</p>
-<p>2）hash索引：基于hash表。所以这种索引只支持精确查找，不支持范围查找，不支持排序。这意味着范围查找或ORDER BY都要依赖server层的额外工作。目前只有Memory引擎支持显式的hash索引（但是它的hash是nonunique的，冲突太多时也会影响查找性能）。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引。</p>
-<p>3）FULLTEXT索引：主要用来查找文本中的关键字，而不是直接与索引中的值相比较。Full-text索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的WHERE语句的参数匹配。你可以对某列分别进行full-text索引和B-Tree索引，两者互不冲突。Full-text索引配合MATCH AGAINST操作使用，而不是一般的WHERE语句加LIKE</p>
-<p>索引优点：a.减少服务器需要扫描的数量；b.帮助服务器避免排序和临时表；c.可以将随机IO变为顺序IO</p>
-<h5 id="4-高性能索引策略"><a href="#4-高性能索引策略" class="headerlink" title="4.高性能索引策略"></a>4.高性能索引策略</h5><p>1）负向条件查询不能使用索引:<br>    select <em> from order where status!=0 and stauts!=1 可以优化为in(2,3)<br>2）前导模糊查询不能使用索引<br>    select </em> from order where desc like ‘%XX’;<br>    非前导可以使用索引：<br>    select <em> from order where desc like ‘XX%’<br>3）在属性上进行计算不能命中索引<br>select </em> from table where id+1=2;<br>select <em> from order where YEAR(date) &lt; = ‘2017’<br>4）单条查询，使用hash索引更好<br>select </em> from user where uid=12<br>因为hash值与索引uid做了精确的对应关系<br>5）强制类型转换会全表扫描<br>select <em> from user where phone=13800001234<br>请使用select </em> from user where phone=’13800001234‘</p>
+        <p><img src="/images/ssl.jpg" alt="image"></p>
+<h4 id="证书主要字段介绍"><a href="#证书主要字段介绍" class="headerlink" title="证书主要字段介绍"></a>证书主要字段介绍</h4><h5 id="Issuer-证书的发布机构"><a href="#Issuer-证书的发布机构" class="headerlink" title="Issuer (证书的发布机构)"></a>Issuer (证书的发布机构)</h5><blockquote>
+<p>指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。</p>
+</blockquote>
+<h5 id="Valid-from-Valid-to-证书的有效期"><a href="#Valid-from-Valid-to-证书的有效期" class="headerlink" title="Valid from , Valid to (证书的有效期)"></a>Valid from , Valid to (证书的有效期)</h5><blockquote>
+<p>也就是证书的有效时间，或者说证书的使用期限。 过了有效期限，证书就会作废，不能使用了。</p>
+</blockquote>
+<h5 id="Public-key-公钥"><a href="#Public-key-公钥" class="headerlink" title="Public key (公钥)"></a>Public key (公钥)</h5><blockquote>
+<p>公钥是用来对消息进行加密的，这个数字证书的公钥是2048位的。</p>
+</blockquote>
+<h5 id="Subject-主题"><a href="#Subject-主题" class="headerlink" title="Subject (主题)"></a>Subject (主题)</h5><blockquote>
+<p>这个证书是发布给谁的，或者说证书的所有者，一般是某个人或者某个公司名称、机构的名称、公司网站的网址等。 对于这里的证书来说，证书的所有者是Trustwave这个公司。</p>
+</blockquote>
+<h5 id="Signature-algorithm-签名所使用的算法"><a href="#Signature-algorithm-签名所使用的算法" class="headerlink" title="Signature algorithm (签名所使用的算法)"></a>Signature algorithm (签名所使用的算法)</h5><blockquote>
+<p>就是指的这个数字证书的数字签名所使用的加密算法，这样就可以使用证书发布机构的证书里面的公钥，根据这个算法对指纹进行解密。指纹的加密结果就是数字签名</p>
+</blockquote>
+<h5 id="Thumbprint-Thumbprint-algorithm-指纹以及指纹算法"><a href="#Thumbprint-Thumbprint-algorithm-指纹以及指纹算法" class="headerlink" title="Thumbprint, Thumbprint algorithm (指纹以及指纹算法)"></a>Thumbprint, Thumbprint algorithm (指纹以及指纹算法)</h5><a id="more"></a>
+<blockquote>
+<p>这个是用来保证证书的完整性的，也就是说确保证书没有被修改过，这东西的作用和2.7中说到的第3个问题类似。 其原理就是在发布证书时，发布者根据指纹算法(一个hash算法)计算整个证书的hash值(指纹)并和证书放在一起，使用者在打开证书时，自己也根据指纹算法计算一下证书的hash值(指纹)，如果和刚开始的值对得上，就说明证书没有被修改过，因为证书的内容被修改后，根据证书的内容计算的出的hash值(指纹)是会变化的。 注意，这个指纹会使用”SecureTrust CA”这个证书机构的私钥用签名算法(Signature algorithm)加密后和证书放在一起。</p>
+</blockquote>
+<h4 id="如何向证书的发布机构去申请证书-向权威机构申请？"><a href="#如何向证书的发布机构去申请证书-向权威机构申请？" class="headerlink" title="如何向证书的发布机构去申请证书 向权威机构申请？"></a>如何向证书的发布机构去申请证书 向权威机构申请？</h4><blockquote>
+<p>向权威机构申请，如：GlobalSign、wosign,自己也可以发布，只是不够权威，没有人承认而已</p>
+</blockquote>
 
       
     </div>
@@ -397,7 +414,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/数字证书/" rel="tag"># 数字证书</a>
           
         </div>
       
@@ -410,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-22/阻塞非阻塞与同步异步的区别.html" rel="next" title="阻塞非阻塞与同步异步的区别">
-                <i class="fa fa-chevron-left"></i> 阻塞非阻塞与同步异步的区别
+              <a href="/2017-12-09/数字证书-加密通信.html" rel="next" title="数字证书-加密通信">
+                <i class="fa fa-chevron-left"></i> 数字证书-加密通信
               </a>
             
           </div>
@@ -419,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-08-24/分布式事务DTS.html" rel="prev" title="分布式事务DTS">
-                分布式事务DTS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -453,8 +466,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-08-23/mysql性能优化指南.html"
-           data-title="mysql性能优化指南" data-url="http://jinweida.github.io/2017-08-23/mysql性能优化指南.html">
+      <div class="ds-thread" data-thread-key="2017-12-09/数字证书-构成和原理.html"
+           data-title="数字证书-构成和原理" data-url="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html">
       </div>
     </div>
 
@@ -562,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-count-会统计值为NULL行，count-列名-不会统计NULL行"><span class="nav-number">1.</span> <span class="nav-text">1.count(*)会统计值为NULL行，count(列名)不会统计NULL行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-使用-ISNULL-来判断是否为-NULL-值。"><span class="nav-number">2.</span> <span class="nav-text">2.使用 ISNULL()来判断是否为 NULL 值。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-mysql主要索引类型"><span class="nav-number">3.</span> <span class="nav-text">3.mysql主要索引类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-高性能索引策略"><span class="nav-number">4.</span> <span class="nav-text">4.高性能索引策略</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#证书主要字段介绍"><span class="nav-number">1.</span> <span class="nav-text">证书主要字段介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Issuer-证书的发布机构"><span class="nav-number">1.1.</span> <span class="nav-text">Issuer (证书的发布机构)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Valid-from-Valid-to-证书的有效期"><span class="nav-number">1.2.</span> <span class="nav-text">Valid from , Valid to (证书的有效期)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Public-key-公钥"><span class="nav-number">1.3.</span> <span class="nav-text">Public key (公钥)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Subject-主题"><span class="nav-number">1.4.</span> <span class="nav-text">Subject (主题)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Signature-algorithm-签名所使用的算法"><span class="nav-number">1.5.</span> <span class="nav-text">Signature algorithm (签名所使用的算法)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Thumbprint-Thumbprint-algorithm-指纹以及指纹算法"><span class="nav-number">1.6.</span> <span class="nav-text">Thumbprint, Thumbprint algorithm (指纹以及指纹算法)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何向证书的发布机构去申请证书-向权威机构申请？"><span class="nav-number">2.</span> <span class="nav-text">如何向证书的发布机构去申请证书 向权威机构申请？</span></a></li></ol></div>
             
 
           </div>

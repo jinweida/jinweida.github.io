@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数字证书," />
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="金声玉振">
+<meta name="description" content="公钥密码体制(public-key cryptography)分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下： 加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，">
+<meta name="keywords" content="数字证书">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数字证书-基础知识">
 <meta property="og:url" content="http://jinweida.github.io/2017-12-09/数字证书-基础知识.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="金声玉振">
+<meta property="og:description" content="公钥密码体制(public-key cryptography)分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下： 加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。 对称加">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T07:58:56.966Z">
+<meta property="og:image" content="http://jinweida.github.io/images/ssl.jpg">
+<meta property="og:updated_time" content="2017-12-09T08:19:08.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字证书-基础知识">
-<meta name="twitter:description" content="金声玉振">
+<meta name="twitter:description" content="公钥密码体制(public-key cryptography)分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下： 加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。 对称加">
+<meta name="twitter:image" content="http://jinweida.github.io/images/ssl.jpg">
 
 
 
@@ -339,7 +342,13 @@
       
 
       
-        
+        <p><img src="/images/ssl.jpg" alt="image"></p>
+<h4 id="公钥密码体制-public-key-cryptography"><a href="#公钥密码体制-public-key-cryptography" class="headerlink" title="公钥密码体制(public-key cryptography)"></a>公钥密码体制(public-key cryptography)</h4><p>分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下：</p>
+<p>加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。</p>
+<h4 id="对称加密算法-symmetric-key-algorithms"><a href="#对称加密算法-symmetric-key-algorithms" class="headerlink" title="对称加密算法(symmetric key algorithms)"></a>对称加密算法(symmetric key algorithms)</h4><p>对称加密算法中，加密与解密共用一个密钥，不区分公钥和私钥。 常用的加密算法：DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和AES</p>
+<h4 id="非对称加密算法-asymmetric-key-algorithms"><a href="#非对称加密算法-asymmetric-key-algorithms" class="headerlink" title="非对称加密算法(asymmetric key algorithms)"></a>非对称加密算法(asymmetric key algorithms)</h4><p>公钥密码体制就是一种非对称加密，常用加密算法：RSA(一种公钥密码体制)、DSA（数字签名）</p>
+<h4 id="签名和加密"><a href="#签名和加密" class="headerlink" title="签名和加密"></a>签名和加密</h4><p>签名目的为了验证信息是否被篡改过，签名实现的过程：一般对信息进行hash计算得到一个hash值，这个过程是不可逆的。比如md5加密。把信息及hash值（加密后）一起发送给接收方。接收方收到信息会重新计算信息的hash值，与发送方的hash值（解密后）进行比较验证。一致则认为信息未被篡改过。</p>
+
       
     </div>
     
@@ -386,6 +395,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/数字证书/" rel="tag"># 数字证书</a>
+          
+        </div>
+      
 
       
       
@@ -404,6 +419,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017-12-09/数字证书-加密通信.html" rel="prev" title="数字证书-加密通信">
+                数字证书-加密通信 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -462,8 +481,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -478,7 +506,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -491,7 +519,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -524,6 +552,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#公钥密码体制-public-key-cryptography"><span class="nav-number">1.</span> <span class="nav-text">公钥密码体制(public-key cryptography)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密算法-symmetric-key-algorithms"><span class="nav-number">2.</span> <span class="nav-text">对称加密算法(symmetric key algorithms)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非对称加密算法-asymmetric-key-algorithms"><span class="nav-number">3.</span> <span class="nav-text">非对称加密算法(asymmetric key algorithms)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#签名和加密"><span class="nav-number">4.</span> <span class="nav-text">签名和加密</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
