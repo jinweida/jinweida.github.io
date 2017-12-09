@@ -343,111 +343,33 @@
       
         
           
-            <table>
-<thead>
-<tr>
-<th>接口</th>
-<th>实现</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>List</td>
-<td>ArrayList</td>
-</tr>
-<tr>
-<td></td>
-<td>LinkedList</td>
-</tr>
-<tr>
-<td></td>
-<td>Stack</td>
-</tr>
-<tr>
-<td></td>
-<td>Vector</td>
-</tr>
-<tr>
-<td>Set</td>
-<td>TreeSet</td>
-</tr>
-<tr>
-<td></td>
-<td>HashSet</td>
-</tr>
-<tr>
-<td>Map</td>
-<td>HashMap</td>
-</tr>
-<tr>
-<td></td>
-<td>Hashtable</td>
-</tr>
-<tr>
-<td></td>
-<td>TreeMap</td>
-</tr>
-<tr>
-<td></td>
-<td>SortedMap</td>
-</tr>
-<tr>
-<td></td>
-<td>LinkedHashMap</td>
-</tr>
-<tr>
-<td></td>
-<td>WeakHashMap</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<table>
-<thead>
-<tr>
-<th>集合</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ArrayList</td>
-<td>动态数组</td>
-</tr>
-<tr>
-<td>HashSet</td>
-<td>以哈希表的形式存放元素，插入删除速度很快</td>
-</tr>
-<tr>
-<td>LinkedList</td>
-<td>链表、队列、堆栈</td>
-</tr>
-<tr>
-<td>Vector</td>
-<td>老的动态数组，是线程同步的，效率很低</td>
-</tr>
-<tr>
-<td>HashMap</td>
-<td>允许null值作为key和value，HashMap的函数则是非同步的，它不是线程安全的,强引用(StrongReference)”,基于“拉链法”实现的散列表</td>
-</tr>
-<tr>
-<td>Hashtable</td>
-<td>同步的，即它是线程安全的，支持多线程，Hashtable不允许Null作为key和value,是基于“拉链法”实现的散列表</td>
-</tr>
-<tr>
-<td>WeakHashMap</td>
-<td>弱引用(WeakReference),基于“拉链法”实现的散列表,单线程程序</td>
-</tr>
-<tr>
-<td>SortedMap</td>
-<td>有序的“键值对”映射接口</td>
-</tr>
-<tr>
-<td>TreeMap</td>
-<td>有序的散列表，它是通过红黑树实现的,一般用于单线程中存储有序的映射</td>
-</tr>
-</tbody>
-</table>
+            <h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><blockquote>
+<p>动态数组,ArrayList中的操作不是线程安全的</p>
+</blockquote>
+<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><blockquote>
+<p>以哈希表的形式存放元素，插入删除速度很快</p>
+</blockquote>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><blockquote>
+<p>继承于AbstractSequentialList的双向链表,也可以被当作堆栈、队列或双端队列进行操作,实现java.io.Serializable接口，这意味着LinkedList支持序列化，能通过序列化去传输,是非同步的</p>
+</blockquote>
+<h4 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h4><blockquote>
+<p>老的动态数组，是线程同步的，效率很低</p>
+</blockquote>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><blockquote>
+<p>允许null值作为key和value，HashMap的函数则是非同步的，它不是线程安全的,强引用(StrongReference)”,基于“拉链法”实现的散列表</p>
+</blockquote>
+<h4 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h4><blockquote>
+<p>同步的，即它是线程安全的，支持多线程，Hashtable不允许Null作为key和value,是基于“拉链法”实现的散列表</p>
+</blockquote>
+<h4 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h4><blockquote>
+<p>弱引用(WeakReference),基于“拉链法”实现的散列表,单线程程序</p>
+</blockquote>
+<h4 id="SortedMap"><a href="#SortedMap" class="headerlink" title="SortedMap"></a>SortedMap</h4><blockquote>
+<p>有序的“键值对”映射接口</p>
+</blockquote>
+<h4 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h4><blockquote>
+<p>是一个有序的key-value集合它是通过红黑树实现的,一般用于单线程中存储有序的映射,TreeMap 实现了Cloneable接口，意味着它能被克隆</p>
+</blockquote>
 
           
         
