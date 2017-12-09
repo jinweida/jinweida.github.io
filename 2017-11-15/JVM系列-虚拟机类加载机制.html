@@ -88,7 +88,7 @@
 <meta property="og:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/jvm/jvmloading.png">
-<meta property="og:updated_time" content="2017-12-09T02:44:06.605Z">
+<meta property="og:updated_time" content="2017-12-09T02:55:28.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列-虚拟机类加载机制">
 <meta name="twitter:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
@@ -308,6 +308,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-11-15/JVM系列-虚拟机类加载机制.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-11-15/JVM系列-虚拟机类加载机制.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -332,18 +342,20 @@
       
 
       
-        <p><strong>什么是类的加载机制?</strong><br>虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。</p>
-<p><strong>类加载过程?</strong><br><img src="/img/jvm/jvmloading.png" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
-<p><strong>加载</strong><br>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。</p>
-<p><strong>验证</strong><br>验证是连接阶段的第一步，主要目的是为了确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。这个阶段主要完成个4个阶段的检验动作：</p>
+        <h3 id="什么是类的加载机制"><a href="#什么是类的加载机制" class="headerlink" title="什么是类的加载机制?"></a>什么是类的加载机制?</h3><p>虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。</p>
+<h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程?"></a>类加载过程?</h3><p><img src="/img/jvm/jvmloading.png" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
+<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。</p>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>验证是连接阶段的第一步，主要目的是为了确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。这个阶段主要完成个4个阶段的检验动作：</p>
 <blockquote>
 <p><strong>文件格式验证</strong>：要验证字节流是否符合Class文件格式的规范，并且被当前版本的虚拟机处理。可能包含这些验证点：是否以魔数0xCAFEBABE开头；主次版本号是否在当前虚拟机处理范围之内；常量池的常量是否有不被支持的常量类型；指向常量的各种索引值是否有指向不存在的常量或不符合类型的常量。<br><strong>元数据验证</strong>：这个阶段是对字节码描述的信息进行语义分析。可能包含的验证：这个类是否有父类（除了java.lang.object之外，所有类都该有父类）;这个类是否继承了不允许被继承的类（被final修饰的类）;是否实现了父类或接口中要求实现的所有方法等。<br><strong>字节码验证</strong>：主要目的是通过数据流和控制流分析，确定程序语义是合法的、符合逻辑的。<br><strong>付号引用验证</strong>：目的是确保解析动作能正常执行。</p>
 </blockquote>
-<p>验证阶段是非常重要的、但不是一定必要的阶段，如果所有运行的代码包括第三方的代码都已经被反复使用和验证过，在实施阶段可以考虑使用-Xverify:none参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。<br><a id="more"></a><br><strong>准备</strong><br>正式为类变量分配内存并设置类变量初始值阶段。这些变量所有使用的内存都将在方法区中进行分配。这个阶段有两个容易混淆的概念：<br>这个时候进行内存分配的仅包括类变量，也就是被static修饰的变量，而不包括实例变量，实例变量将在对象实例化时随着对象一起分配在java堆中。<br>这里所说的初始值通常情况下是数据类型的零值（0，0L，false，null等）。如：</p>
+<p>验证阶段是非常重要的、但不是一定必要的阶段，如果所有运行的代码包括第三方的代码都已经被反复使用和验证过，在实施阶段可以考虑使用-Xverify:none参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。<br><a id="more"></a></p>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>正式为类变量分配内存并设置类变量初始值阶段。这些变量所有使用的内存都将在方法区中进行分配。这个阶段有两个容易混淆的概念：<br>这个时候进行内存分配的仅包括类变量，也就是被static修饰的变量，而不包括实例变量，实例变量将在对象实例化时随着对象一起分配在java堆中。<br>这里所说的初始值通常情况下是数据类型的零值（0，0L，false，null等）。如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value=<span class="number">123</span>;</span><br></pre></td></tr></table></figure>
 <p>value在准备阶段过后初始值为0而不是123，因为这时候尚未执行任何java方法<br>有些特殊情况，如果类字段属性表中存在ConstantValue属性，在准备阶段就会被初始化为ConstantValue属性所指定的值，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> value=<span class="number">123</span>;</span><br></pre></td></tr></table></figure></p>
-<p>编译时javac会将value生成ConstantValue属性，会将value初始化为123。<br><strong>解析</strong><br>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用进行。</p>
-<p><strong>初始化</strong><br>类初始化是类加载的最后一步，除了加载阶段，用户可以通过自定义的类加载器参与，其他阶段都完全由虚拟机主导和控制。到了初始化阶段才真正执行Java代码。<br>类的初始化的主要工作是为静态变量赋程序设定的初值。<br>如static int a = 100;在准备阶段，a被赋默认值0，在初始化阶段就会被赋值为100。<br>java虚拟机规范中严格规定了有且只有5种情况必须立即对类进行“初始化”</p>
+<p>编译时javac会将value生成ConstantValue属性，会将value初始化为123。</p>
+<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用进行。</p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>类初始化是类加载的最后一步，除了加载阶段，用户可以通过自定义的类加载器参与，其他阶段都完全由虚拟机主导和控制。到了初始化阶段才真正执行Java代码。<br>类的初始化的主要工作是为静态变量赋程序设定的初值。<br>如static int a = 100;在准备阶段，a被赋默认值0，在初始化阶段就会被赋值为100。<br>java虚拟机规范中严格规定了有且只有5种情况必须立即对类进行“初始化”</p>
 <ul>
 <li>1.使用new字节码指令创建类的实例，使用getstatic、putstatic或者读取或设置静态字段值（被final修饰、已在编译期把结果放入常量池中的常量除外），或者调用一个静态方法的时候，对应类必须进行过初始化。</li>
 <li>2.通过java.lang.reflect包的方法对类进行反射调用的时候，如果类没有进行过初始化，则要首先进行初始化</li>
@@ -351,7 +363,7 @@
 <li>4.当虚拟机启动时，用户需要指定一个主类（包含main()方法的类），虚拟机会首先初始化这个类。</li>
 <li>5.使用jdk1.7的动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、RE_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先触发其初始化<br>注意，虚拟机规范使用了“有且只有”这个词描述，这五种情况被称为“主动引用”，除了这五种情况，所有其他的类引用方式都不会触发类初始化，被称为“被动引用”。</li>
 </ul>
-<p><strong><em>被动引用的例子</em></strong><br>通过子类引用父类的静态字段，对于父类属于“主动引用”的第一种情况，对于子类，没有符合“主动引用”的情况，故子类不会进行初始化。代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span> </span>&#123;  </span><br><span class="line">    <span class="comment">//静态变量value  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value = <span class="number">666</span>;  </span><br><span class="line">    <span class="comment">//静态块，父类初始化时会调用  </span></span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"父类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//子类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;  </span><br><span class="line">    <span class="comment">//静态块，子类初始化时会调用  </span></span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"子类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//主类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInit</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        System.out.println(SubClass.value);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="被动引用的例子"><a href="#被动引用的例子" class="headerlink" title="被动引用的例子"></a>被动引用的例子</h3><p>通过子类引用父类的静态字段，对于父类属于“主动引用”的第一种情况，对于子类，没有符合“主动引用”的情况，故子类不会进行初始化。代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span> </span>&#123;  </span><br><span class="line">    <span class="comment">//静态变量value  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value = <span class="number">666</span>;  </span><br><span class="line">    <span class="comment">//静态块，父类初始化时会调用  </span></span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"父类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//子类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;  </span><br><span class="line">    <span class="comment">//静态块，子类初始化时会调用  </span></span><br><span class="line">    <span class="keyword">static</span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"子类初始化！"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//主类 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInit</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        System.out.println(SubClass.value);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>输出结果：<br>父类初始化！<br>666</p>
 <blockquote>
 <p>通过数组来引用类，不会触发类的初始化,因为是数组new，而类没有被new，所以没有触发任何“主动引用”条款，属于“被动引用”,代码如下：</p>
@@ -384,7 +396,39 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="大汗 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫描关注公众号</div>
+</div>
 
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/give.png" alt="大汗 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -448,6 +492,13 @@
           
 
   
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2017-11-15/JVM系列-虚拟机类加载机制.html"
+           data-title="JVM系列-虚拟机类加载机制" data-url="http://jinweida.github.io/2017-11-15/JVM系列-虚拟机类加载机制.html">
+      </div>
+    </div>
+
+  
 
 
 
@@ -470,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -532,6 +592,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是类的加载机制"><span class="nav-number">1.</span> <span class="nav-text">什么是类的加载机制?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载过程"><span class="nav-number">2.</span> <span class="nav-text">类加载过程?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载"><span class="nav-number">2.1.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-number">2.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备"><span class="nav-number">2.3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析"><span class="nav-number">2.4.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化"><span class="nav-number">2.5.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#被动引用的例子"><span class="nav-number">3.</span> <span class="nav-text">被动引用的例子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -679,25 +755,35 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
-	
 
 
-
-
-
-  
-
-
-
-
-
-  
 
 
 

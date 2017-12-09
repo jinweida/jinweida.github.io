@@ -307,6 +307,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-11-15/JVM系列-类加载器与双亲委派.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-11-15/JVM系列-类加载器与双亲委派.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -332,7 +342,7 @@
 
       
         
-          <p>类加载器的作用不仅是实现类的加载。任意一个类都需要由加载他的类加载器和这个类本身一同确定其在java虚拟机的唯一性，每个类加载器，都拥有一个独立的类名称空间。</p>
+          <h4 id="类加载器的作用"><a href="#类加载器的作用" class="headerlink" title="类加载器的作用"></a>类加载器的作用</h4><p>类加载器的作用不仅是实现类的加载。任意一个类都需要由加载他的类加载器和这个类本身一同确定其在java虚拟机的唯一性，每个类加载器，都拥有一个独立的类名称空间。</p>
 <h4 id="判断类的相等"><a href="#判断类的相等" class="headerlink" title="判断类的相等"></a>判断类的相等</h4><p>比较两个类是否”相等“，前提是这两个类由同一个类加载器加载才有意义。否则类加载器不同，那这两个类就必定不相等。这里的”相等“，包括代表类的Class对象的equals()方法、isAssignableForm()方法、isInstance()的返回结果，也包括用instanceof关键字做对象所属关系判定的情况。<br><img src="/img/jvm/classloader.png" alt="image"><br>
           <!--noindex-->
           <div class="post-button text-center">
@@ -432,6 +442,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-11-15/JVM系列-虚拟机类加载机制.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-11-15/JVM系列-虚拟机类加载机制.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -457,10 +477,10 @@
 
       
         
-          <p><strong>什么是类的加载机制?</strong><br>虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。</p>
-<p><strong>类加载过程?</strong><br><img src="/img/jvm/jvmloading.png" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
-<p><strong>加载</strong><br>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。</p>
-<p><strong>验证</strong><br>验证是连接阶段的第一步，主要目的是为了确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。这个阶段主要完成个4个阶段的检验动作：</p>
+          <h3 id="什么是类的加载机制"><a href="#什么是类的加载机制" class="headerlink" title="什么是类的加载机制?"></a>什么是类的加载机制?</h3><p>虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。</p>
+<h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程?"></a>类加载过程?</h3><p><img src="/img/jvm/jvmloading.png" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
+<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。</p>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>验证是连接阶段的第一步，主要目的是为了确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。这个阶段主要完成个4个阶段的检验动作：</p>
 <blockquote>
 <p><strong>文件格式验证</strong>：要验证字节流是否符合Class文件格式的规范，并且被当前版本的虚拟机处理。可能包含这些验证点：是否以魔数0xCAFEBABE开头；主次版本号是否在当前虚拟机处理范围之内；常量池的常量是否有不被支持的常量类型；指向常量的各种索引值是否有指向不存在的常量或不符合类型的常量。<br><strong>元数据验证</strong>：这个阶段是对字节码描述的信息进行语义分析。可能包含的验证：这个类是否有父类（除了java.lang.object之外，所有类都该有父类）;这个类是否继承了不允许被继承的类（被final修饰的类）;是否实现了父类或接口中要求实现的所有方法等。<br><strong>字节码验证</strong>：主要目的是通过数据流和控制流分析，确定程序语义是合法的、符合逻辑的。<br><strong>付号引用验证</strong>：目的是确保解析动作能正常执行。</p>
 </blockquote>
@@ -562,6 +582,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-11-09/生产系统的一次JVM调优.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-11-09/生产系统的一次JVM调优.html" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -687,6 +717,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-11-04/mac-升级nodejs版本.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-11-04/mac-升级nodejs版本.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -809,6 +849,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-11-03/ffmpeg命令行操作.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-11-03/ffmpeg命令行操作.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -929,6 +979,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-10-31/oracle误删除恢复.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-10-31/oracle误删除恢复.html" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1053,6 +1113,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-10-23/oracle带参数视图使用.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-10-23/oracle带参数视图使用.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1174,6 +1244,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-10-17/oracle备份与恢复.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-10-17/oracle备份与恢复.html" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1301,6 +1381,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-09-20/ubuntu中oracle数据库.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-20/ubuntu中oracle数据库.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1328,8 +1418,8 @@
         
           
             <p>启动数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ su oracle</span><br><span class="line">$ sqlplus /nolog</span><br><span class="line">SQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011</span><br><span class="line">Copyright (c) 1982, 2005, Oracle.  All rights reserved.</span><br><span class="line">SQL&gt; conn sys/超级管理员密码 as sysdba;</span><br><span class="line">Connected.</span><br><span class="line">SQL&gt; startup #启动</span><br><span class="line">ORACLE instance started.</span><br><span class="line">Total System Global Area  322961408 bytes</span><br><span class="line">Variable Size           104859000 bytes</span><br><span class="line">Database Buffers         213909504 bytes</span><br><span class="line">Redo Buffers               2973696 bytes</span><br><span class="line">Database mounted.</span><br><span class="line">Database opened.</span><br></pre></td></tr></table></figure>
-<p>启动监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ su oracle</span><br><span class="line">$ lsnrctl</span><br><span class="line">TNSLSNR for Linux: Version 10.2.0.1.0 - Production</span><br><span class="line">LSNRCTL for Linux: Version 10.2.0.1.0 - Production on 08-JUL-2011 10:03:52</span><br><span class="line">Copyright (c) 1991, 2005, Oracle.  All rights reserved.</span><br><span class="line">Welcome to LSNRCTL, type &quot;help&quot; for information</span><br><span class="line"></span><br><span class="line">LSNRCTL&gt; start #启动监听</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus /nolog</span></span><br><span class="line">SQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011</span><br><span class="line">Copyright (c) 1982, 2005, Oracle.  All rights reserved.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> conn sys/超级管理员密码 as sysdba;</span></span><br><span class="line">Connected.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> startup <span class="comment">#启动</span></span></span><br><span class="line">ORACLE instance started.</span><br><span class="line">Total System Global Area  322961408 bytes</span><br><span class="line">Variable Size           104859000 bytes</span><br><span class="line">Database Buffers         213909504 bytes</span><br><span class="line">Redo Buffers               2973696 bytes</span><br><span class="line">Database mounted.</span><br><span class="line">Database opened.</span><br></pre></td></tr></table></figure>
+<p>启动监听<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> lsnrctl</span></span><br><span class="line">TNSLSNR for Linux: Version 10.2.0.1.0 - Production</span><br><span class="line">LSNRCTL for Linux: Version 10.2.0.1.0 - Production on 08-JUL-2011 10:03:52</span><br><span class="line">Copyright (c) 1991, 2005, Oracle.  All rights reserved.</span><br><span class="line">Welcome to LSNRCTL, type "help" for information</span><br><span class="line"></span><br><span class="line"><span class="meta">LSNRCTL&gt;</span><span class="bash"> start <span class="comment">#启动监听</span></span></span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1422,6 +1512,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-09-02/docker安装mysql并导入sql文件.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-02/docker安装mysql并导入sql文件.html" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1728,25 +1828,35 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
-	
 
 
-
-
-
-  
-
-
-
-
-
-  
 
 
 
