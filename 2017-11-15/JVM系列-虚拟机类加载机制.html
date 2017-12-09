@@ -88,7 +88,7 @@
 <meta property="og:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/jvm/jvmloading.png">
-<meta property="og:updated_time" content="2017-12-09T02:11:21.324Z">
+<meta property="og:updated_time" content="2017-12-09T02:44:06.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列-虚拟机类加载机制">
 <meta name="twitter:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
@@ -339,10 +339,9 @@
 <blockquote>
 <p><strong>文件格式验证</strong>：要验证字节流是否符合Class文件格式的规范，并且被当前版本的虚拟机处理。可能包含这些验证点：是否以魔数0xCAFEBABE开头；主次版本号是否在当前虚拟机处理范围之内；常量池的常量是否有不被支持的常量类型；指向常量的各种索引值是否有指向不存在的常量或不符合类型的常量。<br><strong>元数据验证</strong>：这个阶段是对字节码描述的信息进行语义分析。可能包含的验证：这个类是否有父类（除了java.lang.object之外，所有类都该有父类）;这个类是否继承了不允许被继承的类（被final修饰的类）;是否实现了父类或接口中要求实现的所有方法等。<br><strong>字节码验证</strong>：主要目的是通过数据流和控制流分析，确定程序语义是合法的、符合逻辑的。<br><strong>付号引用验证</strong>：目的是确保解析动作能正常执行。</p>
 </blockquote>
-<p>验证阶段是非常重要的、但不是一定必要的阶段，如果所有运行的代码包括第三方的代码都已经被反复使用和验证过，在实施阶段可以考虑使用-Xverify:none参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。</p>
-<p><strong>准备</strong><br>正式为类变量分配内存并设置类变量初始值阶段。这些变量所有使用的内存都将在方法区中进行分配。这个阶段有两个容易混淆的概念：<br>这个时候进行内存分配的仅包括类变量，也就是被static修饰的变量，而不包括实例变量，实例变量将在对象实例化时随着对象一起分配在java堆中。<br>这里所说的初始值通常情况下是数据类型的零值（0，0L，false，null等）。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static int value=123;</span><br></pre></td></tr></table></figure>
-<p>value在准备阶段过后初始值为0而不是123，因为这时候尚未执行任何java方法<br>有些特殊情况，如果类字段属性表中存在ConstantValue属性，在准备阶段就会被初始化为ConstantValue属性所指定的值，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static final int value=123;</span><br></pre></td></tr></table></figure></p>
+<p>验证阶段是非常重要的、但不是一定必要的阶段，如果所有运行的代码包括第三方的代码都已经被反复使用和验证过，在实施阶段可以考虑使用-Xverify:none参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。<br><a id="more"></a><br><strong>准备</strong><br>正式为类变量分配内存并设置类变量初始值阶段。这些变量所有使用的内存都将在方法区中进行分配。这个阶段有两个容易混淆的概念：<br>这个时候进行内存分配的仅包括类变量，也就是被static修饰的变量，而不包括实例变量，实例变量将在对象实例化时随着对象一起分配在java堆中。<br>这里所说的初始值通常情况下是数据类型的零值（0，0L，false，null等）。如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value=<span class="number">123</span>;</span><br></pre></td></tr></table></figure>
+<p>value在准备阶段过后初始值为0而不是123，因为这时候尚未执行任何java方法<br>有些特殊情况，如果类字段属性表中存在ConstantValue属性，在准备阶段就会被初始化为ConstantValue属性所指定的值，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> value=<span class="number">123</span>;</span><br></pre></td></tr></table></figure></p>
 <p>编译时javac会将value生成ConstantValue属性，会将value初始化为123。<br><strong>解析</strong><br>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用进行。</p>
 <p><strong>初始化</strong><br>类初始化是类加载的最后一步，除了加载阶段，用户可以通过自定义的类加载器参与，其他阶段都完全由虚拟机主导和控制。到了初始化阶段才真正执行Java代码。<br>类的初始化的主要工作是为静态变量赋程序设定的初值。<br>如static int a = 100;在准备阶段，a被赋默认值0，在初始化阶段就会被赋值为100。<br>java虚拟机规范中严格规定了有且只有5种情况必须立即对类进行“初始化”</p>
 <ul>

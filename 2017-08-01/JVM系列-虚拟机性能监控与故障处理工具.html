@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="1.jps虚拟机进程状况工具12345root@10-23-196-181 ~]~:jps -l #输出主类全名／jar路径root@10-23-196-181 ~]~:jps -v #输出虚拟机进程启动时jvm参数root@10-23-196-181 ~]~:jps -mroot@10-23-196-181 ~]~:jps -q 2.jstat 虚拟机统计信息监视工具jstat命令格式： 12j">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-31T00:42:48.000Z">
+<meta property="og:updated_time" content="2017-12-09T02:18:41.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列:虚拟机性能监控与故障处理工具">
 <meta name="twitter:description" content="1.jps虚拟机进程状况工具12345root@10-23-196-181 ~]~:jps -l #输出主类全名／jar路径root@10-23-196-181 ~]~:jps -v #输出虚拟机进程启动时jvm参数root@10-23-196-181 ~]~:jps -mroot@10-23-196-181 ~]~:jps -q 2.jstat 虚拟机统计信息监视工具jstat命令格式： 12j">
@@ -330,9 +330,9 @@
       
 
       
-        <h3 id="1-jps虚拟机进程状况工具"><a href="#1-jps虚拟机进程状况工具" class="headerlink" title="1.jps虚拟机进程状况工具"></a>1.jps虚拟机进程状况工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@10-23-196-181 ~]~:jps -l #输出主类全名／jar路径</span><br><span class="line">root@10-23-196-181 ~]~:jps -v #输出虚拟机进程启动时jvm参数</span><br><span class="line"></span><br><span class="line">root@10-23-196-181 ~]~:jps -m</span><br><span class="line">root@10-23-196-181 ~]~:jps -q</span><br></pre></td></tr></table></figure>
+        <h3 id="1-jps虚拟机进程状况工具"><a href="#1-jps虚拟机进程状况工具" class="headerlink" title="1.jps虚拟机进程状况工具"></a>1.jps虚拟机进程状况工具</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@10-23-196-181 ~]~:jps -l #输出主类全名／jar路径</span><br><span class="line">root@10-23-196-181 ~]~:jps -v #输出虚拟机进程启动时jvm参数</span><br><span class="line"></span><br><span class="line">root@10-23-196-181 ~]~:jps -m</span><br><span class="line">root@10-23-196-181 ~]~:jps -q</span><br></pre></td></tr></table></figure>
 <h3 id="2-jstat-虚拟机统计信息监视工具"><a href="#2-jstat-虚拟机统计信息监视工具" class="headerlink" title="2.jstat 虚拟机统计信息监视工具"></a>2.jstat 虚拟机统计信息监视工具</h3><p>jstat命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jstat [option vmid [interval[s|ms] [count]]]</span><br><span class="line">jstat -gc 2746 250 20 #250毫秒查询一次进程2746垃圾收集情况，一共查询20次</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jstat [option vmid [interval[s|ms] [count]]]</span><br><span class="line">jstat -gc 2746 250 20 #250毫秒查询一次进程2746垃圾收集情况，一共查询20次</span><br></pre></td></tr></table></figure>
 <hr>
 <table>
 <thead>
@@ -422,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-01/JVM系列-java内存区域与内存溢出异常.html" rel="next" title="JVM系列:java内存区域与内存溢出异常">
-                <i class="fa fa-chevron-left"></i> JVM系列:java内存区域与内存溢出异常
+              <a href="/2017-08-01/JVM系列-垃圾收集器.html" rel="next" title="JVM系列:垃圾收集器与内存分配策略">
+                <i class="fa fa-chevron-left"></i> JVM系列:垃圾收集器与内存分配策略
               </a>
             
           </div>
@@ -432,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-08-01/JVM系列-垃圾收集器.html" rel="prev" title="JVM系列:垃圾收集器与内存分配策略">
-                JVM系列:垃圾收集器与内存分配策略 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-08-01/秒杀系统设计.html" rel="prev" title="秒杀系统设计">
+                秒杀系统设计 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

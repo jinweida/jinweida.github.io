@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="oracle exp/imp命令 ，exp命令可以把数据从远程数据库服务器导出到本地的dmp文件，imp命令可以把dmp文件从本地导入到远处的数据库服务器中expdp/impdp调用Server端的API在执行操作，是数据库内部的job任务。可以远程使用，但是生成的dump 文件存在于服务器上的directory里。 导出dump文件1exp hzqgas/hzqgas@192.168.20.37">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-18T08:22:57.000Z">
+<meta property="og:updated_time" content="2017-12-09T02:32:39.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle备份与恢复">
 <meta name="twitter:description" content="oracle exp/imp命令 ，exp命令可以把数据从远程数据库服务器导出到本地的dmp文件，imp命令可以把dmp文件从本地导入到远处的数据库服务器中expdp/impdp调用Server端的API在执行操作，是数据库内部的job任务。可以远程使用，但是生成的dump 文件存在于服务器上的directory里。 导出dump文件1exp hzqgas/hzqgas@192.168.20.37">
@@ -331,12 +331,12 @@
 
       
         <p>oracle exp/imp命令 ，exp命令可以把数据从远程数据库服务器导出到本地的dmp文件，imp命令可以把dmp文件从本地导入到远处的数据库服务器中<br>expdp/impdp调用Server端的API在执行操作，是数据库内部的job任务。可以远程使用，但是生成的dump 文件存在于服务器上的directory里。</p>
-<p>导出dump文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp hzqgas/hzqgas@192.168.20.37/orcl file=d:\hzq170929.dmp full=y</span><br></pre></td></tr></table></figure></p>
-<p>导出数据库中的表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp hzqgas@hzqgas@192.168.20.37/orcl file=d:\hzq1017_table.dump tables(gas_report_sse,gas_report_ysl)</span><br></pre></td></tr></table></figure></p>
-<p>按条件导出数据库表中的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp hzqgas@hzqgas@192.168.20.37/orcl file=d:\hzq1017_field.dump tables(gas_report_sse) query=\&quot; where filed1 like &apos;00%&apos;\&quot;</span><br></pre></td></tr></table></figure></p>
+<p>导出dump文件<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp hzqgas/hzqgas@192.168.20.37/orcl file=d:\hzq170929.dmp full=y</span><br></pre></td></tr></table></figure></p>
+<p>导出数据库中的表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp hzqgas@hzqgas@192.168.20.37/orcl file=d:\hzq1017_table.dump tables(gas_report_sse,gas_report_ysl)</span><br></pre></td></tr></table></figure></p>
+<p>按条件导出数据库表中的数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp hzqgas@hzqgas@192.168.20.37/orcl file=d:\hzq1017_field.dump tables(gas_report_sse) query=\" where filed1 like '00%'\"</span><br></pre></td></tr></table></figure></p>
 <p>可以压缩导出的文件 只需要加上参数 compress=y</p>
-<p>expdp 备份导出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expdp hzqgas/hzqgas@192.168.20.37/orcl directory=file_path dumpfile=ARADMIN.dat logfile=ARADMIN.log schemas=hzqgas</span><br></pre></td></tr></table></figure></p>
-<p>恢复dump文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impdp hzqgas/hzqgas@192.168.10.216/orcl schemas=hzqgas directory=hzqgas_dir dumpfile=hzq170929.dmp REMAP_SCHEMA=hzqgas:hzqgas remap_tablespace=hzqgas:hzqgas TABLE_EXISTS_ACTION=REPLACE</span><br></pre></td></tr></table></figure></p>
+<p>expdp 备份导出<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expdp hzqgas/hzqgas@192.168.20.37/orcl directory=file_path dumpfile=ARADMIN.dat logfile=ARADMIN.log schemas=hzqgas</span><br></pre></td></tr></table></figure></p>
+<p>恢复dump文件<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impdp hzqgas/hzqgas@192.168.10.216/orcl schemas=hzqgas directory=hzqgas_dir dumpfile=hzq170929.dmp REMAP_SCHEMA=hzqgas:hzqgas remap_tablespace=hzqgas:hzqgas TABLE_EXISTS_ACTION=<span class="keyword">REPLACE</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
