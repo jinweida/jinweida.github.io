@@ -262,6 +262,272 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-09-20/ubuntu中oracle数据库.html" itemprop="url">ubuntu中oracle数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T11:35:28+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-09-20/ubuntu中oracle数据库.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-20/ubuntu中oracle数据库.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>启动数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus /nolog</span></span><br><span class="line">SQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011</span><br><span class="line">Copyright (c) 1982, 2005, Oracle.  All rights reserved.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> conn sys/超级管理员密码 as sysdba;</span></span><br><span class="line">Connected.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> startup <span class="comment">#启动</span></span></span><br><span class="line">ORACLE instance started.</span><br><span class="line">Total System Global Area  322961408 bytes</span><br><span class="line">Variable Size           104859000 bytes</span><br><span class="line">Database Buffers         213909504 bytes</span><br><span class="line">Redo Buffers               2973696 bytes</span><br><span class="line">Database mounted.</span><br><span class="line">Database opened.</span><br></pre></td></tr></table></figure>
+<p>启动监听<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> lsnrctl</span></span><br><span class="line">TNSLSNR for Linux: Version 10.2.0.1.0 - Production</span><br><span class="line">LSNRCTL for Linux: Version 10.2.0.1.0 - Production on 08-JUL-2011 10:03:52</span><br><span class="line">Copyright (c) 1991, 2005, Oracle.  All rights reserved.</span><br><span class="line">Welcome to LSNRCTL, type "help" for information</span><br><span class="line"></span><br><span class="line"><span class="meta">LSNRCTL&gt;</span><span class="bash"> start <span class="comment">#启动监听</span></span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-09-02/docker安装mysql并导入sql文件.html" itemprop="url">docker安装mysql并导入sql文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T19:28:11+08:00">
+                2017-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-09-02/docker安装mysql并导入sql文件.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-02/docker安装mysql并导入sql文件.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="docker安装mysql镜像"><a href="#docker安装mysql镜像" class="headerlink" title="docker安装mysql镜像"></a>docker安装mysql镜像</h4><p>1.搜索镜像 docker search mysql</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker search mysql</span><br><span class="line">NAME                                                   DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                                                  MySQL is a widely used, open-source relati...   4895      [OK]</span><br><span class="line">mariadb                                                MariaDB is a community-developed fork of M...   1509      [OK]</span><br><span class="line">mysql/mysql-server                                     Optimized MySQL Server Docker images. Crea...   342                  [OK]</span><br><span class="line">percona                                                Percona Server is a fork of the MySQL rela...   286       [OK]</span><br><span class="line">hypriot/rpi-mysql                                      RPi-compatible Docker Image with Mysql          67</span><br><span class="line">centurylink/mysql                                      Image containing mysql. Optimized to be li...   52                   [OK]</span><br><span class="line">zabbix/zabbix-server-mysql                             Zabbix Server with MySQL database support       51                   [OK]</span><br><span class="line">sameersbn/mysql                                                                                        47                   [OK]</span><br><span class="line">zabbix/zabbix-web-nginx-mysql                          Zabbix frontend based on Nginx web-server ...   30                   [OK]</span><br><span class="line">tutum/mysql                                            Base docker image to run a MySQL database ...   25</span><br><span class="line">1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5   ubuntu-16-nginx-php-phpmyadmin-mysql-5          13                   [OK]</span><br><span class="line">schickling/mysql-backup-s3                             Backup MySQL to S3 (supports periodic back...   13                   [OK]</span><br><span class="line">linuxserver/mysql                                      A Mysql container, brought to you by Linux...   12</span><br><span class="line">centos/mysql-57-centos7                                MySQL 5.7 SQL database server                   10</span><br><span class="line">appcontainers/mysql                                    Centos/Debian Based Customizable MySQL Con...   8                    [OK]</span><br><span class="line">openshift/mysql-55-centos7                             DEPRECATED: A Centos7 based MySQL v5.5 ima...   6</span><br><span class="line">centos/mysql-56-centos7                                MySQL 5.6 SQL database server                   5</span><br><span class="line">frodenas/mysql                                         A Docker Image for MySQL                        3                    [OK]</span><br><span class="line">dsteinkopf/backup-all-mysql                            backup all DBs in a mysql server                3                    [OK]</span><br><span class="line">circleci/mysql                                         MySQL is a widely used, open-source relati...   1</span><br><span class="line">cloudposse/mysql                                       Improved `mysql` service with support for ...   0                    [OK]</span><br><span class="line">cloudfoundry/cf-mysql-ci                               Image used in CI of cf-mysql-release            0</span><br><span class="line">astronomerio/mysql-source                              MySQL source                                    0                    [OK]</span><br><span class="line">jenkler/mysql                                          Docker Mysql package                            0</span><br><span class="line">astronomerio/mysql-sink</span><br></pre></td></tr></table></figure>
+<p>2.安装镜像 docker pusll mysql:5.6.35<br>我这里装的是5.6.35 可以装最新版本docker pull mysql:latest 默认就是最新的<br>3.创建并运行mysql容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name mysql -v /Users/camulos/Documents:/media -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:5.6.35</span><br><span class="line">-d : --detach，后台运行。</span><br><span class="line">--name : 容器名字</span><br><span class="line">-p : 映射端口，一般我们会将默认端口进行更改，避免与本机的mysql端口冲突，如果你宿主机有mysql，请更改端口，如 -p 33060:3306。</span><br><span class="line">-e : 环境变量。为mysql的root用户设置密码为123456。</span><br><span class="line">-v : 指定数据卷，意思就是将mysql容器中的/media（这个是数据库所有数据信息文件）映射到宿主机/Users/camulos/Documents里面。</span><br></pre></td></tr></table></figure></p>
+<p>4.进入到mysql容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker exec -it mysql bash</span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 14</span><br><span class="line">Server version: 5.6.35 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash">create database sc</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"><span class="built_in">exit</span>;</span></span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p sc &lt; /medias/qsthinkphp.sql #导入sql文件，还原数据库</span><br></pre></td></tr></table></figure></p>
+<p>可以用navicat操作mysql了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-31/oracle使用总结.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1353,289 +1619,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-21/JAVA高级特性-多线程总结（五）.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-21/JAVA高级特性-多线程总结（五）.html" itemprop="url">JAVA高级特性-多线程总结（五）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T10:42:25+08:00">
-                2017-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-21/JAVA高级特性-多线程总结（五）.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-21/JAVA高级特性-多线程总结（五）.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="1-多线程的作用？"><a href="#1-多线程的作用？" class="headerlink" title="1.多线程的作用？"></a>1.多线程的作用？</h5><p>（1）发挥多核CPU作用<br>（2）防止阻塞<br>（3）便于建模</p>
-<h5 id="2-创建线程的方式"><a href="#2-创建线程的方式" class="headerlink" title="2.创建线程的方式"></a>2.创建线程的方式</h5><p>（1）继承Thread类<br>（2）实现Runnable接口，实现接口要好于继承类</p>
-<h5 id="3-start与run方法区别"><a href="#3-start与run方法区别" class="headerlink" title="3.start与run方法区别"></a>3.start与run方法区别</h5><p>只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方法，那么代码还是同步执行的，必须等待一个线程的run()方法里面的代码全部执行完毕之后，另外一个线程才可以执行其run()方法里面的代码。</p>
-<h5 id="4-Callable与Runnable区别"><a href="#4-Callable与Runnable区别" class="headerlink" title="4.Callable与Runnable区别"></a>4.Callable与Runnable区别</h5><p>Runnable接口中的run()方法的返回值是void，它做的事情只是纯粹地去执行run()方法中的代码而已；Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableAndFuture</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Callable&lt;Integer&gt; callable=<span class="keyword">new</span> Callable&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> Random().nextInt(<span class="number">100</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        FutureTask&lt;Integer&gt; future=<span class="keyword">new</span> FutureTask&lt;Integer&gt;(callable);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(future).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            System.out.println(future.get());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="5-CyclicBarrier和CountDownLatch的区别"><a href="#5-CyclicBarrier和CountDownLatch的区别" class="headerlink" title="5.CyclicBarrier和CountDownLatch的区别"></a>5.CyclicBarrier和CountDownLatch的区别</h5><p>（1）CountDownLatch和CyclicBarrier都能够实现线程之间的等待，只不过它们侧重点不同<br>（2）CountDownLatch一般用于某个线程A等待若干个其他线程执行完任务之后，它才执行；<br>（3）CyclicBarrier一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行；<br>（4）CountDownLatch是不能够重用的，而CyclicBarrier是可以重用的。</p>
-<h5 id="6-为什么用线程池？"><a href="#6-为什么用线程池？" class="headerlink" title="6.为什么用线程池？"></a>6.为什么用线程池？</h5><p>避免频繁地创建和销毁线程，达到线程对象的重用。另外，使用线程池还可以根据项目灵活地控制并发的数目</p>
-<h4 id="7-Semaphore有什么作用？"><a href="#7-Semaphore有什么作用？" class="headerlink" title="7.Semaphore有什么作用？"></a>7.Semaphore有什么作用？</h4><p>Semaphore就是一个信号量，它的作用是限制某段代码块的并发数。Semaphore有一个构造函数，可以传入一个int型整数n，表示某段代码最多只有n个线程可以访问，如果超出了n，那么请等待，等到某个线程执行完毕这段代码块，下一个线程再进入。由此可以看出如果Semaphore构造函数中传入的int型整数n=1，相当于变成了一个synchronized了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-20/JAVA高级特性-虚拟机的内容（四）.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-20/JAVA高级特性-虚拟机的内容（四）.html" itemprop="url">JAVA高级特性:虚拟机的内容（四）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T08:10:40+08:00">
-                2017-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-20/JAVA高级特性-虚拟机的内容（四）.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-20/JAVA高级特性-虚拟机的内容（四）.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="虚拟机内存结构"><a href="#虚拟机内存结构" class="headerlink" title="虚拟机内存结构"></a><a href="https://jinweida.github.io/2017-08-01/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAJVM%E7%B3%BB%E5%88%97-java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8%EF%BC%88%E4%B8%80%EF%BC%89.html">虚拟机内存结构</a></h4><h4 id="垃圾回收集算法"><a href="#垃圾回收集算法" class="headerlink" title="垃圾回收集算法"></a><a href="https://jinweida.github.io/2017-08-01/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAJVM%E7%B3%BB%E5%88%97-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%EF%BC%88%E4%BA%8C%EF%BC%89.html">垃圾回收集算法</a></h4><h4 id="内存分配与回收"><a href="#内存分配与回收" class="headerlink" title="内存分配与回收"></a><a href="https://jinweida.github.io/2017-08-01/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAJVM%E7%B3%BB%E5%88%97-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%EF%BC%88%E4%BA%8C%EF%BC%89.html">内存分配与回收</a></h4><h4 id="类加载器-ClassLoader"><a href="#类加载器-ClassLoader" class="headerlink" title="类加载器(ClassLoader)"></a>类加载器(ClassLoader)</h4><p>类加载器(ClassLoader)用来加载 class字节码到 Java 虚拟机中。一般来说，Java 虚拟机使用 Java 类的方式如下：Java 源文件在经过 Javac之后就被转换成 Java 字节码文件(.class 文件)。类加载器负责读取 Java 字节代码，并转换成 java.lang.Class 类的一个实例。每一个这样的实例用来表示一个 Java 类。实际的情况可能更加复杂，比如 Java 字节代码可能是通过工具动态生成的，也可能是通过网络下载。</p>
-<h6 id="类与类加载器"><a href="#类与类加载器" class="headerlink" title="类与类加载器"></a>类与类加载器</h6><p>类加载器虽然只用于实现类的加载动作，但它在Java程序中起到的作用却远远不限于类加载阶段。对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立其在Java虚拟中的唯一性。说通俗一些，比较两个类是否“相等”，只有在两个类是由同一个类加载器的前提之下才有意义，否则，即使这两个类来源于同一个class文件，只要加载它的类加载器不同，那这两个类必定不相等。这里所指的“相等”包括代表类的Class对象的equal方法、isAssignableFrom()、isInstance()方法及instance关键字返回的结果。</p>
-<p><img src="/asset/classload.jpg"><br>主要分为Bootstrap ClassLoader、Extension ClassLoader、Application ClassLoader和User Defined ClassLoader。</p>
-<p>启动类加载器(Bootstrap ClassLoader)：</p>
-<p>这个类加载器使用C++语言实现，并非ClassLoader的子类。主要负责加载存放在JAVA_HOME /  jre /  lib / rt.jar里面所有的class文件，或者被-Xbootclasspath参数所指定路径中以rt.jar命名的文件。</p>
-<p>扩展类加载器(Extension ClassLoader)：</p>
-<p>这个加载器由sun.misc.Launcher$ExtClassLoader实现，它负责加载AVA_HOME /  lib / ext目录中的，或者被java.ext.dirs系统变量所指定的路径中的所有类库。</p>
-<p>应用程序类加载器(Application ClassLoader)：</p>
-<p>这个加载器由sun.misc.Launcher$AppClassLoader实现，它负责加载classpath对应的jar及目录。一般情况下这个就是程序中默认的类加载器。</p>
-<p>自定义类加载器(User Defined ClassLoader)：</p>
-<p>开发人员继承ClassLoader抽象类自行实现的类加载器，基于自行开发的ClassLoader可用于并非加载classpath中(例如从网络上下载的jar或二进制字节码)、还可以在加载class文件之前做些小动作 如：加密等。</p>
-<h6 id="双亲委托模型"><a href="#双亲委托模型" class="headerlink" title="双亲委托模型"></a>双亲委托模型</h6><p>双亲委托的工作过程：如果一个类加载器收到了一个类加载请求，它首先不会自己去加载这个类，而是把这个请求委托给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父类加载器反馈自己无法完成加载请求(它管理的范围之中没有这个类)时，子加载器才会尝试着自己去加载。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1681,7 +1669,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1694,7 +1682,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1806,6 +1794,8 @@
   
 
 
+  
+
 
 
 
@@ -1844,6 +1834,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

@@ -262,6 +262,283 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/一致性Hash算法.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-12-09/一致性Hash算法.html" itemprop="url">一致性Hash算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T11:36:15+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-12-09/一致性Hash算法.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/一致性Hash算法.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>参考：<a href="http://www.cnblogs.com/xrq730/p/5186728.html" target="_blank" rel="noopener">http://www.cnblogs.com/xrq730/p/5186728.html</a></p>
+</blockquote>
+<p>一致性哈希算法在1997年由麻省理工学院提出的一种分布式哈希（DHT）实现算法，设计目标是为了解决因特网中的热点(Hot spot)问题。</p>
+<h4 id="一致性hash主要用途"><a href="#一致性hash主要用途" class="headerlink" title="一致性hash主要用途"></a>一致性hash主要用途</h4><p>一致性hash作为一个负载均衡算法，可以用在分布式缓存、数据库的分库分表等场景中，还可以应用在负载均衡器中作为作为负载均衡算法。在有多台服务器时，对于某个请求资源通过hash算法，映射到某一个台服务器，当增加或减少一台服务器时，可能会改变这些资源对应的hash值，这样可能导致一部分缓存或数据失效了。一致性hash就是尽可能在将同一个资源请求路由到同一台服务器中。</p>
+<h4 id="一致性哈希算法原理"><a href="#一致性哈希算法原理" class="headerlink" title="一致性哈希算法原理"></a>一致性哈希算法原理</h4><p>先构造一个长度为232的整数环（这个环被称为一致性Hash环），根据节点名称的Hash值（其分布为[0, 2^32-1]）将服务器节点放置在这个Hash环上，然后根据数据的Key值计算得到其Hash值（其分布也为[0, 23^2-1]），接着在Hash环上顺时针查找距离这个Key值的Hash值最近的服务器节点，完成Key到服务器的映射查找。 这种算法解决了普通余数Hash算法伸缩性差的问题，可以保证在上线、下线服务器的情况下尽量有多的请求命中原来路由到的服务器。<br><img src="/images/hash.jpg" alt="image"><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-12-09/一致性Hash算法.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/Git操作.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-12-09/Git操作.html" itemprop="url">Git操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T11:27:38+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-12-09/Git操作.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/Git操作.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h5 id="Git记住密码"><a href="#Git记住密码" class="headerlink" title="Git记住密码"></a>Git记住密码</h5><p>避免每次提交密码都要输入用户密码，避免每次输入：<br>store 永久记住密码<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></p>
+<p>cache 临时密码，默认为15分钟<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config –global credential.helper cache</span><br></pre></td></tr></table></figure></p>
+<p>也可以指定时间<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper ‘cache –timeout=3600’</span><br></pre></td></tr></table></figure></p>
+<h5 id="git设置关闭自动换行"><a href="#git设置关闭自动换行" class="headerlink" title="git设置关闭自动换行"></a>git设置关闭自动换行</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
+<p>为了保证文件的换行符是以安全的方法，避免windows与unix的换行符混用的情况，最好也加 上这么一句<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global core.safecrlf true</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-12-09/Git操作.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-11-15/JVM系列-类加载器与双亲委派.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -886,8 +1163,8 @@
         
           
             <h4 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -ss 5 -t 1 -i input/a.MOV -f image2 -vframes 1 tmp/a.jpg -loglevel 16</span><br><span class="line">ffmpeg -y -ss 5 -t 1 -i input/b.MOV -f image2 -vframes 1 tmp/b.jpg -loglevel 16</span><br></pre></td></tr></table></figure>
-<h4 id="获取时长"><a href="#获取时长" class="headerlink" title="获取时长"></a>获取时长</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> linux下</span><br><span class="line">ffmpeg -y -i input/a.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br><span class="line">ffmpeg -y -i input/b.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br></pre></td></tr></table></figure>
-<h4 id="剪辑"><a href="#剪辑" class="headerlink" title="剪辑"></a>剪辑</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -ss 00:00:05 -i input/a.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/1.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:05 -i input/b.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/2.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:10 -i input/a.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/3.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:10 -i input/b.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/4.ts -loglevel 16</span><br><span class="line"><span class="meta">#</span>从头截取20秒的mp3,并copy为b.mp3</span><br><span class="line">ffmpeg -y -ss 0 -i bg.mp3 -t 20 -acodec copy tmp/b.mp3 -loglevel 16 </span><br><span class="line"><span class="meta">#</span>合并ts为body.ts</span><br><span class="line">ffmpeg -y -i "concat:tmp/1.ts|tmp/2.ts|tmp/3.ts|tmp/4.ts" -i tmp/b.mp3 -c copy tmp/body.ts -loglevel 16</span><br><span class="line"><span class="meta">#</span>添加头尾视频</span><br><span class="line">ffmpeg -y -i "concat:header.ts|tmp/body.ts|footer.ts" -c copy tmp/finish.mp4 -loglevel 16</span><br></pre></td></tr></table></figure>
+<h4 id="获取时长"><a href="#获取时长" class="headerlink" title="获取时长"></a>获取时长</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> linux下</span></span><br><span class="line">ffmpeg -y -i input/a.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br><span class="line">ffmpeg -y -i input/b.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br></pre></td></tr></table></figure>
+<h4 id="剪辑"><a href="#剪辑" class="headerlink" title="剪辑"></a>剪辑</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -ss 00:00:05 -i input/a.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/1.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:05 -i input/b.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/2.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:10 -i input/a.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/3.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:10 -i input/b.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/4.ts -loglevel 16</span><br><span class="line"><span class="meta">#</span><span class="bash">从头截取20秒的mp3,并copy为b.mp3</span></span><br><span class="line">ffmpeg -y -ss 0 -i bg.mp3 -t 20 -acodec copy tmp/b.mp3 -loglevel 16 </span><br><span class="line"><span class="meta">#</span><span class="bash">合并ts为body.ts</span></span><br><span class="line">ffmpeg -y -i "concat:tmp/1.ts|tmp/2.ts|tmp/3.ts|tmp/4.ts" -i tmp/b.mp3 -c copy tmp/body.ts -loglevel 16</span><br><span class="line"><span class="meta">#</span><span class="bash">添加头尾视频</span></span><br><span class="line">ffmpeg -y -i "concat:header.ts|tmp/body.ts|footer.ts" -c copy tmp/finish.mp4 -loglevel 16</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1323,277 +1600,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-09-20/ubuntu中oracle数据库.html" itemprop="url">ubuntu中oracle数据库</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T11:35:28+08:00">
-                2017-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-09-20/ubuntu中oracle数据库.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-20/ubuntu中oracle数据库.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>启动数据</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus /nolog</span></span><br><span class="line">SQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011</span><br><span class="line">Copyright (c) 1982, 2005, Oracle.  All rights reserved.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> conn sys/超级管理员密码 as sysdba;</span></span><br><span class="line">Connected.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> startup <span class="comment">#启动</span></span></span><br><span class="line">ORACLE instance started.</span><br><span class="line">Total System Global Area  322961408 bytes</span><br><span class="line">Variable Size           104859000 bytes</span><br><span class="line">Database Buffers         213909504 bytes</span><br><span class="line">Redo Buffers               2973696 bytes</span><br><span class="line">Database mounted.</span><br><span class="line">Database opened.</span><br></pre></td></tr></table></figure>
-<p>启动监听<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> lsnrctl</span></span><br><span class="line">TNSLSNR for Linux: Version 10.2.0.1.0 - Production</span><br><span class="line">LSNRCTL for Linux: Version 10.2.0.1.0 - Production on 08-JUL-2011 10:03:52</span><br><span class="line">Copyright (c) 1991, 2005, Oracle.  All rights reserved.</span><br><span class="line">Welcome to LSNRCTL, type "help" for information</span><br><span class="line"></span><br><span class="line"><span class="meta">LSNRCTL&gt;</span><span class="bash"> start <span class="comment">#启动监听</span></span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-09-02/docker安装mysql并导入sql文件.html" itemprop="url">docker安装mysql并导入sql文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T19:28:11+08:00">
-                2017-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-09-02/docker安装mysql并导入sql文件.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-02/docker安装mysql并导入sql文件.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="docker安装mysql镜像"><a href="#docker安装mysql镜像" class="headerlink" title="docker安装mysql镜像"></a>docker安装mysql镜像</h4><p>1.搜索镜像 docker search mysql</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker search mysql</span><br><span class="line">NAME                                                   DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                                                  MySQL is a widely used, open-source relati...   4895      [OK]</span><br><span class="line">mariadb                                                MariaDB is a community-developed fork of M...   1509      [OK]</span><br><span class="line">mysql/mysql-server                                     Optimized MySQL Server Docker images. Crea...   342                  [OK]</span><br><span class="line">percona                                                Percona Server is a fork of the MySQL rela...   286       [OK]</span><br><span class="line">hypriot/rpi-mysql                                      RPi-compatible Docker Image with Mysql          67</span><br><span class="line">centurylink/mysql                                      Image containing mysql. Optimized to be li...   52                   [OK]</span><br><span class="line">zabbix/zabbix-server-mysql                             Zabbix Server with MySQL database support       51                   [OK]</span><br><span class="line">sameersbn/mysql                                                                                        47                   [OK]</span><br><span class="line">zabbix/zabbix-web-nginx-mysql                          Zabbix frontend based on Nginx web-server ...   30                   [OK]</span><br><span class="line">tutum/mysql                                            Base docker image to run a MySQL database ...   25</span><br><span class="line">1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5   ubuntu-16-nginx-php-phpmyadmin-mysql-5          13                   [OK]</span><br><span class="line">schickling/mysql-backup-s3                             Backup MySQL to S3 (supports periodic back...   13                   [OK]</span><br><span class="line">linuxserver/mysql                                      A Mysql container, brought to you by Linux...   12</span><br><span class="line">centos/mysql-57-centos7                                MySQL 5.7 SQL database server                   10</span><br><span class="line">appcontainers/mysql                                    Centos/Debian Based Customizable MySQL Con...   8                    [OK]</span><br><span class="line">openshift/mysql-55-centos7                             DEPRECATED: A Centos7 based MySQL v5.5 ima...   6</span><br><span class="line">centos/mysql-56-centos7                                MySQL 5.6 SQL database server                   5</span><br><span class="line">frodenas/mysql                                         A Docker Image for MySQL                        3                    [OK]</span><br><span class="line">dsteinkopf/backup-all-mysql                            backup all DBs in a mysql server                3                    [OK]</span><br><span class="line">circleci/mysql                                         MySQL is a widely used, open-source relati...   1</span><br><span class="line">cloudposse/mysql                                       Improved `mysql` service with support for ...   0                    [OK]</span><br><span class="line">cloudfoundry/cf-mysql-ci                               Image used in CI of cf-mysql-release            0</span><br><span class="line">astronomerio/mysql-source                              MySQL source                                    0                    [OK]</span><br><span class="line">jenkler/mysql                                          Docker Mysql package                            0</span><br><span class="line">astronomerio/mysql-sink</span><br></pre></td></tr></table></figure>
-<p>2.安装镜像 docker pusll mysql:5.6.35<br>我这里装的是5.6.35 可以装最新版本docker pull mysql:latest 默认就是最新的<br>3.创建并运行mysql容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name mysql -v /Users/camulos/Documents:/media -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:5.6.35</span><br><span class="line">-d : --detach，后台运行。</span><br><span class="line">--name : 容器名字</span><br><span class="line">-p : 映射端口，一般我们会将默认端口进行更改，避免与本机的mysql端口冲突，如果你宿主机有mysql，请更改端口，如 -p 33060:3306。</span><br><span class="line">-e : 环境变量。为mysql的root用户设置密码为123456。</span><br><span class="line">-v : 指定数据卷，意思就是将mysql容器中的/media（这个是数据库所有数据信息文件）映射到宿主机/Users/camulos/Documents里面。</span><br></pre></td></tr></table></figure></p>
-<p>4.进入到mysql容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker exec -it mysql bash</span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 14</span><br><span class="line">Server version: 5.6.35 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span>create database sc</span><br><span class="line"><span class="meta">mysql&gt;</span>exit;</span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p sc &lt; /medias/qsthinkphp.sql #导入sql文件，还原数据库</span><br></pre></td></tr></table></figure></p>
-<p>可以用navicat操作mysql了</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1639,7 +1650,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1652,7 +1663,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1764,6 +1775,8 @@
   
 
 
+  
+
 
 
 
@@ -1802,6 +1815,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
