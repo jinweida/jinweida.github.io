@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="####多线程临界区的概念  多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下">
+<meta name="description" content="多线程临界区的概念 多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程">
 <meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java线程同步">
+<meta property="og:title" content="java-线程同步">
 <meta property="og:url" content="http://jinweida.github.io/2017-12-12/java-线程同步.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="####多线程临界区的概念  多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共">
+<meta property="og:description" content="多线程临界区的概念 多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共享变量进行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-12T14:55:12.003Z">
+<meta property="og:updated_time" content="2017-12-12T14:55:42.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java线程同步">
-<meta name="twitter:description" content="####多线程临界区的概念  多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共">
+<meta name="twitter:title" content="java-线程同步">
+<meta name="twitter:description" content="多线程临界区的概念 多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共享变量进行">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>java线程同步 | 金声玉振</title>
+  <title>java-线程同步 | 金声玉振</title>
   
 
 
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java线程同步</h1>
+          <h1 class="post-title" itemprop="name headline">java-线程同步</h1>
         
 
         <div class="post-meta">
@@ -362,8 +362,7 @@
       
 
       
-        <p>####多线程临界区的概念</p>
-<ul>
+        <h4 id="多线程临界区的概念"><a href="#多线程临界区的概念" class="headerlink" title="多线程临界区的概念"></a>多线程临界区的概念</h4><ul>
 <li>多线程访问访问交替访问同一个对象，这个对象被称为临界资源。</li>
 <li>一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。</li>
 <li>一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。</li>
@@ -421,7 +420,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-12-12/java-线程同步.html" title="java线程同步">http://jinweida.github.io/2017-12-12/java-线程同步.html</a>
+              <a href="/2017-12-12/java-线程同步.html" title="java-线程同步">http://jinweida.github.io/2017-12-12/java-线程同步.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -484,10 +483,6 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-12-12/java-多线程同步.html" rel="prev" title="java-多线程同步">
-                java-多线程同步 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -518,7 +513,7 @@
   
     <div class="comments" id="comments">
       <div class="ds-thread" data-thread-key="2017-12-12/java-线程同步.html"
-           data-title="java线程同步" data-url="http://jinweida.github.io/2017-12-12/java-线程同步.html">
+           data-title="java-线程同步" data-url="http://jinweida.github.io/2017-12-12/java-线程同步.html">
       </div>
     </div>
 
@@ -570,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -635,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存可见性"><span class="nav-number">1.</span> <span class="nav-text">内存可见性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized"><span class="nav-number">2.</span> <span class="nav-text">synchronized</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReentrantLock"><span class="nav-number">3.</span> <span class="nav-text">ReentrantLock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized和ReentrantLock的区别"><span class="nav-number">4.</span> <span class="nav-text">synchronized和ReentrantLock的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#volatile关键字"><span class="nav-number">5.</span> <span class="nav-text">volatile关键字</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程临界区的概念"><span class="nav-number">1.</span> <span class="nav-text">多线程临界区的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存可见性"><span class="nav-number">2.</span> <span class="nav-text">内存可见性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized"><span class="nav-number">3.</span> <span class="nav-text">synchronized</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReentrantLock"><span class="nav-number">4.</span> <span class="nav-text">ReentrantLock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized和ReentrantLock的区别"><span class="nav-number">5.</span> <span class="nav-text">synchronized和ReentrantLock的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#volatile关键字"><span class="nav-number">6.</span> <span class="nav-text">volatile关键字</span></a></li></ol></div>
             
 
           </div>
