@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="oracle," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="启动数据 1234567891011121314$ su oracle$ sqlplus /nologSQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011Copyright (c) 1982, 2005, Oracle.  All ri">
-<meta name="keywords" content="oracle">
+<meta name="description" content="乐观锁概念维基百科定义：在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu中oracle数据库">
-<meta property="og:url" content="http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html">
+<meta property="og:title" content="乐观锁和悲观锁">
+<meta property="og:url" content="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="启动数据 1234567891011121314$ su oracle$ sqlplus /nologSQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011Copyright (c) 1982, 2005, Oracle.  All rights reserved.SQL&amp;gt; conn sys/超级管理员密码 a">
+<meta property="og:description" content="乐观锁概念维基百科定义：在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T02:50:08.892Z">
+<meta property="og:image" content="http://jinweida.github.io/images/lock.jpg">
+<meta property="og:updated_time" content="2017-12-12T15:45:43.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu中oracle数据库">
-<meta name="twitter:description" content="启动数据 1234567891011121314$ su oracle$ sqlplus /nologSQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011Copyright (c) 1982, 2005, Oracle.  All rights reserved.SQL&amp;gt; conn sys/超级管理员密码 a">
+<meta name="twitter:title" content="乐观锁和悲观锁">
+<meta name="twitter:description" content="乐观锁概念维基百科定义：在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的">
+<meta name="twitter:image" content="http://jinweida.github.io/images/lock.jpg">
 
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html"/>
 
 
 
 
 
-  <title>ubuntu中oracle数据库 | 金声玉振</title>
+  <title>乐观锁和悲观锁 | 金声玉振</title>
   
 
 
@@ -263,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ubuntu中oracle数据库</h1>
+          <h1 class="post-title" itemprop="name headline">乐观锁和悲观锁</h1>
         
 
         <div class="post-meta">
@@ -292,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T11:35:28+08:00">
-                2017-09-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T23:21:14+08:00">
+                2017-12-12
               </time>
             
 
@@ -311,8 +312,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-09-20/ubuntu中oracle数据库.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-20/ubuntu中oracle数据库.html" itemprop="commentCount"></span>
+                <a href="/2017-12-12/乐观锁和悲观锁.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-12/乐观锁和悲观锁.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,9 +341,21 @@
       
 
       
-        <p>启动数据</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus /nolog</span></span><br><span class="line">SQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011</span><br><span class="line">Copyright (c) 1982, 2005, Oracle.  All rights reserved.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> conn sys/超级管理员密码 as sysdba;</span></span><br><span class="line">Connected.</span><br><span class="line"><span class="meta">SQL&gt;</span><span class="bash"> startup <span class="comment">#启动</span></span></span><br><span class="line">ORACLE instance started.</span><br><span class="line">Total System Global Area  322961408 bytes</span><br><span class="line">Variable Size           104859000 bytes</span><br><span class="line">Database Buffers         213909504 bytes</span><br><span class="line">Redo Buffers               2973696 bytes</span><br><span class="line">Database mounted.</span><br><span class="line">Database opened.</span><br></pre></td></tr></table></figure>
-<p>启动监听<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su oracle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> lsnrctl</span></span><br><span class="line">TNSLSNR for Linux: Version 10.2.0.1.0 - Production</span><br><span class="line">LSNRCTL for Linux: Version 10.2.0.1.0 - Production on 08-JUL-2011 10:03:52</span><br><span class="line">Copyright (c) 1991, 2005, Oracle.  All rights reserved.</span><br><span class="line">Welcome to LSNRCTL, type "help" for information</span><br><span class="line"></span><br><span class="line"><span class="meta">LSNRCTL&gt;</span><span class="bash"> start <span class="comment">#启动监听</span></span></span><br></pre></td></tr></table></figure></p>
+        <h4 id="乐观锁概念"><a href="#乐观锁概念" class="headerlink" title="乐观锁概念"></a>乐观锁概念</h4><p>维基百科定义：<br>在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的事务会进行回滚。乐观事务控制最早是由孔祥重（H.T.Kung）教授提出。</p>
+<hr>
+<h4 id="悲观锁概念"><a href="#悲观锁概念" class="headerlink" title="悲观锁概念"></a>悲观锁概念</h4><p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。它可以阻止一个事务以影响其他用户的方式来修改数据。如果一个事务执行的操作读某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作。</p>
+<p>悲观并发控制主要用于数据争用激烈的环境，以及发生并发冲突时使用锁保护数据的成本要低于回滚事务的成本的环境中。</p>
+<h4 id="高并发业务场景"><a href="#高并发业务场景" class="headerlink" title="高并发业务场景"></a>高并发业务场景</h4><p>在高并发业务场景中，大量请求同时发起，会导致库存数据不正确。可以用乐观锁和悲观锁来解决。<br><img src="/images/lock.jpg" alt="image"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">begin</span> <span class="comment">--开启事务</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, total, front, <span class="keyword">end</span> <span class="keyword">from</span> price <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> price <span class="keyword">values</span>(?,?,?,?,?)</span><br><span class="line"></span><br><span class="line"><span class="keyword">commit</span> <span class="comment">--提交事务</span></span><br></pre></td></tr></table></figure>
+<p>这里使用select for update的方式利用数据库开启了悲观锁，锁定了id=1的这条数据。之后使用commit提交事务并释放锁，这样下一个线程过来拿到的就是正确的数据。</p>
+<blockquote>
+<p>悲观锁一般是用于并发不是很高，并且不允许脏读等情况。但是对数据库资源消耗较大。</p>
+</blockquote>
+<p>追求更好的性能，支持更高并发</p>
+<blockquote>
+<p>乐观锁是首先假设数据冲突很少，只有在数据提交修改的时候才进行校验，如果冲突了则不会进行更新。通常的实现方式增加一个version字段，为每一条数据加上版本。每次更新的时候version+1，并且更新时候带上版本号</p>
+<p>乐观锁在实际应用相对较多，它可以提供更好的并发访问，并且数据库开销较少，但是有可能存在脏读的情况。</p>
+</blockquote>
 
       
     </div>
@@ -370,7 +383,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-09-20/ubuntu中oracle数据库.html" title="ubuntu中oracle数据库">http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html</a>
+              <a href="/2017-12-12/乐观锁和悲观锁.html" title="乐观锁和悲观锁">http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -408,12 +421,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/oracle/" rel="tag"># oracle</a>
-          
-        </div>
-      
 
       
       
@@ -423,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-09-02/docker安装mysql并导入sql文件.html" rel="next" title="docker安装mysql并导入sql文件">
-                <i class="fa fa-chevron-left"></i> docker安装mysql并导入sql文件
+              <a href="/2017-12-12/java-线程同步.html" rel="next" title="java-线程同步">
+                <i class="fa fa-chevron-left"></i> java-线程同步
               </a>
             
           </div>
@@ -432,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-10-17/oracle备份与恢复.html" rel="prev" title="oracle备份与恢复">
-                oracle备份与恢复 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -466,8 +469,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-09-20/ubuntu中oracle数据库.html"
-           data-title="ubuntu中oracle数据库" data-url="http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html">
+      <div class="ds-thread" data-thread-key="2017-12-12/乐观锁和悲观锁.html"
+           data-title="乐观锁和悲观锁" data-url="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html">
       </div>
     </div>
 
@@ -494,8 +497,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -565,6 +577,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#乐观锁概念"><span class="nav-number">1.</span> <span class="nav-text">乐观锁概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#悲观锁概念"><span class="nav-number">2.</span> <span class="nav-text">悲观锁概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高并发业务场景"><span class="nav-number">3.</span> <span class="nav-text">高并发业务场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
