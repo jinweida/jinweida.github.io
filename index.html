@@ -346,14 +346,13 @@
             <h4 id="乐观锁概念"><a href="#乐观锁概念" class="headerlink" title="乐观锁概念"></a>乐观锁概念</h4><p>维基百科定义：<br>在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的事务会进行回滚。乐观事务控制最早是由孔祥重（H.T.Kung）教授提出。</p>
 <hr>
 <h4 id="悲观锁概念"><a href="#悲观锁概念" class="headerlink" title="悲观锁概念"></a>悲观锁概念</h4><p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。它可以阻止一个事务以影响其他用户的方式来修改数据。如果一个事务执行的操作读某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作。</p>
-<p>悲观并发控制主要用于数据争用激烈的环境，以及发生并发冲突时使用锁保护数据的成本要低于回滚事务的成本的环境中。</p>
-<h4 id="高并发业务场景"><a href="#高并发业务场景" class="headerlink" title="高并发业务场景"></a>高并发业务场景</h4><p>在高并发业务场景中，大量请求同时发起，会导致库存数据不正确。可以用乐观锁和悲观锁来解决。<br><img src="/images/lock.jpg" alt="image"></p>
+<h4 id="高并发业务场景"><a href="#高并发业务场景" class="headerlink" title="高并发业务场景"></a>高并发业务场景</h4><p>在高并发业务场景中，大量请求同时发起，会导致库存数据不正确。可以用乐观锁和悲观锁来解决。<br><img src="/images/.jpg" alt="image"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">begin</span> <span class="comment">--开启事务</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, total, front, <span class="keyword">end</span> <span class="keyword">from</span> price <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> price <span class="keyword">values</span>(?,?,?,?,?)</span><br><span class="line"></span><br><span class="line"><span class="keyword">commit</span> <span class="comment">--提交事务</span></span><br></pre></td></tr></table></figure>
 <p>这里使用select for update的方式利用数据库开启了悲观锁，锁定了id=1的这条数据。之后使用commit提交事务并释放锁，这样下一个线程过来拿到的就是正确的数据。</p>
 <blockquote>
 <p>悲观锁一般是用于并发不是很高，并且不允许脏读等情况。但是对数据库资源消耗较大。</p>
 </blockquote>
-<p>追求更好的性能，支持更高并发</p>
+<p>使用乐观锁追求更好的性能，支持更高并发</p>
 <blockquote>
 <p>乐观锁是首先假设数据冲突很少，只有在数据提交修改的时候才进行校验，如果冲突了则不会进行更新。通常的实现方式增加一个version字段，为每一条数据加上版本。每次更新的时候version+1，并且更新时候带上版本号</p>
 <p>乐观锁在实际应用相对较多，它可以提供更好的并发访问，并且数据库开销较少，但是有可能存在脏读的情况。</p>
