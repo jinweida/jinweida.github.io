@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="多线程," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="金声玉振">
+<meta name="description" content="####多线程临界区的概念  多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下">
+<meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java线程同步">
 <meta property="og:url" content="http://jinweida.github.io/2017-12-12/java-线程同步.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="金声玉振">
+<meta property="og:description" content="####多线程临界区的概念  多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-12T14:03:36.660Z">
+<meta property="og:updated_time" content="2017-12-12T14:55:12.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java线程同步">
-<meta name="twitter:description" content="金声玉振">
+<meta name="twitter:description" content="####多线程临界区的概念  多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共">
 
 
 
@@ -302,6 +303,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -339,7 +362,39 @@
       
 
       
-        
+        <p>####多线程临界区的概念</p>
+<ul>
+<li>多线程访问访问交替访问同一个对象，这个对象被称为临界资源。</li>
+<li>一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。</li>
+<li>一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。</li>
+<li>线程不安全，多线程访问同一个对象，可能会造成数据不一致。</li>
+</ul>
+<h4 id="内存可见性"><a href="#内存可见性" class="headerlink" title="内存可见性"></a>内存可见性</h4><p>多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共享变量进行修改，此时拿到的变量还没有被修改，也就是一个线程对内存变量的修改，另一个线程不能马上看到，甚至永远也看不到，发生了数据错误，这个就是内存可见性。</p>
+<p>加锁可以解决这个问题。java中常用的枷锁方式有：</p>
+<ul>
+<li>使用synchronized关键字</li>
+<li>使用显示锁 lock</li>
+<li>使用volatile</li>
+</ul>
+<h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h4><ul>
+<li>同步代码块<br>synchronized(o){ } 对o加锁的同步代码块，只有拿到锁标记的线程才能够进入对o加锁的同步代码块。</li>
+<li>同步方法<br>synchronized作为方法修饰符修饰的方法被称为同步方法，整个方法都是一个代码块。</li>
+</ul>
+<h4 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h4><p>ReentrantLock与synchronized作用类似,更加灵活。<br><a id="more"></a><br>读写锁，读写分离。分为readLock和writeLock两把锁。对于readLock来说，是一把共享锁，可以多次分配；但是当readLock锁上的时候，调用writeLock是会阻塞的，反之亦然，另，写锁是一把普通的互斥锁，只可以分配一次。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();  </span><br><span class="line">lock.lock();  </span><br><span class="line"><span class="keyword">try</span> &#123;   </span><br><span class="line">  <span class="comment">// update object state  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">finally</span> &#123;  </span><br><span class="line">  lock.unlock();   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="synchronized和ReentrantLock的区别"><a href="#synchronized和ReentrantLock的区别" class="headerlink" title="synchronized和ReentrantLock的区别"></a>synchronized和ReentrantLock的区别</h4><ul>
+<li>1.两者都是互斥锁，所谓互斥锁：同一时间只有一个拿到锁的线程才能够去访问加锁的共享资源，其他的线程只能阻塞</li>
+<li>2.都是重入锁，用计数器实现</li>
+<li>3.ReentrantLock独有特点<blockquote>
+<p>ReenTrantLock可以指定是公平锁还是非公平锁。而synchronized只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁<br>ReenTrantLock提供了一个Condition（条件）类，用来实现分组唤醒需要唤醒的线程们，而不是像synchronized要么随机唤醒一个线程要么唤醒全部线程<br>ReenTrantLock提供了一种能够中断等待锁的线程的机制，通过lock.lockInterruptibly()来实现这个机制</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h4><p>Java语言提供了一种稍弱的同步机制，即volatile变量，用来确保将变量的更新操作通知到其他线程。当把变量生命为volatile类型后，编译器与运行时都会注意到这个变量是共享的。</p>
+<p>Java 中每个线程都会有一块工作内存区，其中存放着所有线程共享的主内存中的变量值的拷贝，当线程执行时，他在自己的工作区中操作这些变量。为了存取一个共享的变量，一个线程通常先获取锁定并去清除它的内存工作区，把这些共享变量从所有线程的共享内存区中正确的装入它自己所在的工作内存区中，当线程解锁时保证该工作内存区中变量的值写回到共享内存中</p>
+<p>一个线程可以执行的操作有使用（use）、赋值（assign）、装载（load）、存储（store）、锁定（lock）、解锁（unlock）。而主内存可以执行的操作有读（read）、写（write）、锁定（lock）、解锁（unlock），每个操作都是原子的。</p>
+<p>volatile的作用就是强制线程到内存（共享内存）里去读取变量，而不去线程工作内存区里去读取，从而实现了多个线程间的变量可见。也就是满足了线程安全的可见性。</p>
+
       
     </div>
     
@@ -404,6 +459,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+        </div>
+      
 
       
       
@@ -422,6 +483,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017-12-12/java-多线程同步.html" rel="prev" title="java-多线程同步">
+                java-多线程同步 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -480,8 +545,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -496,7 +570,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,6 +625,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存可见性"><span class="nav-number">1.</span> <span class="nav-text">内存可见性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized"><span class="nav-number">2.</span> <span class="nav-text">synchronized</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReentrantLock"><span class="nav-number">3.</span> <span class="nav-text">ReentrantLock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized和ReentrantLock的区别"><span class="nav-number">4.</span> <span class="nav-text">synchronized和ReentrantLock的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#volatile关键字"><span class="nav-number">5.</span> <span class="nav-text">volatile关键字</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
