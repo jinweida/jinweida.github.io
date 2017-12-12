@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="高并发," />
+  <meta name="keywords" content="多线程," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果">
-<meta name="keywords" content="高并发">
+<meta name="description" content="1.多线程的作用？（1）发挥多核CPU作用（2）防止阻塞（3）便于建模 2.创建线程的方式（1）继承Thread类（2）实现Runnable接口，实现接口要好于继承类 3.start与run方法区别只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方">
+<meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="缓存在高并发场景下的问题">
-<meta property="og:url" content="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
+<meta property="og:title" content="java-多线程总结">
+<meta property="og:url" content="http://jinweida.github.io/2017-08-21/java-多线程总结.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个">
+<meta property="og:description" content="1.多线程的作用？（1）发挥多核CPU作用（2）防止阻塞（3）便于建模 2.创建线程的方式（1）继承Thread类（2）实现Runnable接口，实现接口要好于继承类 3.start与run方法区别只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方法，那么代码还是同步执行的，必须等待一个线程的run()方法里面的代码全部执行完">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-04T09:16:49.000Z">
+<meta property="og:updated_time" content="2017-12-12T14:19:14.409Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="缓存在高并发场景下的问题">
-<meta name="twitter:description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个">
+<meta name="twitter:title" content="java-多线程总结">
+<meta name="twitter:description" content="1.多线程的作用？（1）发挥多核CPU作用（2）防止阻塞（3）便于建模 2.创建线程的方式（1）继承Thread类（2）实现Runnable接口，实现接口要好于继承类 3.start与run方法区别只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方法，那么代码还是同步执行的，必须等待一个线程的run()方法里面的代码全部执行完">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-08-21/java-多线程总结.html"/>
 
 
 
 
 
-  <title>缓存在高并发场景下的问题 | 金声玉振</title>
+  <title>java-多线程总结 | 金声玉振</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-21/java-多线程总结.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">缓存在高并发场景下的问题</h1>
+          <h1 class="post-title" itemprop="name headline">java-多线程总结</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T18:35:27+08:00">
-                2017-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T10:42:25+08:00">
+                2017-08-21
               </time>
             
 
@@ -303,6 +303,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -311,8 +333,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-08-01/缓存在高并发场景下的问题.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-01/缓存在高并发场景下的问题.html" itemprop="commentCount"></span>
+                <a href="/2017-08-21/java-多线程总结.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-21/java-多线程总结.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,33 +362,14 @@
       
 
       
-        <h3 id="1-缓存击穿有哪些解决方案？"><a href="#1-缓存击穿有哪些解决方案？" class="headerlink" title="1. 缓存击穿有哪些解决方案？"></a>1. 缓存击穿有哪些解决方案？</h3><ul>
-<li>缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。</li>
-<li><p>解决方案</p>
-<ul>
-<li><p>缓存空对象</p>
-<p>  对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请求穿透到后端数据库。成本低，可能会被频繁更新。</p>
-</li>
-<li>单独过滤处理<br>  对所有可能为空的key进行统一存放，特殊处理</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-缓存并发问题"><a href="#2-缓存并发问题" class="headerlink" title="2.缓存并发问题"></a>2.缓存并发问题</h3><ul>
-<li>概念：缓存过期或者缓存key被更新时，高并发情况下去数据库获取数据对后端造成极大的冲击</li>
-<li>解决方案：<ul>
-<li>在更新或者过期情况下，先尝试加锁更新完或者从数据库获取后释放锁，这样要牺牲一下点等待时间</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-缓存雪崩现象"><a href="#3-缓存雪崩现象" class="headerlink" title="3.缓存雪崩现象"></a>3.缓存雪崩现象</h3><ul>
-<li>概念：由于缓存问题，导致大量请求到达后端数据库，从而导致整个数据库崩溃，发生灾难，导致这个问题的原因有：缓存击穿，缓存并发，缓存颠簸、缓存集中失效</li>
-<li>解决方案：<ul>
-<li>多级缓存</li>
-<li>设置缓存不同过期时间</li>
-<li>限流，降级，熔断来降低影响</li>
-</ul>
-</li>
-</ul>
+        <h5 id="1-多线程的作用？"><a href="#1-多线程的作用？" class="headerlink" title="1.多线程的作用？"></a>1.多线程的作用？</h5><p>（1）发挥多核CPU作用<br>（2）防止阻塞<br>（3）便于建模</p>
+<h5 id="2-创建线程的方式"><a href="#2-创建线程的方式" class="headerlink" title="2.创建线程的方式"></a>2.创建线程的方式</h5><p>（1）继承Thread类<br>（2）实现Runnable接口，实现接口要好于继承类</p>
+<h5 id="3-start与run方法区别"><a href="#3-start与run方法区别" class="headerlink" title="3.start与run方法区别"></a>3.start与run方法区别</h5><p>只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方法，那么代码还是同步执行的，必须等待一个线程的run()方法里面的代码全部执行完毕之后，另外一个线程才可以执行其run()方法里面的代码。</p>
+<h5 id="4-Callable与Runnable区别"><a href="#4-Callable与Runnable区别" class="headerlink" title="4.Callable与Runnable区别"></a>4.Callable与Runnable区别</h5><p>Runnable接口中的run()方法的返回值是void，它做的事情只是纯粹地去执行run()方法中的代码而已；Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableAndFuture</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Callable&lt;Integer&gt; callable=<span class="keyword">new</span> Callable&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> Random().nextInt(<span class="number">100</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        FutureTask&lt;Integer&gt; future=<span class="keyword">new</span> FutureTask&lt;Integer&gt;(callable);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(future).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            System.out.println(future.get());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="5-CyclicBarrier和CountDownLatch的区别"><a href="#5-CyclicBarrier和CountDownLatch的区别" class="headerlink" title="5.CyclicBarrier和CountDownLatch的区别"></a>5.CyclicBarrier和CountDownLatch的区别</h5><p>（1）CountDownLatch和CyclicBarrier都能够实现线程之间的等待，只不过它们侧重点不同<br>（2）CountDownLatch一般用于某个线程A等待若干个其他线程执行完任务之后，它才执行；<br>（3）CyclicBarrier一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行；<br>（4）CountDownLatch是不能够重用的，而CyclicBarrier是可以重用的。</p>
+<h5 id="6-为什么用线程池？"><a href="#6-为什么用线程池？" class="headerlink" title="6.为什么用线程池？"></a>6.为什么用线程池？</h5><p>避免频繁地创建和销毁线程，达到线程对象的重用。另外，使用线程池还可以根据项目灵活地控制并发的数目</p>
+<h4 id="7-Semaphore有什么作用？"><a href="#7-Semaphore有什么作用？" class="headerlink" title="7.Semaphore有什么作用？"></a>7.Semaphore有什么作用？</h4><p>Semaphore就是一个信号量，它的作用是限制某段代码块的并发数。Semaphore有一个构造函数，可以传入一个int型整数n，表示某段代码最多只有n个线程可以访问，如果超出了n，那么请等待，等到某个线程执行完毕这段代码块，下一个线程再进入。由此可以看出如果Semaphore构造函数中传入的int型整数n=1，相当于变成了一个synchronized了。</p>
 
       
     </div>
@@ -394,7 +397,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-08-01/缓存在高并发场景下的问题.html" title="缓存在高并发场景下的问题">http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html</a>
+              <a href="/2017-08-21/java-多线程总结.html" title="java-多线程总结">http://jinweida.github.io/2017-08-21/java-多线程总结.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -434,7 +437,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/高并发/" rel="tag"># 高并发</a>
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
           
         </div>
       
@@ -447,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-01/秒杀系统设计.html" rel="next" title="秒杀系统设计">
-                <i class="fa fa-chevron-left"></i> 秒杀系统设计
+              <a href="/2017-08-19/高可用高并发大型网站架构设计思路.html" rel="next" title="高可用高并发大型网站架构设计思路">
+                <i class="fa fa-chevron-left"></i> 高可用高并发大型网站架构设计思路
               </a>
             
           </div>
@@ -457,8 +460,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-08-03/JVM系列-启动参数查看.html" rel="prev" title="JVM系列-启动参数查看">
-                JVM系列-启动参数查看 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-08-22/阻塞非阻塞与同步异步的区别.html" rel="prev" title="阻塞非阻塞与同步异步的区别">
+                阻塞非阻塞与同步异步的区别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -490,8 +493,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-08-01/缓存在高并发场景下的问题.html"
-           data-title="缓存在高并发场景下的问题" data-url="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
+      <div class="ds-thread" data-thread-key="2017-08-21/java-多线程总结.html"
+           data-title="java-多线程总结" data-url="http://jinweida.github.io/2017-08-21/java-多线程总结.html">
       </div>
     </div>
 
@@ -608,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缓存击穿有哪些解决方案？"><span class="nav-number">1.</span> <span class="nav-text">1. 缓存击穿有哪些解决方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-缓存并发问题"><span class="nav-number">2.</span> <span class="nav-text">2.缓存并发问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-缓存雪崩现象"><span class="nav-number">3.</span> <span class="nav-text">3.缓存雪崩现象</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-多线程的作用？"><span class="nav-number">1.</span> <span class="nav-text">1.多线程的作用？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-创建线程的方式"><span class="nav-number">2.</span> <span class="nav-text">2.创建线程的方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-start与run方法区别"><span class="nav-number">3.</span> <span class="nav-text">3.start与run方法区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Callable与Runnable区别"><span class="nav-number">4.</span> <span class="nav-text">4.Callable与Runnable区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-CyclicBarrier和CountDownLatch的区别"><span class="nav-number">5.</span> <span class="nav-text">5.CyclicBarrier和CountDownLatch的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-为什么用线程池？"><span class="nav-number">6.</span> <span class="nav-text">6.为什么用线程池？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Semaphore有什么作用？"><span class="nav-number"></span> <span class="nav-text">7.Semaphore有什么作用？</span></a></div>
             
 
           </div>

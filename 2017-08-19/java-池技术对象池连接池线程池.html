@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="高并发," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果">
-<meta name="keywords" content="高并发">
+<meta name="description" content="数据库连接池的实现及原理    内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="缓存在高并发场景下的问题">
-<meta property="og:url" content="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
+<meta property="og:title" content="java-池技术对象池连接池线程池">
+<meta property="og:url" content="http://jinweida.github.io/2017-08-19/java-池技术对象池连接池线程池.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个">
+<meta property="og:description" content="数据库连接池的实现及原理    内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。   数据库连接池的基本">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-04T09:16:49.000Z">
+<meta property="og:updated_time" content="2017-12-12T14:20:02.890Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="缓存在高并发场景下的问题">
-<meta name="twitter:description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个">
+<meta name="twitter:title" content="java-池技术对象池连接池线程池">
+<meta name="twitter:description" content="数据库连接池的实现及原理    内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。   数据库连接池的基本">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-08-19/java-池技术对象池连接池线程池.html"/>
 
 
 
 
 
-  <title>缓存在高并发场景下的问题 | 金声玉振</title>
+  <title>java-池技术对象池连接池线程池 | 金声玉振</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-19/java-池技术对象池连接池线程池.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">缓存在高并发场景下的问题</h1>
+          <h1 class="post-title" itemprop="name headline">java-池技术对象池连接池线程池</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T18:35:27+08:00">
-                2017-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T08:05:22+08:00">
+                2017-08-19
               </time>
             
 
@@ -303,6 +303,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -311,8 +333,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-08-01/缓存在高并发场景下的问题.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-01/缓存在高并发场景下的问题.html" itemprop="commentCount"></span>
+                <a href="/2017-08-19/java-池技术对象池连接池线程池.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-19/java-池技术对象池连接池线程池.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,31 +362,29 @@
       
 
       
-        <h3 id="1-缓存击穿有哪些解决方案？"><a href="#1-缓存击穿有哪些解决方案？" class="headerlink" title="1. 缓存击穿有哪些解决方案？"></a>1. 缓存击穿有哪些解决方案？</h3><ul>
-<li>缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。</li>
-<li><p>解决方案</p>
+        <ul>
+<li><p>数据库连接池的实现及原理 </p>
+<p>  内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。<br>  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。<br>   数据库连接池的基本原理是在内部对象池中维护一定数量的数据库连接，并对外暴露数据库连接获取和返回方法。</p>
 <ul>
-<li><p>缓存空对象</p>
-<p>  对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请求穿透到后端数据库。成本低，可能会被频繁更新。</p>
-</li>
-<li>单独过滤处理<br>  对所有可能为空的key进行统一存放，特殊处理</li>
+<li>(1)． 资源重用。</li>
+<li>(2)． 更快的系统响应速度</li>
+<li>(3)． 新的资源分配手段</li>
+<li>(4)． 统一的连接管理，避免数据库连接泄漏</li>
 </ul>
 </li>
-</ul>
-<h3 id="2-缓存并发问题"><a href="#2-缓存并发问题" class="headerlink" title="2.缓存并发问题"></a>2.缓存并发问题</h3><ul>
-<li>概念：缓存过期或者缓存key被更新时，高并发情况下去数据库获取数据对后端造成极大的冲击</li>
-<li>解决方案：<ul>
-<li>在更新或者过期情况下，先尝试加锁更新完或者从数据库获取后释放锁，这样要牺牲一下点等待时间</li>
-</ul>
+<li><p>Java线程池总结</p>
+<p>  假设一个服务器完成一项任务所需时间为：T1 创建线程时间，T2 在线程中执行任务的时间，T3 销毁线程时间。当T1 + T3 远大于 T2时，采用多线程技术可以显著减少处理器单元的闲置时间，增加处理器单元的吞吐能力。<br>  线程池就是一个线程的容器，每次只执行额定数量的线程，</p>
+<p>  线程池作用就是限制系统中执行线程的数量。采用线程池不仅调整T1,T3产生的时间段，而且它还显著减少了创建线程的数目。</p>
+<p>  为什么要用线程池:</p>
+<ul>
+<li>1）减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务</li>
+<li><p>2）可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机）Java1.5之后，Java 提供了自己的线程池ThreadPoolExecutor类。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadPool &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //创建无限制线程池</span><br><span class="line">        ExecutorService executorService= Executors.newCachedThreadPool();</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService.submit(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        //创建单个线程的线程池</span><br><span class="line">        ExecutorService executorService1= Executors.newSingleThreadExecutor();</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService1.submit(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(&quot;single=&quot;+Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService1.shutdown();</span><br><span class="line">        //创建固定线程池</span><br><span class="line">        ExecutorService executorService2= Executors.newFixedThreadPool(3);</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService2.submit(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(&quot;fixed=&quot;+Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService2.shutdown();</span><br><span class="line">        //创建具有三个线程大小的定时调度线程池</span><br><span class="line">        ScheduledExecutorService executorService3= Executors.newScheduledThreadPool(3);</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService3.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(&quot;fixed=&quot;+Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,3,2, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService3.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="3-缓存雪崩现象"><a href="#3-缓存雪崩现象" class="headerlink" title="3.缓存雪崩现象"></a>3.缓存雪崩现象</h3><ul>
-<li>概念：由于缓存问题，导致大量请求到达后端数据库，从而导致整个数据库崩溃，发生灾难，导致这个问题的原因有：缓存击穿，缓存并发，缓存颠簸、缓存集中失效</li>
-<li>解决方案：<ul>
-<li>多级缓存</li>
-<li>设置缓存不同过期时间</li>
-<li>限流，降级，熔断来降低影响</li>
-</ul>
+</li>
+<li><p>Java 对象池总结</p>
+<p>  对对象进行池管理，减少创建对象的开销</p>
 </li>
 </ul>
 
@@ -394,7 +414,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-08-01/缓存在高并发场景下的问题.html" title="缓存在高并发场景下的问题">http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html</a>
+              <a href="/2017-08-19/java-池技术对象池连接池线程池.html" title="java-池技术对象池连接池线程池">http://jinweida.github.io/2017-08-19/java-池技术对象池连接池线程池.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -434,7 +454,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/高并发/" rel="tag"># 高并发</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -447,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-01/秒杀系统设计.html" rel="next" title="秒杀系统设计">
-                <i class="fa fa-chevron-left"></i> 秒杀系统设计
+              <a href="/2017-08-12/OSI与TCP-IP模型.html" rel="next" title="OSI与TCP/IP模型">
+                <i class="fa fa-chevron-left"></i> OSI与TCP/IP模型
               </a>
             
           </div>
@@ -457,8 +477,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-08-03/JVM系列-启动参数查看.html" rel="prev" title="JVM系列-启动参数查看">
-                JVM系列-启动参数查看 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-08-19/java常用集合类.html" rel="prev" title="java常用集合类">
+                java常用集合类 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -490,8 +510,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-08-01/缓存在高并发场景下的问题.html"
-           data-title="缓存在高并发场景下的问题" data-url="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
+      <div class="ds-thread" data-thread-key="2017-08-19/java-池技术对象池连接池线程池.html"
+           data-title="java-池技术对象池连接池线程池" data-url="http://jinweida.github.io/2017-08-19/java-池技术对象池连接池线程池.html">
       </div>
     </div>
 
@@ -518,17 +538,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -598,22 +609,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缓存击穿有哪些解决方案？"><span class="nav-number">1.</span> <span class="nav-text">1. 缓存击穿有哪些解决方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-缓存并发问题"><span class="nav-number">2.</span> <span class="nav-text">2.缓存并发问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-缓存雪崩现象"><span class="nav-number">3.</span> <span class="nav-text">3.缓存雪崩现象</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
