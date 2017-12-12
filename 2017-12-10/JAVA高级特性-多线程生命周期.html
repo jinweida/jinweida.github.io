@@ -88,7 +88,7 @@
 <meta property="og:description" content="线程的5种状态1.新建状态（New） 新创建了一个线程对象。2.就绪状态（Runnable） 线程对象创建后，其他线程调用了该对象的start()方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。3.运行状态（Running） 就绪状态的线程获取了CPU，执行程序代码。4.阻塞状态（Blocked） 阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/images/threadstate.jpg">
-<meta property="og:updated_time" content="2017-12-12T14:01:41.133Z">
+<meta property="og:updated_time" content="2017-12-12T14:10:41.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java多线程生命周期">
 <meta name="twitter:description" content="线程的5种状态1.新建状态（New） 新创建了一个线程对象。2.就绪状态（Runnable） 线程对象创建后，其他线程调用了该对象的start()方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。3.运行状态（Running） 就绪状态的线程获取了CPU，执行程序代码。4.阻塞状态（Blocked） 阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪">
@@ -368,7 +368,8 @@
 <ul>
 <li>等待阻塞：运行的线程执行wait()方法，JVM会把该线程放入等待池中。</li>
 <li>同步阻塞：运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。</li>
-<li>其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。<br>5.死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。<br><img src="/images/threadstate.jpg" alt="image"></li>
+<li>其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。<br>5.死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。<br><img src="/images/threadstate.jpg" alt="image"><a id="more"></a>
+</li>
 </ul>
 <p>Jstack的输出中，Java线程状态主要是以下几种:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> State &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 刚创建的线程，尚未启动.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    NEW,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 线程处于可运行的状态</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    RUNNABLE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  这个状态下, 是在多个线程有同步操作的场景, 比如正在等待另一个线程的synchronized </span></span><br><span class="line"><span class="comment">     *  块的执行释放, 或者可重入的 synchronized块里别人调用wait() 方法, </span></span><br><span class="line"><span class="comment">     *  也就是这里是线程在等待进入临界区</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    BLOCKED,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 这个状态下是指线程拥有了某个锁之后, 调用了他的wait方法, 等待其他线程/锁拥有者调用 </span></span><br><span class="line"><span class="comment">     * notify / notifyAll 一遍该线程可以继续下一步操作, 这里要区分 BLOCKED 和 WATING </span></span><br><span class="line"><span class="comment">     * 的区别, 一个是在临界点外面等待进入, 一个是在理解点里面wait等待别人notify, </span></span><br><span class="line"><span class="comment">     * 线程调用了join方法 join了另外的线程的时候, 也会进入WAITING状态,</span></span><br><span class="line"><span class="comment">     * 等待被他join的线程执行结束</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    WAITING,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 这个状态就是有限的(时间限制)的WAITING, 一般出现在调用wait(long), join(long)</span></span><br><span class="line"><span class="comment">     * 等情况下, 另外一个线程sleep后, 也会进入TIMED_WAITING状态</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TIMED_WAITING,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 这个状态下表示 该线程的run方法已经执行完毕了, 基本上就等于死亡了</span></span><br><span class="line"><span class="comment">     * 当时如果线程被持久持有, 可能不会被回收)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TERMINATED;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="实现一个线程New状态-尚未开始"><a href="#实现一个线程New状态-尚未开始" class="headerlink" title="实现一个线程New状态,尚未开始"></a>实现一个线程New状态,尚未开始</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread t = <span class="keyword">new</span> Thread ();</span><br><span class="line">        System. out.println(t.getState());</span><br><span class="line">        <span class="comment">//输出New</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -466,6 +467,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017-12-12/java线程同步.html" rel="prev" title="java线程同步">
+                java线程同步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -548,7 +553,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

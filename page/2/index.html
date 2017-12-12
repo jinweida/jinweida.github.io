@@ -262,6 +262,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-11-09/生产系统的一次JVM调优.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-11-09/生产系统的一次JVM调优.html" itemprop="url">生产系统的一次JVM调优</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T09:42:37+08:00">
+                2017-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-11-09/生产系统的一次JVM调优.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-11-09/生产系统的一次JVM调优.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@0aeb42e9aa87 bin]# ./jstat -gcutil 18 250 20</span><br></pre></td></tr></table></figure>
+<p>生产环境jvm运行情况<br><img src="/asset/jvm/wechatimg120.jpg" alt="image"></p>
+<p>jvm应该是假死了，初步判断可能是PermSize不够了，可以配置MaxPermSize， 你执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@0aeb42e9aa87 bin]# ./jstat -gccause 18 1s 6</span><br></pre></td></tr></table></figure></p>
+<p><img src="/asset/jvm/wechatimg125.jpg" alt="image"><br>另外执行jstat -gc 18 1s 1，看下Perm配置多大</p>
+<p>调整PermSize和MaxPermSize 为 -Xmx4G -Xms2G -XX:MaxPermSize=1G </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-11-04/mac-升级nodejs版本.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1593,166 +1727,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-30/Docker技术基础.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-30/Docker技术基础.html" itemprop="url">Docker技术基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T21:04:38+08:00">
-                2017-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-30/Docker技术基础.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-30/Docker技术基础.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="docker构成"><a href="#docker构成" class="headerlink" title="docker构成"></a>docker构成</h4><blockquote>
-<p>namespace，容器隔离的基础，保证A容器看不到B容器.<br>6个名空间：User,Mnt,Network,UTS,IPC,Pidcgroups，<br>容器资源统计和隔离。主要用到的cgroups子系统：cpu,blkio,device,freezer,memory<br>unionfs，典型：aufs/overlayfs，分层镜像实现的基础</p>
-</blockquote>
-<h4 id="docker组件"><a href="#docker组件" class="headerlink" title="docker组件"></a>docker组件</h4><blockquote>
-<p>docker Client客户端————&gt;向docker服务器进程发起请求，如:创建、停止、销毁容器等操作<br>docker Server服务器进程—–&gt;处理所有docker的请求，管理所有容器<br>docker Registry镜像仓库——&gt;镜像存放的中央仓库，可看作是存放二进制的scm</p>
-</blockquote>
-<h4 id="容器相关操作"><a href="#容器相关操作" class="headerlink" title="容器相关操作"></a>容器相关操作</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker create # 创建一个容器但是不启动它</span><br><span class="line">docker run # 创建并启动一个容器</span><br><span class="line">docker stop # 停止容器运行，发送信号SIGTERM</span><br><span class="line">docker start # 启动一个停止状态的容器</span><br><span class="line">docker restart # 重启一个容器</span><br><span class="line">docker rm # 删除一个容器</span><br><span class="line">docker kill # 发送信号给容器，默认SIGKILL</span><br><span class="line">docker attach # 连接(进入)到一个正在运行的容器</span><br><span class="line">docker wait # 阻塞到一个容器，直到容器停止运行</span><br></pre></td></tr></table></figure>
-<h4 id="获取容器相关"><a href="#获取容器相关" class="headerlink" title="获取容器相关"></a>获取容器相关</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker ps # 显示状态为运行（Up）的容器</span><br><span class="line">docker ps -a # 显示所有容器,包括运行中（Up）的和退出的(Exited)</span><br><span class="line">docker inspect # 深入容器内部获取容器所有信息</span><br><span class="line">docker logs # 查看容器的日志(stdout/stderr)</span><br><span class="line">docker events # 得到docker服务器的实时的事件</span><br><span class="line">docker port # 显示容器的端口映射</span><br><span class="line">docker top # 显示容器的进程信息</span><br><span class="line">docker diff # 显示容器文件系统的前后变化</span><br><span class="line">docker cp # 从容器里向外拷贝文件或目录</span><br><span class="line">docker export # 将容器整个文件系统导出为一个tar包，不带layers、tag等信息</span><br></pre></td></tr></table></figure>
-<h4 id="docker执行命令"><a href="#docker执行命令" class="headerlink" title="docker执行命令"></a>docker执行命令</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec # 在容器里执行一个命令，可以执行bash进入交互式</span><br></pre></td></tr></table></figure>
-<h4 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker images # 显示本地所有的镜像列表</span><br><span class="line">docker import # 从一个tar包创建一个镜像，往往和export结合使用</span><br><span class="line">docker build # 使用Dockerfile创建镜像（推荐）</span><br><span class="line">docker <span class="keyword">commit</span> # 从容器创建镜像</span><br><span class="line">docker rmi # 删除一个镜像</span><br><span class="line">docker <span class="keyword">load</span> # 从一个tar包创建一个镜像，和<span class="keyword">save</span>配合使用</span><br><span class="line">docker <span class="keyword">save</span> # 将一个镜像保存为一个tar包，带layers和tag信息</span><br><span class="line">docker history # 显示生成一个镜像的历史命令</span><br><span class="line">docker tag # 为镜像起一个别名</span><br><span class="line">docker login # 登录到一个registry</span><br><span class="line">docker <span class="keyword">search</span> # 从registry仓库搜索镜像</span><br><span class="line">docker pull # 从仓库下载镜像到本地</span><br><span class="line">docker push # 将一个镜像push到registry仓库中</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1803,7 +1777,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
