@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JVM系列," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="运行时数据区域 1.程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器  如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址  如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况">
-<meta name="keywords" content="JVM系列">
+<meta name="description" content="一、概念介绍 线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其他线程不能进行访问直到该线程读取完，其他线程才可使用。不会出现数据不一致或者数据污染 线程不安全就是不提供数据访问保护，多线程先后更改数据会产生数据不一致或者数据污染的情况 线程安全的集合对象 ArrayList线程不安">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM系列:java内存区域与内存溢出异常">
-<meta property="og:url" content="http://jinweida.github.io/2017-08-01/JVM系列-java内存区域与内存溢出异常.html">
+<meta property="og:title" content="java-集合框架一">
+<meta property="og:url" content="http://jinweida.github.io/2017-08-19/java-集合框架一.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="运行时数据区域 1.程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器  如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址  如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域  线程私有的  2.虚拟机栈 线程私有的 描述的是Java方法执行的内存">
+<meta property="og:description" content="一、概念介绍 线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其他线程不能进行访问直到该线程读取完，其他线程才可使用。不会出现数据不一致或者数据污染 线程不安全就是不提供数据访问保护，多线程先后更改数据会产生数据不一致或者数据污染的情况 线程安全的集合对象 ArrayList线程不安全，Vector线程安全； HashMap线程不安全，HashTable线程安全">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg">
-<meta property="og:updated_time" content="2017-12-09T09:33:01.033Z">
+<meta property="og:image" content="http://jinweida.github.io/images/jihe.jpg">
+<meta property="og:updated_time" content="2017-12-13T01:56:50.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM系列:java内存区域与内存溢出异常">
-<meta name="twitter:description" content="运行时数据区域 1.程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器  如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址  如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域  线程私有的  2.虚拟机栈 线程私有的 描述的是Java方法执行的内存">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg">
+<meta name="twitter:title" content="java-集合框架一">
+<meta name="twitter:description" content="一、概念介绍 线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其他线程不能进行访问直到该线程读取完，其他线程才可使用。不会出现数据不一致或者数据污染 线程不安全就是不提供数据访问保护，多线程先后更改数据会产生数据不一致或者数据污染的情况 线程安全的集合对象 ArrayList线程不安全，Vector线程安全； HashMap线程不安全，HashTable线程安全">
+<meta name="twitter:image" content="http://jinweida.github.io/images/jihe.jpg">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-08-01/JVM系列-java内存区域与内存溢出异常.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-08-19/java-集合框架一.html"/>
 
 
 
 
 
-  <title>JVM系列:java内存区域与内存溢出异常 | 金声玉振</title>
+  <title>java-集合框架一 | 金声玉振</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-01/JVM系列-java内存区域与内存溢出异常.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-19/java-集合框架一.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM系列:java内存区域与内存溢出异常</h1>
+          <h1 class="post-title" itemprop="name headline">java-集合框架一</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T16:12:47+08:00">
-                2017-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T12:49:53+08:00">
+                2017-08-19
               </time>
             
 
@@ -305,28 +305,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -335,8 +313,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-08-01/JVM系列-java内存区域与内存溢出异常.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-01/JVM系列-java内存区域与内存溢出异常.html" itemprop="commentCount"></span>
+                <a href="/2017-08-19/java-集合框架一.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-19/java-集合框架一.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,64 +342,48 @@
       
 
       
-        <h1 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h1><p><img src="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg" alt="image"></p>
-<h4 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1.程序计数器"></a>1.程序计数器</h4><ul>
-<li><p>是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器</p>
+        <h4 id="一、概念介绍"><a href="#一、概念介绍" class="headerlink" title="一、概念介绍"></a>一、概念介绍</h4><ul>
+<li>线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其他线程不能进行访问直到该线程读取完，其他线程才可使用。不会出现数据不一致或者数据污染</li>
+<li>线程不安全就是不提供数据访问保护，多线程先后更改数据会产生数据不一致或者数据污染的情况</li>
+<li>线程安全的集合对象<ol>
+<li>ArrayList线程不安全，Vector线程安全；</li>
+<li>HashMap线程不安全，HashTable线程安全；</li>
+<li>hashMap 非synchronized hashtable 使用synchronized</li>
+<li>单一线程用hashmap比hashtable快多了<br>实现hashmap同步 Map m = Collections.synchronizeMap(hashMap);</li>
+<li>StringBuilder线程不安全，StringBuffer线程安全。</li>
+</ol>
 </li>
-<li><p>如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址</p>
+<li><p>一般使用synchronized关键字加锁同步控制，来解决线程不安全问题。</p>
+<p>  <img src="/images/jihe.jpg" alt="image"></p>
 </li>
-<li><p>如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域</p>
-</li>
-<li>线程私有的</li>
 </ul>
-<h4 id="2-虚拟机栈"><a href="#2-虚拟机栈" class="headerlink" title="2.虚拟机栈"></a>2.虚拟机栈</h4><ul>
-<li>线程私有的</li>
-<li>描述的是Java方法执行的内存模型，每个方法执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表，操作数栈，动态连接方法出口等信息。每个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机中入栈到出栈的过程</li>
-<li>局部变量表存放了编译期的各种数据类型（boolean，byte，char，short，int，float，long，double），对象引用（reference）类型（指针或者句柄）</li>
-<li><p>此区域 出现异常</p>
+<h5 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h5><p>Set和List实现了Collection。Set中不能包含重复的元素。List是一个有序的集合，可以包含重复的元素，提供了按索引访问的方式</p>
+<h5 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h5><p>Map和Collection接口没有关系，是相互独立的，但是都属于集合类的一部分。Map包含了key-value对。Map不能包含重复的key，但是可以包含相同的value。</p>
+<h5 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h5><p>所有的集合类，都实现了Iterator接口，这是一个用于遍历集合中元素的接口，主要包含以下三种方法：</p>
+<ol>
+<li>hasNext()是否还有下一个元素。</li>
+<li>next()返回下一个元素。</li>
+<li>remove()删除当前元素。</li>
+</ol>
+<h4 id="二、ArrayList和LinkedList"><a href="#二、ArrayList和LinkedList" class="headerlink" title="二、ArrayList和LinkedList"></a>二、ArrayList和LinkedList</h4><p>ArrayList和LinkedList在用法上没有区别，但是在功能上还是有区别的。LinkedList经常用在增删操作较多而查询操作很少的情况下，ArrayList则相反。</p>
+<ol>
+<li>ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。 </li>
+<li>对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针</li>
+<li>对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。</li>
+</ol>
+<h4 id="三、Map集合"><a href="#三、Map集合" class="headerlink" title="三、Map集合"></a>三、Map集合</h4><blockquote>
+<p>实现类：HashMap、Hashtable、LinkedHashMap和TreeMap</p>
+</blockquote>
 <ul>
-<li>如果线程请求的栈深度大雨虚拟机所允许的深度，将抛出StackOverflowError异常</li>
-<li>如果虚拟机栈可以动态扩展，如果扩展是无法申请到足够的内存，就会抛出OutOfMemoryError异常</li>
-</ul>
+<li><strong>HashMap</strong>,它根据键的HashCode值存储数据，根据键可以直接获取它的值，具有很快的访问速度，遍历时，取得数据的顺序是完全随机的。因为键对象不可以重复，所以HashMap最多只允许一条记录的键为Null，允许多条记录的值为Null，是非同步的</li>
+<li>Hashtable,与HashMap类似，是HashMap的线程安全版，它支持线程的同步，即任一时刻只有一个线程能写Hashtable，因此也导致了Hashtale在写入时会比较慢，它继承自Dictionary类，不同的是它不允许记录的键或者值为null，同时效率较低。</li>
+<li><strong>ConcurrentHashMap</strong>,线程安全，并且锁分离。ConcurrentHashMap内部使用段(Segment)来表示这些不同的部分，每个段其实就是一个小的hash table，它们有自己的锁。只要多个修改操作发生在不同的段上，它们就可以并发进行。</li>
+<li><strong>LinkedHashMap</strong>,保存了记录的插入顺序，在用Iteraor遍历LinkedHashMap时，先得到的记录肯定是先插入的，在遍历的时候会比HashMap慢，有HashMap的全部特性。</li>
+<li><p><strong>TreeMap</strong>,实现SortMap接口，能够把它保存的记录根据键排序，默认是按键值的升序排序（自然顺序），也可以指定排序的比较器，当用Iterator遍历TreeMap时，得到的记录是排过序的。不允许key值为空，非同步的；</p>
 </li>
-</ul>
-<h4 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3.本地方法栈"></a>3.本地方法栈</h4><ul>
-<li>与虚拟机栈类似</li>
-<li>为虚拟机使用到得Native方法服务</li>
-<li>也会抛出StackOverflowError和OutOfMemoryError错误</li>
-</ul>
-<h4 id="4-Java堆"><a href="#4-Java堆" class="headerlink" title="4.Java堆"></a>4.Java堆</h4><ul>
-<li>虚拟机管理得内存中最大一块,分为新生代、老年代。<br>  新生代有分为Eden空间、FromSurvivor空间、to survivor空间。<br>  老年代是在新生代中经历了N次垃圾回收后仍然存活的对象，就会被放到老年代中</li>
-<li>被所有线程共享得，在虚拟机启启动时创建，此内存区域唯一目的是存放对象实例和数组，几乎所有对象实例和数组都在这里分配内存</li>
-<li>随着JIT编译器得发展与逃逸分析技术成熟起来，对象得分配在堆上变得不那么绝对了</li>
-<li>Java堆是蓝记收集器管理得主要区域</li>
-<li>现在垃圾收集器采用分代收集算法，java堆可分为新生代和老年代</li>
-<li>java 堆可划分出多个线程私有得分配缓冲区（Thread Local Allocation Buffer,TLAB）</li>
-<li>如果在堆中没有内存完成实例分配，并且堆也无法扩展，将会抛出OutOfMemoryError异常</li>
-</ul>
-<h4 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5.方法区"></a>5.方法区</h4><ul>
-<li>与堆一样也是各个线程共享的内存区域</li>
-<li>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后得代码等数据</li>
-<li>很多人更愿意把此区域成为“永久代”，本质上两者并不等价</li>
-<li>虚拟机规范对方法区管理非常宽松，可以选择补实现垃圾收集或者垃圾收集行为在这个区域比较少出现</li>
-<li>这个区域内存回收目标主要是针对常量池的回收和对类型得卸载</li>
-<li>当方法区无法满足内存分配时，将会抛出OutOfMemoryError异常</li>
-</ul>
-<ul>
-<li>运行时常量池<ul>
-<li>是方法区得一部分</li>
-<li>class文件除了有类得版本，字段，方法，接口等描述信息外，还有一项信息是常量池</li>
-<li>用于存放编译期生成得各种字面量和符号引用</li>
-<li>具备动态性，运行期间也可能将新的常量放入池中，如：String 类的intern()方法</li>
-<li>也会抛出OutOfMemoryError异常</li>
-</ul>
+<li><p>jdk1.5以后线程安全的集合及java.util.concurrent包的锁</p>
+<p>  ConcurrentSkipListMap 一个并发的、可排序的 Map， SkipList 跳表，实现 SortedMap、NavigableMap、ConcurrentNavigableMap </p>
 </li>
-</ul>
-<h4 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6.直接内存"></a>6.直接内存</h4><ul>
-<li>不是虚拟机运行时数据区的一部分，也不是java虚拟机规范中定义的内存区域</li>
-<li>也会抛出OutOfMemoryError异常</li>
-<li>jdk1.4新加入了nio（New input/output），引入一种通道（channel）与缓冲（Buffer）方式，它可以使用Native函数库直接分配堆外内存，然后通过一个存储在堆中的DirectByteBuffer对象作为这块内存的引用操作，避免了java堆与native堆中来回复制数据，提高了性能</li>
-<li>受本机内存限制，也会抛出OutOfMemoryError异常</li>
 </ul>
 
       
@@ -450,7 +412,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-08-01/JVM系列-java内存区域与内存溢出异常.html" title="JVM系列:java内存区域与内存溢出异常">http://jinweida.github.io/2017-08-01/JVM系列-java内存区域与内存溢出异常.html</a>
+              <a href="/2017-08-19/java-集合框架一.html" title="java-集合框架一">http://jinweida.github.io/2017-08-19/java-集合框架一.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -490,7 +452,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JVM系列/" rel="tag"># JVM系列</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -503,8 +465,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-07-28/github pager 博客新起点.html" rel="next" title="github pager 博客新起点">
-                <i class="fa fa-chevron-left"></i> github pager 博客新起点
+              <a href="/2017-08-19/java-池技术对象池连接池线程池.html" rel="next" title="java-池技术对象池连接池线程池">
+                <i class="fa fa-chevron-left"></i> java-池技术对象池连接池线程池
               </a>
             
           </div>
@@ -513,8 +475,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-08-01/JVM系列-垃圾收集器.html" rel="prev" title="JVM系列:垃圾收集器与内存分配策略">
-                JVM系列:垃圾收集器与内存分配策略 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-08-19/高可用高并发大型网站架构设计思路.html" rel="prev" title="高可用高并发大型网站架构设计思路">
+                高可用高并发大型网站架构设计思路 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -546,8 +508,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-08-01/JVM系列-java内存区域与内存溢出异常.html"
-           data-title="JVM系列:java内存区域与内存溢出异常" data-url="http://jinweida.github.io/2017-08-01/JVM系列-java内存区域与内存溢出异常.html">
+      <div class="ds-thread" data-thread-key="2017-08-19/java-集合框架一.html"
+           data-title="java-集合框架一" data-url="http://jinweida.github.io/2017-08-19/java-集合框架一.html">
       </div>
     </div>
 
@@ -664,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.</span> <span class="nav-text">运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-程序计数器"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-虚拟机栈"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-本地方法栈"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Java堆"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4.Java堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-方法区"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5.方法区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">6.直接内存</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、概念介绍"><span class="nav-number">1.</span> <span class="nav-text">一、概念介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Collection接口"><span class="nav-number">1.1.</span> <span class="nav-text">Collection接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Map接口"><span class="nav-number">1.2.</span> <span class="nav-text">Map接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Iterator"><span class="nav-number">1.3.</span> <span class="nav-text">Iterator</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、ArrayList和LinkedList"><span class="nav-number">2.</span> <span class="nav-text">二、ArrayList和LinkedList</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Map集合"><span class="nav-number">3.</span> <span class="nav-text">三、Map集合</span></a></li></ol></div>
             
 
           </div>
