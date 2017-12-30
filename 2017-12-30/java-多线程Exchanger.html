@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JVM系列," />
+  <meta name="keywords" content="多线程," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="内存分配与回收策略对象内存分配，往大方向讲就是在堆上分配（也可能经过jit编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的Eden区上，如果启动了本地线程分配缓冲，将按线程优先在TLAB上分配，少数情况也可能分配在老年代中。  对象优先在Eden分配   在大多数情况下，对象在新生代Eden区分配。当E">
-<meta name="keywords" content="JVM系列">
+<meta name="description" content="Exchanger简介Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线">
+<meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM系列-内存分配与回收策略">
-<meta property="og:url" content="http://jinweida.github.io/2017-08-31/JVM系列-内存分配与回收策略.html">
+<meta property="og:title" content="java-多线程Exchanger">
+<meta property="og:url" content="http://jinweida.github.io/2017-12-30/java-多线程Exchanger.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="内存分配与回收策略对象内存分配，往大方向讲就是在堆上分配（也可能经过jit编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的Eden区上，如果启动了本地线程分配缓冲，将按线程优先在TLAB上分配，少数情况也可能分配在老年代中。  对象优先在Eden分配   在大多数情况下，对象在新生代Eden区分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC   相关控制参">
+<meta property="og:description" content="Exchanger简介Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。 Exchanger示例1234567891011121">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T09:32:24.781Z">
+<meta property="og:updated_time" content="2017-12-30T10:27:15.759Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM系列-内存分配与回收策略">
-<meta name="twitter:description" content="内存分配与回收策略对象内存分配，往大方向讲就是在堆上分配（也可能经过jit编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的Eden区上，如果启动了本地线程分配缓冲，将按线程优先在TLAB上分配，少数情况也可能分配在老年代中。  对象优先在Eden分配   在大多数情况下，对象在新生代Eden区分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC   相关控制参">
+<meta name="twitter:title" content="java-多线程Exchanger">
+<meta name="twitter:description" content="Exchanger简介Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。 Exchanger示例1234567891011121">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-08-31/JVM系列-内存分配与回收策略.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-12-30/java-多线程Exchanger.html"/>
 
 
 
 
 
-  <title>JVM系列-内存分配与回收策略 | 金声玉振</title>
+  <title>java-多线程Exchanger | 金声玉振</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-31/JVM系列-内存分配与回收策略.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-30/java-多线程Exchanger.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM系列-内存分配与回收策略</h1>
+          <h1 class="post-title" itemprop="name headline">java-多线程Exchanger</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T08:38:32+08:00">
-                2017-08-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-30T18:20:26+08:00">
+                2017-12-30
               </time>
             
 
@@ -333,8 +333,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-08-31/JVM系列-内存分配与回收策略.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-31/JVM系列-内存分配与回收策略.html" itemprop="commentCount"></span>
+                <a href="/2017-12-30/java-多线程Exchanger.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-30/java-多线程Exchanger.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,29 +362,8 @@
       
 
       
-        <h4 id="内存分配与回收策略"><a href="#内存分配与回收策略" class="headerlink" title="内存分配与回收策略"></a>内存分配与回收策略</h4><p>对象内存分配，往大方向讲就是在堆上分配（也可能经过jit编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的Eden区上，如果启动了本地线程分配缓冲，将按线程优先在TLAB上分配，少数情况也可能分配在老年代中。</p>
-<ul>
-<li><p>对象优先在Eden分配</p>
-<p>  在大多数情况下，对象在新生代Eden区分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC</p>
-<p>  相关控制参数<br>  -Xms20M 初始堆大小20m<br>  -Xmx20M 最大堆大小20m<br>  -Xmn10M 设置年轻代大小为20m<br>  三个参数设置了java堆大小为20M，不可扩展，其中10M,分给新生代，10M分给老年代</p>
-<p>  -XX:SurvivorRatio=8 决定了新生代中Eden区与Survivor区 空间比例为8:1<br>  -XX:NewSize 设置新生代最小空间大小<br>  -XX:MaxNewSize 设置新生代最大空间大小<br>  -XX:PermSize 设置永久代最小空间大小<br>  -XX:MaxPermSize 设置永久代最大空间大小<br>  -Xss:设置每个线程的堆栈大小</p>
-<p>  老年代=堆大小-新生代</p>
-</li>
-<li><p>大对象直接进入老年代</p>
-<ul>
-<li>虚拟机提供了-XX:PretenureSizeThreshold 参数，令大于这个设置值的对象直接进入老年代分配，目的是避免在Eden区及两个Survivor区之间发生大量的内存复制</li>
-<li>此参数只对Serial和ParNew两款收集器有效。Parallel Scavenge收集器不认识这个参数</li>
-</ul>
-</li>
-<li><p>长期存活的对象将进入老年代    </p>
-<p>  虚拟机给每个对象定一个对象年龄（age）计数器，如果对象在Eden区出生并经过第一次Minor GC后仍然存在，并能被Survivor容纳，将被移动到Survivor空间中，并且年龄设为1，对象在Survivor区 每熬过一次Minor GC 年龄就增加1岁，当年龄增加到一定程度（默认15岁），就被晋升到老念中，这个晋升老年的年龄阀值，可以通过参数-XX:MaxTenuringThreshold设置</p>
-</li>
-<li><p>动态对象年龄判定</p>
-<p>  虚拟机并不是永远地要求对象的年龄必须达到MaxTenuringThreshold才能晋升老年代，如果Survivor空间中相同年龄所有对象大小的总和大雨Survivor空间的一半，年龄大于或者等于该年龄的对象就可以直接进入老年代，无需等到MaxTenuringThreshold中要求的年龄</p>
-</li>
-<li>空间分配担保</li>
-</ul>
-
+        <h3 id="Exchanger简介"><a href="#Exchanger简介" class="headerlink" title="Exchanger简介"></a>Exchanger简介</h3><p>Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。</p>
+<h3 id="Exchanger示例"><a href="#Exchanger示例" class="headerlink" title="Exchanger示例"></a>Exchanger示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Exchanger&lt;String&gt; exchanger;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(Exchanger&lt;String&gt; exchanger)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.exchanger = exchanger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println( <span class="string">"car : "</span> + exchanger.exchange(<span class="string">"Car"</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bike</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Exchanger&lt;String&gt; exchanger;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Bike</span><span class="params">(Exchanger&lt;String&gt; exchanger)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.exchanger = exchanger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"bike : "</span> + exchanger.exchange(<span class="string">"Bike"</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExchanger</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Exchanger&lt;String&gt; exchanger = <span class="keyword">new</span> Exchanger&lt;&gt;();</span><br><span class="line">        Car car = <span class="keyword">new</span> Car(exchanger);</span><br><span class="line">        Bike bike = <span class="keyword">new</span> Bike(exchanger);</span><br><span class="line">        car.start();</span><br><span class="line">        bike.start();</span><br><span class="line">        System.out.println(<span class="string">"Main end!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -411,7 +390,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-08-31/JVM系列-内存分配与回收策略.html" title="JVM系列-内存分配与回收策略">http://jinweida.github.io/2017-08-31/JVM系列-内存分配与回收策略.html</a>
+              <a href="/2017-12-30/java-多线程Exchanger.html" title="java-多线程Exchanger">http://jinweida.github.io/2017-12-30/java-多线程Exchanger.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -451,7 +430,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JVM系列/" rel="tag"># JVM系列</a>
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
           
         </div>
       
@@ -464,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-30/docker技术基础.html" rel="next" title="docker技术基础">
-                <i class="fa fa-chevron-left"></i> docker技术基础
+              <a href="/2017-12-30/java-多线程Semaphore.html" rel="next" title="java-多线程Semaphore">
+                <i class="fa fa-chevron-left"></i> java-多线程Semaphore
               </a>
             
           </div>
@@ -473,10 +452,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-08-31/oracle使用总结.html" rel="prev" title="oracle使用总结">
-                oracle使用总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -507,8 +482,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-08-31/JVM系列-内存分配与回收策略.html"
-           data-title="JVM系列-内存分配与回收策略" data-url="http://jinweida.github.io/2017-08-31/JVM系列-内存分配与回收策略.html">
+      <div class="ds-thread" data-thread-key="2017-12-30/java-多线程Exchanger.html"
+           data-title="java-多线程Exchanger" data-url="http://jinweida.github.io/2017-12-30/java-多线程Exchanger.html">
       </div>
     </div>
 
@@ -625,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存分配与回收策略"><span class="nav-number">1.</span> <span class="nav-text">内存分配与回收策略</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exchanger简介"><span class="nav-number">1.</span> <span class="nav-text">Exchanger简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exchanger示例"><span class="nav-number">2.</span> <span class="nav-text">Exchanger示例</span></a></li></ol></div>
             
 
           </div>
