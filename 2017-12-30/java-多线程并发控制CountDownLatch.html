@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="多线程," />
 
 
 
@@ -79,19 +79,20 @@
 
 
 
-<meta name="description" content="TCP/IP模型  TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。   应用层  应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS">
+<meta name="description" content="CountDownLatchCountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。 join实现线程控制原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远等待。直到join线程终止，线程的this.notifyAll()方法会被调">
+<meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OSI与TCP&#x2F;IP模型">
-<meta property="og:url" content="http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html">
+<meta property="og:title" content="java-多线程并发控制CountDownLatch">
+<meta property="og:url" content="http://jinweida.github.io/2017-12-30/java-多线程并发控制CountDownLatch.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="TCP/IP模型  TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。   应用层  应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.  传输层  传输层对应于OSI参考模型的传输层，为应用层实体提">
+<meta property="og:description" content="CountDownLatchCountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。 join实现线程控制原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远等待。直到join线程终止，线程的this.notifyAll()方法会被调用。调用notifyAll() 是在jvm里调用的。1234567891011">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/img/jvm/osi.png">
-<meta property="og:updated_time" content="2017-12-01T05:50:51.963Z">
+<meta property="og:image" content="http://jinweida.github.io/images/java/countdownlatch.jpg">
+<meta property="og:updated_time" content="2017-12-30T08:24:16.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OSI与TCP&#x2F;IP模型">
-<meta name="twitter:description" content="TCP/IP模型  TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。   应用层  应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.  传输层  传输层对应于OSI参考模型的传输层，为应用层实体提">
-<meta name="twitter:image" content="http://jinweida.github.io/img/jvm/osi.png">
+<meta name="twitter:title" content="java-多线程并发控制CountDownLatch">
+<meta name="twitter:description" content="CountDownLatchCountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。 join实现线程控制原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远等待。直到join线程终止，线程的this.notifyAll()方法会被调用。调用notifyAll() 是在jvm里调用的。1234567891011">
+<meta name="twitter:image" content="http://jinweida.github.io/images/java/countdownlatch.jpg">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-12-30/java-多线程并发控制CountDownLatch.html"/>
 
 
 
 
 
-  <title>OSI与TCP/IP模型 | 金声玉振</title>
+  <title>java-多线程并发控制CountDownLatch | 金声玉振</title>
   
 
 
@@ -264,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-30/java-多线程并发控制CountDownLatch.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -281,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OSI与TCP/IP模型</h1>
+          <h1 class="post-title" itemprop="name headline">java-多线程并发控制CountDownLatch</h1>
         
 
         <div class="post-meta">
@@ -293,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T10:17:59+08:00">
-                2017-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-30T15:50:24+08:00">
+                2017-12-30
               </time>
             
 
@@ -304,6 +305,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -312,8 +335,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-08-12/OSI与TCP-IP模型.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-12/OSI与TCP-IP模型.html" itemprop="commentCount"></span>
+                <a href="/2017-12-30/java-多线程并发控制CountDownLatch.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-30/java-多线程并发控制CountDownLatch.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -341,26 +364,13 @@
       
 
       
-        <p><img src="/img/jvm/osi.png" alt="image"></p>
-<p>TCP/IP模型</p>
-<ul>
-<li>TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。</li>
-</ul>
-<ol>
-<li><p>应用层</p>
-<p> 应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.</p>
-</li>
-<li><p>传输层</p>
-<p> 传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能，保证了数据包的顺序传送及数据的完整性。该层定义了两个主要的协议：传输控制协议（TCP）和用户数据报协议（UDP).</p>
-<p> TCP协议提供的是一种可靠的、通过“三次握手”来连接的数据传输服务；而UDP协议提供的则是不保证可靠的（并不是不可靠）、无连接的数据传输服务.</p>
-</li>
-<li><p>网际互联层</p>
-<p> 网际互联层对应于OSI参考模型的网络层，主要解决主机到主机的通信问题。它所包含的协议设计数据包在整个网络上的逻辑传输。注重重新赋予主机一个IP地址来完成对主机的寻址，它还负责数据包在多种网络中的路由。该层有三个主要协议：网际协议（IP）、互联网组管理协议（IGMP）和互联网控制报文协议（ICMP）。<br> IP协议是网际互联层最重要的协议，它提供的是一个可靠、无连接的数据报传递服务。</p>
-</li>
-<li><p>网络接入层（即主机-网络层）</p>
-<p> 网络接入层与OSI参考模型中的物理层和数据链路层相对应。它负责监视数据在主机和网络之间的交换。事实上，TCP/IP本身并未定义该层的协议，而由参与互连的各网络使用自己的物理层和数据链路层协议，然后与TCP/IP的网络接入层进行连接。地址解析协议（ARP）工作在此层，即OSI参考模型的数据链路层。</p>
-</li>
-</ol>
+        <p><img src="/images/java/countdownlatch.jpg" alt="image"></p>
+<h3 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h3><p>CountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。</p>
+<h3 id="join实现线程控制"><a href="#join实现线程控制" class="headerlink" title="join实现线程控制"></a>join实现线程控制</h3><p>原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远等待。直到join线程终止，线程的this.notifyAll()方法会被调用。调用notifyAll() 是在jvm里调用的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myJoin</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">    Thread t1=<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">            System.out.println(<span class="string">"1 finish"</span>);             </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Thread t2=<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">            System.out.println(<span class="string">"2 finish"</span>);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"all finish"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="CountDownLatch实现线程线程控制"><a href="#CountDownLatch实现线程线程控制" class="headerlink" title="CountDownLatch实现线程线程控制"></a>CountDownLatch实现线程线程控制</h3><p>jdk1.5之后，并发包中提供的CountDownLatch相比join能做的更多。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCountDownLatch</span> </span>&#123;     </span><br><span class="line">    <span class="keyword">static</span> CountDownLatch c=<span class="keyword">new</span> CountDownLatch(<span class="number">2</span>);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">                System.out.println(<span class="number">1</span>);</span><br><span class="line">                c.countDown();</span><br><span class="line">                System.out.println(<span class="number">2</span>);</span><br><span class="line">                c.countDown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        </span><br><span class="line">        c.await();</span><br><span class="line">        System.out.println(<span class="string">"3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>CountDownLatch构造函数接收int类型参数作为计数器，想等待N个节点完成，传入N。<br>当调用countDown(),N会减1。await会阻塞当前线程，直到N变为0。<br>countDown方法可以用于任何地方，可以是N个线程，N个执行步骤。<br>计数器必须大于等于0，等于0时，计数器为0，调用await不会阻塞当前线程</p>
+</blockquote>
 
       
     </div>
@@ -388,7 +398,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-08-12/OSI与TCP-IP模型.html" title="OSI与TCP/IP模型">http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html</a>
+              <a href="/2017-12-30/java-多线程并发控制CountDownLatch.html" title="java-多线程并发控制CountDownLatch">http://jinweida.github.io/2017-12-30/java-多线程并发控制CountDownLatch.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -426,6 +436,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+        </div>
+      
 
       
       
@@ -435,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-09/springboot如何测试打包部署.html" rel="next" title="springboot如何测试打包部署">
-                <i class="fa fa-chevron-left"></i> springboot如何测试打包部署
+              <a href="/2017-12-23/java-多线程池.html" rel="next" title="java-多线程juc线程池">
+                <i class="fa fa-chevron-left"></i> java-多线程juc线程池
               </a>
             
           </div>
@@ -444,10 +460,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-08-19/java-池技术对象池连接池线程池.html" rel="prev" title="java-池技术对象池连接池线程池">
-                java-池技术对象池连接池线程池 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -478,8 +490,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-08-12/OSI与TCP-IP模型.html"
-           data-title="OSI与TCP/IP模型" data-url="http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html">
+      <div class="ds-thread" data-thread-key="2017-12-30/java-多线程并发控制CountDownLatch.html"
+           data-title="java-多线程并发控制CountDownLatch" data-url="http://jinweida.github.io/2017-12-30/java-多线程并发控制CountDownLatch.html">
       </div>
     </div>
 
@@ -506,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -577,6 +598,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CountDownLatch"><span class="nav-number">1.</span> <span class="nav-text">CountDownLatch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join实现线程控制"><span class="nav-number">2.</span> <span class="nav-text">join实现线程控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CountDownLatch实现线程线程控制"><span class="nav-number">3.</span> <span class="nav-text">CountDownLatch实现线程线程控制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

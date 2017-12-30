@@ -262,6 +262,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-09-02/docker安装mysql并导入sql文件.html" itemprop="url">docker安装mysql并导入sql文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T19:28:11+08:00">
+                2017-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-09-02/docker安装mysql并导入sql文件.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-02/docker安装mysql并导入sql文件.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="docker安装mysql镜像"><a href="#docker安装mysql镜像" class="headerlink" title="docker安装mysql镜像"></a>docker安装mysql镜像</h4><p>1.搜索镜像 docker search mysql</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker search mysql</span><br><span class="line">NAME                                                   DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                                                  MySQL is a widely used, open-source relati...   4895      [OK]</span><br><span class="line">mariadb                                                MariaDB is a community-developed fork of M...   1509      [OK]</span><br><span class="line">mysql/mysql-server                                     Optimized MySQL Server Docker images. Crea...   342                  [OK]</span><br><span class="line">percona                                                Percona Server is a fork of the MySQL rela...   286       [OK]</span><br><span class="line">hypriot/rpi-mysql                                      RPi-compatible Docker Image with Mysql          67</span><br><span class="line">centurylink/mysql                                      Image containing mysql. Optimized to be li...   52                   [OK]</span><br><span class="line">zabbix/zabbix-server-mysql                             Zabbix Server with MySQL database support       51                   [OK]</span><br><span class="line">sameersbn/mysql                                                                                        47                   [OK]</span><br><span class="line">zabbix/zabbix-web-nginx-mysql                          Zabbix frontend based on Nginx web-server ...   30                   [OK]</span><br><span class="line">tutum/mysql                                            Base docker image to run a MySQL database ...   25</span><br><span class="line">1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5   ubuntu-16-nginx-php-phpmyadmin-mysql-5          13                   [OK]</span><br><span class="line">schickling/mysql-backup-s3                             Backup MySQL to S3 (supports periodic back...   13                   [OK]</span><br><span class="line">linuxserver/mysql                                      A Mysql container, brought to you by Linux...   12</span><br><span class="line">centos/mysql-57-centos7                                MySQL 5.7 SQL database server                   10</span><br><span class="line">appcontainers/mysql                                    Centos/Debian Based Customizable MySQL Con...   8                    [OK]</span><br><span class="line">openshift/mysql-55-centos7                             DEPRECATED: A Centos7 based MySQL v5.5 ima...   6</span><br><span class="line">centos/mysql-56-centos7                                MySQL 5.6 SQL database server                   5</span><br><span class="line">frodenas/mysql                                         A Docker Image for MySQL                        3                    [OK]</span><br><span class="line">dsteinkopf/backup-all-mysql                            backup all DBs in a mysql server                3                    [OK]</span><br><span class="line">circleci/mysql                                         MySQL is a widely used, open-source relati...   1</span><br><span class="line">cloudposse/mysql                                       Improved `mysql` service with support for ...   0                    [OK]</span><br><span class="line">cloudfoundry/cf-mysql-ci                               Image used in CI of cf-mysql-release            0</span><br><span class="line">astronomerio/mysql-source                              MySQL source                                    0                    [OK]</span><br><span class="line">jenkler/mysql                                          Docker Mysql package                            0</span><br><span class="line">astronomerio/mysql-sink</span><br></pre></td></tr></table></figure>
+<p>2.安装镜像 docker pusll mysql:5.6.35<br>我这里装的是5.6.35 可以装最新版本docker pull mysql:latest 默认就是最新的<br>3.创建并运行mysql容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name mysql -v /Users/camulos/Documents:/media -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:5.6.35</span><br><span class="line">-d : --detach，后台运行。</span><br><span class="line">--name : 容器名字</span><br><span class="line">-p : 映射端口，一般我们会将默认端口进行更改，避免与本机的mysql端口冲突，如果你宿主机有mysql，请更改端口，如 -p 33060:3306。</span><br><span class="line">-e : 环境变量。为mysql的root用户设置密码为123456。</span><br><span class="line">-v : 指定数据卷，意思就是将mysql容器中的/media（这个是数据库所有数据信息文件）映射到宿主机/Users/camulos/Documents里面。</span><br></pre></td></tr></table></figure></p>
+<p>4.进入到mysql容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker exec -it mysql bash</span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 14</span><br><span class="line">Server version: 5.6.35 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span>create database sc</span><br><span class="line"><span class="meta">mysql&gt;</span>exit;</span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p sc &lt; /medias/qsthinkphp.sql #导入sql文件，还原数据库</span><br></pre></td></tr></table></figure></p>
+<p>可以用navicat操作mysql了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-31/oracle使用总结.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1622,196 +1778,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-19/高可用高并发大型网站架构设计思路.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-19/高可用高并发大型网站架构设计思路.html" itemprop="url">高可用高并发大型网站架构设计思路</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T13:46:21+08:00">
-                2017-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-19/高可用高并发大型网站架构设计思路.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-19/高可用高并发大型网站架构设计思路.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="什么是高可用（High-Availability）？"><a href="#什么是高可用（High-Availability）？" class="headerlink" title="什么是高可用（High Availability）？"></a>什么是高可用（High Availability）？</h4><p>百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。</p>
-<blockquote>
-<p>如何保证过高可用呢？</p>
-</blockquote>
-<p>主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用</p>
-<ul>
-<li><p>1、主从方式<br>  原理：主机工作，备机处于监控准备状况，当主机宕机时，备机接管主机的一切工作，待主机恢复正常，按使用者的设定以自动或者手动方式将服务切换到主机上运行。数据一致性通过共享存储系统解决。</p>
-</li>
-<li><p>2、双机双工方式<br>  两台主机同时运行各自的服务工作且相互监测情况，当任一台宕机时，另一台主机立即接管他的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。</p>
-</li>
-<li><p>3、集群工作方式<br>  多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。</p>
-</li>
-</ul>
-<h4 id="什么是高并发？"><a href="#什么是高并发？" class="headerlink" title="什么是高并发？"></a>什么是高并发？</h4><p>高并发是分布式系统架构设计中必须考虑的因素之一，通常指通过设计保证系统能够同时并行处理很多请求。</p>
-<blockquote>
-<p>如何保证高并发？  </p>
-</blockquote>
-<ul>
-<li>垂直扩展：提升单机处理能力</li>
-<li>水平扩展：只要增加服务器数量，就能线性扩充系统性能。</li>
-</ul>
-<h4 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h4><ul>
-<li><p>1.空间换时间</p>
-<ul>
-<li>多级缓存，静态化</li>
-<li>索引</li>
-</ul>
-</li>
-<li><p>2.并行与分布式计算</p>
-<ul>
-<li>任务切分，分而治之</li>
-<li>多进程，多线程并行执行</li>
-</ul>
-</li>
-<li><p>3.多维度可用</p>
-<ul>
-<li>负载均衡、容灾、备份</li>
-<li>读写分离</li>
-<li>依赖关系</li>
-<li>监控</li>
-</ul>
-</li>
-<li><p>4.伸缩</p>
-<ul>
-<li><p>拆分：</p>
-<p>  对业务的拆分：对业务进行逻辑的分段，采用异步非阻塞方式，提供系统的吞吐量；</p>
-<p>  对数据库的拆分：随着数据量并发量的增加，需要对数据库进行切分，包括分库和分表，这样需要增加对数据库路由的逻辑支持</p>
-</li>
-<li><p>无状态</p>
-<p>  模块最好是无状态的，可以增加节点就可以提供整个系统吞吐量</p>
-</li>
-</ul>
-</li>
-<li><p>5.优化资源利用</p>
-<ul>
-<li>系统容量有限</li>
-<li>原子操作与并发控制</li>
-<li>资源释放</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1862,7 +1828,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
