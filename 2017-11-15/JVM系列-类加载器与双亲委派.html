@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="类加载器的作用类加载器的作用不仅是实现类的加载。任意一个类都需要由加载他的类加载器和这个类本身一同确定其在java虚拟机的唯一性，每个类加载器，都拥有一个独立的类名称空间。 判断类的相等比较两个类是否”相等“，前提是这两个类由同一个类加载器加载才有意义。否则类加载器不同，那这两个类就必定不相等。这里的”相等“，包括代表类的Class对象的equals()方法、isAssignableForm()方">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/img/jvm/classloader.png">
-<meta property="og:image" content="http://jinweida.github.io/img/jvm/weipai.png">
-<meta property="og:updated_time" content="2017-12-09T09:32:51.736Z">
+<meta property="og:image" content="http://jinweida.github.io/img/classloader.jpg">
+<meta property="og:image" content="http://jinweida.github.io/img/weipai.jpg">
+<meta property="og:updated_time" content="2018-01-10T14:08:56.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列-类加载器与双亲委派">
 <meta name="twitter:description" content="类加载器的作用类加载器的作用不仅是实现类的加载。任意一个类都需要由加载他的类加载器和这个类本身一同确定其在java虚拟机的唯一性，每个类加载器，都拥有一个独立的类名称空间。 判断类的相等比较两个类是否”相等“，前提是这两个类由同一个类加载器加载才有意义。否则类加载器不同，那这两个类就必定不相等。这里的”相等“，包括代表类的Class对象的equals()方法、isAssignableForm()方">
-<meta name="twitter:image" content="http://jinweida.github.io/img/jvm/classloader.png">
+<meta name="twitter:image" content="http://jinweida.github.io/img/classloader.jpg">
 
 
 
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:32:51+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:08:56+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -378,12 +378,12 @@
 
       
         <h4 id="类加载器的作用"><a href="#类加载器的作用" class="headerlink" title="类加载器的作用"></a>类加载器的作用</h4><p>类加载器的作用不仅是实现类的加载。任意一个类都需要由加载他的类加载器和这个类本身一同确定其在java虚拟机的唯一性，每个类加载器，都拥有一个独立的类名称空间。</p>
-<h4 id="判断类的相等"><a href="#判断类的相等" class="headerlink" title="判断类的相等"></a>判断类的相等</h4><p>比较两个类是否”相等“，前提是这两个类由同一个类加载器加载才有意义。否则类加载器不同，那这两个类就必定不相等。这里的”相等“，包括代表类的Class对象的equals()方法、isAssignableForm()方法、isInstance()的返回结果，也包括用instanceof关键字做对象所属关系判定的情况。<br><img src="/img/jvm/classloader.png" alt="image"><br><a id="more"></a></p>
+<h4 id="判断类的相等"><a href="#判断类的相等" class="headerlink" title="判断类的相等"></a>判断类的相等</h4><p>比较两个类是否”相等“，前提是这两个类由同一个类加载器加载才有意义。否则类加载器不同，那这两个类就必定不相等。这里的”相等“，包括代表类的Class对象的equals()方法、isAssignableForm()方法、isInstance()的返回结果，也包括用instanceof关键字做对象所属关系判定的情况。<br><img src="/img/classloader.jpg" alt="image"><br><a id="more"></a></p>
 <h4 id="JVM类加载器分类"><a href="#JVM类加载器分类" class="headerlink" title="JVM类加载器分类"></a>JVM类加载器分类</h4><h5 id="启动类加载器（Bootstrap-ClassLoader）"><a href="#启动类加载器（Bootstrap-ClassLoader）" class="headerlink" title="启动类加载器（Bootstrap ClassLoader）"></a>启动类加载器（Bootstrap ClassLoader）</h5><p>负责加载Java的核心类库，加载如(%JAVA_HOME%/lib)目录下的rt.jar（包含System、String这样的核心类）这样的核心类库。是由C++语言实现的，是虚拟机的一部分</p>
 <h5 id="扩展类加载器（Ext-ClassLoader"><a href="#扩展类加载器（Ext-ClassLoader" class="headerlink" title="扩展类加载器（Ext ClassLoader)"></a>扩展类加载器（Ext ClassLoader)</h5><p>这个加载器由sun.misc.Launcher$ExtClassLoader实现，它负责加载<java_home>\lib\ext目录中的,或者被java.ext.dirs系统变量所指定的路径中的所有类库,开发者可以直接食用扩展类加载器。</java_home></p>
 <h5 id="应用程序类加载器"><a href="#应用程序类加载器" class="headerlink" title="应用程序类加载器"></a>应用程序类加载器</h5><p>这个类加载器由sun.misc.Launcher$AppClassLoader实现。也称为系统类加载器，加载ClassPath环境变量所指定的jar包与类路径。一般，用户自定义的类就是由APPClassLoader加载的。</p>
 <h4 id="双亲委派模型工作过程"><a href="#双亲委派模型工作过程" class="headerlink" title="双亲委派模型工作过程"></a>双亲委派模型工作过程</h4><p>如果一个类加载器受到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求时，子加载器才会尝试自己去加载。</p>
-<p><img src="/img/jvm/weipai.png" alt="image"></p>
+<p><img src="/img/weipai.jpg" alt="image"></p>
 
       
     </div>
