@@ -85,13 +85,13 @@
 <meta property="og:title" content="JVM系列:java内存区域与内存溢出异常">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-01/JVM系列-java内存区域与内存溢出异常.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的   虚拟机栈 线程私有的 描述的是Java方法执行的内存模型，每个方">
+<meta property="og:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg">
-<meta property="og:updated_time" content="2018-01-10T13:58:08.526Z">
+<meta property="og:updated_time" content="2018-01-10T13:59:41.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列:java内存区域与内存溢出异常">
-<meta name="twitter:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的   虚拟机栈 线程私有的 描述的是Java方法执行的内存模型，每个方">
+<meta name="twitter:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg">
 
 
@@ -310,7 +310,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:58:08+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:59:41+08:00">
                 2018-01-10
               </time>
             
@@ -381,9 +381,8 @@
 <li>是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器</li>
 <li>如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址</li>
 <li>如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域</li>
-<li>线程私有的 </li>
-</ul>
-<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><ul>
+<li>线程私有的 <a id="more"></a>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3></li>
 <li>线程私有的</li>
 <li>描述的是Java方法执行的内存模型，每个方法执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表，操作数栈，动态连接方法出口等信息。每个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机中入栈到出栈的过程</li>
 <li>局部变量表存放了编译期的各种数据类型（boolean，byte，char，short，int，float，long，double），对象引用（reference）类型（指针或者句柄）</li>
