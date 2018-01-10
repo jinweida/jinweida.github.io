@@ -88,7 +88,7 @@
 <meta property="og:description" content="概述垃圾收集器通常被称为“GC”，1960年诞生于MIT的lisp语言。GC需要做的三件事情：  哪些内存需要回收？ 什么时候回收？ 如何回收？  如何判断对象已死？ 引用计数算法每个对象有一个引用计数属性，每当有一个地方引用它时，计数值加1，当引用失效时，计数器值减1，任何时刻计数值为0的对象就是不可能在被使用的。此方法实现简单，判定效率也高，但主流java虚拟机没有采用这个算法管理内存，因为它">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/gc.jpg">
-<meta property="og:updated_time" content="2018-01-10T14:20:50.962Z">
+<meta property="og:updated_time" content="2018-01-10T14:40:15.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列:垃圾收集器与内存分配策略">
 <meta name="twitter:description" content="概述垃圾收集器通常被称为“GC”，1960年诞生于MIT的lisp语言。GC需要做的三件事情：  哪些内存需要回收？ 什么时候回收？ 如何回收？  如何判断对象已死？ 引用计数算法每个对象有一个引用计数属性，每当有一个地方引用它时，计数值加1，当引用失效时，计数器值减1，任何时刻计数值为0的对象就是不可能在被使用的。此方法实现简单，判定效率也高，但主流java虚拟机没有采用这个算法管理内存，因为它">
@@ -310,7 +310,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:20:50+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:40:15+08:00">
                 2018-01-10
               </time>
             
@@ -384,35 +384,31 @@
 </ul>
 <h3 id="如何判断对象已死？"><a href="#如何判断对象已死？" class="headerlink" title="如何判断对象已死？"></a>如何判断对象已死？</h3><ul>
 <li>引用计数算法<br>每个对象有一个引用计数属性，每当有一个地方引用它时，计数值加1，当引用失效时，计数器值减1，任何时刻计数值为0的对象就是不可能在被使用的。此方法实现简单，判定效率也高，但主流java虚拟机没有采用这个算法管理内存，因为它很难解决对象之间相互循环引用的问题。</li>
-<li>可达性分析算法<br>主流商用程序语言（Java，C#）的主流实现中，都是称通过可达分析来判定对象的是否存活的。其基本思路是通过一系列成为“GCRoots”的对象作为起点，向下搜索，搜索所走过的路径成为引用链，当一个对象到GC Roots没用任何引用连时，则证明此对象是不可用的。所以将会判定为可回收对象。</li>
+<li>可达性分析算法<br>主流商用程序语言（Java，C#）的主流实现中，都是称通过可达分析来判定对象的是否存活的。其基本思路是通过一系列成为“GCRoots”的对象作为起点，向下搜索，搜索所走过的路径成为引用链，当一个对象到GCRoots没用任何引用连时，则证明此对象是不可用的。所以将会判定为可回收对象。</li>
 </ul>
 <h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h3><ul>
 <li>标记-清除算法</li>
 <li>复制算法</li>
 <li>标记-整理算法</li>
 <li>分代收集算法<a id="more"></a>
-<h3 id="HotSpot的算法实现"><a href="#HotSpot的算法实现" class="headerlink" title="HotSpot的算法实现"></a>HotSpot的算法实现</h3></li>
+</li>
+</ul>
+<h3 id="HotSpot的算法实现"><a href="#HotSpot的算法实现" class="headerlink" title="HotSpot的算法实现"></a>HotSpot的算法实现</h3><ul>
 <li>枚举根节点</li>
 <li>安全点</li>
 <li>安全区域</li>
 </ul>
 <h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p><img src="/img/gc.jpg" alt="image"></p>
+<h4 id="Serial串行收集器"><a href="#Serial串行收集器" class="headerlink" title="Serial串行收集器"></a>Serial串行收集器</h4><p>最基本发展历史最悠久的收集器，在jdk1.3之前虚拟机==新生代==收集器的唯一选择；单线程收集器，在手收集时候必须暂停所有其他的工作线程，直到他收集结束，“stop the world”</p>
+<h4 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h4><p>是serial收集器的多线程版，hotpot第一款并发收集器，目前只有Serial和ParNew能与CMS收集器配合工作，是使用-XX:+UseConcMarkSweepGC选项后的默认新生代收集器，也可以使用-XX:UserParNewGC选项来强制制定它，ParNew收集器在单CPU环境中不会比Serial收集器快</p>
+<h4 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h4><p>新生代收集器，使用复制算法，并行多线程收集器，cms收集器关注点是尽可能缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge的目的则是达到一个控制的吞吐量，可以高效的利用cpu，是一个吞吐量优先的收集器，GC自适应调节策略是Parallel Scavenges收集器与ParNew收集器的重要原因。</p>
+<h4 id="Serial-Old收集器"><a href="#Serial-Old收集器" class="headerlink" title="Serial Old收集器"></a>Serial Old收集器</h4><p>是Serial收集器的老年代版本，也是单线程收集器，使用“标记-整理”算法</p>
 <ul>
-<li>Serial 收集器 串行收集器<br>最基本发展历史最悠久的收集器，在jdk1.3之前虚拟机==新生代==收集器的唯一选择；单线程收集器，在手收集时候必须暂停所有其他的工作线程，直到他收集结束，“stop the world”</li>
-<li>ParNew收集器<br>是serial收集器的多线程版，hotpot第一款并发收集器，目前只有Serial和ParNew能与CMS收集器配合工作，是使用-XX:+UseConcMarkSweepGC选项后的默认新生代收集器，也可以使用-XX:UserParNewGC选项来强制制定它，ParNew收集器在单CPU环境中不会比Serial收集器快</li>
-<li><p>Parallel Scavenge收集器 并行清除<br>新生代收集器，使用复制算法，并行多线程收集器，cms收集器关注点是尽可能缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge的目的则是达到一个控制的吞吐量，可以高效的利用cpu，是一个吞吐量优先的收集器，GC自适应调节策略是Parallel Scavenges收集器与ParNew收集器的重要原因。</p>
-</li>
-<li><p>Serial Old 收集器<br>是Serial收集器的老年代版本，也是单线程收集器，使用“标记-整理”算法</p>
-</li>
-<li><p>Parallel Old收集器<br>是Parallel Scavenge收集器的老年代版本    </p>
-</li>
-<li><p>CMS收集器<br>是一个以获取最短回收停顿时间为目标的收集器，目前大部分Java应用集中在互联网或者B/S系统服务上，可以采用CMS收集器，也是基于”标记-清除“算法，收集包括四个步骤：初始标记（需要stop the world），并发标记，重新标记（stop the world），并发清除，主要优点是就是：并发收集、低停顿。<br>有个明显缺点：1）对CPU资源不敏感。2）无法处理浮动垃圾。3）收集结束会产生空间碎片。</p>
-</li>
+<li>Parallel Old收集器<br>是Parallel Scavenge收集器的老年代版本    </li>
 </ul>
+<h4 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h4><p>是一个以获取最短回收停顿时间为目标的收集器，目前大部分Java应用集中在互联网或者B/S系统服务上，可以采用CMS收集器，也是基于”标记-清除“算法，收集包括四个步骤：初始标记（需要stop the world），并发标记，重新标记（stop the world），并发清除，主要优点是就是：并发收集、低停顿。<br>有个明显缺点：1）对CPU资源不敏感。2）无法处理浮动垃圾。3）收集结束会产生空间碎片。</p>
 <p>CMS提供了个参数-XX:+UseCMSCompactAtFullCollection开关参数（默认开启），用于CMS收集器顶不住要进行Full GC时开启碎片整理的合并过程。内存整理过程是无法并发的，空间碎片没了，但停顿时间不得不变长，虚拟机还提供了一个参数-XX:CMSFullGCsBeforeCompaction，用于设置执行多少不压缩FullGC后，来一次压缩（默认是0，表示每次进入FullGC时都进行碎片整理）</p>
-<ul>
-<li>G1收集器<br>并行与并发<br>分代收集<br>空间整合<br>可预测的停顿</li>
-</ul>
+<h4 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h4><p>并行与并发<br>分代收集<br>空间整合<br>可预测的停顿</p>
 
       
     </div>
@@ -655,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断对象已死？"><span class="nav-number">2.</span> <span class="nav-text">如何判断对象已死？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">3.</span> <span class="nav-text">垃圾收集算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HotSpot的算法实现"><span class="nav-number">4.</span> <span class="nav-text">HotSpot的算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">5.</span> <span class="nav-text">垃圾收集器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断对象已死？"><span class="nav-number">2.</span> <span class="nav-text">如何判断对象已死？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">3.</span> <span class="nav-text">垃圾收集算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HotSpot的算法实现"><span class="nav-number">4.</span> <span class="nav-text">HotSpot的算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">5.</span> <span class="nav-text">垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Serial串行收集器"><span class="nav-number">5.1.</span> <span class="nav-text">Serial串行收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ParNew收集器"><span class="nav-number">5.2.</span> <span class="nav-text">ParNew收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Parallel-Scavenge收集器"><span class="nav-number">5.3.</span> <span class="nav-text">Parallel Scavenge收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Serial-Old收集器"><span class="nav-number">5.4.</span> <span class="nav-text">Serial Old收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMS收集器"><span class="nav-number">5.5.</span> <span class="nav-text">CMS收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#G1收集器"><span class="nav-number">5.6.</span> <span class="nav-text">G1收集器</span></a></li></ol></li></ol></div>
             
 
           </div>
