@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="运行时数据区域 1.程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器  如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址  如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况">
+<meta name="description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 ">
 <meta name="keywords" content="JVM系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM系列:java内存区域与内存溢出异常">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-01/JVM系列-java内存区域与内存溢出异常.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="运行时数据区域 1.程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器  如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址  如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域  线程私有的  2.虚拟机栈 线程私有的 描述的是Java方法执行的内存">
+<meta property="og:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的   虚拟机栈 线程私有的 描述的是Java方法执行的内存模型，每个方">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg">
-<meta property="og:updated_time" content="2017-12-09T09:33:01.033Z">
+<meta property="og:updated_time" content="2018-01-10T13:58:08.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列:java内存区域与内存溢出异常">
-<meta name="twitter:description" content="运行时数据区域 1.程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器  如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址  如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域  线程私有的  2.虚拟机栈 线程私有的 描述的是Java方法执行的内存">
+<meta name="twitter:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的   虚拟机栈 线程私有的 描述的是Java方法执行的内存模型，每个方">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg">
 
 
@@ -203,16 +203,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
@@ -320,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:33:01+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:58:08+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -386,33 +376,25 @@
       
 
       
-        <h1 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h1><p><img src="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg" alt="image"></p>
-<h4 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1.程序计数器"></a>1.程序计数器</h4><ul>
-<li><p>是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器</p>
-</li>
-<li><p>如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址</p>
-</li>
-<li><p>如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域</p>
-</li>
-<li>线程私有的</li>
+        <p>运行时数据区域<br><img src="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg" alt="image"></p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><ul>
+<li>是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器</li>
+<li>如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址</li>
+<li>如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域</li>
+<li>线程私有的 </li>
 </ul>
-<h4 id="2-虚拟机栈"><a href="#2-虚拟机栈" class="headerlink" title="2.虚拟机栈"></a>2.虚拟机栈</h4><ul>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><ul>
 <li>线程私有的</li>
 <li>描述的是Java方法执行的内存模型，每个方法执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表，操作数栈，动态连接方法出口等信息。每个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机中入栈到出栈的过程</li>
 <li>局部变量表存放了编译期的各种数据类型（boolean，byte，char，short，int，float，long，double），对象引用（reference）类型（指针或者句柄）</li>
-<li><p>此区域 出现异常</p>
-<ul>
-<li>如果线程请求的栈深度大雨虚拟机所允许的深度，将抛出StackOverflowError异常</li>
-<li>如果虚拟机栈可以动态扩展，如果扩展是无法申请到足够的内存，就会抛出OutOfMemoryError异常</li>
+<li>此区域 出现异常,如果线程请求的栈深度大雨虚拟机所允许的深度，将抛出StackOverflowError异常<br>如果虚拟机栈可以动态扩展，如果扩展是无法申请到足够的内存，就会抛出OutOfMemoryError异常</li>
 </ul>
-</li>
-</ul>
-<h4 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3.本地方法栈"></a>3.本地方法栈</h4><ul>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><ul>
 <li>与虚拟机栈类似</li>
 <li>为虚拟机使用到得Native方法服务</li>
 <li>也会抛出StackOverflowError和OutOfMemoryError错误</li>
 </ul>
-<h4 id="4-Java堆"><a href="#4-Java堆" class="headerlink" title="4.Java堆"></a>4.Java堆</h4><ul>
+<h3 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h3><ul>
 <li>虚拟机管理得内存中最大一块,分为新生代、老年代。<br>  新生代有分为Eden空间、FromSurvivor空间、to survivor空间。<br>  老年代是在新生代中经历了N次垃圾回收后仍然存活的对象，就会被放到老年代中</li>
 <li>被所有线程共享得，在虚拟机启启动时创建，此内存区域唯一目的是存放对象实例和数组，几乎所有对象实例和数组都在这里分配内存</li>
 <li>随着JIT编译器得发展与逃逸分析技术成熟起来，对象得分配在堆上变得不那么绝对了</li>
@@ -421,23 +403,14 @@
 <li>java 堆可划分出多个线程私有得分配缓冲区（Thread Local Allocation Buffer,TLAB）</li>
 <li>如果在堆中没有内存完成实例分配，并且堆也无法扩展，将会抛出OutOfMemoryError异常</li>
 </ul>
-<h4 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5.方法区"></a>5.方法区</h4><ul>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><ul>
 <li>与堆一样也是各个线程共享的内存区域</li>
 <li>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后得代码等数据</li>
 <li>很多人更愿意把此区域成为“永久代”，本质上两者并不等价</li>
 <li>虚拟机规范对方法区管理非常宽松，可以选择补实现垃圾收集或者垃圾收集行为在这个区域比较少出现</li>
 <li>这个区域内存回收目标主要是针对常量池的回收和对类型得卸载</li>
 <li>当方法区无法满足内存分配时，将会抛出OutOfMemoryError异常</li>
-</ul>
-<ul>
-<li>运行时常量池<ul>
-<li>是方法区得一部分</li>
-<li>class文件除了有类得版本，字段，方法，接口等描述信息外，还有一项信息是常量池</li>
-<li>用于存放编译期生成得各种字面量和符号引用</li>
-<li>具备动态性，运行期间也可能将新的常量放入池中，如：String 类的intern()方法</li>
-<li>也会抛出OutOfMemoryError异常</li>
-</ul>
-</li>
+<li>运行时常量池<br>  是方法区得一部分<br>  class文件除了有类得版本，字段，方法，接口等描述信息外，还有一项信息是常量池<br>  用于存放编译期生成得各种字面量和符号引用<br>  具备动态性，运行期间也可能将新的常量放入池中，如：String 类的intern()方法<br>  也会抛出OutOfMemoryError异常</li>
 </ul>
 <h4 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6.直接内存"></a>6.直接内存</h4><ul>
 <li>不是虚拟机运行时数据区的一部分，也不是java虚拟机规范中定义的内存区域</li>
@@ -687,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.</span> <span class="nav-text">运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-程序计数器"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-虚拟机栈"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-本地方法栈"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Java堆"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4.Java堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-方法区"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5.方法区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">6.直接内存</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java堆"><span class="nav-number">4.</span> <span class="nav-text">Java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">5.</span> <span class="nav-text">方法区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-直接内存"><span class="nav-number">5.1.</span> <span class="nav-text">6.直接内存</span></a></li></ol></li></ol></div>
             
 
           </div>
