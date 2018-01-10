@@ -859,8 +859,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-12T22:19:39+08:00">
-                2017-12-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:18:43+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -926,12 +926,15 @@
 
       
         
-          
-            <h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>从jdk7开始引入jvm诊断工具，可以向运行中的JVM发送诊断命令。可以查看jvm启动时的一些参数，例如：垃圾回收算法、堆大小等。</p>
+          <h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>从jdk7开始引入jvm诊断工具，可以向运行中的JVM发送诊断命令。可以查看jvm启动时的一些参数，例如：垃圾回收算法、堆大小等。</p>
 <h4 id="查看JVM进程的PID"><a href="#查看JVM进程的PID" class="headerlink" title="查看JVM进程的PID"></a>查看JVM进程的PID</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@10-23-196-181 ~]# jcmd -l</span><br><span class="line">4981 sun.tools.jcmd.JCmd -l</span><br><span class="line">3658 /usr/local/slssync/rpc-sls-sync.jar</span><br><span class="line">3566 /usr/local/sls/rpc-sls.jar</span><br><span class="line">[root@10-23-196-181 ~]# jps -l</span><br><span class="line">3658 /usr/local/slssync/rpc-sls-sync.jar</span><br><span class="line">3566 /usr/local/sls/rpc-sls.jar</span><br><span class="line">5007 sun.tools.jps.Jps</span><br><span class="line">[root@10-23-196-181 ~]#</span><br></pre></td></tr></table></figure>
-<h4 id="查看进程3566的参数"><a href="#查看进程3566的参数" class="headerlink" title="查看进程3566的参数"></a>查看进程3566的参数</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@10-23-196-181 ~]# jcmd 3566 VM.flags 3566</span><br><span class="line"></span><br><span class="line">-XX:CICompilerCount=4  #设置最大并行编译数</span><br><span class="line">-XX:InitialHeapSize=262144000 #初始化堆大小 等同于-Xms</span><br><span class="line">-XX:MaxHeapSize=4167041024 #最大堆大小 等同于 -Xmx</span><br><span class="line">-XX:MaxNewSize=1388838912 #JVM堆区域新生代内存的最大可分配大小 等同于-Xmn</span><br><span class="line">-XX:MinHeapDeltaBytes=524288 #the minimum change in heap space due to gc</span><br><span class="line">-XX:NewSize=87031808 </span><br><span class="line">-XX:OldSize=175112192 </span><br><span class="line">-XX:+UseCompressedClassPointers #使用-XX:+UseCompressedClassPointers选项来压缩类指针，在64位os下才有效</span><br><span class="line">-XX:+UseCompressedOops #压缩对象指针</span><br><span class="line">-XX:+UseParallelGC #Use the parallel Scavenge garbage collector</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-03/JVM系列-启动参数查看.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1347,7 +1350,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:11:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:20:50+08:00">
                 2018-01-10
               </time>
             
@@ -1414,8 +1417,7 @@
 
       
         
-          
-            <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>垃圾收集器通常被称为“GC”，1960年诞生于MIT的lisp语言。GC需要做的三件事情：</p>
+          <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>垃圾收集器通常被称为“GC”，1960年诞生于MIT的lisp语言。GC需要做的三件事情：</p>
 <ul>
 <li>哪些内存需要回收？</li>
 <li>什么时候回收？</li>
@@ -1429,32 +1431,14 @@
 <li>标记-清除算法</li>
 <li>复制算法</li>
 <li>标记-整理算法</li>
-<li>分代收集算法</li>
-</ul>
-<h3 id="HotSpot的算法实现"><a href="#HotSpot的算法实现" class="headerlink" title="HotSpot的算法实现"></a>HotSpot的算法实现</h3><ul>
-<li>枚举根节点</li>
-<li>安全点</li>
-<li>安全区域</li>
-</ul>
-<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p><img src="/img/gc.jpg" alt="image"></p>
-<ul>
-<li>Serial 收集器 串行收集器<br>最基本发展历史最悠久的收集器，在jdk1.3之前虚拟机==新生代==收集器的唯一选择；单线程收集器，在手收集时候必须暂停所有其他的工作线程，直到他收集结束，“stop the world”</li>
-<li>ParNew收集器<br>是serial收集器的多线程版，hotpot第一款并发收集器，目前只有Serial和ParNew能与CMS收集器配合工作，是使用-XX:+UseConcMarkSweepGC选项后的默认新生代收集器，也可以使用-XX:UserParNewGC选项来强制制定它，ParNew收集器在单CPU环境中不会比Serial收集器快</li>
-<li><p>Parallel Scavenge收集器 并行清除<br>新生代收集器，使用复制算法，并行多线程收集器，cms收集器关注点是尽可能缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge的目的则是达到一个控制的吞吐量，可以高效的利用cpu，是一个吞吐量优先的收集器，GC自适应调节策略是Parallel Scavenges收集器与ParNew收集器的重要原因。</p>
-</li>
-<li><p>Serial Old 收集器<br>是Serial收集器的老年代版本，也是单线程收集器，使用“标记-整理”算法</p>
-</li>
-<li><p>Parallel Old收集器<br>是Parallel Scavenge收集器的老年代版本    </p>
-</li>
-<li><p>CMS收集器<br>是一个以获取最短回收停顿时间为目标的收集器，目前大部分Java应用集中在互联网或者B/S系统服务上，可以采用CMS收集器，也是基于”标记-清除“算法，收集包括四个步骤：初始标记（需要stop the world），并发标记，重新标记（stop the world），并发清除，主要优点是就是：并发收集、低停顿。<br>有个明显缺点：1）对CPU资源不敏感。2）无法处理浮动垃圾。3）收集结束会产生空间碎片。</p>
-</li>
-</ul>
-<p>CMS提供了个参数-XX:+UseCMSCompactAtFullCollection开关参数（默认开启），用于CMS收集器顶不住要进行Full GC时开启碎片整理的合并过程。内存整理过程是无法并发的，空间碎片没了，但停顿时间不得不变长，虚拟机还提供了一个参数-XX:CMSFullGCsBeforeCompaction，用于设置执行多少不压缩FullGC后，来一次压缩（默认是0，表示每次进入FullGC时都进行碎片整理）</p>
-<ul>
-<li>G1收集器<br>并行与并发<br>分代收集<br>空间整合<br>可预测的停顿</li>
-</ul>
-
-          
+<li>分代收集算法
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-01/JVM系列-垃圾收集器.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2051,7 +2035,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
