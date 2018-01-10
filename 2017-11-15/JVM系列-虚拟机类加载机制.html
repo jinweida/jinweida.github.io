@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/img/jvm/jvmloading.png">
-<meta property="og:updated_time" content="2017-12-09T09:40:58.848Z">
+<meta property="og:image" content="http://jinweida.github.io/img/java/classloader.jpg">
+<meta property="og:updated_time" content="2018-01-10T14:58:46.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列-虚拟机类加载机制">
 <meta name="twitter:description" content="什么是类的加载机制?虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。 类加载过程?类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。 加载”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：通过一个类的">
-<meta name="twitter:image" content="http://jinweida.github.io/img/jvm/jvmloading.png">
+<meta name="twitter:image" content="http://jinweida.github.io/img/java/classloader.jpg">
 
 
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:40:58+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:58:46+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -377,13 +377,13 @@
 
       
         <h3 id="什么是类的加载机制"><a href="#什么是类的加载机制" class="headerlink" title="什么是类的加载机制?"></a>什么是类的加载机制?</h3><p>虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。</p>
-<h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程?"></a>类加载过程?</h3><p><img src="/img/jvm/jvmloading.png" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
-<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。</p>
+<h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程?"></a>类加载过程?</h3><p><img src="/img/java/classloader.jpg" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
+<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。<br><a id="more"></a></p>
 <h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>验证是连接阶段的第一步，主要目的是为了确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。这个阶段主要完成个4个阶段的检验动作：</p>
 <blockquote>
 <p><strong>文件格式验证</strong>：要验证字节流是否符合Class文件格式的规范，并且被当前版本的虚拟机处理。可能包含这些验证点：是否以魔数0xCAFEBABE开头；主次版本号是否在当前虚拟机处理范围之内；常量池的常量是否有不被支持的常量类型；指向常量的各种索引值是否有指向不存在的常量或不符合类型的常量。<br><strong>元数据验证</strong>：这个阶段是对字节码描述的信息进行语义分析。可能包含的验证：这个类是否有父类（除了java.lang.object之外，所有类都该有父类）;这个类是否继承了不允许被继承的类（被final修饰的类）;是否实现了父类或接口中要求实现的所有方法等。<br><strong>字节码验证</strong>：主要目的是通过数据流和控制流分析，确定程序语义是合法的、符合逻辑的。<br><strong>付号引用验证</strong>：目的是确保解析动作能正常执行。</p>
 </blockquote>
-<p>验证阶段是非常重要的、但不是一定必要的阶段，如果所有运行的代码包括第三方的代码都已经被反复使用和验证过，在实施阶段可以考虑使用-Xverify:none参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。<br><a id="more"></a></p>
+<p>验证阶段是非常重要的、但不是一定必要的阶段，如果所有运行的代码包括第三方的代码都已经被反复使用和验证过，在实施阶段可以考虑使用-Xverify:none参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。</p>
 <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>正式为类变量分配内存并设置类变量初始值阶段。这些变量所有使用的内存都将在方法区中进行分配。这个阶段有两个容易混淆的概念：<br>这个时候进行内存分配的仅包括类变量，也就是被static修饰的变量，而不包括实例变量，实例变量将在对象实例化时随着对象一起分配在java堆中。<br>这里所说的初始值通常情况下是数据类型的零值（0，0L，false，null等）。如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> value=<span class="number">123</span>;</span><br></pre></td></tr></table></figure>
 <p>value在准备阶段过后初始值为0而不是123，因为这时候尚未执行任何java方法<br>有些特殊情况，如果类字段属性表中存在ConstantValue属性，在准备阶段就会被初始化为ConstantValue属性所指定的值，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> value=<span class="number">123</span>;</span><br></pre></td></tr></table></figure></p>
@@ -607,7 +607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -85,12 +85,12 @@
 <meta property="og:title" content="java-多线程Exchanger">
 <meta property="og:url" content="http://jinweida.github.io/2017-12-30/java-多线程Exchanger.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="Exchanger简介Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。 Exchanger示例1234567891011121">
+<meta property="og:description" content="Exchanger简介Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-30T10:27:15.759Z">
+<meta property="og:updated_time" content="2018-01-10T14:46:05.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java-多线程Exchanger">
-<meta name="twitter:description" content="Exchanger简介Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。 Exchanger示例1234567891011121">
+<meta name="twitter:description" content="Exchanger简介Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-30T18:27:15+08:00">
-                2017-12-30
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:46:05+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -374,7 +374,7 @@
       
 
       
-        <h3 id="Exchanger简介"><a href="#Exchanger简介" class="headerlink" title="Exchanger简介"></a>Exchanger简介</h3><p>Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。</p>
+        <h3 id="Exchanger简介"><a href="#Exchanger简介" class="headerlink" title="Exchanger简介"></a>Exchanger简介</h3><p>Exchanger是一个多线程协作类，用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。两个线程通过exchange方法交换数据，那个线程先执行exchange方法，会一直等待另一个线程执行exchange方法，当两个同时到达同步点，两个线程可以交换数据，将本线程生产的数据传输给对方。<br><a id="more"></a></p>
 <h3 id="Exchanger示例"><a href="#Exchanger示例" class="headerlink" title="Exchanger示例"></a>Exchanger示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Exchanger&lt;String&gt; exchanger;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(Exchanger&lt;String&gt; exchanger)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.exchanger = exchanger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println( <span class="string">"car : "</span> + exchanger.exchange(<span class="string">"Car"</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bike</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Exchanger&lt;String&gt; exchanger;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Bike</span><span class="params">(Exchanger&lt;String&gt; exchanger)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.exchanger = exchanger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"bike : "</span> + exchanger.exchange(<span class="string">"Bike"</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExchanger</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Exchanger&lt;String&gt; exchanger = <span class="keyword">new</span> Exchanger&lt;&gt;();</span><br><span class="line">        Car car = <span class="keyword">new</span> Car(exchanger);</span><br><span class="line">        Bike bike = <span class="keyword">new</span> Bike(exchanger);</span><br><span class="line">        car.start();</span><br><span class="line">        bike.start();</span><br><span class="line">        System.out.println(<span class="string">"Main end!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -574,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

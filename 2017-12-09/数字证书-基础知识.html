@@ -85,14 +85,14 @@
 <meta property="og:title" content="数字证书-基础知识">
 <meta property="og:url" content="http://jinweida.github.io/2017-12-09/数字证书-基础知识.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="公钥密码体制(public-key cryptography)分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下： 加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。 对称加">
+<meta property="og:description" content="公钥密码体制(public-key cryptography)分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下： 加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/images/ssl.jpg">
-<meta property="og:updated_time" content="2017-12-09T08:19:08.291Z">
+<meta property="og:image" content="http://jinweida.github.io/img/ssl.jpg">
+<meta property="og:updated_time" content="2018-01-10T14:56:22.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字证书-基础知识">
-<meta name="twitter:description" content="公钥密码体制(public-key cryptography)分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下： 加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。 对称加">
-<meta name="twitter:image" content="http://jinweida.github.io/images/ssl.jpg">
+<meta name="twitter:description" content="公钥密码体制(public-key cryptography)分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下： 加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。">
+<meta name="twitter:image" content="http://jinweida.github.io/img/ssl.jpg">
 
 
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T16:19:08+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:22+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -354,9 +354,10 @@
       
 
       
-        <p><img src="/images/ssl.jpg" alt="image"></p>
+        <p><img src="/img/ssl.jpg" alt="image"></p>
 <h4 id="公钥密码体制-public-key-cryptography"><a href="#公钥密码体制-public-key-cryptography" class="headerlink" title="公钥密码体制(public-key cryptography)"></a>公钥密码体制(public-key cryptography)</h4><p>分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下：</p>
 <p>加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。</p>
+<a id="more"></a>
 <h4 id="对称加密算法-symmetric-key-algorithms"><a href="#对称加密算法-symmetric-key-algorithms" class="headerlink" title="对称加密算法(symmetric key algorithms)"></a>对称加密算法(symmetric key algorithms)</h4><p>对称加密算法中，加密与解密共用一个密钥，不区分公钥和私钥。 常用的加密算法：DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和AES</p>
 <h4 id="非对称加密算法-asymmetric-key-algorithms"><a href="#非对称加密算法-asymmetric-key-algorithms" class="headerlink" title="非对称加密算法(asymmetric key algorithms)"></a>非对称加密算法(asymmetric key algorithms)</h4><p>公钥密码体制就是一种非对称加密，常用加密算法：RSA(一种公钥密码体制)、DSA（数字签名）</p>
 <h4 id="签名和加密"><a href="#签名和加密" class="headerlink" title="签名和加密"></a>签名和加密</h4><p>签名目的为了验证信息是否被篡改过，签名实现的过程：一般对信息进行hash计算得到一个hash值，这个过程是不可逆的。比如md5加密。把信息及hash值（加密后）一起发送给接收方。接收方收到信息会重新计算信息的hash值，与发送方的hash值（解密后）进行比较验证。一致则认为信息未被篡改过。</p>
@@ -559,7 +560,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

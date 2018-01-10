@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-12T22:14:47+08:00">
-                2017-12-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:54:38+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -354,7 +354,7 @@
 
       
         
-          <p> <img src="/images/jihe.jpg" alt="image"></p>
+          <p> <img src="/img/java/jihe.jpg" alt="image"></p>
 <h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><blockquote>
 <p>动态数组,ArrayList中的操作不是线程安全的</p>
 </blockquote>
@@ -463,8 +463,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T16:19:14+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:32+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -508,7 +508,7 @@
 
       
         
-          <p><img src="/images/ssl.jpg" alt="image"></p>
+          <p><img src="/img/ssl.jpg" alt="image"></p>
 <h4 id="证书主要字段介绍"><a href="#证书主要字段介绍" class="headerlink" title="证书主要字段介绍"></a>证书主要字段介绍</h4><h5 id="Issuer-证书的发布机构"><a href="#Issuer-证书的发布机构" class="headerlink" title="Issuer (证书的发布机构)"></a>Issuer (证书的发布机构)</h5><blockquote>
 <p>指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。</p>
 </blockquote>
@@ -516,15 +516,7 @@
 <p>也就是证书的有效时间，或者说证书的使用期限。 过了有效期限，证书就会作废，不能使用了。</p>
 </blockquote>
 <h5 id="Public-key-公钥"><a href="#Public-key-公钥" class="headerlink" title="Public key (公钥)"></a>Public key (公钥)</h5><blockquote>
-<p>公钥是用来对消息进行加密的，这个数字证书的公钥是2048位的。</p>
-</blockquote>
-<h5 id="Subject-主题"><a href="#Subject-主题" class="headerlink" title="Subject (主题)"></a>Subject (主题)</h5><blockquote>
-<p>这个证书是发布给谁的，或者说证书的所有者，一般是某个人或者某个公司名称、机构的名称、公司网站的网址等。 对于这里的证书来说，证书的所有者是Trustwave这个公司。</p>
-</blockquote>
-<h5 id="Signature-algorithm-签名所使用的算法"><a href="#Signature-algorithm-签名所使用的算法" class="headerlink" title="Signature algorithm (签名所使用的算法)"></a>Signature algorithm (签名所使用的算法)</h5><blockquote>
-<p>就是指的这个数字证书的数字签名所使用的加密算法，这样就可以使用证书发布机构的证书里面的公钥，根据这个算法对指纹进行解密。指纹的加密结果就是数字签名</p>
-</blockquote>
-<h5 id="Thumbprint-Thumbprint-algorithm-指纹以及指纹算法"><a href="#Thumbprint-Thumbprint-algorithm-指纹以及指纹算法" class="headerlink" title="Thumbprint, Thumbprint algorithm (指纹以及指纹算法)"></a>Thumbprint, Thumbprint algorithm (指纹以及指纹算法)</h5>
+<p>公钥是用来对消息进行加密的，这个数字证书的公钥是2048位的。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017-12-09/数字证书-构成和原理.html#more" rel="contents">
@@ -625,8 +617,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T16:54:40+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:17+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -670,7 +662,7 @@
 
       
         
-          <p><img src="/images/ssl.jpg" alt="image"></p>
+          <p><img src="/img/ssl.jpg" alt="image"></p>
 <h4 id="加密通信过程"><a href="#加密通信过程" class="headerlink" title="加密通信过程"></a>加密通信过程</h4><p>服务端：生成公钥和私钥，公钥开放,自己持有私钥。客户端：通过某些途径获取公钥。使用RAS算法对通信内容进行加密。</p>
 <blockquote>
 <p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“服务器””：？？？？</p>
@@ -679,11 +671,7 @@
 <blockquote>
 <p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“黑客”：你好 //黑客在“客户”和“服务器”之间的某个路由器上截获“客户”发给服务器的信息，然后自己冒充“服务器”<br>“黑客”-&gt;“客户”：你好，我是服务器</p>
 </blockquote>
-<p>因此“客户”在接到消息后，并不能肯定这个消息就是由“客户”发出的，某些“黑客”也可以冒充“服务器”发出这个消息。如何确定信息是由“服务器”发过来的呢？有一个解决方法，因为只有服务器有私钥，所以如果只要能够确认对方有私钥，那么对方就是“服务器”。因此通信过程可以改进为如下：</p>
-<blockquote>
-<p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“服务器”：向我证明你就是服务器<br>“服务器”-&gt;“客户”：你好，我是服务器 {你好，我是服务器}[私钥|RSA]</p>
-</blockquote>
-<p>​注意：这里约定一下，{} 表示RSA加密后的内容，[ | ]表示用什么密钥和算法进行加密，后面的示例中都用这种表示方式，例如上面的{你好，我是服务器}[私钥|RSA] 就表示用私钥对“你好，我是服务器”进行加密后的结果。 为了向“客户”证明自己是“服务器”， “服务器”把一个字符串用自己的私钥加密，把明文和加密后的密文一起发给“客户”。对于这里的例子来说，就是把字符串“你好，我是服务器”和这个字符串用私钥加密后的内容{你好，我是服务器}[私钥|RSA]发给客户。“客户”收到信息后，她用自己持有的公钥解密密文，和明文进行对比，如果一致，说明信息的确是由服务器发过来的。也就是说“客户”把{你好，我是服务器}[私钥|RSA]这个内容用公钥进行解密，然后和“你好，我是服务器”对比。因为由“服务器”用私钥加密后的内容，由并且只能由公钥进行解密，私钥只有“服务器”持有，所以如果解密出来的内容是能够对得上的，那说明信息一定是从“服务器”发过来的。</p>
+<p>因此“客户”在接到消息后，并不能肯定这个消息就是由“客户”发出的，某些“黑客”也可以冒充“服务器”发出这个消息。如何确定信息是由“服务器”发过来的呢？有一个解决方法，因为只有服务器有私钥，所以如果只要能够确认对方有私钥，那么对方就是“服务器”。因此通信过程可以改进为如下：<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017-12-09/数字证书-加密通信.html#more" rel="contents">
@@ -784,8 +772,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T16:19:08+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:22+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -829,15 +817,16 @@
 
       
         
-          
-            <p><img src="/images/ssl.jpg" alt="image"></p>
+          <p><img src="/img/ssl.jpg" alt="image"></p>
 <h4 id="公钥密码体制-public-key-cryptography"><a href="#公钥密码体制-public-key-cryptography" class="headerlink" title="公钥密码体制(public-key cryptography)"></a>公钥密码体制(public-key cryptography)</h4><p>分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下：</p>
 <p>加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。</p>
-<h4 id="对称加密算法-symmetric-key-algorithms"><a href="#对称加密算法-symmetric-key-algorithms" class="headerlink" title="对称加密算法(symmetric key algorithms)"></a>对称加密算法(symmetric key algorithms)</h4><p>对称加密算法中，加密与解密共用一个密钥，不区分公钥和私钥。 常用的加密算法：DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和AES</p>
-<h4 id="非对称加密算法-asymmetric-key-algorithms"><a href="#非对称加密算法-asymmetric-key-algorithms" class="headerlink" title="非对称加密算法(asymmetric key algorithms)"></a>非对称加密算法(asymmetric key algorithms)</h4><p>公钥密码体制就是一种非对称加密，常用加密算法：RSA(一种公钥密码体制)、DSA（数字签名）</p>
-<h4 id="签名和加密"><a href="#签名和加密" class="headerlink" title="签名和加密"></a>签名和加密</h4><p>签名目的为了验证信息是否被篡改过，签名实现的过程：一般对信息进行hash计算得到一个hash值，这个过程是不可逆的。比如md5加密。把信息及hash值（加密后）一起发送给接收方。接收方收到信息会重新计算信息的hash值，与发送方的hash值（解密后）进行比较验证。一致则认为信息未被篡改过。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-12-09/数字证书-基础知识.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -931,8 +920,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:34:54+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:55+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -1003,7 +992,7 @@
 </blockquote>
 <p>一致性哈希算法在1997年由麻省理工学院提出的一种分布式哈希（DHT）实现算法，设计目标是为了解决因特网中的热点(Hot spot)问题。</p>
 <h4 id="一致性hash主要用途"><a href="#一致性hash主要用途" class="headerlink" title="一致性hash主要用途"></a>一致性hash主要用途</h4><p>一致性hash作为一个负载均衡算法，可以用在分布式缓存、数据库的分库分表等场景中，还可以应用在负载均衡器中作为作为负载均衡算法。在有多台服务器时，对于某个请求资源通过hash算法，映射到某一个台服务器，当增加或减少一台服务器时，可能会改变这些资源对应的hash值，这样可能导致一部分缓存或数据失效了。一致性hash就是尽可能在将同一个资源请求路由到同一台服务器中。</p>
-<h4 id="一致性哈希算法原理"><a href="#一致性哈希算法原理" class="headerlink" title="一致性哈希算法原理"></a>一致性哈希算法原理</h4><p>先构造一个长度为232的整数环（这个环被称为一致性Hash环），根据节点名称的Hash值（其分布为[0, 2^32-1]）将服务器节点放置在这个Hash环上，然后根据数据的Key值计算得到其Hash值（其分布也为[0, 23^2-1]），接着在Hash环上顺时针查找距离这个Key值的Hash值最近的服务器节点，完成Key到服务器的映射查找。 这种算法解决了普通余数Hash算法伸缩性差的问题，可以保证在上线、下线服务器的情况下尽量有多的请求命中原来路由到的服务器。<br><img src="/images/hash.jpg" alt="image"><br>
+<h4 id="一致性哈希算法原理"><a href="#一致性哈希算法原理" class="headerlink" title="一致性哈希算法原理"></a>一致性哈希算法原理</h4><p>先构造一个长度为232的整数环（这个环被称为一致性Hash环），根据节点名称的Hash值（其分布为[0, 2^32-1]）将服务器节点放置在这个Hash环上，然后根据数据的Key值计算得到其Hash值（其分布也为[0, 23^2-1]），接着在Hash环上顺时针查找距离这个Key值的Hash值最近的服务器节点，完成Key到服务器的映射查找。 这种算法解决了普通余数Hash算法伸缩性差的问题，可以保证在上线、下线服务器的情况下尽量有多的请求命中原来路由到的服务器。<br><img src="/img/hash.jpg" alt="image"><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017-12-09/一致性Hash算法.html#more" rel="contents">
@@ -1423,8 +1412,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:40:58+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:58:46+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -1491,13 +1480,8 @@
       
         
           <h3 id="什么是类的加载机制"><a href="#什么是类的加载机制" class="headerlink" title="什么是类的加载机制?"></a>什么是类的加载机制?</h3><p>虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型。</p>
-<h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程?"></a>类加载过程?</h3><p><img src="/img/jvm/jvmloading.png" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
-<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。</p>
-<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>验证是连接阶段的第一步，主要目的是为了确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。这个阶段主要完成个4个阶段的检验动作：</p>
-<blockquote>
-<p><strong>文件格式验证</strong>：要验证字节流是否符合Class文件格式的规范，并且被当前版本的虚拟机处理。可能包含这些验证点：是否以魔数0xCAFEBABE开头；主次版本号是否在当前虚拟机处理范围之内；常量池的常量是否有不被支持的常量类型；指向常量的各种索引值是否有指向不存在的常量或不符合类型的常量。<br><strong>元数据验证</strong>：这个阶段是对字节码描述的信息进行语义分析。可能包含的验证：这个类是否有父类（除了java.lang.object之外，所有类都该有父类）;这个类是否继承了不允许被继承的类（被final修饰的类）;是否实现了父类或接口中要求实现的所有方法等。<br><strong>字节码验证</strong>：主要目的是通过数据流和控制流分析，确定程序语义是合法的、符合逻辑的。<br><strong>付号引用验证</strong>：目的是确保解析动作能正常执行。</p>
-</blockquote>
-<p>验证阶段是非常重要的、但不是一定必要的阶段，如果所有运行的代码包括第三方的代码都已经被反复使用和验证过，在实施阶段可以考虑使用-Xverify:none参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。<br>
+<h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程?"></a>类加载过程?</h3><p><img src="/img/java/classloader.jpg" alt="image"><br>类从被加载到虚拟机内存中开始，到卸载出内存为止，整个生命周期包含：加载、验证、准备、解析、初始化、使用、卸载7个阶段。其中验证、准备、解析成为连接。</p>
+<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>”加载“是”类加载“过程的第一个阶段，在加载阶段，虚拟机主要完成3件事：<br>通过一个类的全限定名来获取定义的二进制字节流<br>将整个字节流所代表的静态存储结构转化为方法区的运行时数据结构。<br>在内存中生成一个代表这个类的java.lang.class对象，作为方法区这个类的各种数据访问入口。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017-11-15/JVM系列-虚拟机类加载机制.html#more" rel="contents">
@@ -1742,8 +1726,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T10:19:26+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:59:51+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -1787,11 +1771,15 @@
 
       
         
-          
-            <h4 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -ss 5 -t 1 -i input/a.MOV -f image2 -vframes 1 tmp/a.jpg -loglevel 16</span><br><span class="line">ffmpeg -y -ss 5 -t 1 -i input/b.MOV -f image2 -vframes 1 tmp/b.jpg -loglevel 16</span><br></pre></td></tr></table></figure>
-<h4 id="获取时长"><a href="#获取时长" class="headerlink" title="获取时长"></a>获取时长</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> linux下</span><br><span class="line">ffmpeg -y -i input/a.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br><span class="line">ffmpeg -y -i input/b.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br></pre></td></tr></table></figure>
-<h4 id="剪辑"><a href="#剪辑" class="headerlink" title="剪辑"></a>剪辑</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -ss 00:00:05 -i input/a.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/1.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:05 -i input/b.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/2.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:10 -i input/a.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/3.ts -loglevel 16</span><br><span class="line">ffmpeg -y -ss 00:00:10 -i input/b.mov -t 5 -vcodec copy -an tmp/t.mp4 -loglevel 16</span><br><span class="line">ffmpeg -y -i tmp/t.mp4 -b:v 1024k -s 1080x640 -f mpegts tmp/4.ts -loglevel 16</span><br><span class="line"><span class="meta">#</span>从头截取20秒的mp3,并copy为b.mp3</span><br><span class="line">ffmpeg -y -ss 0 -i bg.mp3 -t 20 -acodec copy tmp/b.mp3 -loglevel 16 </span><br><span class="line"><span class="meta">#</span>合并ts为body.ts</span><br><span class="line">ffmpeg -y -i "concat:tmp/1.ts|tmp/2.ts|tmp/3.ts|tmp/4.ts" -i tmp/b.mp3 -c copy tmp/body.ts -loglevel 16</span><br><span class="line"><span class="meta">#</span>添加头尾视频</span><br><span class="line">ffmpeg -y -i "concat:header.ts|tmp/body.ts|footer.ts" -c copy tmp/finish.mp4 -loglevel 16</span><br></pre></td></tr></table></figure>
-          
+          <h3 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -ss 5 -t 1 -i input/a.MOV -f image2 -vframes 1 tmp/a.jpg -loglevel 16</span><br><span class="line">ffmpeg -y -ss 5 -t 1 -i input/b.MOV -f image2 -vframes 1 tmp/b.jpg -loglevel 16</span><br></pre></td></tr></table></figure>
+<h3 id="获取时长"><a href="#获取时长" class="headerlink" title="获取时长"></a>获取时长</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> linux下</span><br><span class="line">ffmpeg -y -i input/a.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br><span class="line">ffmpeg -y -i input/b.MOV 2&gt;&amp;1 | grep -Eo 'Duration: [0-9:.]+'</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-11-03/ffmpeg命令行操作.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1897,7 +1885,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="加密通信过程服务端：生成公钥和私钥，公钥开放,自己持有私钥。客户端：通过某些途径获取公钥。使用RAS算法对通信内容进行加密。  “客户”-&amp;gt;“服务器”：你好“服务器”-&amp;gt;“客户”：你好，我是服务器“客户”-&amp;gt;“服务器””：？？？？  因为消息是在网络上传输的，有人可以冒充自己是“服务器”来向客户发送信息。例如上面的消息可以被黑客截获如下：  “客户”-&amp;gt;“服务器”：你好“">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/images/ssl.jpg">
-<meta property="og:updated_time" content="2017-12-09T08:54:40.193Z">
+<meta property="og:image" content="http://jinweida.github.io/img/ssl.jpg">
+<meta property="og:updated_time" content="2018-01-10T14:56:17.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字证书-加密通信">
 <meta name="twitter:description" content="加密通信过程服务端：生成公钥和私钥，公钥开放,自己持有私钥。客户端：通过某些途径获取公钥。使用RAS算法对通信内容进行加密。  “客户”-&amp;gt;“服务器”：你好“服务器”-&amp;gt;“客户”：你好，我是服务器“客户”-&amp;gt;“服务器””：？？？？  因为消息是在网络上传输的，有人可以冒充自己是“服务器”来向客户发送信息。例如上面的消息可以被黑客截获如下：  “客户”-&amp;gt;“服务器”：你好“">
-<meta name="twitter:image" content="http://jinweida.github.io/images/ssl.jpg">
+<meta name="twitter:image" content="http://jinweida.github.io/img/ssl.jpg">
 
 
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T16:54:40+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:17+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -354,7 +354,7 @@
       
 
       
-        <p><img src="/images/ssl.jpg" alt="image"></p>
+        <p><img src="/img/ssl.jpg" alt="image"></p>
 <h4 id="加密通信过程"><a href="#加密通信过程" class="headerlink" title="加密通信过程"></a>加密通信过程</h4><p>服务端：生成公钥和私钥，公钥开放,自己持有私钥。客户端：通过某些途径获取公钥。使用RAS算法对通信内容进行加密。</p>
 <blockquote>
 <p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“服务器””：？？？？</p>
@@ -363,12 +363,11 @@
 <blockquote>
 <p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“黑客”：你好 //黑客在“客户”和“服务器”之间的某个路由器上截获“客户”发给服务器的信息，然后自己冒充“服务器”<br>“黑客”-&gt;“客户”：你好，我是服务器</p>
 </blockquote>
-<p>因此“客户”在接到消息后，并不能肯定这个消息就是由“客户”发出的，某些“黑客”也可以冒充“服务器”发出这个消息。如何确定信息是由“服务器”发过来的呢？有一个解决方法，因为只有服务器有私钥，所以如果只要能够确认对方有私钥，那么对方就是“服务器”。因此通信过程可以改进为如下：</p>
+<p>因此“客户”在接到消息后，并不能肯定这个消息就是由“客户”发出的，某些“黑客”也可以冒充“服务器”发出这个消息。如何确定信息是由“服务器”发过来的呢？有一个解决方法，因为只有服务器有私钥，所以如果只要能够确认对方有私钥，那么对方就是“服务器”。因此通信过程可以改进为如下：<br><a id="more"></a></p>
 <blockquote>
 <p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“服务器”：向我证明你就是服务器<br>“服务器”-&gt;“客户”：你好，我是服务器 {你好，我是服务器}[私钥|RSA]</p>
 </blockquote>
 <p>​注意：这里约定一下，{} 表示RSA加密后的内容，[ | ]表示用什么密钥和算法进行加密，后面的示例中都用这种表示方式，例如上面的{你好，我是服务器}[私钥|RSA] 就表示用私钥对“你好，我是服务器”进行加密后的结果。 为了向“客户”证明自己是“服务器”， “服务器”把一个字符串用自己的私钥加密，把明文和加密后的密文一起发给“客户”。对于这里的例子来说，就是把字符串“你好，我是服务器”和这个字符串用私钥加密后的内容{你好，我是服务器}[私钥|RSA]发给客户。“客户”收到信息后，她用自己持有的公钥解密密文，和明文进行对比，如果一致，说明信息的确是由服务器发过来的。也就是说“客户”把{你好，我是服务器}[私钥|RSA]这个内容用公钥进行解密，然后和“你好，我是服务器”对比。因为由“服务器”用私钥加密后的内容，由并且只能由公钥进行解密，私钥只有“服务器”持有，所以如果解密出来的内容是能够对得上的，那说明信息一定是从“服务器”发过来的。</p>
-<a id="more"></a>
 <p>假设“黑客”想冒充“服务器”：</p>
 <blockquote>
 <p>“黑客”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“黑客”：向我证明你就是服务器<br>“黑客”-&gt;“客户”：你好，我是服务器 {你好，我是服务器}[？？？|RSA]//这里黑客无法冒充，因为他不知道私钥，无法用私钥加密某个字符串后发送给客户去验证。<br>“客户”-&gt;“黑客”：？？？？</p>
@@ -625,7 +624,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

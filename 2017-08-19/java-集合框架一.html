@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="一、概念介绍 线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其他线程不能进行访问直到该线程读取完，其他线程才可使用。不会出现数据不一致或者数据污染 线程不安全就是不提供数据访问保护，多线程先后更改数据会产生数据不一致或者数据污染的情况 线程安全的集合对象 ArrayList线程不安全，Vector线程安全； HashMap线程不安全，HashTable线程安全">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/images/jihe.jpg">
-<meta property="og:updated_time" content="2017-12-13T01:56:50.718Z">
+<meta property="og:image" content="http://jinweida.github.io/img/java/jihe.jpg">
+<meta property="og:updated_time" content="2018-01-10T14:54:32.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java-集合框架一">
 <meta name="twitter:description" content="一、概念介绍 线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其他线程不能进行访问直到该线程读取完，其他线程才可使用。不会出现数据不一致或者数据污染 线程不安全就是不提供数据访问保护，多线程先后更改数据会产生数据不一致或者数据污染的情况 线程安全的集合对象 ArrayList线程不安全，Vector线程安全； HashMap线程不安全，HashTable线程安全">
-<meta name="twitter:image" content="http://jinweida.github.io/images/jihe.jpg">
+<meta name="twitter:image" content="http://jinweida.github.io/img/java/jihe.jpg">
 
 
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-13T09:56:50+08:00">
-                2017-12-13
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:54:32+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -365,10 +365,9 @@
 <li>StringBuilder线程不安全，StringBuffer线程安全。</li>
 </ol>
 </li>
-<li><p>一般使用synchronized关键字加锁同步控制，来解决线程不安全问题。</p>
-<p>  <img src="/images/jihe.jpg" alt="image"></p>
-</li>
+<li>一般使用synchronized关键字加锁同步控制，来解决线程不安全问题。</li>
 </ul>
+<p><img src="/img/java/jihe.jpg" alt="image"><br><a id="more"></a></p>
 <h5 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h5><p>Set和List实现了Collection。Set中不能包含重复的元素。List是一个有序的集合，可以包含重复的元素，提供了按索引访问的方式</p>
 <h5 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h5><p>Map和Collection接口没有关系，是相互独立的，但是都属于集合类的一部分。Map包含了key-value对。Map不能包含重复的key，但是可以包含相同的value。</p>
 <h5 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h5><p>所有的集合类，都实现了Iterator接口，这是一个用于遍历集合中元素的接口，主要包含以下三种方法：</p>
@@ -394,9 +393,9 @@
 <li><p><strong>TreeMap</strong>,实现SortMap接口，能够把它保存的记录根据键排序，默认是按键值的升序排序（自然顺序），也可以指定排序的比较器，当用Iterator遍历TreeMap时，得到的记录是排过序的。不允许key值为空，非同步的；</p>
 </li>
 <li><p>jdk1.5以后线程安全的集合及java.util.concurrent包的锁</p>
-<p>  ConcurrentSkipListMap 一个并发的、可排序的 Map， SkipList 跳表，实现 SortedMap、NavigableMap、ConcurrentNavigableMap </p>
 </li>
 </ul>
+<p>ConcurrentSkipListMap 一个并发的、可排序的 Map， SkipList 跳表，实现 SortedMap、NavigableMap、ConcurrentNavigableMap </p>
 
       
     </div>
@@ -596,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

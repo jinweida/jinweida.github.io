@@ -85,14 +85,12 @@
 <meta property="og:title" content="java-多线程并发控制CountDownLatch">
 <meta property="og:url" content="http://jinweida.github.io/2017-12-30/java-多线程并发控制CountDownLatch.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="CountDownLatchCountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。 CountDownLatch实现原理CountDownLatch实现主要基于java同步器AQS（AbstractQueuedSynchronizer） join实现线程控制原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远">
+<meta property="og:description" content="CountDownLatchCountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。 CountDownLatch实现原理CountDownLatch实现主要基于java同步器AQS（AbstractQueuedSynchronizer） join实现线程控制原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远等">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/images/java/countdownlatch.jpg">
-<meta property="og:updated_time" content="2017-12-30T10:07:22.082Z">
+<meta property="og:updated_time" content="2018-01-10T14:48:12.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java-多线程并发控制CountDownLatch">
-<meta name="twitter:description" content="CountDownLatchCountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。 CountDownLatch实现原理CountDownLatch实现主要基于java同步器AQS（AbstractQueuedSynchronizer） join实现线程控制原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远">
-<meta name="twitter:image" content="http://jinweida.github.io/images/java/countdownlatch.jpg">
+<meta name="twitter:description" content="CountDownLatchCountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。 CountDownLatch实现原理CountDownLatch实现主要基于java同步器AQS（AbstractQueuedSynchronizer） join实现线程控制原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远等">
 
 
 
@@ -310,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-30T18:07:22+08:00">
-                2017-12-30
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:48:12+08:00">
+                2018-01-10
               </time>
             
           </span>
@@ -376,8 +374,7 @@
       
 
       
-        <p><img src="/images/java/countdownlatch.jpg" alt="image"></p>
-<h3 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h3><p>CountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。</p>
+        <h3 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h3><p>CountDownLatch倒计时，允许一个或多个线程等待其他线程完成操作。可以控制线程等待，直到倒计时归0在继续执行。</p>
 <h3 id="CountDownLatch实现原理"><a href="#CountDownLatch实现原理" class="headerlink" title="CountDownLatch实现原理"></a>CountDownLatch实现原理</h3><p>CountDownLatch实现主要基于java同步器AQS（AbstractQueuedSynchronizer）</p>
 <h3 id="join实现线程控制"><a href="#join实现线程控制" class="headerlink" title="join实现线程控制"></a>join实现线程控制</h3><p>原理是不停的检查join线程是否存活。如果join线程存活则让当前线程永远等待。直到join线程终止，线程的this.notifyAll()方法会被调用。调用notifyAll() 是在jvm里调用的。<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myJoin</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">    Thread t1=<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">            System.out.println(<span class="string">"1 finish"</span>);             </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Thread t2=<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">            System.out.println(<span class="string">"2 finish"</span>);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"all finish"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="CountDownLatch实现线程线程控制"><a href="#CountDownLatch实现线程线程控制" class="headerlink" title="CountDownLatch实现线程线程控制"></a>CountDownLatch实现线程线程控制</h3><p>jdk1.5之后，并发包中提供的CountDownLatch相比join能做的更多。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCountDownLatch</span> </span>&#123;     </span><br><span class="line">    <span class="keyword">static</span> CountDownLatch c=<span class="keyword">new</span> CountDownLatch(<span class="number">2</span>);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">                System.out.println(<span class="number">1</span>);</span><br><span class="line">                c.countDown();</span><br><span class="line">                System.out.println(<span class="number">2</span>);</span><br><span class="line">                c.countDown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        </span><br><span class="line">        c.await();</span><br><span class="line">        System.out.println(<span class="string">"3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -583,7 +580,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
