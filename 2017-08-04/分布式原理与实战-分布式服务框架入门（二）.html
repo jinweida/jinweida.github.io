@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="2.1 分布式框架诞生的背景 应用从集中式走向分布式 需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量 服务治理诉求 生命期管理，服务上线前审批流程，测试发布流程和服务下线通知机制需要规范化 服务容量规划，服务调用量变大，服务容量问题逐渐暴漏出来，某个服务需要多少机器支撑，什么">
+<meta name="description" content="分布式框架诞生的背景 应用从集中式走向分布式 需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量  服务治理诉求 生命期管理，服务上线前审批流程，测试发布流程和服务下线通知机制需要规范化 服务容量规划，服务调用量变大，服务容量问题逐渐暴漏出来，某个服务需要多少机器支撑，什么时候该">
 <meta name="keywords" content="分布式原理与实战">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式原理与实战:分布式服务框架入门（二）">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-04/分布式原理与实战-分布式服务框架入门（二）.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="2.1 分布式框架诞生的背景 应用从集中式走向分布式 需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量 服务治理诉求 生命期管理，服务上线前审批流程，测试发布流程和服务下线通知机制需要规范化 服务容量规划，服务调用量变大，服务容量问题逐渐暴漏出来，某个服务需要多少机器支撑，什么时候该添加机器，需要什么样的配置。 运行期治理，大促期间流量暴增，系统资源成为瓶">
+<meta property="og:description" content="分布式框架诞生的背景 应用从集中式走向分布式 需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量  服务治理诉求 生命期管理，服务上线前审批流程，测试发布流程和服务下线通知机制需要规范化 服务容量规划，服务调用量变大，服务容量问题逐渐暴漏出来，某个服务需要多少机器支撑，什么时候该添加机器，需要什么样的配置。 运行期治理，大促期间流量暴增，系统资源成为瓶颈，对">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-04T09:15:15.000Z">
+<meta property="og:updated_time" content="2018-01-12T10:12:05.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式原理与实战:分布式服务框架入门（二）">
-<meta name="twitter:description" content="2.1 分布式框架诞生的背景 应用从集中式走向分布式 需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量 服务治理诉求 生命期管理，服务上线前审批流程，测试发布流程和服务下线通知机制需要规范化 服务容量规划，服务调用量变大，服务容量问题逐渐暴漏出来，某个服务需要多少机器支撑，什么时候该添加机器，需要什么样的配置。 运行期治理，大促期间流量暴增，系统资源成为瓶">
+<meta name="twitter:description" content="分布式框架诞生的背景 应用从集中式走向分布式 需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量  服务治理诉求 生命期管理，服务上线前审批流程，测试发布流程和服务下线通知机制需要规范化 服务容量规划，服务调用量变大，服务容量问题逐渐暴漏出来，某个服务需要多少机器支撑，什么时候该添加机器，需要什么样的配置。 运行期治理，大促期间流量暴增，系统资源成为瓶颈，对">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-04T17:15:15+08:00">
-                2017-08-04
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T18:12:05+08:00">
+                2018-01-12
               </time>
             
           </span>
@@ -352,34 +352,28 @@
       
 
       
-        <h4 id="2-1-分布式框架诞生的背景"><a href="#2-1-分布式框架诞生的背景" class="headerlink" title="2.1 分布式框架诞生的背景"></a>2.1 分布式框架诞生的背景</h4><ul>
+        <h3 id="分布式框架诞生的背景"><a href="#分布式框架诞生的背景" class="headerlink" title="分布式框架诞生的背景"></a>分布式框架诞生的背景</h3><ul>
 <li>应用从集中式走向分布式</li>
-<li><p>需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量</p>
-<h5 id="服务治理诉求"><a href="#服务治理诉求" class="headerlink" title="服务治理诉求"></a>服务治理诉求</h5><ul>
+<li>需要服务治理框架，随着服务数的增加，需要一个服务治理框架，有效管控服务，提升服务运行期质量</li>
+</ul>
+<h4 id="服务治理诉求"><a href="#服务治理诉求" class="headerlink" title="服务治理诉求"></a>服务治理诉求</h4><ul>
 <li>生命期管理，服务上线前审批流程，测试发布流程和服务下线通知机制需要规范化</li>
 <li>服务容量规划，服务调用量变大，服务容量问题逐渐暴漏出来，某个服务需要多少机器支撑，什么时候该添加机器，需要什么样的配置。</li>
 <li>运行期治理，大促期间流量暴增，系统资源成为瓶颈，对核心服务采取降级、限流的措施，保证核心业务运行，缓存击穿导致系统压力转移至数据库，服务调用时延增大，业务失败率变高，为了提供成功率，需要降级等策略。</li>
-<li>服务安全，敏感数据服务化后，需要对消费者鉴权，防止非法访问。服务安全是服务治理的核心功能之一。<h4 id="2-2-业界分布式框架介绍"><a href="#2-2-业界分布式框架介绍" class="headerlink" title="2.2 业界分布式框架介绍"></a>2.2 业界分布式框架介绍</h4></li>
+<li>服务安全，敏感数据服务化后，需要对消费者鉴权，防止非法访问。服务安全是服务治理的核心功能之一。</li>
 </ul>
-</li>
-<li><p>阿里dubbo</p>
-</li>
+<h4 id="业界分布式框架介绍"><a href="#业界分布式框架介绍" class="headerlink" title="业界分布式框架介绍"></a>业界分布式框架介绍</h4><ul>
+<li>阿里dubbo</li>
 <li>淘宝HSF</li>
 <li>亚马逊 Coral Service</li>
 </ul>
-<h4 id="2-3-分布式框架设计"><a href="#2-3-分布式框架设计" class="headerlink" title="2.3 分布式框架设计"></a>2.3 分布式框架设计</h4><ul>
-<li><p>架构原理</p>
-<p>  通常，分布式框架的架构可以抽象为3层。</p>
+<h3 id="分布式框架设计"><a href="#分布式框架设计" class="headerlink" title="分布式框架设计"></a>分布式框架设计</h3><h4 id="架构原理"><a href="#架构原理" class="headerlink" title="架构原理"></a>架构原理</h4><p>通常，分布式框架的架构可以抽象为3层。</p>
 <ol>
 <li>RPC层，包括底层通信框架（如：NIO框架的封装，公有协议的封装等）、序列化和反序列化框架、用于屏蔽底层通信协议的细节和序列化方式差异的Remoting框架</li>
 <li>filter chain层，服务职责链，如：负载均衡、服务调用性能统计、服务完成通知机制、失败重连等。</li>
 <li>Service层，具体的业务api接口</li>
 </ol>
-</li>
-<li><p>功能特性</p>
-</li>
-</ul>
-<table>
+<h4 id="功能特性"><a href="#功能特性" class="headerlink" title="功能特性"></a>功能特性</h4><table>
 <thead>
 <tr>
 <th>特性名</th>
@@ -420,10 +414,7 @@
 </tr>
 </tbody>
 </table>
-<ul>
-<li>性能特性</li>
-</ul>
-<table>
+<h4 id="性能特性"><a href="#性能特性" class="headerlink" title="性能特性"></a>性能特性</h4><table>
 <thead>
 <tr>
 <th>线性特性</th>
@@ -445,18 +436,12 @@
 </tr>
 </tbody>
 </table>
-<ul>
-<li><p>可靠性</p>
-</li>
-<li><p>服务治理</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 服务运行态管理，服务路由、服务限流、服务迁入迁出、服务降级、服务超时控制</li>
-<li style="list-style: none"><input type="checkbox" checked> 服务监控，性能统计、统计报表、告警</li>
-<li style="list-style: none"><input type="checkbox" checked> 服务生命周期管理，上线审批，下线通知、服务灰度发布</li>
-<li style="list-style: none"><input type="checkbox" checked> 故障快速定界定为，分布式日志采集、海量日志在线检索、调用连可视化展示、运行日志故障定位</li>
-<li style="list-style: none"><input type="checkbox" checked> 服务安全，敏感服务的授权策略、链路的安全防护</li>
-</ul>
-</li>
+<h4 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h4><h4 id="服务治理"><a href="#服务治理" class="headerlink" title="服务治理"></a>服务治理</h4><ul>
+<li>服务运行态管理，服务路由、服务限流、服务迁入迁出、服务降级、服务超时控制</li>
+<li>服务监控，性能统计、统计报表、告警</li>
+<li>服务生命周期管理，上线审批，下线通知、服务灰度发布</li>
+<li>故障快速定界定为，分布式日志采集、海量日志在线检索、调用连可视化展示、运行日志故障定位</li>
+<li>服务安全，敏感服务的授权策略、链路的安全防护</li>
 </ul>
 
       
@@ -700,7 +685,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-分布式框架诞生的背景"><span class="nav-number">1.</span> <span class="nav-text">2.1 分布式框架诞生的背景</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#服务治理诉求"><span class="nav-number">1.1.</span> <span class="nav-text">服务治理诉求</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-业界分布式框架介绍"><span class="nav-number">2.</span> <span class="nav-text">2.2 业界分布式框架介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-分布式框架设计"><span class="nav-number">3.</span> <span class="nav-text">2.3 分布式框架设计</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式框架诞生的背景"><span class="nav-number">1.</span> <span class="nav-text">分布式框架诞生的背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务治理诉求"><span class="nav-number">1.1.</span> <span class="nav-text">服务治理诉求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业界分布式框架介绍"><span class="nav-number">1.2.</span> <span class="nav-text">业界分布式框架介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式框架设计"><span class="nav-number">2.</span> <span class="nav-text">分布式框架设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#架构原理"><span class="nav-number">2.1.</span> <span class="nav-text">架构原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能特性"><span class="nav-number">2.2.</span> <span class="nav-text">功能特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能特性"><span class="nav-number">2.3.</span> <span class="nav-text">性能特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠性"><span class="nav-number">2.4.</span> <span class="nav-text">可靠性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务治理"><span class="nav-number">2.5.</span> <span class="nav-text">服务治理</span></a></li></ol></li></ol></div>
             
 
           </div>
