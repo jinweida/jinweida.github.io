@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="准备投入到区块链开发队伍中，基于以太坊平台，记录一下以太坊开发中涉及的知识。 以太坊是什么维基百科的解释  以太坊（英语：Ethereum）是一个開源的有智能合约功能的公共区块链平台。通过其專用加密货币以太币（Ether，又稱「以太幣」）提供去中心化的虚拟机（稱為「以太虛擬機」Ethereum Virtual Machine）来处理点对点合约。  以太坊平台对底层区块链技术进行了封装，让区块链应用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-10T15:06:56.127Z">
+<meta property="og:updated_time" content="2018-01-12T08:35:37.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以太坊是什么">
 <meta name="twitter:description" content="准备投入到区块链开发队伍中，基于以太坊平台，记录一下以太坊开发中涉及的知识。 以太坊是什么维基百科的解释  以太坊（英语：Ethereum）是一个開源的有智能合约功能的公共区块链平台。通过其專用加密货币以太币（Ether，又稱「以太幣」）提供去中心化的虚拟机（稱為「以太虛擬機」Ethereum Virtual Machine）来处理点对点合约。  以太坊平台对底层区块链技术进行了封装，让区块链应用">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T23:06:56+08:00">
-                2018-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T16:35:37+08:00">
+                2018-01-12
               </time>
             
           </span>
@@ -385,7 +385,15 @@
 <p>Solidity运行在EVM，就像java运在JVM   </p>
 </blockquote>
 <p>而EVM运行在以太坊节点上，当我们把合约部署到以太坊网络上之后，合约就可以在以太坊网络中运行了。</p>
-<h4 id="合约的编辑"><a href="#合约的编辑" class="headerlink" title="合约的编辑"></a>合约的编辑</h4><h4 id="合约的部署"><a href="#合约的部署" class="headerlink" title="合约的部署"></a>合约的部署</h4><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><h3 id="GAS"><a href="#GAS" class="headerlink" title="GAS"></a>GAS</h3><h3 id="以太坊网络"><a href="#以太坊网络" class="headerlink" title="以太坊网络"></a>以太坊网络</h3><h3 id="DAPP去中心化应用程序"><a href="#DAPP去中心化应用程序" class="headerlink" title="DAPP去中心化应用程序"></a>DAPP去中心化应用程序</h3>
+<h4 id="合约的编辑"><a href="#合约的编辑" class="headerlink" title="合约的编辑"></a>合约的编辑</h4><h4 id="合约的部署"><a href="#合约的部署" class="headerlink" title="合约的部署"></a>合约的部署</h4><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><h3 id="GAS"><a href="#GAS" class="headerlink" title="GAS"></a>GAS</h3><p>在以太坊上执行程序以及保存数据都要消耗一定量的以太币，Gas是以太币转换而成。这个机制用来保证效率。</p>
+<h3 id="以太坊网络"><a href="#以太坊网络" class="headerlink" title="以太坊网络"></a>以太坊网络</h3><h4 id="主网络"><a href="#主网络" class="headerlink" title="主网络"></a>主网络</h4><p>工作在同一条区块链上的全部节点，我们称之为一个网络，绝大多数人在使用的网络被称为主网络(Mainnet)，用户在其上交易、构建智能合约，矿工在其上挖矿。由于使用的人数众多，能够对抗攻击，区块链也不易被篡改，因此主网络是具有功能的，其上的以太币是有价值的。</p>
+<p>以太坊可以搭建私有的测试网络，不过由于以太坊是一个去中心化的平台，需要较多节点共同运作才能得到理想的测试效果，因此并不推荐自行搭建测试网络。<br>以太坊公开的测试网络共有4个</p>
+<h4 id="Ropsten-Test-network"><a href="#Ropsten-Test-network" class="headerlink" title="Ropsten Test network"></a>Ropsten Test network</h4><p>Ropsten也是以太坊官方提供的测试网络，是为了解决Morden难度炸弹问题而重新启动的一条区块链，目前仍在运行，共识机制为PoW</p>
+<h4 id="Rinkeby-Test-network"><a href="#Rinkeby-Test-network" class="headerlink" title="Rinkeby Test network"></a>Rinkeby Test network</h4><p>Rinkeby也是以太坊官方提供的测试网络，使用PoA共识机制.目前开发人员最常用的测试网络是Rinkeby</p>
+<h4 id="获取测试以太币"><a href="#获取测试以太币" class="headerlink" title="获取测试以太币"></a>获取测试以太币</h4><p>Rinkeby测试网络使用的是PoA共识机制，我们不能通过挖矿来获取以太币。</p>
+<p>想获取Rinkeby测试网络中的以太币，需要去申请，这个申请Rinkeby以太币的功能被称为水龙头(Faucet)。<br><a href="https://faucet.rinkeby.io，可以说用github，facebook，google账号获取。" target="_blank" rel="noopener">https://faucet.rinkeby.io，可以说用github，facebook，google账号获取。</a></p>
+<h3 id="DAPP去中心化应用程序"><a href="#DAPP去中心化应用程序" class="headerlink" title="DAPP去中心化应用程序"></a>DAPP去中心化应用程序</h3><p>以太坊社区把基于智能合约的应用称为去中心化的应用程序(Decentralized App)。</p>
+
       
     </div>
     
@@ -614,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#以太坊是什么"><span class="nav-number">1.</span> <span class="nav-text">以太坊是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约"><span class="nav-number">2.</span> <span class="nav-text">智能合约</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是智能合约"><span class="nav-number">2.1.</span> <span class="nav-text">什么是智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编程语言Solidity"><span class="nav-number">2.2.</span> <span class="nav-text">编程语言Solidity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行环境EVM"><span class="nav-number">2.3.</span> <span class="nav-text">运行环境EVM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合约的编辑"><span class="nav-number">2.4.</span> <span class="nav-text">合约的编辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合约的部署"><span class="nav-number">2.5.</span> <span class="nav-text">合约的部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行"><span class="nav-number">2.6.</span> <span class="nav-text">运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GAS"><span class="nav-number">3.</span> <span class="nav-text">GAS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以太坊网络"><span class="nav-number">4.</span> <span class="nav-text">以太坊网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAPP去中心化应用程序"><span class="nav-number">5.</span> <span class="nav-text">DAPP去中心化应用程序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#以太坊是什么"><span class="nav-number">1.</span> <span class="nav-text">以太坊是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约"><span class="nav-number">2.</span> <span class="nav-text">智能合约</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是智能合约"><span class="nav-number">2.1.</span> <span class="nav-text">什么是智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编程语言Solidity"><span class="nav-number">2.2.</span> <span class="nav-text">编程语言Solidity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行环境EVM"><span class="nav-number">2.3.</span> <span class="nav-text">运行环境EVM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合约的编辑"><span class="nav-number">2.4.</span> <span class="nav-text">合约的编辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合约的部署"><span class="nav-number">2.5.</span> <span class="nav-text">合约的部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行"><span class="nav-number">2.6.</span> <span class="nav-text">运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GAS"><span class="nav-number">3.</span> <span class="nav-text">GAS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以太坊网络"><span class="nav-number">4.</span> <span class="nav-text">以太坊网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主网络"><span class="nav-number">4.1.</span> <span class="nav-text">主网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ropsten-Test-network"><span class="nav-number">4.2.</span> <span class="nav-text">Ropsten Test network</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rinkeby-Test-network"><span class="nav-number">4.3.</span> <span class="nav-text">Rinkeby Test network</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取测试以太币"><span class="nav-number">4.4.</span> <span class="nav-text">获取测试以太币</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAPP去中心化应用程序"><span class="nav-number">5.</span> <span class="nav-text">DAPP去中心化应用程序</span></a></li></ol></div>
             
 
           </div>
