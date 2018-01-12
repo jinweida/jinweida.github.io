@@ -262,6 +262,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-27/面试总结.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-08-27/面试总结.html" itemprop="url">面试总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T17:23:13+08:00">
+                2017-08-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-28T18:58:08+08:00">
+                2017-08-28
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-08-27/面试总结.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-27/面试总结.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="1-数据库自增主键可能的问题"><a href="#1-数据库自增主键可能的问题" class="headerlink" title="1.数据库自增主键可能的问题"></a>1.数据库自增主键可能的问题</h4><p>分布式数据库的时候ID可能会重复</p>
+<h4 id="2-redis主键争用问题"><a href="#2-redis主键争用问题" class="headerlink" title="2.redis主键争用问题"></a>2.redis主键争用问题</h4><p>redis本身是单线程模式，采用队列模式将并发访问变为串行访问，Redis本身没有锁的概念，Redis对于多个客户端连接并不存在竞争，但是在Jedis客户端对Redis进行并发访问时会发生连接超时、数据转换错误、阻塞、客户端关闭连接等问题<br>解决方式：<br>1）客户端角度，为保证每个客户端间正常有序与Redis进行通信，对连接进行池化，同时对客户端读写Redis操作采用内部锁synchronized。<br>2）服务器角度，利用setnx实现锁。</p>
+<h4 id="3-分布式如何做服务治理"><a href="#3-分布式如何做服务治理" class="headerlink" title="3.分布式如何做服务治理"></a>3.分布式如何做服务治理</h4><p>服务运行态管理，服务路由、服务限流、服务迁入迁出、服务降级、服务超时控制<br>服务监控，性能统计、统计报表、告警<br>服务生命周期管理，上线审批，下线通知、服务灰度发布<br>故障快速定界定为，分布式日志采集、海量日志在线检索、调用连可视化展示、运行日志故障定位<br>服务安全，敏感服务的授权策略、链路的安全防护</p>
+<h4 id="4-接口幂等性"><a href="#4-接口幂等性" class="headerlink" title="4.接口幂等性"></a>4.接口幂等性</h4><p>多次调用扣款接口，相同的参数，只有一次是正确的结果。就是避免重复执行</p>
+<h4 id="5-JVM垃圾回收机制，何时触发MinorGC等操作"><a href="#5-JVM垃圾回收机制，何时触发MinorGC等操作" class="headerlink" title="5.JVM垃圾回收机制，何时触发MinorGC等操作"></a>5.JVM垃圾回收机制，何时触发MinorGC等操作</h4><p>在大多数情况下，对象在新生代Eden区分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC</p>
+<h4 id="6-新生代和老生代的内存回收策略"><a href="#6-新生代和老生代的内存回收策略" class="headerlink" title="6.新生代和老生代的内存回收策略"></a>6.新生代和老生代的内存回收策略</h4><p>大对象直接进入老年代，长期存活的对象将进入老年代，如果对象在Eden区出生并经过第一次Minor GC后仍然存在，并能被Survivor容纳，将被移动到Survivor空间中，并且年龄设为1，对象在Survivor区 每熬过一次Minor GC 年龄就增加1岁，当年龄增加到一定程度（默认15岁），就被晋升到老年代中</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-24/分布式事务DTS.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1772,181 +1919,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-04/分布式原理与实战-流量控制（三）.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-04/分布式原理与实战-流量控制（三）.html" itemprop="url">分布式原理与实战:流量控制（三）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T17:03:46+08:00">
-                2017-08-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-22T09:14:42+08:00">
-                2017-08-22
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-04/分布式原理与实战-流量控制（三）.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-04/分布式原理与实战-流量控制（三）.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="1-静态流量控制"><a href="#1-静态流量控制" class="headerlink" title="1.静态流量控制"></a>1.静态流量控制</h4><ul>
-<li>主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制</li>
-<li>由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值</li>
-</ul>
-<h4 id="2-动态流量控制"><a href="#2-动态流量控制" class="headerlink" title="2.动态流量控制"></a>2.动态流量控制</h4><ul>
-<li>目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源耗尽，如果全量处理业务会导致Full GC，消息积压严重，应用宕机，最终将压力转移到其他集群节点，引起级联故障</li>
-<li>动态流控因子<ul>
-<li>应用进程所在主机／VM的CPU使用率</li>
-<li>应用进程所在主机／VM的内存使用率</li>
-<li>可以通过java.lang.Process执行top sar等外部命令获取系统资源使用情况</li>
-</ul>
-</li>
-<li>分级流控，不同负载级别拒绝的消息比例不同</li>
-</ul>
-<h4 id="3-并发控制"><a href="#3-并发控制" class="headerlink" title="3.并发控制"></a>3.并发控制</h4><ul>
-<li>针对线程的并发执行数进行控制，本质是限制对某个服务或者服务的方法进行过度消费，耗用过多资源而影响其他服务的正常运行。<ul>
-<li>针对服务提供者的全局控制</li>
-<li>针对服务消费者的全局控制</li>
-</ul>
-</li>
-</ul>
-<h4 id="4-连接控制"><a href="#4-连接控制" class="headerlink" title="4.连接控制"></a>4.连接控制</h4><ul>
-<li>分布式框架服务提供者和消费者之间采用长连接私有协议，为了防止消费者连接数过多导致服务端压力过大，系统需要针对连接数进控制</li>
-</ul>
-<p>#### </p>
-<hr>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
-<p>流量控制是保障服务SLA的重要措施，也是业务高峰期故障预防和恢复的有效手段。<br>分布式框架需要支持不同的流量控制策略，还要支持流控阀值、策略的在线调整，不需要重启即可动态生效，提升服务治理的效率和敏捷性。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1992,7 +1969,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2014,7 +1991,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
