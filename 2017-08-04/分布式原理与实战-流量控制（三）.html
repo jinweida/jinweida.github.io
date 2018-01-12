@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.静态流量控制 主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制 由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值  2.动态流量控制 目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进">
+<meta name="description" content="静态流量控制 主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制 由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值  动态流量控制 目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源">
 <meta name="keywords" content="分布式原理与实战">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式原理与实战:流量控制（三）">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-04/分布式原理与实战-流量控制（三）.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="1.静态流量控制 主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制 由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值  2.动态流量控制 目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源耗尽，如果全量处理业务会导致Full GC，消息积压严重，应用宕机，最终">
+<meta property="og:description" content="静态流量控制 主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制 由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值  动态流量控制 目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源耗尽，如果全量处理业务会导致Full GC，消息积压严重，应用宕机，最终将压力转">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-22T01:14:42.000Z">
+<meta property="og:updated_time" content="2018-01-12T10:15:00.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式原理与实战:流量控制（三）">
-<meta name="twitter:description" content="1.静态流量控制 主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制 由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值  2.动态流量控制 目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源耗尽，如果全量处理业务会导致Full GC，消息积压严重，应用宕机，最终">
+<meta name="twitter:description" content="静态流量控制 主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制 由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值  动态流量控制 目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源耗尽，如果全量处理业务会导致Full GC，消息积压严重，应用宕机，最终将压力转">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-22T09:14:42+08:00">
-                2017-08-22
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T18:15:00+08:00">
+                2018-01-12
               </time>
             
           </span>
@@ -352,12 +352,12 @@
       
 
       
-        <h4 id="1-静态流量控制"><a href="#1-静态流量控制" class="headerlink" title="1.静态流量控制"></a>1.静态流量控制</h4><ul>
+        <h3 id="静态流量控制"><a href="#静态流量控制" class="headerlink" title="静态流量控制"></a>静态流量控制</h3><ul>
 <li>主要针对客户端访问速率进行控制，根据服务质量等级协定（SLA）约定的QPS做全局流量控制</li>
 <li>由服务注册中心以流控周期T为单位，动态推送每个节点的流控阀值</li>
 </ul>
-<h4 id="2-动态流量控制"><a href="#2-动态流量控制" class="headerlink" title="2.动态流量控制"></a>2.动态流量控制</h4><ul>
-<li>目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源耗尽，如果全量处理业务会导致Full GC，消息积压严重，应用宕机，最终将压力转移到其他集群节点，引起级联故障</li>
+<h3 id="动态流量控制"><a href="#动态流量控制" class="headerlink" title="动态流量控制"></a>动态流量控制</h3><ul>
+<li>目标是保命，不是对流量或者访问速度进行控制。当系统负载压力非常大时，系统进入过负载状态，可能cpu，内存资源已过负载，也可能应用进程内资源耗尽，如果全量处理业务会导致Full GC，消息积压严重，应用宕机，最终将压力转移到其他集群节点，引起级联故障<a id="more"></a></li>
 <li>动态流控因子<ul>
 <li>应用进程所在主机／VM的CPU使用率</li>
 <li>应用进程所在主机／VM的内存使用率</li>
@@ -366,18 +366,16 @@
 </li>
 <li>分级流控，不同负载级别拒绝的消息比例不同</li>
 </ul>
-<h4 id="3-并发控制"><a href="#3-并发控制" class="headerlink" title="3.并发控制"></a>3.并发控制</h4><ul>
-<li>针对线程的并发执行数进行控制，本质是限制对某个服务或者服务的方法进行过度消费，耗用过多资源而影响其他服务的正常运行。<ul>
+<h3 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h3><ul>
+<li>针对线程的并发执行数进行控制，本质是限制对某个服务或者服务的方法进行过度消费，耗用过多资源而影响其他服务的正常运行。</li>
+</ul>
+<ul>
 <li>针对服务提供者的全局控制</li>
 <li>针对服务消费者的全局控制</li>
 </ul>
-</li>
-</ul>
-<h4 id="4-连接控制"><a href="#4-连接控制" class="headerlink" title="4.连接控制"></a>4.连接控制</h4><ul>
+<h3 id="连接控制"><a href="#连接控制" class="headerlink" title="连接控制"></a>连接控制</h3><ul>
 <li>分布式框架服务提供者和消费者之间采用长连接私有协议，为了防止消费者连接数过多导致服务端压力过大，系统需要针对连接数进控制</li>
 </ul>
-<p>#### </p>
-<hr>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
 <p>流量控制是保障服务SLA的重要措施，也是业务高峰期故障预防和恢复的有效手段。<br>分布式框架需要支持不同的流量控制策略，还要支持流控阀值、策略的在线调整，不需要重启即可动态生效，提升服务治理的效率和敏捷性。</p>
 </blockquote>
@@ -623,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-静态流量控制"><span class="nav-number">1.</span> <span class="nav-text">1.静态流量控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-动态流量控制"><span class="nav-number">2.</span> <span class="nav-text">2.动态流量控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-并发控制"><span class="nav-number">3.</span> <span class="nav-text">3.并发控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-连接控制"><span class="nav-number">4.</span> <span class="nav-text">4.连接控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态流量控制"><span class="nav-number">1.</span> <span class="nav-text">静态流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态流量控制"><span class="nav-number">2.</span> <span class="nav-text">动态流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发控制"><span class="nav-number">3.</span> <span class="nav-text">并发控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接控制"><span class="nav-number">4.</span> <span class="nav-text">连接控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
