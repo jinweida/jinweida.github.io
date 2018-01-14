@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,多线程,CAS," />
 
 
 
@@ -79,19 +79,18 @@
 
 
 
-<meta name="description" content="乐观锁概念维基百科定义：在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该">
+<meta name="description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为">
+<meta name="keywords" content="java,多线程,CAS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="乐观锁和悲观锁">
-<meta property="og:url" content="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html">
+<meta property="og:title" content="java-多线程CAS原理分析">
+<meta property="og:url" content="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="乐观锁概念维基百科定义：在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的">
+<meta property="og:description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/img/lock.jpg">
-<meta property="og:updated_time" content="2018-01-10T14:52:11.944Z">
+<meta property="og:updated_time" content="2018-01-14T12:02:00.808Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="乐观锁和悲观锁">
-<meta name="twitter:description" content="乐观锁概念维基百科定义：在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的">
-<meta name="twitter:image" content="http://jinweida.github.io/img/lock.jpg">
+<meta name="twitter:title" content="java-多线程CAS原理分析">
+<meta name="twitter:description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据">
 
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html"/>
 
 
 
 
 
-  <title>乐观锁和悲观锁 | 金声玉振</title>
+  <title>java-多线程CAS原理分析 | 金声玉振</title>
   
 
 
@@ -264,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -281,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">乐观锁和悲观锁</h1>
+          <h1 class="post-title" itemprop="name headline">java-多线程CAS原理分析</h1>
         
 
         <div class="post-meta">
@@ -293,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T23:21:14+08:00">
-                2017-12-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T18:51:08+08:00">
+                2018-01-14
               </time>
             
 
@@ -309,12 +308,34 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:52:11+08:00">
-                2018-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T20:02:00+08:00">
+                2018-01-14
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -324,8 +345,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-12-12/乐观锁和悲观锁.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-12/乐观锁和悲观锁.html" itemprop="commentCount"></span>
+                <a href="/2018-01-14/java-多线程CAS原理分析.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-14/java-多线程CAS原理分析.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,19 +374,28 @@
       
 
       
-        <h4 id="乐观锁概念"><a href="#乐观锁概念" class="headerlink" title="乐观锁概念"></a>乐观锁概念</h4><p>维基百科定义：<br>在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的事务会进行回滚。乐观事务控制最早是由孔祥重（H.T.Kung）教授提出。</p>
-<h4 id="悲观锁概念"><a href="#悲观锁概念" class="headerlink" title="悲观锁概念"></a>悲观锁概念</h4><p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。它可以阻止一个事务以影响其他用户的方式来修改数据。如果一个事务执行的操作读某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作。<br><a id="more"></a></p>
-<h4 id="高并发业务场景"><a href="#高并发业务场景" class="headerlink" title="高并发业务场景"></a>高并发业务场景</h4><p>在高并发业务场景中，大量请求同时发起，会导致库存数据不正确。可以用乐观锁和悲观锁来解决。<br><img src="/img/lock.jpg" alt="image"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">begin</span> <span class="comment">--开启事务</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, total, front, <span class="keyword">end</span> <span class="keyword">from</span> price <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> price <span class="keyword">values</span>(?,?,?,?,?)</span><br><span class="line"></span><br><span class="line"><span class="keyword">commit</span> <span class="comment">--提交事务</span></span><br></pre></td></tr></table></figure>
-<p>这里使用select for update的方式利用数据库开启了悲观锁，锁定了id=1的这条数据。之后使用commit提交事务并释放锁，这样下一个线程过来拿到的就是正确的数据。</p>
-<blockquote>
-<p>悲观锁一般是用于并发不是很高，并且不允许脏读等情况。但是对数据库资源消耗较大。</p>
-</blockquote>
-<p>使用乐观锁追求更好的性能，支持更高并发</p>
-<blockquote>
-<p>乐观锁是首先假设数据冲突很少，只有在数据提交修改的时候才进行校验，如果冲突了则不会进行更新。通常的实现方式增加一个version字段，为每一条数据加上版本。每次更新的时候version+1，并且更新时候带上版本号</p>
-<p>乐观锁在实际应用相对较多，它可以提供更好的并发访问，并且数据库开销较少，但是有可能存在脏读的情况。</p>
-</blockquote>
+        <h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><ul>
+<li>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。</li>
+<li>乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。 <a id="more"></a>
+<h3 id="什么是CAS？"><a href="#什么是CAS？" class="headerlink" title="什么是CAS？"></a>什么是CAS？</h3>CAS:Compare and Swap 比较替换。JDK 5之前Java语言是靠synchronized关键字保证同步的，这是一种独占锁，也是是悲观锁。<br>java.util.concurrent(J.U.C)种提供的atomic包中的类，使用的是乐观锁，用到的机制就是CAS。<br>CAS是同步原语，属于机器最底层对同步功能的支持之一 乐观锁是利用CAS实现的一种同步机制，一次乐观锁。CAS基于硬件实现，不需要进入内核，不需要切换线程，操作自旋几率较少，因此可以获得更高的性能</li>
+</ul>
+<h3 id="CAS算法理解"><a href="#CAS算法理解" class="headerlink" title="CAS算法理解"></a>CAS算法理解</h3><p>CAS是一种无锁算法，CAS有三个操作数，内存值V，旧的预期值A，要修改的新值B，当且仅当预期值A和内存值V相同时，将内存值V修改为B，否则什么都不做。<br>CAS比较与交换的伪代码表示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    备份旧数据;</span><br><span class="line">    基于旧数据构造新数据;</span><br><span class="line">&#125;<span class="keyword">while</span>(!CAS(内存地址，备份的旧数据，新数据))</span><br></pre></td></tr></table></figure></p>
+<p>如t1和t2线程同时操作变量<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>t1和t2同时去访问变量a,他们会把驻内存的数据完全copy一份到自己的工作内存空间，所以t1和t2的旧的“预期值A”都是1，</li>
+<li>假设t1在竞争获取操作权，其他线程都失败，此时t1线程更新变量值为2，然后写回主内存。</li>
+<li>此时t2不会挂起，会告知这次竞争失败了，t2可以再次发起尝试</li>
+<li>现在对t2来说内存值已经变为2了，与预期值1不一致了，就会操作失败。</li>
+</ul>
+<h3 id="CAS算法在JDK的应用"><a href="#CAS算法在JDK的应用" class="headerlink" title="CAS算法在JDK的应用"></a>CAS算法在JDK的应用</h3><p>以java.util.concurrent.atomic.AtomicInteger为例。<br>在jdk1.8中，直接使用了Unsafe的getAndAddInt方法，而在jdk1.7的Unsafe中，没有此方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字段value需要借助volatile原语，保证线程间的数据是可见的（共享的）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Atomically increments by one the current value.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the updated value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>调用了sun.misc.Unsafe库里的CAS算法。通过查看AtomicInteger的源码可以发现，受影响的还有getAndAdd、addAndGet等大部分方法。</p>
+<h3 id="CAS开销"><a href="#CAS开销" class="headerlink" title="CAS开销"></a>CAS开销</h3><p>CAS是CPU指令级的草，只有一步原子操作，速度非常快。对于资源竞争严重的情况，CAS自旋的概率会比较大，从而浪费更多的CPU资源，效率低于synchronized</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>使用CAS在线程冲突严重时，会大幅降低程序性能；CAS只适合于线程冲突较少的情况使用</li>
+<li>java.util.concurrent.atomic下很多原子操作类都是用了CAS算法</li>
+<li>synchronized在jdk1.6之后，已经改进优化。synchronized的底层实现主要依靠Lock-Free的队列，基本思路是自旋后阻塞，竞争切换后继续竞争锁，稍微牺牲了公平性，但获得了高吞吐量。</li>
+<li>synchronized在线程冲突较少的情况下，可以获得和CAS类似的性能；而线程冲突严重的情况下，性能远高于CAS。</li>
+</ul>
 
       
     </div>
@@ -385,7 +415,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-12-12/乐观锁和悲观锁.html" title="乐观锁和悲观锁">http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html</a>
+              <a href="/2018-01-14/java-多线程CAS原理分析.html" title="java-多线程CAS原理分析">http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -432,6 +462,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+            <a href="/tags/CAS/" rel="tag"># CAS</a>
+          
+        </div>
+      
 
       
       
@@ -441,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-12-12/java-线程同步.html" rel="next" title="java-线程同步">
-                <i class="fa fa-chevron-left"></i> java-线程同步
+              <a href="/2018-01-14/java-多线程juc集合.html" rel="next" title="java-多线程juc集合">
+                <i class="fa fa-chevron-left"></i> java-多线程juc集合
               </a>
             
           </div>
@@ -450,10 +490,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-12-13/java-多线程常用实现方式.html" rel="prev" title="java-多线程常用实现方式">
-                java-多线程常用实现方式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -484,8 +520,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-12-12/乐观锁和悲观锁.html"
-           data-title="乐观锁和悲观锁" data-url="http://jinweida.github.io/2017-12-12/乐观锁和悲观锁.html">
+      <div class="ds-thread" data-thread-key="2018-01-14/java-多线程CAS原理分析.html"
+           data-title="java-多线程CAS原理分析" data-url="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html">
       </div>
     </div>
 
@@ -602,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#乐观锁概念"><span class="nav-number">1.</span> <span class="nav-text">乐观锁概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#悲观锁概念"><span class="nav-number">2.</span> <span class="nav-text">悲观锁概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高并发业务场景"><span class="nav-number">3.</span> <span class="nav-text">高并发业务场景</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#锁机制"><span class="nav-number">1.</span> <span class="nav-text">锁机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是CAS？"><span class="nav-number">2.</span> <span class="nav-text">什么是CAS？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS算法理解"><span class="nav-number">3.</span> <span class="nav-text">CAS算法理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS算法在JDK的应用"><span class="nav-number">4.</span> <span class="nav-text">CAS算法在JDK的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS开销"><span class="nav-number">5.</span> <span class="nav-text">CAS开销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-14/java-CAS原理分析.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018-01-14/java-CAS原理分析.html" itemprop="url">java-多线程CAS原理分析</a></h1>
+                <a class="post-title-link" href="/2018-01-14/java-多线程CAS原理分析.html" itemprop="url">java-多线程CAS原理分析</a></h1>
         
 
         <div class="post-meta">
@@ -309,12 +309,34 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T19:58:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T20:02:00+08:00">
                 2018-01-14
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -324,8 +346,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018-01-14/java-CAS原理分析.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-14/java-CAS原理分析.html" itemprop="commentCount"></span>
+                <a href="/2018-01-14/java-多线程CAS原理分析.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-14/java-多线程CAS原理分析.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,7 +381,7 @@
 <li>乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018-01-14/java-CAS原理分析.html#more" rel="contents">
+            <a class="btn" href="/2018-01-14/java-多线程CAS原理分析.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1976,7 +1998,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
