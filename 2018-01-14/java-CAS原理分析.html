@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="Git记住密码避免每次提交密码都要输入用户密码，避免每次输入：store 永久记住密码1git config --global credential.helper store cache 临时密码，默认为15分钟1git config –global credential.helper cache 也可以指定时间1gi">
-<meta name="keywords" content="Git">
+<meta name="description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git操作">
-<meta property="og:url" content="http://jinweida.github.io/2017-12-09/git操作.html">
+<meta property="og:title" content="java-CAS原理分析">
+<meta property="og:url" content="http://jinweida.github.io/2018-01-14/java-CAS原理分析.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="Git记住密码避免每次提交密码都要输入用户密码，避免每次输入：store 永久记住密码1git config --global credential.helper store cache 临时密码，默认为15分钟1git config –global credential.helper cache 也可以指定时间1git config credential.helper ‘cache –timeo">
+<meta property="og:description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T03:31:39.462Z">
+<meta property="og:updated_time" content="2018-01-14T11:38:37.291Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git操作">
-<meta name="twitter:description" content="Git记住密码避免每次提交密码都要输入用户密码，避免每次输入：store 永久记住密码1git config --global credential.helper store cache 临时密码，默认为15分钟1git config –global credential.helper cache 也可以指定时间1git config credential.helper ‘cache –timeo">
+<meta name="twitter:title" content="java-CAS原理分析">
+<meta name="twitter:description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-12-09/git操作.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2018-01-14/java-CAS原理分析.html"/>
 
 
 
 
 
-  <title>Git操作 | 金声玉振</title>
+  <title>java-CAS原理分析 | 金声玉振</title>
   
 
 
@@ -263,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/git操作.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-14/java-CAS原理分析.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git操作</h1>
+          <h1 class="post-title" itemprop="name headline">java-CAS原理分析</h1>
         
 
         <div class="post-meta">
@@ -292,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T11:27:38+08:00">
-                2017-12-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T18:51:08+08:00">
+                2018-01-14
               </time>
             
 
@@ -308,8 +307,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T11:31:39+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T19:38:37+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -323,8 +322,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-12-09/git操作.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/git操作.html" itemprop="commentCount"></span>
+                <a href="/2018-01-14/java-CAS原理分析.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-14/java-CAS原理分析.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -352,15 +351,28 @@
       
 
       
-        <h5 id="Git记住密码"><a href="#Git记住密码" class="headerlink" title="Git记住密码"></a>Git记住密码</h5><p>避免每次提交密码都要输入用户密码，避免每次输入：<br>store 永久记住密码<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></p>
-<p>cache 临时密码，默认为15分钟<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config –global credential.helper cache</span><br></pre></td></tr></table></figure></p>
-<p>也可以指定时间<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper ‘cache –timeout=3600’</span><br></pre></td></tr></table></figure></p>
-<h5 id="git设置关闭自动换行"><a href="#git设置关闭自动换行" class="headerlink" title="git设置关闭自动换行"></a>git设置关闭自动换行</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
-<p>为了保证文件的换行符是以安全的方法，避免windows与unix的换行符混用的情况，最好也加 上这么一句<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global core.safecrlf true</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h5 id="查看某个文件的修改历史"><a href="#查看某个文件的修改历史" class="headerlink" title="查看某个文件的修改历史"></a>查看某个文件的修改历史</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git log --pretty=oneline report_meigaiqi.html # 显示修改历史</span><br><span class="line"><span class="meta">$</span> git show 34bf65a5d3e528b34773aea1ab8cd4e05b11e960 # 查看更改</span><br></pre></td></tr></table></figure>
-<h5 id="Git配置别名"><a href="#Git配置别名" class="headerlink" title="Git配置别名"></a>Git配置别名</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global alias.st status #可用git st了</span><br></pre></td></tr></table></figure>
-<h5 id="忽略某些文件夹及文件"><a href="#忽略某些文件夹及文件" class="headerlink" title="忽略某些文件夹及文件"></a>忽略某些文件夹及文件</h5><p>在根目录 .gitignore 文件中添加要忽略的文件或者文件夹<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">camulos:camulos$ vim .gitignore</span><br><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure></p>
+        <h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><ul>
+<li>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。</li>
+<li>乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。 </li>
+</ul>
+<h3 id="什么是CAS？"><a href="#什么是CAS？" class="headerlink" title="什么是CAS？"></a>什么是CAS？</h3><p>CAS:Compare and Swap 比较替换。JDK 5之前Java语言是靠synchronized关键字保证同步的，这是一种独占锁，也是是悲观锁。<br>java.util.concurrent(J.U.C)种提供的atomic包中的类，使用的是乐观锁，用到的机制就是CAS。<br>CAS是同步原语，属于机器最底层对同步功能的支持之一 乐观锁是利用CAS实现的一种同步机制，一次乐观锁。CAS基于硬件实现，不需要进入内核，不需要切换线程，操作自旋几率较少，因此可以获得更高的性能</p>
+<h3 id="CAS算法理解"><a href="#CAS算法理解" class="headerlink" title="CAS算法理解"></a>CAS算法理解</h3><p>CAS是一种无锁算法，CAS有三个操作数，内存值V，旧的预期值A，要修改的新值B，当且仅当预期值A和内存值V相同时，将内存值V修改为B，否则什么都不做。<br>CAS比较与交换的伪代码表示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    备份旧数据;</span><br><span class="line">    基于旧数据构造新数据;</span><br><span class="line">&#125;<span class="keyword">while</span>(!CAS(内存地址，备份的旧数据，新数据))</span><br></pre></td></tr></table></figure></p>
+<p>如t1和t2线程同时操作变量<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>t1和t2同时去访问变量a,他们会把驻内存的数据完全copy一份到自己的工作内存空间，所以t1和t2的旧的“预期值A”都是1，</li>
+<li>假设t1在竞争获取操作权，其他线程都失败，此时t1线程更新变量值为2，然后写回主内存。</li>
+<li>此时t2不会挂起，会告知这次竞争失败了，t2可以再次发起尝试</li>
+<li>现在对t2来说内存值已经变为2了，与预期值1不一致了，就会操作失败。</li>
+</ul>
+<h3 id="CAS算法在JDK的应用"><a href="#CAS算法在JDK的应用" class="headerlink" title="CAS算法在JDK的应用"></a>CAS算法在JDK的应用</h3><p>以java.util.concurrent.atomic.AtomicInteger为例。<br>在jdk1.8中，直接使用了Unsafe的getAndAddInt方法，而在jdk1.7的Unsafe中，没有此方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字段value需要借助volatile原语，保证线程间的数据是可见的（共享的）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Atomically increments by one the current value.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the updated value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>调用了sun.misc.Unsafe库里的CAS算法。通过查看AtomicInteger的源码可以发现，受影响的还有getAndAdd、addAndGet等大部分方法。</p>
+<h3 id="CAS开销"><a href="#CAS开销" class="headerlink" title="CAS开销"></a>CAS开销</h3><p>CAS是CPU指令级的草，只有一步原子操作，速度非常快。对于资源竞争严重的情况，CAS自旋的概率会比较大，从而浪费更多的CPU资源，效率低于synchronized</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>使用CAS在线程冲突严重时，会大幅降低程序性能；CAS只适合于线程冲突较少的情况使用</li>
+<li>java.util.concurrent.atomic下很多原子操作类都是用了CAS算法</li>
+<li>synchronized在jdk1.6之后，已经改进优化。synchronized的底层实现主要依靠Lock-Free的队列，基本思路是自旋后阻塞，竞争切换后继续竞争锁，稍微牺牲了公平性，但获得了高吞吐量。</li>
+<li>synchronized在线程冲突较少的情况下，可以获得和CAS类似的性能；而线程冲突严重的情况下，性能远高于CAS。</li>
+</ul>
 
       
     </div>
@@ -380,7 +392,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-12-09/git操作.html" title="Git操作">http://jinweida.github.io/2017-12-09/git操作.html</a>
+              <a href="/2018-01-14/java-CAS原理分析.html" title="java-CAS原理分析">http://jinweida.github.io/2018-01-14/java-CAS原理分析.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -427,12 +439,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Git/" rel="tag"># Git</a>
-          
-        </div>
-      
 
       
       
@@ -442,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-11-15/JVM系列-类加载器与双亲委派.html" rel="next" title="JVM系列-类加载器与双亲委派">
-                <i class="fa fa-chevron-left"></i> JVM系列-类加载器与双亲委派
+              <a href="/2018-01-14/java-多线程juc集合.html" rel="next" title="java-多线程juc集合">
+                <i class="fa fa-chevron-left"></i> java-多线程juc集合
               </a>
             
           </div>
@@ -451,10 +457,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-12-09/一致性Hash算法.html" rel="prev" title="一致性Hash算法">
-                一致性Hash算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -485,8 +487,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-12-09/git操作.html"
-           data-title="Git操作" data-url="http://jinweida.github.io/2017-12-09/git操作.html">
+      <div class="ds-thread" data-thread-key="2018-01-14/java-CAS原理分析.html"
+           data-title="java-CAS原理分析" data-url="http://jinweida.github.io/2018-01-14/java-CAS原理分析.html">
       </div>
     </div>
 
@@ -603,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Git记住密码"><span class="nav-number">1.</span> <span class="nav-text">Git记住密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git设置关闭自动换行"><span class="nav-number">2.</span> <span class="nav-text">git设置关闭自动换行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看某个文件的修改历史"><span class="nav-number">3.</span> <span class="nav-text">查看某个文件的修改历史</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Git配置别名"><span class="nav-number">4.</span> <span class="nav-text">Git配置别名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#忽略某些文件夹及文件"><span class="nav-number">5.</span> <span class="nav-text">忽略某些文件夹及文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#锁机制"><span class="nav-number">1.</span> <span class="nav-text">锁机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是CAS？"><span class="nav-number">2.</span> <span class="nav-text">什么是CAS？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS算法理解"><span class="nav-number">3.</span> <span class="nav-text">CAS算法理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS算法在JDK的应用"><span class="nav-number">4.</span> <span class="nav-text">CAS算法在JDK的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS开销"><span class="nav-number">5.</span> <span class="nav-text">CAS开销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
