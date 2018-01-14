@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="安装docker 官方镜像 nginx1docker pull nginx 启动docker nginx1docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -d nginx 重新制定配置文件1docker run --name webserver -d -p 8090:8">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T09:34:41.693Z">
+<meta property="og:updated_time" content="2018-01-14T07:12:30.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker容器之nginx安装配置使用">
 <meta name="twitter:description" content="安装docker 官方镜像 nginx1docker pull nginx 启动docker nginx1docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -d nginx 重新制定配置文件1docker run --name webserver -d -p 8090:8">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:34:41+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:12:30+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -374,14 +374,14 @@
       
 
       
-        <p>安装docker 官方镜像 nginx<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure></p>
-<p>启动docker nginx<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -d nginx</span><br></pre></td></tr></table></figure></p>
-<p>重新制定配置文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -v /logs:/var/log/nginx -v /config/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx</span><br></pre></td></tr></table></figure></p>
-<p>查看容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></p>
-<p>重启容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 071ba93265c8 或者 docker restart webserver</span><br></pre></td></tr></table></figure></p>
-<p>进入容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it c4bfc0e2a5aa /bin/bash</span><br></pre></td></tr></table></figure></p>
-<p>删除<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm webserver</span><br></pre></td></tr></table></figure></p>
-
+        <h3 id="安装docker-官方镜像-nginx"><a href="#安装docker-官方镜像-nginx" class="headerlink" title="安装docker 官方镜像 nginx"></a>安装docker 官方镜像 nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+<h3 id="启动docker-nginx"><a href="#启动docker-nginx" class="headerlink" title="启动docker nginx"></a>启动docker nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -d nginx</span><br></pre></td></tr></table></figure>
+<h3 id="重新制定配置文件"><a href="#重新制定配置文件" class="headerlink" title="重新制定配置文件"></a>重新制定配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -v /logs:/var/log/nginx -v /config/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<h3 id="重启容器"><a href="#重启容器" class="headerlink" title="重启容器"></a>重启容器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 071ba93265c8 或者 docker restart webserver</span><br></pre></td></tr></table></figure>
+<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it c4bfc0e2a5aa /bin/bash</span><br></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm webserver</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -533,8 +533,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -604,6 +613,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装docker-官方镜像-nginx"><span class="nav-number">1.</span> <span class="nav-text">安装docker 官方镜像 nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动docker-nginx"><span class="nav-number">2.</span> <span class="nav-text">启动docker nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新制定配置文件"><span class="nav-number">3.</span> <span class="nav-text">重新制定配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看容器"><span class="nav-number">4.</span> <span class="nav-text">查看容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启容器"><span class="nav-number">5.</span> <span class="nav-text">重启容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入容器"><span class="nav-number">6.</span> <span class="nav-text">进入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">7.</span> <span class="nav-text">删除</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

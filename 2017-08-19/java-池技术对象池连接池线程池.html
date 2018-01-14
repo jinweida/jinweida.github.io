@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="数据库连接池的实现及原理    内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接">
+<meta name="description" content="连接池的实现及原理内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java-池技术对象池连接池线程池">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-19/java-池技术对象池连接池线程池.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="数据库连接池的实现及原理    内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。   数据库连接池的基本">
+<meta property="og:description" content="连接池的实现及原理内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。数据库连接池的基本原理是在内部对象池中维护一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-10T15:13:57.037Z">
+<meta property="og:updated_time" content="2018-01-14T07:22:58.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java-池技术对象池连接池线程池">
-<meta name="twitter:description" content="数据库连接池的实现及原理    内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。   数据库连接池的基本">
+<meta name="twitter:description" content="连接池的实现及原理内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。数据库连接池的基本原理是在内部对象池中维护一">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T23:13:57+08:00">
-                2018-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:22:58+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -374,31 +374,22 @@
       
 
       
-        <ul>
-<li><p>数据库连接池的实现及原理 </p>
-<p>  内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。<br>  有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。<br>   数据库连接池的基本原理是在内部对象池中维护一定数量的数据库连接，并对外暴露数据库连接获取和返回方法。</p>
-<ul>
+        <h3 id="连接池的实现及原理"><a href="#连接池的实现及原理" class="headerlink" title="连接池的实现及原理"></a>连接池的实现及原理</h3><p>内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。<br>有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。<br>数据库连接池的基本原理是在内部对象池中维护一定数量的数据库连接，并对外暴露数据库连接获取和返回方法。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
 <li>(1)． 资源重用。</li>
 <li>(2)． 更快的系统响应速度</li>
 <li>(3)． 新的资源分配手段</li>
 <li>(4)． 统一的连接管理，避免数据库连接泄漏</li>
 </ul>
-</li>
-<li><p>Java线程池总结</p>
-<p>  假设一个服务器完成一项任务所需时间为：T1 创建线程时间，T2 在线程中执行任务的时间，T3 销毁线程时间。当T1 + T3 远大于 T2时，采用多线程技术可以显著减少处理器单元的闲置时间，增加处理器单元的吞吐能力。<br>  线程池就是一个线程的容器，每次只执行额定数量的线程，</p>
-<p>  线程池作用就是限制系统中执行线程的数量。采用线程池不仅调整T1,T3产生的时间段，而且它还显著减少了创建线程的数目。</p>
-<p>  为什么要用线程池:</p>
+<h3 id="Java线程池总结"><a href="#Java线程池总结" class="headerlink" title="Java线程池总结"></a>Java线程池总结</h3><p>假设一个服务器完成一项任务所需时间为：T1 创建线程时间，T2 在线程中执行任务的时间，T3 销毁线程时间。当T1 + T3 远大于 T2时，采用多线程技术可以显著减少处理器单元的闲置时间，增加处理器单元的吞吐能力。<br>线程池就是一个线程的容器，每次只执行额定数量的线程，</p>
+<p>线程池作用就是限制系统中执行线程的数量。采用线程池不仅调整T1,T3产生的时间段，而且它还显著减少了创建线程的数目。</p>
+<p>为什么要用线程池:</p>
 <ul>
 <li>1）减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务</li>
-<li><p>2）可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机）Java1.5之后，Java 提供了自己的线程池ThreadPoolExecutor类。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadPool &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //创建无限制线程池</span><br><span class="line">        ExecutorService executorService= Executors.newCachedThreadPool();</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService.submit(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        //创建单个线程的线程池</span><br><span class="line">        ExecutorService executorService1= Executors.newSingleThreadExecutor();</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService1.submit(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(&quot;single=&quot;+Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService1.shutdown();</span><br><span class="line">        //创建固定线程池</span><br><span class="line">        ExecutorService executorService2= Executors.newFixedThreadPool(3);</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService2.submit(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(&quot;fixed=&quot;+Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService2.shutdown();</span><br><span class="line">        //创建具有三个线程大小的定时调度线程池</span><br><span class="line">        ScheduledExecutorService executorService3= Executors.newScheduledThreadPool(3);</span><br><span class="line">        for(int x=0;x&lt;10;x++)&#123;</span><br><span class="line">            final int index=x;</span><br><span class="line">            executorService3.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    System.out.println(&quot;fixed=&quot;+Thread.currentThread().getName()+&quot;、x=&quot;+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,3,2, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService3.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>2）可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机）Java1.5之后，Java 提供了自己的线程池ThreadPoolExecutor类。</li>
 </ul>
-</li>
-<li><p>Java 对象池总结</p>
-<p>  对对象进行池管理，减少创建对象的开销</p>
-</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建无限制线程池</span></span><br><span class="line">        ExecutorService executorService= Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        <span class="comment">//创建单个线程的线程池</span></span><br><span class="line">        ExecutorService executorService1= Executors.newSingleThreadExecutor();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService1.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(<span class="string">"single="</span>+Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService1.shutdown();</span><br><span class="line">        <span class="comment">//创建固定线程池</span></span><br><span class="line">        ExecutorService executorService2= Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService2.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(<span class="string">"fixed="</span>+Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService2.shutdown();</span><br><span class="line">        <span class="comment">//创建具有三个线程大小的定时调度线程池</span></span><br><span class="line">        ScheduledExecutorService executorService3= Executors.newScheduledThreadPool(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService3.scheduleAtFixedRate(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(<span class="string">"fixed="</span>+Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,<span class="number">3</span>,<span class="number">2</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService3.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="java-对象池总结"><a href="#java-对象池总结" class="headerlink" title="java 对象池总结"></a>java 对象池总结</h3><p>对对象进行池管理，减少创建对象的开销</p>
 
       
     </div>
@@ -551,8 +542,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -622,6 +622,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接池的实现及原理"><span class="nav-number">1.</span> <span class="nav-text">连接池的实现及原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java线程池总结"><span class="nav-number">3.</span> <span class="nav-text">Java线程池总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-对象池总结"><span class="nav-number">4.</span> <span class="nav-text">java 对象池总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

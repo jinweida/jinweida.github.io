@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="TCP/IP模型  TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。   应用层  应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS">
+<meta name="description" content="TCP/IP模型TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。 应用层应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OSI与TCP&#x2F;IP模型">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="TCP/IP模型  TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。   应用层  应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.  传输层  传输层对应于OSI参考模型的传输层，为应用层实体提">
+<meta property="og:description" content="TCP/IP模型TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。 应用层应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等. 传输层传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/osi.jpg">
-<meta property="og:updated_time" content="2018-01-10T13:50:53.567Z">
+<meta property="og:updated_time" content="2018-01-14T07:24:02.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OSI与TCP&#x2F;IP模型">
-<meta name="twitter:description" content="TCP/IP模型  TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。   应用层  应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.  传输层  传输层对应于OSI参考模型的传输层，为应用层实体提">
+<meta name="twitter:description" content="TCP/IP模型TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。 应用层应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等. 传输层传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能">
 <meta name="twitter:image" content="http://jinweida.github.io/img/osi.jpg">
 
 
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:50:53+08:00">
-                2018-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:24:02+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -354,25 +354,11 @@
 
       
         <p><img src="/img/osi.jpg" alt="image"></p>
-<p>TCP/IP模型</p>
-<ul>
-<li>TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。</li>
-</ul>
-<ol>
-<li><p>应用层</p>
-<p> 应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.</p>
-</li>
-<li><p>传输层</p>
-<p> 传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能，保证了数据包的顺序传送及数据的完整性。该层定义了两个主要的协议：传输控制协议（TCP）和用户数据报协议（UDP).</p>
-<p> TCP协议提供的是一种可靠的、通过“三次握手”来连接的数据传输服务；而UDP协议提供的则是不保证可靠的（并不是不可靠）、无连接的数据传输服务.</p>
-</li>
-<li><p>网际互联层</p>
-<p> 网际互联层对应于OSI参考模型的网络层，主要解决主机到主机的通信问题。它所包含的协议设计数据包在整个网络上的逻辑传输。注重重新赋予主机一个IP地址来完成对主机的寻址，它还负责数据包在多种网络中的路由。该层有三个主要协议：网际协议（IP）、互联网组管理协议（IGMP）和互联网控制报文协议（ICMP）。<br> IP协议是网际互联层最重要的协议，它提供的是一个可靠、无连接的数据报传递服务。</p>
-</li>
-<li><p>网络接入层（即主机-网络层）</p>
-<p> 网络接入层与OSI参考模型中的物理层和数据链路层相对应。它负责监视数据在主机和网络之间的交换。事实上，TCP/IP本身并未定义该层的协议，而由参与互连的各网络使用自己的物理层和数据链路层协议，然后与TCP/IP的网络接入层进行连接。地址解析协议（ARP）工作在此层，即OSI参考模型的数据链路层。</p>
-</li>
-</ol>
+<h3 id="TCP-IP模型"><a href="#TCP-IP模型" class="headerlink" title="TCP/IP模型"></a>TCP/IP模型</h3><p>TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。</p>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.</p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能，保证了数据包的顺序传送及数据的完整性。该层定义了两个主要的协议：传输控制协议（TCP）和用户数据报协议（UDP).<br><a id="more"></a><br>TCP协议提供的是一种可靠的、通过“三次握手”来连接的数据传输服务；而UDP协议提供的则是不保证可靠的（并不是不可靠）、无连接的数据传输服务.</p>
+<h3 id="网际互联层"><a href="#网际互联层" class="headerlink" title="网际互联层"></a>网际互联层</h3><p>网际互联层对应于OSI参考模型的网络层，主要解决主机到主机的通信问题。它所包含的协议设计数据包在整个网络上的逻辑传输。注重重新赋予主机一个IP地址来完成对主机的寻址，它还负责数据包在多种网络中的路由。该层有三个主要协议：网际协议（IP）、互联网组管理协议（IGMP）和互联网控制报文协议（ICMP）。<br>IP协议是网际互联层最重要的协议，它提供的是一个可靠、无连接的数据报传递服务。</p>
+<h3 id="网络接入层（即主机-网络层）"><a href="#网络接入层（即主机-网络层）" class="headerlink" title="网络接入层（即主机-网络层）"></a>网络接入层（即主机-网络层）</h3><p>网络接入层与OSI参考模型中的物理层和数据链路层相对应。它负责监视数据在主机和网络之间的交换。事实上，TCP/IP本身并未定义该层的协议，而由参与互连的各网络使用自己的物理层和数据链路层协议，然后与TCP/IP的网络接入层进行连接。地址解析协议（ARP）工作在此层，即OSI参考模型的数据链路层。</p>
 
       
     </div>
@@ -519,8 +505,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -590,6 +585,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP模型"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用层"><span class="nav-number">2.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层"><span class="nav-number">3.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网际互联层"><span class="nav-number">4.</span> <span class="nav-text">网际互联层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络接入层（即主机-网络层）"><span class="nav-number">5.</span> <span class="nav-text">网络接入层（即主机-网络层）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

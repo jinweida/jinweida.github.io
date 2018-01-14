@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="秒杀系统的特点1、大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时 2、秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。 3、秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存">
+<meta name="description" content="秒杀系统的特点 大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时 秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。-秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存上，导致所">
 <meta name="keywords" content="高并发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="秒杀系统设计">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-01/秒杀系统设计.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="秒杀系统的特点1、大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时 2、秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。 3、秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存上，导致所有请求处理变慢 解决方案1、解决高并发请求问题 通过反向代理进行负载分">
+<meta property="og:description" content="秒杀系统的特点 大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时 秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。-秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存上，导致所有请求处理变慢  解决方案 解决高并发请求问题通过反向代理进行负载分担，增加后端">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://camo.githubusercontent.com/9e99c7b72a62b8690006f167b2bd793bf9cbcd45/687474703a2f2f6f67307379626e69782e626b742e636c6f7564646e2e636f6d2f5672555a4e726a253230253238312532392e6a7067">
-<meta property="og:updated_time" content="2017-08-04T09:17:17.000Z">
+<meta property="og:updated_time" content="2018-01-14T07:28:10.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="秒杀系统设计">
-<meta name="twitter:description" content="秒杀系统的特点1、大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时 2、秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。 3、秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存上，导致所有请求处理变慢 解决方案1、解决高并发请求问题 通过反向代理进行负载分">
+<meta name="twitter:description" content="秒杀系统的特点 大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时 秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。-秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存上，导致所有请求处理变慢  解决方案 解决高并发请求问题通过反向代理进行负载分担，增加后端">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/9e99c7b72a62b8690006f167b2bd793bf9cbcd45/687474703a2f2f6f67307379626e69782e626b742e636c6f7564646e2e636f6d2f5672555a4e726a253230253238312532392e6a7067">
 
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-04T17:17:17+08:00">
-                2017-08-04
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:28:10+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -354,19 +354,28 @@
       
 
       
-        <h4 id="秒杀系统的特点"><a href="#秒杀系统的特点" class="headerlink" title="秒杀系统的特点"></a>秒杀系统的特点</h4><p>1、大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时</p>
-<p>2、秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。</p>
-<p>3、秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存上，导致所有请求处理变慢</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>1、解决高并发请求问题</p>
-<p>通过反向代理进行负载分担，增加后端服务器数量</p>
-<p>2、解决数据库减库存阻塞请求问题</p>
-<p>使用消息队列（MQ）队列，把秒杀请求先放入队列，后端服务在慢慢处理队列的秒杀消息，把请求成功的存入数据库被查。</p>
+        <h3 id="秒杀系统的特点"><a href="#秒杀系统的特点" class="headerlink" title="秒杀系统的特点"></a>秒杀系统的特点</h3><ul>
+<li>大量请求同时发起（高并发），服务器必须尽快处理每个请求，才能保证秒杀请求不超时</li>
+<li>秒杀商品不能发生超卖，为了不超卖，必须有一个统一处理的地方排队减少库存。<br>-秒杀开始一段时间，服务器请求压力突增会影响正常售卖，解决高并发，可以增加服务器进行负载分担，但减少库存是单点操作，请求都会卡在数据库减少库存上，导致所有请求处理变慢</li>
+</ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul>
+<li>解决高并发请求问题<br>通过反向代理进行负载分担，增加后端服务器数量</li>
+<li><p>解决数据库减库存阻塞请求问题<br>使用消息队列（MQ）队列，把秒杀请求先放入队列，后端服务在慢慢处理队列的秒杀消息，把请求成功的存入数据库被查。</p>
+<a id="more"></a>
 <p>使用MQ队列秒杀请求变成了异步处理，需要客户端在发送秒杀请求后，再次延迟发送结果查询请求，查询到秒杀成功用户在进入购买流程。</p>
-<p>3、解决秒杀冲击正常售卖，把秒杀请求和正常售卖做物理隔离</p>
+</li>
+<li><p>解决秒杀冲击正常售卖，把秒杀请求和正常售卖做物理隔离</p>
+</li>
+</ul>
 <p><img src="https://camo.githubusercontent.com/9e99c7b72a62b8690006f167b2bd793bf9cbcd45/687474703a2f2f6f67307379626e69782e626b742e636c6f7564646e2e636f6d2f5672555a4e726a253230253238312532392e6a7067" alt="image"></p>
-<h4 id="秒杀方案优化"><a href="#秒杀方案优化" class="headerlink" title="秒杀方案优化"></a>秒杀方案优化</h4><p>1、在高并发处理过程中，尤其要注意锁的应用，尽量避免锁等待导致的线程切换。根据应用的场景，可以选择原子变量 ( 如计数器 ) ，读写锁，细粒度锁；</p>
-<p>2、需要集中式验证的处理，比如验证当前库存是否大于零，可以通过本地缓存 的库存进行验伪；</p>
-<p>3、应用本地缓存减少对外部系统 ( 数据库等 ) 的重复调用，比如 对 用户 token 合法性的验证，可以在秒杀开始之前通过 Ajax 发送预热请求，提前缓存好用 户 token 的验证结果，结合到负载分担服务器的会话保持，可以很大提高本地缓存的命中率。</p>
+<h3 id="秒杀方案优化"><a href="#秒杀方案优化" class="headerlink" title="秒杀方案优化"></a>秒杀方案优化</h3><ul>
+<li><p>在高并发处理过程中，尤其要注意锁的应用，尽量避免锁等待导致的线程切换。根据应用的场景，可以选择原子变量 ( 如计数器 ) ，读写锁，细粒度锁；</p>
+</li>
+<li><p>需要集中式验证的处理，比如验证当前库存是否大于零，可以通过本地缓存 的库存进行验伪；</p>
+</li>
+<li><p>应用本地缓存减少对外部系统 ( 数据库等 ) 的重复调用，比如 对 用户 token 合法性的验证，可以在秒杀开始之前通过 Ajax 发送预热请求，提前缓存好用 户 token 的验证结果，结合到负载分担服务器的会话保持，可以很大提高本地缓存的命中率。</p>
+</li>
+</ul>
 
       
     </div>
@@ -448,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-01/JVM系列-虚拟机性能监控与故障处理工具.html" rel="next" title="JVM系列:虚拟机性能监控与故障处理工具">
-                <i class="fa fa-chevron-left"></i> JVM系列:虚拟机性能监控与故障处理工具
+              <a href="/2017-08-01/JVM系列-垃圾收集器.html" rel="next" title="JVM系列:垃圾收集器与内存分配策略">
+                <i class="fa fa-chevron-left"></i> JVM系列:垃圾收集器与内存分配策略
               </a>
             
           </div>
@@ -609,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#秒杀系统的特点"><span class="nav-number">1.</span> <span class="nav-text">秒杀系统的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#秒杀方案优化"><span class="nav-number">3.</span> <span class="nav-text">秒杀方案优化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#秒杀系统的特点"><span class="nav-number">1.</span> <span class="nav-text">秒杀系统的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#秒杀方案优化"><span class="nav-number">3.</span> <span class="nav-text">秒杀方案优化</span></a></li></ol></div>
             
 
           </div>

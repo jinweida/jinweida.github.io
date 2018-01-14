@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果">
+<meta name="description" content="缓存击穿概念在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案 缓存空对象对查询结果为空的对象也进行缓存，如果是集合，可以缓存">
 <meta name="keywords" content="高并发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="缓存在高并发场景下的问题">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个">
+<meta property="og:description" content="缓存击穿概念在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案 缓存空对象对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-04T09:16:49.000Z">
+<meta property="og:updated_time" content="2018-01-14T07:27:00.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="缓存在高并发场景下的问题">
-<meta name="twitter:description" content="1. 缓存击穿有哪些解决方案？ 缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案  缓存空对象   对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个">
+<meta name="twitter:description" content="缓存击穿概念在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案 缓存空对象对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-04T17:16:49+08:00">
-                2017-08-04
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:27:00+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -352,32 +352,17 @@
       
 
       
-        <h3 id="1-缓存击穿有哪些解决方案？"><a href="#1-缓存击穿有哪些解决方案？" class="headerlink" title="1. 缓存击穿有哪些解决方案？"></a>1. 缓存击穿有哪些解决方案？</h3><ul>
-<li>缓存击穿概念：在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。</li>
-<li><p>解决方案</p>
-<ul>
-<li><p>缓存空对象</p>
-<p>  对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请求穿透到后端数据库。成本低，可能会被频繁更新。</p>
-</li>
-<li>单独过滤处理<br>  对所有可能为空的key进行统一存放，特殊处理</li>
+        <h3 id="缓存击穿概念"><a href="#缓存击穿概念" class="headerlink" title="缓存击穿概念"></a>缓存击穿概念</h3><p>在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
+<li>缓存空对象<br>对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请求穿透到后端数据库。成本低，可能会被频繁更新。</li>
+<li>单独过滤处理<br>对所有可能为空的key进行统一存放，特殊处理<a id="more"></a>
+<h3 id="缓存并发问概念"><a href="#缓存并发问概念" class="headerlink" title="缓存并发问概念"></a>缓存并发问概念</h3>缓存过期或者缓存key被更新时，高并发情况下去数据库获取数据对后端造成极大的冲击<h4 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h4>在更新或者过期情况下，先尝试加锁更新完或者从数据库获取后释放锁，这样要牺牲一下点等待时间</li>
 </ul>
-</li>
-</ul>
-<h3 id="2-缓存并发问题"><a href="#2-缓存并发问题" class="headerlink" title="2.缓存并发问题"></a>2.缓存并发问题</h3><ul>
-<li>概念：缓存过期或者缓存key被更新时，高并发情况下去数据库获取数据对后端造成极大的冲击</li>
-<li>解决方案：<ul>
-<li>在更新或者过期情况下，先尝试加锁更新完或者从数据库获取后释放锁，这样要牺牲一下点等待时间</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-缓存雪崩现象"><a href="#3-缓存雪崩现象" class="headerlink" title="3.缓存雪崩现象"></a>3.缓存雪崩现象</h3><ul>
-<li>概念：由于缓存问题，导致大量请求到达后端数据库，从而导致整个数据库崩溃，发生灾难，导致这个问题的原因有：缓存击穿，缓存并发，缓存颠簸、缓存集中失效</li>
-<li>解决方案：<ul>
+<h3 id="缓存雪崩现象概念"><a href="#缓存雪崩现象概念" class="headerlink" title="缓存雪崩现象概念"></a>缓存雪崩现象概念</h3><p>由于缓存问题，导致大量请求到达后端数据库，从而导致整个数据库崩溃，发生灾难，导致这个问题的原因有：缓存击穿，缓存并发，缓存颠簸、缓存集中失效</p>
+<h4 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h4><ul>
 <li>多级缓存</li>
 <li>设置缓存不同过期时间</li>
 <li>限流，降级，熔断来降低影响</li>
-</ul>
-</li>
 </ul>
 
       
@@ -621,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缓存击穿有哪些解决方案？"><span class="nav-number">1.</span> <span class="nav-text">1. 缓存击穿有哪些解决方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-缓存并发问题"><span class="nav-number">2.</span> <span class="nav-text">2.缓存并发问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-缓存雪崩现象"><span class="nav-number">3.</span> <span class="nav-text">3.缓存雪崩现象</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存击穿概念"><span class="nav-number">1.</span> <span class="nav-text">缓存击穿概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存并发问概念"><span class="nav-number">2.</span> <span class="nav-text">缓存并发问概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案："><span class="nav-number">2.1.</span> <span class="nav-text">解决方案：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存雪崩现象概念"><span class="nav-number">3.</span> <span class="nav-text">缓存雪崩现象概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案：-1"><span class="nav-number">3.1.</span> <span class="nav-text">解决方案：</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 2.使用 ISNULL()来判断是否为 NULL 值。注意:NULL ">
+<meta name="description" content="Count使用count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 使用ISNULL()使用 ISNULL()来判断是否为 NU">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql性能优化指南">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-23/mysql性能优化指南.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 2.使用 ISNULL()来判断是否为 NULL 值。注意:NULL 与任何值的直接比较都为 NULL。NULL&amp;lt;&amp;gt;NULL 的返回结果是">
+<meta property="og:description" content="Count使用count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 使用ISNULL()使用 ISNULL()来判断是否为 NULL 值。注意:NULL 与任何值的直接比较都为 NULL。NULL&amp;lt;&amp;g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T09:34:26.403Z">
+<meta property="og:updated_time" content="2018-01-14T07:16:45.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql性能优化指南">
-<meta name="twitter:description" content="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 2.使用 ISNULL()来判断是否为 NULL 值。注意:NULL 与任何值的直接比较都为 NULL。NULL&amp;lt;&amp;gt;NULL 的返回结果是">
+<meta name="twitter:description" content="Count使用count(*)会统计值为NULL行，count(列名)不会统计NULL行count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0 使用ISNULL()使用 ISNULL()来判断是否为 NULL 值。注意:NULL 与任何值的直接比较都为 NULL。NULL&amp;lt;&amp;g">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:34:26+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:16:45+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -374,14 +374,14 @@
       
 
       
-        <h5 id="1-count-会统计值为NULL行，count-列名-不会统计NULL行"><a href="#1-count-会统计值为NULL行，count-列名-不会统计NULL行" class="headerlink" title="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行"></a>1.count(*)会统计值为NULL行，count(列名)不会统计NULL行</h5><p>count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0</p>
-<h5 id="2-使用-ISNULL-来判断是否为-NULL-值。"><a href="#2-使用-ISNULL-来判断是否为-NULL-值。" class="headerlink" title="2.使用 ISNULL()来判断是否为 NULL 值。"></a>2.使用 ISNULL()来判断是否为 NULL 值。</h5><p>注意:NULL 与任何值的直接比较都为 NULL。<br>NULL&lt;&gt;NULL 的返回结果是 NULL，不是 false。<br>NULL=NULL 的返回结果是 NULL，不是 true。<br>NULL&lt;&gt;1 的返回结果是 NULL，而不是 true<br>now()&lt;’2017-08-23’ 不包含NULL</p>
-<h5 id="3-mysql主要索引类型"><a href="#3-mysql主要索引类型" class="headerlink" title="3.mysql主要索引类型"></a>3.mysql主要索引类型</h5><p>在mysql索引是在存储引擎层而不是在Server层实现，不是所有引擎都支持索引。</p>
-<p>1）B-tree索引：最常见的索引类型，基于B-Tree数据结构。B-Tree的基本思想是，所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据，而且可以直接支持数据排序（ORDER BY）。但是当索引多列时，列的顺序特别重要，需要格外注意。InnoDB和MyISAM都支持B-Tree索引。InnoDB用的是一个变种B+Tree，而MyISAM为了节省空间对索引进行了压缩，从而牺牲了性能。</p>
-<p>2）hash索引：基于hash表。所以这种索引只支持精确查找，不支持范围查找，不支持排序。这意味着范围查找或ORDER BY都要依赖server层的额外工作。目前只有Memory引擎支持显式的hash索引（但是它的hash是nonunique的，冲突太多时也会影响查找性能）。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引。</p>
-<p>3）FULLTEXT索引：主要用来查找文本中的关键字，而不是直接与索引中的值相比较。Full-text索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的WHERE语句的参数匹配。你可以对某列分别进行full-text索引和B-Tree索引，两者互不冲突。Full-text索引配合MATCH AGAINST操作使用，而不是一般的WHERE语句加LIKE</p>
+        <h3 id="Count使用"><a href="#Count使用" class="headerlink" title="Count使用"></a>Count使用</h3><p>count(*)会统计值为NULL行，count(列名)不会统计NULL行<br>count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0</p>
+<h3 id="使用ISNULL"><a href="#使用ISNULL" class="headerlink" title="使用ISNULL()"></a>使用ISNULL()</h3><p>使用 ISNULL()来判断是否为 NULL 值。<br>注意:NULL 与任何值的直接比较都为 NULL。<br>NULL&lt;&gt;NULL 的返回结果是 NULL，不是 false。<br>NULL=NULL 的返回结果是 NULL，不是 true。<br>NULL&lt;&gt;1 的返回结果是 NULL，而不是 true<br>now()&lt;’2017-08-23’ 不包含NULL</p>
+<h3 id="mysql主要索引类型"><a href="#mysql主要索引类型" class="headerlink" title="mysql主要索引类型"></a>mysql主要索引类型</h3><p>在mysql索引是在存储引擎层而不是在Server层实现，不是所有引擎都支持索引。</p>
+<h4 id="B-tree索引"><a href="#B-tree索引" class="headerlink" title="B-tree索引"></a>B-tree索引</h4><p>1）B-tree索引：最常见的索引类型，基于B-Tree数据结构。B-Tree的基本思想是，所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据，而且可以直接支持数据排序（ORDER BY）。但是当索引多列时，列的顺序特别重要，需要格外注意。InnoDB和MyISAM都支持B-Tree索引。InnoDB用的是一个变种B+Tree，而MyISAM为了节省空间对索引进行了压缩，从而牺牲了性能。</p>
+<h4 id="hash索引"><a href="#hash索引" class="headerlink" title="hash索引"></a>hash索引</h4><p>2）hash索引：基于hash表。所以这种索引只支持精确查找，不支持范围查找，不支持排序。这意味着范围查找或ORDER BY都要依赖server层的额外工作。目前只有Memory引擎支持显式的hash索引（但是它的hash是nonunique的，冲突太多时也会影响查找性能）。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引。</p>
+<h4 id="FULLTEXT索引"><a href="#FULLTEXT索引" class="headerlink" title="FULLTEXT索引"></a>FULLTEXT索引</h4><p>3）FULLTEXT索引：主要用来查找文本中的关键字，而不是直接与索引中的值相比较。Full-text索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的WHERE语句的参数匹配。你可以对某列分别进行full-text索引和B-Tree索引，两者互不冲突。Full-text索引配合MATCH AGAINST操作使用，而不是一般的WHERE语句加LIKE</p>
 <p>索引优点：a.减少服务器需要扫描的数量；b.帮助服务器避免排序和临时表；c.可以将随机IO变为顺序IO</p>
-<h5 id="4-高性能索引策略"><a href="#4-高性能索引策略" class="headerlink" title="4.高性能索引策略"></a>4.高性能索引策略</h5><p>1）负向条件查询不能使用索引:<br>    select <em> from order where status!=0 and stauts!=1 可以优化为in(2,3)<br>2）前导模糊查询不能使用索引<br>    select </em> from order where desc like ‘%XX’;<br>    非前导可以使用索引：<br>    select <em> from order where desc like ‘XX%’<br>3）在属性上进行计算不能命中索引<br>select </em> from table where id+1=2;<br>select <em> from order where YEAR(date) &lt; = ‘2017’<br>4）单条查询，使用hash索引更好<br>select </em> from user where uid=12<br>因为hash值与索引uid做了精确的对应关系<br>5）强制类型转换会全表扫描<br>select <em> from user where phone=13800001234<br>请使用select </em> from user where phone=’13800001234‘</p>
+<h3 id="4-高性能索引策略"><a href="#4-高性能索引策略" class="headerlink" title="4.高性能索引策略"></a>4.高性能索引策略</h3><p>1）负向条件查询不能使用索引:<br>    select <em> from order where status!=0 and stauts!=1 可以优化为in(2,3)<br>2）前导模糊查询不能使用索引<br>    select </em> from order where desc like ‘%XX’;<br>    非前导可以使用索引：<br>    select <em> from order where desc like ‘XX%’<br>3）在属性上进行计算不能命中索引<br>select </em> from table where id+1=2;<br>select <em> from order where YEAR(date) &lt; = ‘2017’<br>4）单条查询，使用hash索引更好<br>select </em> from user where uid=12<br>因为hash值与索引uid做了精确的对应关系<br>5）强制类型转换会全表扫描<br>select <em> from user where phone=13800001234<br>请使用select </em> from user where phone=’13800001234‘</p>
 
       
     </div>
@@ -624,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-count-会统计值为NULL行，count-列名-不会统计NULL行"><span class="nav-number">1.</span> <span class="nav-text">1.count(*)会统计值为NULL行，count(列名)不会统计NULL行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-使用-ISNULL-来判断是否为-NULL-值。"><span class="nav-number">2.</span> <span class="nav-text">2.使用 ISNULL()来判断是否为 NULL 值。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-mysql主要索引类型"><span class="nav-number">3.</span> <span class="nav-text">3.mysql主要索引类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-高性能索引策略"><span class="nav-number">4.</span> <span class="nav-text">4.高性能索引策略</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Count使用"><span class="nav-number">1.</span> <span class="nav-text">Count使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ISNULL"><span class="nav-number">2.</span> <span class="nav-text">使用ISNULL()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql主要索引类型"><span class="nav-number">3.</span> <span class="nav-text">mysql主要索引类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#B-tree索引"><span class="nav-number">3.1.</span> <span class="nav-text">B-tree索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hash索引"><span class="nav-number">3.2.</span> <span class="nav-text">hash索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FULLTEXT索引"><span class="nav-number">3.3.</span> <span class="nav-text">FULLTEXT索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-高性能索引策略"><span class="nav-number">4.</span> <span class="nav-text">4.高性能索引策略</span></a></li></ol></div>
             
 
           </div>

@@ -483,8 +483,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-12T22:12:10+08:00">
-                2017-12-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:11:56+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -550,18 +550,18 @@
 
       
         
-          
-            <h4 id="docker构成"><a href="#docker构成" class="headerlink" title="docker构成"></a>docker构成</h4><blockquote>
+          <h3 id="docker构成"><a href="#docker构成" class="headerlink" title="docker构成"></a>docker构成</h3><blockquote>
 <p>namespace，容器隔离的基础，保证A容器看不到B容器.<br>6个名空间：User,Mnt,Network,UTS,IPC,Pidcgroups，<br>容器资源统计和隔离。主要用到的cgroups子系统：cpu,blkio,device,freezer,memory<br>unionfs，典型：aufs/overlayfs，分层镜像实现的基础</p>
 </blockquote>
-<h4 id="docker组件"><a href="#docker组件" class="headerlink" title="docker组件"></a>docker组件</h4><blockquote>
-<p>docker Client客户端————&gt;向docker服务器进程发起请求，如:创建、停止、销毁容器等操作<br>docker Server服务器进程—–&gt;处理所有docker的请求，管理所有容器<br>docker Registry镜像仓库——&gt;镜像存放的中央仓库，可看作是存放二进制的scm</p>
-</blockquote>
-<h4 id="容器相关操作"><a href="#容器相关操作" class="headerlink" title="容器相关操作"></a>容器相关操作</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker create # 创建一个容器但是不启动它</span><br><span class="line">docker run # 创建并启动一个容器</span><br><span class="line">docker stop # 停止容器运行，发送信号SIGTERM</span><br><span class="line">docker start # 启动一个停止状态的容器</span><br><span class="line">docker restart # 重启一个容器</span><br><span class="line">docker rm # 删除一个容器</span><br><span class="line">docker kill # 发送信号给容器，默认SIGKILL</span><br><span class="line">docker attach # 连接(进入)到一个正在运行的容器</span><br><span class="line">docker wait # 阻塞到一个容器，直到容器停止运行</span><br></pre></td></tr></table></figure>
-<h4 id="获取容器相关"><a href="#获取容器相关" class="headerlink" title="获取容器相关"></a>获取容器相关</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker ps # 显示状态为运行（Up）的容器</span><br><span class="line">docker ps -a # 显示所有容器,包括运行中（Up）的和退出的(Exited)</span><br><span class="line">docker inspect # 深入容器内部获取容器所有信息</span><br><span class="line">docker logs # 查看容器的日志(stdout/stderr)</span><br><span class="line">docker events # 得到docker服务器的实时的事件</span><br><span class="line">docker port # 显示容器的端口映射</span><br><span class="line">docker top # 显示容器的进程信息</span><br><span class="line">docker diff # 显示容器文件系统的前后变化</span><br><span class="line">docker cp # 从容器里向外拷贝文件或目录</span><br><span class="line">docker export # 将容器整个文件系统导出为一个tar包，不带layers、tag等信息</span><br></pre></td></tr></table></figure>
-<h4 id="docker执行命令"><a href="#docker执行命令" class="headerlink" title="docker执行命令"></a>docker执行命令</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec # 在容器里执行一个命令，可以执行bash进入交互式</span><br></pre></td></tr></table></figure>
-<h4 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker images # 显示本地所有的镜像列表</span><br><span class="line">docker import # 从一个tar包创建一个镜像，往往和export结合使用</span><br><span class="line">docker build # 使用Dockerfile创建镜像（推荐）</span><br><span class="line">docker <span class="keyword">commit</span> # 从容器创建镜像</span><br><span class="line">docker rmi # 删除一个镜像</span><br><span class="line">docker <span class="keyword">load</span> # 从一个tar包创建一个镜像，和<span class="keyword">save</span>配合使用</span><br><span class="line">docker <span class="keyword">save</span> # 将一个镜像保存为一个tar包，带layers和tag信息</span><br><span class="line">docker history # 显示生成一个镜像的历史命令</span><br><span class="line">docker tag # 为镜像起一个别名</span><br><span class="line">docker login # 登录到一个registry</span><br><span class="line">docker <span class="keyword">search</span> # 从registry仓库搜索镜像</span><br><span class="line">docker pull # 从仓库下载镜像到本地</span><br><span class="line">docker push # 将一个镜像push到registry仓库中</span><br></pre></td></tr></table></figure>
-          
+<h3 id="docker组件"><a href="#docker组件" class="headerlink" title="docker组件"></a>docker组件</h3><blockquote>
+<p>docker Client客户端————&gt;向docker服务器进程发起请求，如:创建、停止、销毁容器等操作<br>docker Server服务器进程—–&gt;处理所有docker的请求，管理所有容器<br>docker Registry镜像仓库——&gt;镜像存放的中央仓库，可看作是存放二进制的scm<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-30/docker技术基础.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -655,8 +655,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:34:41+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:12:30+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -722,16 +722,16 @@
 
       
         
-          
-            <p>安装docker 官方镜像 nginx<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure></p>
-<p>启动docker nginx<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -d nginx</span><br></pre></td></tr></table></figure></p>
-<p>重新制定配置文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -v /logs:/var/log/nginx -v /config/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx</span><br></pre></td></tr></table></figure></p>
-<p>查看容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></p>
-<p>重启容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart 071ba93265c8 或者 docker restart webserver</span><br></pre></td></tr></table></figure></p>
-<p>进入容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it c4bfc0e2a5aa /bin/bash</span><br></pre></td></tr></table></figure></p>
-<p>删除<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm webserver</span><br></pre></td></tr></table></figure></p>
-
-          
+          <h3 id="安装docker-官方镜像-nginx"><a href="#安装docker-官方镜像-nginx" class="headerlink" title="安装docker 官方镜像 nginx"></a>安装docker 官方镜像 nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+<h3 id="启动docker-nginx"><a href="#启动docker-nginx" class="headerlink" title="启动docker nginx"></a>启动docker nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -d nginx</span><br></pre></td></tr></table></figure>
+<h3 id="重新制定配置文件"><a href="#重新制定配置文件" class="headerlink" title="重新制定配置文件"></a>重新制定配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name webserver -d -p 8090:80 -v /work/zhongran/www:/usr/share/nginx/html:ro -v /logs:/var/log/nginx -v /config/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-30/docker容器之nginx安装配置使用.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -972,8 +972,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-24T22:08:52+08:00">
-                2017-08-24
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:15:12+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -1017,22 +1017,15 @@
 
       
         
-          
-            <h4 id="分布式系统-SOA-微服务架构的特点："><a href="#分布式系统-SOA-微服务架构的特点：" class="headerlink" title="分布式系统/SOA/微服务架构的特点："></a>分布式系统/SOA/微服务架构的特点：</h4><p>(1)CAP特点：<br>a.一致性(Consistency):( 同样数据在分布式系统的各个节点上都是一致的)<br>b.分区容忍性(Partition Tolerance) :(如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作)<br>c.可用性(Availability):( 所有在分布式系统活跃的节点都能够处理操作且能响应查询)</p>
-<p>(2)ACID特点：<br>a.原子性(Atomicity)<br>一个事务(transaction)中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。<br>b.一致性(Consistency)<br>事务的一致性指的是在一个事务执行之前和执行之后数据库都必须处于一致性状态。如果事务成功地完成，那么系统中所有变化将正确地应用，系统处于有效状态。如果在事务中出现错误，那么系统中的所有变化将自动地回滚，系统返回到原始状态。<br>c.隔离性(Isolation)<br>指的是在并发环境中，当不同的事务同时操纵相同的数据时，每个事务都有各自的完整数据空间。由并发事务所做的修改必须与任何其他并发事务所做的修改隔离。事务查看数据更新时，数据所处的状态要么是另一事务修改它之前的状态，要么是另一事务修改它之后的状态，事务不会查看到中间状态的数据。<br>d.持久性(Durability)<br>指的是只要事务成功结束，它对数据库所做的更新就必须永久保存下来。即使发生系统崩溃，重新启动数据库系统后，数据库还能恢复到事务成功结束时的状态。</p>
-<h4 id="分布式事务基本介绍"><a href="#分布式事务基本介绍" class="headerlink" title="分布式事务基本介绍"></a>分布式事务基本介绍</h4><p>分布式事务服务（Distributed Transaction Service，DTS）是一种分布式事务框架，用来确保在大规模分布式/微服务环境下端到端业务操作的最终一致性。</p>
-<p>由CAP定理可知，任何大型的分布式系统/微服务在一致性、可用性和分区容忍这三点上只能保证其中的两点。由于在分布式系统中经常发生丢包、网络故障，分区容忍性是必须要满足的，同时为了兼顾高可用性，绝大部分系统都将强一致性需求转化成最终一致性的需求，并通过幂等机制保证了数据的最终一致性</p>
-<h4 id="常用分布式技术介绍"><a href="#常用分布式技术介绍" class="headerlink" title="常用分布式技术介绍"></a>常用分布式技术介绍</h4><p>(1) 本地消息表（经典的ebay模式）<br>(2) 消息中间件<br>(3) 分布式事务—2PC协议<br>为了解决大型分布式/微服务系统中的一致性问题，业界比较流行的做法是采用比较著名的有二阶提交协议（2 Phase Commitment Protocol）和三阶提交协议（3 PhaseCommitment Protocol）。考虑到性能问题，三阶段提交协议目前较少被采用。</p>
-<p>2PC协议</p>
-<p>二阶段提交协议是分布式系统中较为经典的处理数据一致性的解决方案。在大型的集群环境中，对于单体微服务本身而言虽然能够通过代码质量、Mock测试等方法来确保自身服务的可用性，但是无法能够保证其他服务的可用性。当一个全链路的端到端业务操作，常常会跨多个节点、多个应用，为了能够保证全局事务的ACID特性，需要引入一个协调组件(这里称之为TM)来控制所有服务参与者(这里称之为RM)的操作结果，根据所有参与者的反馈结果来决定整个分布式事务究竟是提交还是回滚的结果。</p>
-<p>第一阶段：称为准备(prepare)阶段。事务协调者向各个服务应用发送prepare请求，服务应用在得到请求后做预处理操作，预处理可能是做预检查，也可能是把请求临时存储，可以理解为是一种试探性地提交。下面是一般的步骤：<br>a.事务协调者会问所有的参与者服务，是否可以提交操作。<br>b.各个参与者开始事务执行的准备工作：如资源上锁，预留资源，写回滚/重试的log。<br>c.参与者响应协调者，如果事务准备工作成功，则回应“可以提交”，否则回应拒绝提交。<br>第二阶段：称为提交(commit)/回滚(rollback)阶段。是指事务真正提交或者回滚的阶段。如果事务协调者发现事务参与者有一个在prepare阶段出现失败，则会要求所有的参与者进行回滚。如果协调者发现所有的参与者都prepare操作都是成功，那么他将向所有的参与者发出提交请求，这时所有参与者才会正式提交。由此保证了要求全部提交成功，要么全部失败。下面是具体步骤：</p>
-<p>a.如果所有的参与者都回应“可以提交”，那么协调者向所有参与者发送“正式提交”的命令。参与者完成正式提交，并释放所有资源，然后回应“完成”，协调者收集各个服务的“完成”回应后结束事务。</p>
-<p>b.如果有一个参与者回应“拒绝提交”，那么协调者向所有的参与者发送“回滚操作”，并释放所有的资源，然后回应“回滚完成”，协调者收集各个服务应用的“回滚”返回后，取消整体的分布式事务。<br><img src="http://incdn1.b0.upaiyun.com/2017/08/3b31b5b658b17f0416f76eed3fb89a87.png"></p>
-<p>二阶段提交协议解决的是分布式系统/微服务架构中数据强一致性的问题，其原理简单，但缺点也是存在，主要缺点如下：</p>
-<p>a.单点问题：协调者在整个二阶段中的作用非常重要，一旦部署协调者组件服务的节点出现不可用宕机情况，那么会影响整个分布式系统的正常运行。</p>
-<p>b.同步阻塞：二阶段提交执行过程中，所有服务参与者需要服从协调者的统一调度，期间处于阻塞状态，会一定程度上影响整个系统的效率。</p>
-
-          
+          <h3 id="分布式系统特点："><a href="#分布式系统特点：" class="headerlink" title="分布式系统特点："></a>分布式系统特点：</h3><p>####CAP特点：<br>a.一致性(Consistency):( 同样数据在分布式系统的各个节点上都是一致的)<br>b.分区容忍性(Partition Tolerance) :(如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作)<br>c.可用性(Availability):( 所有在分布式系统活跃的节点都能够处理操作且能响应查询)</p>
+<h4 id="ACID特点："><a href="#ACID特点：" class="headerlink" title="ACID特点："></a>ACID特点：</h4><p>a.原子性(Atomicity)<br>一个事务(transaction)中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。<br>b.一致性(Consistency)<br>事务的一致性指的是在一个事务执行之前和执行之后数据库都必须处于一致性状态。如果事务成功地完成，那么系统中所有变化将正确地应用，系统处于有效状态。如果在事务中出现错误，那么系统中的所有变化将自动地回滚，系统返回到原始状态。<br>c.隔离性(Isolation)<br>指的是在并发环境中，当不同的事务同时操纵相同的数据时，每个事务都有各自的完整数据空间。由并发事务所做的修改必须与任何其他并发事务所做的修改隔离。事务查看数据更新时，数据所处的状态要么是另一事务修改它之前的状态，要么是另一事务修改它之后的状态，事务不会查看到中间状态的数据。<br>d.持久性(Durability)<br>指的是只要事务成功结束，它对数据库所做的更新就必须永久保存下来。即使发生系统崩溃，重新启动数据库系统后，数据库还能恢复到事务成功结束时的状态。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-24/分布式事务DTS.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1126,8 +1119,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:34:26+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:16:45+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -1194,14 +1187,14 @@
       
         
           
-            <h5 id="1-count-会统计值为NULL行，count-列名-不会统计NULL行"><a href="#1-count-会统计值为NULL行，count-列名-不会统计NULL行" class="headerlink" title="1.count(*)会统计值为NULL行，count(列名)不会统计NULL行"></a>1.count(*)会统计值为NULL行，count(列名)不会统计NULL行</h5><p>count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0</p>
-<h5 id="2-使用-ISNULL-来判断是否为-NULL-值。"><a href="#2-使用-ISNULL-来判断是否为-NULL-值。" class="headerlink" title="2.使用 ISNULL()来判断是否为 NULL 值。"></a>2.使用 ISNULL()来判断是否为 NULL 值。</h5><p>注意:NULL 与任何值的直接比较都为 NULL。<br>NULL&lt;&gt;NULL 的返回结果是 NULL，不是 false。<br>NULL=NULL 的返回结果是 NULL，不是 true。<br>NULL&lt;&gt;1 的返回结果是 NULL，而不是 true<br>now()&lt;’2017-08-23’ 不包含NULL</p>
-<h5 id="3-mysql主要索引类型"><a href="#3-mysql主要索引类型" class="headerlink" title="3.mysql主要索引类型"></a>3.mysql主要索引类型</h5><p>在mysql索引是在存储引擎层而不是在Server层实现，不是所有引擎都支持索引。</p>
-<p>1）B-tree索引：最常见的索引类型，基于B-Tree数据结构。B-Tree的基本思想是，所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据，而且可以直接支持数据排序（ORDER BY）。但是当索引多列时，列的顺序特别重要，需要格外注意。InnoDB和MyISAM都支持B-Tree索引。InnoDB用的是一个变种B+Tree，而MyISAM为了节省空间对索引进行了压缩，从而牺牲了性能。</p>
-<p>2）hash索引：基于hash表。所以这种索引只支持精确查找，不支持范围查找，不支持排序。这意味着范围查找或ORDER BY都要依赖server层的额外工作。目前只有Memory引擎支持显式的hash索引（但是它的hash是nonunique的，冲突太多时也会影响查找性能）。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引。</p>
-<p>3）FULLTEXT索引：主要用来查找文本中的关键字，而不是直接与索引中的值相比较。Full-text索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的WHERE语句的参数匹配。你可以对某列分别进行full-text索引和B-Tree索引，两者互不冲突。Full-text索引配合MATCH AGAINST操作使用，而不是一般的WHERE语句加LIKE</p>
+            <h3 id="Count使用"><a href="#Count使用" class="headerlink" title="Count使用"></a>Count使用</h3><p>count(*)会统计值为NULL行，count(列名)不会统计NULL行<br>count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0</p>
+<h3 id="使用ISNULL"><a href="#使用ISNULL" class="headerlink" title="使用ISNULL()"></a>使用ISNULL()</h3><p>使用 ISNULL()来判断是否为 NULL 值。<br>注意:NULL 与任何值的直接比较都为 NULL。<br>NULL&lt;&gt;NULL 的返回结果是 NULL，不是 false。<br>NULL=NULL 的返回结果是 NULL，不是 true。<br>NULL&lt;&gt;1 的返回结果是 NULL，而不是 true<br>now()&lt;’2017-08-23’ 不包含NULL</p>
+<h3 id="mysql主要索引类型"><a href="#mysql主要索引类型" class="headerlink" title="mysql主要索引类型"></a>mysql主要索引类型</h3><p>在mysql索引是在存储引擎层而不是在Server层实现，不是所有引擎都支持索引。</p>
+<h4 id="B-tree索引"><a href="#B-tree索引" class="headerlink" title="B-tree索引"></a>B-tree索引</h4><p>1）B-tree索引：最常见的索引类型，基于B-Tree数据结构。B-Tree的基本思想是，所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据，而且可以直接支持数据排序（ORDER BY）。但是当索引多列时，列的顺序特别重要，需要格外注意。InnoDB和MyISAM都支持B-Tree索引。InnoDB用的是一个变种B+Tree，而MyISAM为了节省空间对索引进行了压缩，从而牺牲了性能。</p>
+<h4 id="hash索引"><a href="#hash索引" class="headerlink" title="hash索引"></a>hash索引</h4><p>2）hash索引：基于hash表。所以这种索引只支持精确查找，不支持范围查找，不支持排序。这意味着范围查找或ORDER BY都要依赖server层的额外工作。目前只有Memory引擎支持显式的hash索引（但是它的hash是nonunique的，冲突太多时也会影响查找性能）。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引。</p>
+<h4 id="FULLTEXT索引"><a href="#FULLTEXT索引" class="headerlink" title="FULLTEXT索引"></a>FULLTEXT索引</h4><p>3）FULLTEXT索引：主要用来查找文本中的关键字，而不是直接与索引中的值相比较。Full-text索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的WHERE语句的参数匹配。你可以对某列分别进行full-text索引和B-Tree索引，两者互不冲突。Full-text索引配合MATCH AGAINST操作使用，而不是一般的WHERE语句加LIKE</p>
 <p>索引优点：a.减少服务器需要扫描的数量；b.帮助服务器避免排序和临时表；c.可以将随机IO变为顺序IO</p>
-<h5 id="4-高性能索引策略"><a href="#4-高性能索引策略" class="headerlink" title="4.高性能索引策略"></a>4.高性能索引策略</h5><p>1）负向条件查询不能使用索引:<br>    select <em> from order where status!=0 and stauts!=1 可以优化为in(2,3)<br>2）前导模糊查询不能使用索引<br>    select </em> from order where desc like ‘%XX’;<br>    非前导可以使用索引：<br>    select <em> from order where desc like ‘XX%’<br>3）在属性上进行计算不能命中索引<br>select </em> from table where id+1=2;<br>select <em> from order where YEAR(date) &lt; = ‘2017’<br>4）单条查询，使用hash索引更好<br>select </em> from user where uid=12<br>因为hash值与索引uid做了精确的对应关系<br>5）强制类型转换会全表扫描<br>select <em> from user where phone=13800001234<br>请使用select </em> from user where phone=’13800001234‘</p>
+<h3 id="4-高性能索引策略"><a href="#4-高性能索引策略" class="headerlink" title="4.高性能索引策略"></a>4.高性能索引策略</h3><p>1）负向条件查询不能使用索引:<br>    select <em> from order where status!=0 and stauts!=1 可以优化为in(2,3)<br>2）前导模糊查询不能使用索引<br>    select </em> from order where desc like ‘%XX’;<br>    非前导可以使用索引：<br>    select <em> from order where desc like ‘XX%’<br>3）在属性上进行计算不能命中索引<br>select </em> from table where id+1=2;<br>select <em> from order where YEAR(date) &lt; = ‘2017’<br>4）单条查询，使用hash索引更好<br>select </em> from user where uid=12<br>因为hash值与索引uid做了精确的对应关系<br>5）强制类型转换会全表扫描<br>select <em> from user where phone=13800001234<br>请使用select </em> from user where phone=’13800001234‘</p>
 
           
         
@@ -1297,8 +1290,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-22T09:20:41+08:00">
-                2017-08-22
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:17:03+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -1342,14 +1335,15 @@
 
       
         
-          
-            <h5 id="1-同步与异步"><a href="#1-同步与异步" class="headerlink" title="1.同步与异步"></a>1.同步与异步</h5><p>同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)<br>所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。<br>换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。</p>
-<p>而异步则是相反，<em>调用</em>在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js</p>
-<h5 id="2-阻塞与非阻塞"><a href="#2-阻塞与非阻塞" class="headerlink" title="2.阻塞与非阻塞"></a>2.阻塞与非阻塞</h5><p>阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态.</p>
-<p>阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。<br>非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。</p>
-<h5 id="3-事件驱动模型"><a href="#3-事件驱动模型" class="headerlink" title="3.事件驱动模型"></a>3.事件驱动模型</h5><p>事件驱动是指在持续事务管理过程中，进行决策的一种策略，即跟随当前时间点上出现的事件，调动可用资源，执行相关任务，使不断出现的问题得以解决，防止事务堆积。在计算机编程、公共关系、经济活动等领域均有应用。</p>
-
-          
+          <h5 id="1-同步与异步"><a href="#1-同步与异步" class="headerlink" title="1.同步与异步"></a>1.同步与异步</h5><p>同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)<br>所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。<br>换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。</p>
+<p>而异步则是相反，<em>调用</em>在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-22/阻塞非阻塞与同步异步的区别.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1443,8 +1437,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T23:13:22+08:00">
-                2018-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:17:50+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -1511,14 +1505,14 @@
       
         
           
-            <h5 id="1-多线程的作用？"><a href="#1-多线程的作用？" class="headerlink" title="1.多线程的作用？"></a>1.多线程的作用？</h5><p>（1）发挥多核CPU作用<br>（2）防止阻塞<br>（3）便于建模</p>
-<h5 id="2-创建线程的方式"><a href="#2-创建线程的方式" class="headerlink" title="2.创建线程的方式"></a>2.创建线程的方式</h5><p>（1）继承Thread类<br>（2）实现Runnable接口，实现接口要好于继承类</p>
-<h5 id="3-start与run方法区别"><a href="#3-start与run方法区别" class="headerlink" title="3.start与run方法区别"></a>3.start与run方法区别</h5><p>只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方法，那么代码还是同步执行的，必须等待一个线程的run()方法里面的代码全部执行完毕之后，另外一个线程才可以执行其run()方法里面的代码。</p>
-<h5 id="4-Callable与Runnable区别"><a href="#4-Callable与Runnable区别" class="headerlink" title="4.Callable与Runnable区别"></a>4.Callable与Runnable区别</h5><p>Runnable接口中的run()方法的返回值是void，它做的事情只是纯粹地去执行run()方法中的代码而已；Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。</p>
+            <h3 id="多线程的作用？"><a href="#多线程的作用？" class="headerlink" title="多线程的作用？"></a>多线程的作用？</h3><p>（1）发挥多核CPU作用<br>（2）防止阻塞<br>（3）便于建模</p>
+<h3 id="创建线程的方式"><a href="#创建线程的方式" class="headerlink" title="创建线程的方式"></a>创建线程的方式</h3><p>（1）继承Thread类<br>（2）实现Runnable接口，实现接口要好于继承类</p>
+<h3 id="start与run方法区别"><a href="#start与run方法区别" class="headerlink" title="start与run方法区别"></a>start与run方法区别</h3><p>只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方法，那么代码还是同步执行的，必须等待一个线程的run()方法里面的代码全部执行完毕之后，另外一个线程才可以执行其run()方法里面的代码。</p>
+<h3 id="Callable与Runnable区别"><a href="#Callable与Runnable区别" class="headerlink" title="Callable与Runnable区别"></a>Callable与Runnable区别</h3><p>Runnable接口中的run()方法的返回值是void，它做的事情只是纯粹地去执行run()方法中的代码而已；Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableAndFuture</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Callable&lt;Integer&gt; callable=<span class="keyword">new</span> Callable&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> Random().nextInt(<span class="number">100</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        FutureTask&lt;Integer&gt; future=<span class="keyword">new</span> FutureTask&lt;Integer&gt;(callable);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(future).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            System.out.println(future.get());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="5-CyclicBarrier和CountDownLatch的区别"><a href="#5-CyclicBarrier和CountDownLatch的区别" class="headerlink" title="5.CyclicBarrier和CountDownLatch的区别"></a>5.CyclicBarrier和CountDownLatch的区别</h5><p>（1）CountDownLatch和CyclicBarrier都能够实现线程之间的等待，只不过它们侧重点不同<br>（2）CountDownLatch一般用于某个线程A等待若干个其他线程执行完任务之后，它才执行；<br>（3）CyclicBarrier一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行；<br>（4）CountDownLatch是不能够重用的，而CyclicBarrier是可以重用的。</p>
-<h5 id="6-为什么用线程池？"><a href="#6-为什么用线程池？" class="headerlink" title="6.为什么用线程池？"></a>6.为什么用线程池？</h5><p>避免频繁地创建和销毁线程，达到线程对象的重用。另外，使用线程池还可以根据项目灵活地控制并发的数目</p>
-<h4 id="7-Semaphore有什么作用？"><a href="#7-Semaphore有什么作用？" class="headerlink" title="7.Semaphore有什么作用？"></a>7.Semaphore有什么作用？</h4><p>Semaphore就是一个信号量，它的作用是限制某段代码块的并发数。Semaphore有一个构造函数，可以传入一个int型整数n，表示某段代码最多只有n个线程可以访问，如果超出了n，那么请等待，等到某个线程执行完毕这段代码块，下一个线程再进入。由此可以看出如果Semaphore构造函数中传入的int型整数n=1，相当于变成了一个synchronized了。</p>
+<h3 id="CyclicBarrier和CountDownLatch的区别"><a href="#CyclicBarrier和CountDownLatch的区别" class="headerlink" title="CyclicBarrier和CountDownLatch的区别"></a>CyclicBarrier和CountDownLatch的区别</h3><p>（1）CountDownLatch和CyclicBarrier都能够实现线程之间的等待，只不过它们侧重点不同<br>（2）CountDownLatch一般用于某个线程A等待若干个其他线程执行完任务之后，它才执行；<br>（3）CyclicBarrier一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行；<br>（4）CountDownLatch是不能够重用的，而CyclicBarrier是可以重用的。</p>
+<h3 id="为什么用线程池？"><a href="#为什么用线程池？" class="headerlink" title="为什么用线程池？"></a>为什么用线程池？</h3><p>避免频繁地创建和销毁线程，达到线程对象的重用。另外，使用线程池还可以根据项目灵活地控制并发的数目</p>
+<h3 id="Semaphore有什么作用？"><a href="#Semaphore有什么作用？" class="headerlink" title="Semaphore有什么作用？"></a>Semaphore有什么作用？</h3><p>Semaphore就是一个信号量，它的作用是限制某段代码块的并发数。Semaphore有一个构造函数，可以传入一个int型整数n，表示某段代码最多只有n个线程可以访问，如果超出了n，那么请等待，等到某个线程执行完毕这段代码块，下一个线程再进入。由此可以看出如果Semaphore构造函数中传入的int型整数n=1，相当于变成了一个synchronized了。</p>
 
           
         
@@ -1614,8 +1608,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-19T14:44:51+08:00">
-                2017-08-19
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:20:37+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -1659,70 +1653,18 @@
 
       
         
-          
-            <h4 id="什么是高可用（High-Availability）？"><a href="#什么是高可用（High-Availability）？" class="headerlink" title="什么是高可用（High Availability）？"></a>什么是高可用（High Availability）？</h4><p>百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。</p>
+          <h3 id="什么是高可用（High-Availability）？"><a href="#什么是高可用（High-Availability）？" class="headerlink" title="什么是高可用（High Availability）？"></a>什么是高可用（High Availability）？</h3><p>百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。</p>
 <blockquote>
 <p>如何保证过高可用呢？</p>
 </blockquote>
-<p>主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用</p>
-<ul>
-<li><p>1、主从方式<br>  原理：主机工作，备机处于监控准备状况，当主机宕机时，备机接管主机的一切工作，待主机恢复正常，按使用者的设定以自动或者手动方式将服务切换到主机上运行。数据一致性通过共享存储系统解决。</p>
-</li>
-<li><p>2、双机双工方式<br>  两台主机同时运行各自的服务工作且相互监测情况，当任一台宕机时，另一台主机立即接管他的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。</p>
-</li>
-<li><p>3、集群工作方式<br>  多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。</p>
-</li>
-</ul>
-<h4 id="什么是高并发？"><a href="#什么是高并发？" class="headerlink" title="什么是高并发？"></a>什么是高并发？</h4><p>高并发是分布式系统架构设计中必须考虑的因素之一，通常指通过设计保证系统能够同时并行处理很多请求。</p>
-<blockquote>
-<p>如何保证高并发？  </p>
-</blockquote>
-<ul>
-<li>垂直扩展：提升单机处理能力</li>
-<li>水平扩展：只要增加服务器数量，就能线性扩充系统性能。</li>
-</ul>
-<h4 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h4><ul>
-<li><p>1.空间换时间</p>
-<ul>
-<li>多级缓存，静态化</li>
-<li>索引</li>
-</ul>
-</li>
-<li><p>2.并行与分布式计算</p>
-<ul>
-<li>任务切分，分而治之</li>
-<li>多进程，多线程并行执行</li>
-</ul>
-</li>
-<li><p>3.多维度可用</p>
-<ul>
-<li>负载均衡、容灾、备份</li>
-<li>读写分离</li>
-<li>依赖关系</li>
-<li>监控</li>
-</ul>
-</li>
-<li><p>4.伸缩</p>
-<ul>
-<li><p>拆分：</p>
-<p>  对业务的拆分：对业务进行逻辑的分段，采用异步非阻塞方式，提供系统的吞吐量；</p>
-<p>  对数据库的拆分：随着数据量并发量的增加，需要对数据库进行切分，包括分库和分表，这样需要增加对数据库路由的逻辑支持</p>
-</li>
-<li><p>无状态</p>
-<p>  模块最好是无状态的，可以增加节点就可以提供整个系统吞吐量</p>
-</li>
-</ul>
-</li>
-<li><p>5.优化资源利用</p>
-<ul>
-<li>系统容量有限</li>
-<li>原子操作与并发控制</li>
-<li>资源释放</li>
-</ul>
-</li>
-</ul>
-
-          
+<p>主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-19/高可用高并发大型网站架构设计思路.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

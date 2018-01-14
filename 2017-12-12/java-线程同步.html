@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="多线程临界区的概念 多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共享变量进行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-12T14:55:42.025Z">
+<meta property="og:updated_time" content="2018-01-14T07:06:17.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java-线程同步">
 <meta name="twitter:description" content="多线程临界区的概念 多线程访问访问交替访问同一个对象，这个对象被称为临界资源。 一次只有一个线程使用临界资源，当一个线程获得临界资源使用权限，其他线程必须等待。 一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。 线程不安全，多线程访问同一个对象，可能会造成数据不一致。  内存可见性多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共享变量进行">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-12T22:55:42+08:00">
-                2017-12-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:06:17+08:00">
+                2018-01-14
               </time>
             
           </span>
@@ -380,8 +380,7 @@
 <li>一个线程获取临界资源不能无限制的使用下去，必须在有限时间内释放。</li>
 <li>线程不安全，多线程访问同一个对象，可能会造成数据不一致。</li>
 </ul>
-<h4 id="内存可见性"><a href="#内存可见性" class="headerlink" title="内存可见性"></a>内存可见性</h4><p>多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共享变量进行修改，此时拿到的变量还没有被修改，也就是一个线程对内存变量的修改，另一个线程不能马上看到，甚至永远也看不到，发生了数据错误，这个就是内存可见性。</p>
-<p>加锁可以解决这个问题。java中常用的枷锁方式有：</p>
+<h4 id="内存可见性"><a href="#内存可见性" class="headerlink" title="内存可见性"></a>内存可见性</h4><p>多线程情况下，一个线程对内存共享变量做出了修改，没有及时改变共享变量的值。另一个线程也要对共享变量进行修改，此时拿到的变量还没有被修改，也就是一个线程对内存变量的修改，另一个线程不能马上看到，甚至永远也看不到，发生了数据错误，这个就是内存可见性。<br><a id="more"></a><br>加锁可以解决这个问题。java中常用的枷锁方式有：</p>
 <ul>
 <li>使用synchronized关键字</li>
 <li>使用显示锁 lock</li>
@@ -391,7 +390,8 @@
 <li>同步代码块<br>synchronized(o){ } 对o加锁的同步代码块，只有拿到锁标记的线程才能够进入对o加锁的同步代码块。</li>
 <li>同步方法<br>synchronized作为方法修饰符修饰的方法被称为同步方法，整个方法都是一个代码块。</li>
 </ul>
-<h4 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h4><p>ReentrantLock与synchronized作用类似,更加灵活。<br><a id="more"></a><br>读写锁，读写分离。分为readLock和writeLock两把锁。对于readLock来说，是一把共享锁，可以多次分配；但是当readLock锁上的时候，调用writeLock是会阻塞的，反之亦然，另，写锁是一把普通的互斥锁，只可以分配一次。</p>
+<h4 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h4><p>ReentrantLock与synchronized作用类似,更加灵活。</p>
+<p>读写锁，读写分离。分为readLock和writeLock两把锁。对于readLock来说，是一把共享锁，可以多次分配；但是当readLock锁上的时候，调用writeLock是会阻塞的，反之亦然，另，写锁是一把普通的互斥锁，只可以分配一次。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();  </span><br><span class="line">lock.lock();  </span><br><span class="line"><span class="keyword">try</span> &#123;   </span><br><span class="line">  <span class="comment">// update object state  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">finally</span> &#123;  </span><br><span class="line">  lock.unlock();   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="synchronized和ReentrantLock的区别"><a href="#synchronized和ReentrantLock的区别" class="headerlink" title="synchronized和ReentrantLock的区别"></a>synchronized和ReentrantLock的区别</h4><ul>
 <li>1.两者都是互斥锁，所谓互斥锁：同一时间只有一个拿到锁的线程才能够去访问加锁的共享资源，其他的线程只能阻塞</li>
