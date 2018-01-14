@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="JAVA JUC包中的集合类有三部分 List和SetJUC集合包中的List和Set实现类包括: CopyOnWriteArrayList, CopyOnWriteArraySet和ConcurrentSkipListSet。 CopyOnWriteArrayListCopyOnWriteArrayList相当于线程安全的ArrayList，它实现了List接口。CopyOnWriteArray">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-14T06:59:16.891Z">
+<meta property="og:updated_time" content="2018-01-14T07:00:01.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java-多线程juc集合">
 <meta name="twitter:description" content="JAVA JUC包中的集合类有三部分 List和SetJUC集合包中的List和Set实现类包括: CopyOnWriteArrayList, CopyOnWriteArraySet和ConcurrentSkipListSet。 CopyOnWriteArrayListCopyOnWriteArrayList相当于线程安全的ArrayList，它实现了List接口。CopyOnWriteArray">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T14:59:16+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:00:01+08:00">
                 2018-01-14
               </time>
             
@@ -379,6 +379,7 @@
 <h4 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h4><p>CopyOnWriteArrayList相当于线程安全的ArrayList，它实现了List接口。CopyOnWriteArrayList是支持高并发的。</p>
 <h4 id="CopyOnWriteArraySet"><a href="#CopyOnWriteArraySet" class="headerlink" title="CopyOnWriteArraySet"></a>CopyOnWriteArraySet</h4><p>CopyOnWriteArraySet相当于线程安全的HashSet，它继承于AbstractSet类。CopyOnWriteArraySet内部包含一个CopyOnWriteArrayList对象，它是通过CopyOnWriteArrayList实现的。</p>
 <h4 id="ConcurrentSkipListSet"><a href="#ConcurrentSkipListSet" class="headerlink" title="ConcurrentSkipListSet"></a>ConcurrentSkipListSet</h4><p>ConcurrentSkipListSet是线程安全的有序的集合(相当于线程安全的TreeSet)；它继承于AbstractSet，并实现了NavigableSet接口。ConcurrentSkipListSet是通过ConcurrentSkipListMap实现的，它也支持并发。</p>
+<a id="more"></a>
 <h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>JUC集合包中Map的实现类包括: ConcurrentHashMap和ConcurrentSkipListMap。</p>
 <h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>ConcurrentHashMap是线程安全的哈希表(相当于线程安全的HashMap)；它继承于AbstractMap类，并且实现ConcurrentMap接口。ConcurrentHashMap是通过“锁分段”来实现的，它支持并发。</p>
 <h4 id="ConcurrentSkipListMap"><a href="#ConcurrentSkipListMap" class="headerlink" title="ConcurrentSkipListMap"></a>ConcurrentSkipListMap</h4><p>ConcurrentSkipListMap是线程安全的有序的哈希表(相当于线程安全的TreeMap); 它继承于AbstractMap类，并且实现ConcurrentNavigableMap接口。ConcurrentSkipListMap是通过“跳表”来实现的，它支持并发。</p>
