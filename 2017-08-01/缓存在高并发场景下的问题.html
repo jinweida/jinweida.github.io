@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="高并发," />
+  <meta name="keywords" content="高并发,高可用," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="缓存击穿概念在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案 缓存空对象对查询结果为空的对象也进行缓存，如果是集合，可以缓存">
-<meta name="keywords" content="高并发">
+<meta name="keywords" content="高并发,高可用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="缓存在高并发场景下的问题">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-01/缓存在高并发场景下的问题.html">
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="缓存击穿概念在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案 缓存空对象对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-14T07:27:00.729Z">
+<meta property="og:updated_time" content="2018-01-14T13:55:52.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="缓存在高并发场景下的问题">
 <meta name="twitter:description" content="缓存击穿概念在高并发场景下，如果某一个key被高并发访问，没有被命中，会尝试去从后端数据库中获取，从而导致了大量请求达到数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发的去执行了很多不必要的查询操作，从而导致巨大冲击和压力。 解决方案 缓存空对象对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合非null，如果是某个单个对象，可以缓存特殊表示区分。这样可以避免请">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:27:00+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T21:55:52+08:00">
                 2018-01-14
               </time>
             
@@ -434,6 +434,8 @@
           
             <a href="/tags/高并发/" rel="tag"># 高并发</a>
           
+            <a href="/tags/高可用/" rel="tag"># 高可用</a>
+          
         </div>
       
 
@@ -541,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -563,7 +565,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
