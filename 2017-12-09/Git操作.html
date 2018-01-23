@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Git记住密码避免每次提交密码都要输入用户密码，避免每次输入：store 永久记住密码1git config --global credential.helper store cache 临时密码，默认为15分钟1git config –global credential.helper cache 也可以指定时间1gi">
+<meta name="description" content="12345678910111213141516171819# 列出所有远程分支$ git branch -r# 列出所有本地分支$ git branch# 列出所有本地分支和远程分支$ git branch -a# 新建一个分支，但依然停留在当前分支$ git branch [branch-name]# 新建一个分支，">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git操作">
 <meta property="og:url" content="http://jinweida.github.io/2017-12-09/git操作.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="Git记住密码避免每次提交密码都要输入用户密码，避免每次输入：store 永久记住密码1git config --global credential.helper store cache 临时密码，默认为15分钟1git config –global credential.helper cache 也可以指定时间1git config credential.helper ‘cache –timeo">
+<meta property="og:description" content="12345678910111213141516171819# 列出所有远程分支$ git branch -r# 列出所有本地分支$ git branch# 列出所有本地分支和远程分支$ git branch -a# 新建一个分支，但依然停留在当前分支$ git branch [branch-name]# 新建一个分支，并切换到该分支$ git checkout -b [branch]# 新建一个分">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T03:31:39.462Z">
+<meta property="og:updated_time" content="2018-01-23T13:12:52.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git操作">
-<meta name="twitter:description" content="Git记住密码避免每次提交密码都要输入用户密码，避免每次输入：store 永久记住密码1git config --global credential.helper store cache 临时密码，默认为15分钟1git config –global credential.helper cache 也可以指定时间1git config credential.helper ‘cache –timeo">
+<meta name="twitter:description" content="12345678910111213141516171819# 列出所有远程分支$ git branch -r# 列出所有本地分支$ git branch# 列出所有本地分支和远程分支$ git branch -a# 新建一个分支，但依然停留在当前分支$ git branch [branch-name]# 新建一个分支，并切换到该分支$ git checkout -b [branch]# 新建一个分">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T11:31:39+08:00">
-                2017-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-23T21:12:52+08:00">
+                2018-01-23
               </time>
             
           </span>
@@ -352,7 +352,8 @@
       
 
       
-        <h5 id="Git记住密码"><a href="#Git记住密码" class="headerlink" title="Git记住密码"></a>Git记住密码</h5><p>避免每次提交密码都要输入用户密码，避免每次输入：<br>store 永久记住密码<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></p>
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 列出所有远程分支</span><br><span class="line"><span class="meta">$</span> git branch -r</span><br><span class="line"><span class="meta">#</span> 列出所有本地分支</span><br><span class="line"><span class="meta">$</span> git branch</span><br><span class="line"><span class="meta">#</span> 列出所有本地分支和远程分支</span><br><span class="line"><span class="meta">$</span> git branch -a</span><br><span class="line"><span class="meta">#</span> 新建一个分支，但依然停留在当前分支</span><br><span class="line"><span class="meta">$</span> git branch [branch-name]</span><br><span class="line"><span class="meta">#</span> 新建一个分支，并切换到该分支</span><br><span class="line"><span class="meta">$</span> git checkout -b [branch]</span><br><span class="line"><span class="meta">#</span> 新建一个分支，指向指定commit</span><br><span class="line"><span class="meta">$</span> git branch [branch] [commit]</span><br><span class="line"><span class="meta">#</span> 切换到指定分支，并更新工作区</span><br><span class="line"><span class="meta">$</span> git checkout [branch-name]</span><br><span class="line"><span class="meta">#</span> 删除分支</span><br><span class="line"><span class="meta">$</span> git branch -d [branch-name]</span><br><span class="line"><span class="meta">#</span> 删除远程分支</span><br><span class="line"><span class="meta">$</span> git push origin --delete [branch-name]</span><br><span class="line"><span class="meta">$</span> git branch -dr [remote/branch]</span><br></pre></td></tr></table></figure>
+<h5 id="Git记住密码"><a href="#Git记住密码" class="headerlink" title="Git记住密码"></a>Git记住密码</h5><p>避免每次提交密码都要输入用户密码，避免每次输入：<br>store 永久记住密码<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></p>
 <p>cache 临时密码，默认为15分钟<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config –global credential.helper cache</span><br></pre></td></tr></table></figure></p>
 <p>也可以指定时间<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper ‘cache –timeout=3600’</span><br></pre></td></tr></table></figure></p>
 <h5 id="git设置关闭自动换行"><a href="#git设置关闭自动换行" class="headerlink" title="git设置关闭自动换行"></a>git设置关闭自动换行</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
@@ -538,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

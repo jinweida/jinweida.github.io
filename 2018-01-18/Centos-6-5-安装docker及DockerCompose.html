@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="查看centos 系统内核1$ uname -r Docker是Enterprise Linux（EPEL）的额外包的一部分，EPEL是用于RHEL发行版的非标准包的社区库。首先，我们将安装EPEL仓库：1# rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 更新yum源1$ yu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-18T08:16:27.338Z">
+<meta property="og:updated_time" content="2018-01-23T23:58:36.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos 6.5 安装docker及DockerCompose">
 <meta name="twitter:description" content="查看centos 系统内核1$ uname -r Docker是Enterprise Linux（EPEL）的额外包的一部分，EPEL是用于RHEL发行版的非标准包的社区库。首先，我们将安装EPEL仓库：1# rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 更新yum源1$ yu">
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-18T16:16:27+08:00">
-                2018-01-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T07:58:36+08:00">
+                2018-01-24
               </time>
             
           </span>
@@ -351,11 +351,13 @@
       
 
       
-        <p>查看centos 系统内核<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> uname -r</span><br></pre></td></tr></table></figure></p>
+        <h3 id="查看centos-系统内核"><a href="#查看centos-系统内核" class="headerlink" title="查看centos 系统内核"></a>查看centos 系统内核</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> uname -r</span><br></pre></td></tr></table></figure>
 <p>Docker是Enterprise Linux（EPEL）的额外包的一部分，EPEL是用于RHEL发行版的非标准包的社区库。首先，我们将安装EPEL仓库：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure></p>
-<p>更新yum源<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum update -y</span><br></pre></td></tr></table></figure></p>
+<h3 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum update -y</span><br></pre></td></tr></table></figure>
 <p>通过安装 docker-io 软件包来安装 Docker<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum -y install docker-io</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 启动docker</span><br><span class="line"><span class="meta">$</span> service docker start</span><br><span class="line"><span class="meta">#</span> 服务器启动时自动启动</span><br><span class="line"><span class="meta">$</span> chkconfig docker on</span><br></pre></td></tr></table></figure>
+<h3 id="安装docker-compose"><a href="#安装docker-compose" class="headerlink" title="安装docker-compose"></a>安装docker-compose</h3><p>先安装python-pip包，直接执行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum install python-pip</span><br><span class="line"><span class="meta">#</span> 没有python-pip包就执行命令 </span><br><span class="line"><span class="meta">$</span> yum -y install epel-release</span><br><span class="line"><span class="meta">#</span> 对安装好的pip进行升级 </span><br><span class="line"><span class="meta">$</span> pip install --upgrade pip</span><br><span class="line"><span class="meta">$</span> pip uninstall docker-compose</span><br><span class="line"><span class="meta">#</span> 强制安装docker-compose </span><br><span class="line"><span class="meta">$</span> pip install --upgrade --force-reinstall --no-cache-dir docker-compose</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -440,6 +442,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018-01-24/centos7-安装docker-docker-compose.html" rel="prev" title="centos7 安装docker|docker-compose">
+                centos7 安装docker|docker-compose <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -497,8 +503,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -513,7 +528,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,6 +583,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看centos-系统内核"><span class="nav-number">1.</span> <span class="nav-text">查看centos 系统内核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新yum源"><span class="nav-number">2.</span> <span class="nav-text">更新yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装docker-compose"><span class="nav-number">3.</span> <span class="nav-text">安装docker-compose</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
