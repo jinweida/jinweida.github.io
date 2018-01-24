@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang fabric源码123$ cd $GOPATH/src/github.com/hyperledger# 选择tag，很重要，版本要">
+<meta name="description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fabric v1.0.5安装记录">
 <meta property="og:url" content="http://jinweida.github.io/2018-01-24/Fabric-v1-0-5安装记录.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang fabric源码123$ cd $GOPATH/src/github.com/hyperledger# 选择tag，很重要，版本要对应$ git clone -b v1.0.5 https://github.c">
+<meta property="og:description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-24T04:56:26.888Z">
+<meta property="og:updated_time" content="2018-01-24T04:58:32.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fabric v1.0.5安装记录">
-<meta name="twitter:description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang fabric源码123$ cd $GOPATH/src/github.com/hyperledger# 选择tag，很重要，版本要对应$ git clone -b v1.0.5 https://github.c">
+<meta name="twitter:description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang">
 
 
 
@@ -307,7 +307,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T12:56:26+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T12:58:32+08:00">
                 2018-01-24
               </time>
             
@@ -352,7 +352,7 @@
 
       
         <h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>centos 7.3</p>
-<h3 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h3><p>先安装docker,docker-compose,golang,参考 <a href="/2018-01-24/centos7-安装docker-docker-compose.html">centos7 安装docker|docker-compose-golang</a></p>
+<h3 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h3><p>先安装docker,docker-compose,golang,参考 <span class="color:red"><a href="/2018-01-24/centos7-安装docker-docker-compose.html">centos7 安装docker|docker-compose-golang</a></span><br><a id="more"></a></p>
 <h3 id="fabric源码"><a href="#fabric源码" class="headerlink" title="fabric源码"></a>fabric源码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/hyperledger</span><br><span class="line"># 选择tag，很重要，版本要对应</span><br><span class="line">$ git clone -b v1.0.5 https://github.com/hyperledger/fabric.git</span><br></pre></td></tr></table></figure>
 <h3 id="docker-image安装"><a href="#docker-image安装" class="headerlink" title="docker image安装"></a>docker image安装</h3><p>使用阿里云docker镜像加速<br>新增以下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line"> &quot;registry-mirrors&quot;: [&quot;https://d8b3zdiw.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>保存并执行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> systemctl daemon-reload</span><br><span class="line"><span class="meta">$</span> systemctl restart docker</span><br></pre></td></tr></table></figure></p>
