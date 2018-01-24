@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-24/centos7-安装docker-docker-compose.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-24/Fabric-v1-0-5安装记录.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018-01-24/centos7-安装docker-docker-compose.html" itemprop="url">centos7 安装docker|docker-compose</a></h1>
+                <a class="post-title-link" href="/2018-01-24/Fabric-v1-0-5安装记录.html" itemprop="url">Fabric v1.0.5安装记录</a></h1>
         
 
         <div class="post-meta">
@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T07:51:33+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T11:55:40+08:00">
                 2018-01-24
               </time>
             
@@ -309,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T07:51:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T12:56:26+08:00">
                 2018-01-24
               </time>
             
@@ -324,8 +324,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018-01-24/centos7-安装docker-docker-compose.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-24/centos7-安装docker-docker-compose.html" itemprop="commentCount"></span>
+                <a href="/2018-01-24/Fabric-v1-0-5安装记录.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-24/Fabric-v1-0-5安装记录.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -355,7 +355,29 @@
       
         
           
-            
+            <h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>centos 7.3</p>
+<h3 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h3><p>先安装docker,docker-compose,golang,参考 <a href="/2018-01-24/centos7-安装docker-docker-compose.html">centos7 安装docker|docker-compose-golang</a></p>
+<h3 id="fabric源码"><a href="#fabric源码" class="headerlink" title="fabric源码"></a>fabric源码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/hyperledger</span><br><span class="line"># 选择tag，很重要，版本要对应</span><br><span class="line">$ git clone -b v1.0.5 https://github.com/hyperledger/fabric.git</span><br></pre></td></tr></table></figure>
+<h3 id="docker-image安装"><a href="#docker-image安装" class="headerlink" title="docker image安装"></a>docker image安装</h3><p>使用阿里云docker镜像加速<br>新增以下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line"> &quot;registry-mirrors&quot;: [&quot;https://d8b3zdiw.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>保存并执行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> systemctl daemon-reload</span><br><span class="line"><span class="meta">$</span> systemctl restart docker</span><br></pre></td></tr></table></figure></p>
+<p>进入example/e2e_cli<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli</span><br><span class="line"><span class="meta">$</span> chmod 777 download-dockerimages.sh</span><br><span class="line"><span class="meta">#</span> 使用example/e2e_cli 中的脚本下载镜像 -c 指定fabric-ca版本,-f 指定其他镜像的版本   </span><br><span class="line"><span class="meta">$</span> ./download-dockerimages.sh -c x86_64-1.0.5 -f x86_64-1.0.5</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动fabric"><a href="#启动fabric" class="headerlink" title="启动fabric"></a>启动fabric</h3><p>使用默认配置，将会启动solo模式的网络<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli  </span><br><span class="line"><span class="meta">#</span> 启动脚本</span><br><span class="line"><span class="meta">$</span> ./network_setup.sh up</span><br></pre></td></tr></table></figure></p>
+<p>看到如下,整个Fabric网络已经通了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">===================== All GOOD, End-2-End execution completed =====================</span><br><span class="line"> _____   _   _   ____            _____   ____    _____</span><br><span class="line">| ____| | \ | | |  _ \          | ____| |___ \  | ____|</span><br><span class="line">|  _|   |  \| | | | | |  _____  |  _|     __) | |  _|</span><br><span class="line">| |___  | |\  | | |_| | |_____| | |___   / __/  | |___</span><br><span class="line">|_____| |_| \_| |____/          |_____| |_____| |_____|</span><br></pre></td></tr></table></figure></p>
+<p>启动过程做了哪些？</p>
+<ul>
+<li>编译生成Fabric公私钥、证书的程序，程序在目录：fabric/release/linux-amd64/bin</li>
+<li>基于configtx.yaml生成创世区块和通道相关信息，并保存在channel-artifacts文件夹</li>
+<li>基于crypto-config.yaml生成公私钥和证书信息，并保存在crypto-config文件夹中</li>
+<li>基于docker-compose-cli.yaml启动1Orderer+4Peer+1CLI的Fabric容器</li>
+<li>在CLI启动的时候，会运行scripts/script.sh文件，这个脚本文件包含了创建Channel，加入Channel，安装Example02，运行Example02等功能<h3 id="测试一下fabric网络"><a href="#测试一下fabric网络" class="headerlink" title="测试一下fabric网络"></a>测试一下fabric网络</h3></li>
+</ul>
+<p>官方例子chaincode_example02路径在<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli/examples/chaincode/go/chaincode_example02</span><br></pre></td></tr></table></figure></p>
+<p>例子中，channel名字是mychannel，链码的名字是mycc，进入cli<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker exec cli -it bash</span><br><span class="line">root@6b5e0083beec:/opt/gopath/src/github.com/hyperledger/fabric/peer#</span><br></pre></td></tr></table></figure></p>
+<p>查询a账户的余额<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@6b5e0083beec:/opt/gopath/src/github.com/hyperledger/fabric/peer# peer chaincode query -C mychannel -n mycc -c '&#123;"Args":["query","a"]&#125;'</span><br><span class="line">2018-01-24 04:46:46.209 UTC [msp] GetLocalMSP -&gt; DEBU 001 Returning existing local MSP</span><br><span class="line">2018-01-24 04:46:46.209 UTC [msp] GetDefaultSigningIdentity -&gt; DEBU 002 Obtaining default signing identity</span><br><span class="line">2018-01-24 04:46:46.209 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 003 Using default escc</span><br><span class="line">2018-01-24 04:46:46.210 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 004 Using default vscc</span><br><span class="line">2018-01-24 04:46:46.210 UTC [msp/identity] Sign -&gt; DEBU 005 Sign: plaintext: 0A94070A6608031A0B08B69FA0D30510...6D7963631A0A0A0571756572790A0161</span><br><span class="line">2018-01-24 04:46:46.210 UTC [msp/identity] Sign -&gt; DEBU 006 Sign: digest: AF92D3837B1B474EA004D885EFFDA669F6F28EE1B2AFB901FA9CE54747CE1F91</span><br><span class="line">Query Result: 90</span><br><span class="line">2018-01-24 04:46:46.223 UTC [main] main -&gt; INFO 007 Exiting.....</span><br></pre></td></tr></table></figure></p>
+<p>可以看到余额是90<br>a转账给b用户20：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@6b5e0083beec:/opt/gopath/src/github.com/hyperledger/fabric/peer# peer chaincode invoke -o orderer.example.com:7050  --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem  -C mychannel -n mycc -c '&#123;"Args":["invoke","a","b","20"]&#125;'</span><br></pre></td></tr></table></figure></p>
+<p>再查余额变味了70了</p>
+<h3 id="关闭fabric网络"><a href="#关闭fabric网络" class="headerlink" title="关闭fabric网络"></a>关闭fabric网络</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli</span><br><span class="line"><span class="meta">$</span> ./network_setup.sh down</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -403,7 +425,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-18/Centos-6-5-安装docker及DockerCompose.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-24/centos7-安装docker-docker-compose-golang.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -422,7 +444,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018-01-18/Centos-6-5-安装docker及DockerCompose.html" itemprop="url">Centos 6.5 安装docker及DockerCompose</a></h1>
+                <a class="post-title-link" href="/2018-01-24/centos7-安装docker-docker-compose-golang.html" itemprop="url">centos7 安装docker|docker-compose-golang</a></h1>
         
 
         <div class="post-meta">
@@ -434,8 +456,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T16:12:05+08:00">
-                2018-01-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T07:51:33+08:00">
+                2018-01-24
               </time>
             
 
@@ -450,7 +472,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T07:58:36+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T11:54:46+08:00">
                 2018-01-24
               </time>
             
@@ -465,8 +487,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018-01-18/Centos-6-5-安装docker及DockerCompose.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-18/Centos-6-5-安装docker及DockerCompose.html" itemprop="commentCount"></span>
+                <a href="/2018-01-24/centos7-安装docker-docker-compose-golang.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-24/centos7-安装docker-docker-compose-golang.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -495,15 +517,15 @@
 
       
         
-          
-            <h3 id="查看centos-系统内核"><a href="#查看centos-系统内核" class="headerlink" title="查看centos 系统内核"></a>查看centos 系统内核</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> uname -r</span><br></pre></td></tr></table></figure>
+          <h3 id="查看centos-系统内核"><a href="#查看centos-系统内核" class="headerlink" title="查看centos 系统内核"></a>查看centos 系统内核</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> uname -r</span><br></pre></td></tr></table></figure>
 <p>Docker是Enterprise Linux（EPEL）的额外包的一部分，EPEL是用于RHEL发行版的非标准包的社区库。首先，我们将安装EPEL仓库：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure></p>
-<h3 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum update -y</span><br></pre></td></tr></table></figure>
-<p>通过安装 docker-io 软件包来安装 Docker<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum -y install docker-io</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 启动docker</span><br><span class="line"><span class="meta">$</span> service docker start</span><br><span class="line"><span class="meta">#</span> 服务器启动时自动启动</span><br><span class="line"><span class="meta">$</span> chkconfig docker on</span><br></pre></td></tr></table></figure>
-<h3 id="安装docker-compose"><a href="#安装docker-compose" class="headerlink" title="安装docker-compose"></a>安装docker-compose</h3><p>先安装python-pip包，直接执行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum install python-pip</span><br><span class="line"><span class="meta">#</span> 没有python-pip包就执行命令 </span><br><span class="line"><span class="meta">$</span> yum -y install epel-release</span><br><span class="line"><span class="meta">#</span> 对安装好的pip进行升级 </span><br><span class="line"><span class="meta">$</span> pip install --upgrade pip</span><br><span class="line"><span class="meta">$</span> pip uninstall docker-compose</span><br><span class="line"><span class="meta">#</span> 强制安装docker-compose </span><br><span class="line"><span class="meta">$</span> pip install --upgrade --force-reinstall --no-cache-dir docker-compose</span><br></pre></td></tr></table></figure></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-01-24/centos7-安装docker-docker-compose-golang.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
