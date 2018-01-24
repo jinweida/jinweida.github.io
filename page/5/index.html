@@ -262,6 +262,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-23/mysql性能优化指南.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-08-23/mysql性能优化指南.html" itemprop="url">mysql性能优化指南</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T17:16:48+08:00">
+                2017-08-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:16:45+08:00">
+                2018-01-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-08-23/mysql性能优化指南.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-23/mysql性能优化指南.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Count使用"><a href="#Count使用" class="headerlink" title="Count使用"></a>Count使用</h3><p>count(*)会统计值为NULL行，count(列名)不会统计NULL行<br>count(distinct col)统计除NULL外的不重复数量，count(distinct col,clo2)如果一列全为NULL，那么即使另一列有不同值，也返回0</p>
+<h3 id="使用ISNULL"><a href="#使用ISNULL" class="headerlink" title="使用ISNULL()"></a>使用ISNULL()</h3><p>使用 ISNULL()来判断是否为 NULL 值。<br>注意:NULL 与任何值的直接比较都为 NULL。<br>NULL&lt;&gt;NULL 的返回结果是 NULL，不是 false。<br>NULL=NULL 的返回结果是 NULL，不是 true。<br>NULL&lt;&gt;1 的返回结果是 NULL，而不是 true<br>now()&lt;’2017-08-23’ 不包含NULL</p>
+<h3 id="mysql主要索引类型"><a href="#mysql主要索引类型" class="headerlink" title="mysql主要索引类型"></a>mysql主要索引类型</h3><p>在mysql索引是在存储引擎层而不是在Server层实现，不是所有引擎都支持索引。</p>
+<h4 id="B-tree索引"><a href="#B-tree索引" class="headerlink" title="B-tree索引"></a>B-tree索引</h4><p>1）B-tree索引：最常见的索引类型，基于B-Tree数据结构。B-Tree的基本思想是，所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据，而且可以直接支持数据排序（ORDER BY）。但是当索引多列时，列的顺序特别重要，需要格外注意。InnoDB和MyISAM都支持B-Tree索引。InnoDB用的是一个变种B+Tree，而MyISAM为了节省空间对索引进行了压缩，从而牺牲了性能。</p>
+<h4 id="hash索引"><a href="#hash索引" class="headerlink" title="hash索引"></a>hash索引</h4><p>2）hash索引：基于hash表。所以这种索引只支持精确查找，不支持范围查找，不支持排序。这意味着范围查找或ORDER BY都要依赖server层的额外工作。目前只有Memory引擎支持显式的hash索引（但是它的hash是nonunique的，冲突太多时也会影响查找性能）。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引。</p>
+<h4 id="FULLTEXT索引"><a href="#FULLTEXT索引" class="headerlink" title="FULLTEXT索引"></a>FULLTEXT索引</h4><p>3）FULLTEXT索引：主要用来查找文本中的关键字，而不是直接与索引中的值相比较。Full-text索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的WHERE语句的参数匹配。你可以对某列分别进行full-text索引和B-Tree索引，两者互不冲突。Full-text索引配合MATCH AGAINST操作使用，而不是一般的WHERE语句加LIKE</p>
+<p>索引优点：a.减少服务器需要扫描的数量；b.帮助服务器避免排序和临时表；c.可以将随机IO变为顺序IO</p>
+<h3 id="4-高性能索引策略"><a href="#4-高性能索引策略" class="headerlink" title="4.高性能索引策略"></a>4.高性能索引策略</h3><p>1）负向条件查询不能使用索引:<br>    select <em> from order where status!=0 and stauts!=1 可以优化为in(2,3)<br>2）前导模糊查询不能使用索引<br>    select </em> from order where desc like ‘%XX’;<br>    非前导可以使用索引：<br>    select <em> from order where desc like ‘XX%’<br>3）在属性上进行计算不能命中索引<br>select </em> from table where id+1=2;<br>select <em> from order where YEAR(date) &lt; = ‘2017’<br>4）单条查询，使用hash索引更好<br>select </em> from user where uid=12<br>因为hash值与索引uid做了精确的对应关系<br>5）强制类型转换会全表扫描<br>select <em> from user where phone=13800001234<br>请使用select </em> from user where phone=’13800001234‘</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-22/阻塞非阻塞与同步异步的区别.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1680,165 +1851,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-04/分布式原理与实战-应用架构演进（一）.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-04/分布式原理与实战-应用架构演进（一）.html" itemprop="url">分布式原理与实战:应用架构演进（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T16:34:05+08:00">
-                2017-08-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-04T17:15:19+08:00">
-                2017-08-04
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-04/分布式原理与实战-应用架构演进（一）.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-04/分布式原理与实战-应用架构演进（一）.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="第1章-应用架构演进"><a href="#第1章-应用架构演进" class="headerlink" title="第1章 应用架构演进"></a>第1章 应用架构演进</h4><ul>
-<li>MVC架构<blockquote>
-<p>业务规模很小，将所有功能都部署在同一个进程中，通过双机或者前置负载均衡实现负载分流。</p>
-</blockquote>
-</li>
-<li>RPC架构<blockquote>
-<p>当垂直应用越来越多，应用之间交互不可避免，将核心和公共业务抽取出来，作为独立服务，实现前后台逻辑分离，用于提高业务复用及拆分是RPC框架的关键</p>
-</blockquote>
-</li>
-<li>SOA架构<blockquote>
-<p>随着业务发展，服务数量越来越多，服务生命周期管控和运行态治理成为瓶颈，此时用于提升服务质量的SOA服务治理是关键</p>
-</blockquote>
-</li>
-<li>微服务架构<blockquote>
-<p>应用架构的未来演进方向，通过服务原子化拆分、以及微服务独立打包、部署和升级，小团队敏捷交付，应用交付周期缩短，运维成本也将大幅下降。</p>
-</blockquote>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1889,7 +1901,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1900,7 +1912,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1911,7 +1923,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

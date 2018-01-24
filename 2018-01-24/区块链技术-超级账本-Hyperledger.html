@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,多线程,CAS," />
+  <meta name="keywords" content="区块链,Hyperledger," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为">
-<meta name="keywords" content="java,多线程,CAS">
+<meta name="description" content="概述Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。 Hyperledger组成Hyperledger Fabric区块链技术的一个实现，它的目标是成为开发应用和解决方案">
+<meta name="keywords" content="区块链,Hyperledger">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java-多线程CAS原理分析">
-<meta property="og:url" content="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html">
+<meta property="og:title" content="区块链技术:超级账本(Hyperledger)">
+<meta property="og:url" content="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据">
+<meta property="og:description" content="概述Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。 Hyperledger组成Hyperledger Fabric区块链技术的一个实现，它的目标是成为开发应用和解决方案的基础，设计为模块化架构，允许组件如共识和成员服务模块，可以插入即用。 Hype">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-14T12:06:08.849Z">
+<meta property="og:updated_time" content="2018-01-24T10:31:34.579Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java-多线程CAS原理分析">
-<meta name="twitter:description" content="锁机制 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据">
+<meta name="twitter:title" content="区块链技术:超级账本(Hyperledger)">
+<meta name="twitter:description" content="概述Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。 Hyperledger组成Hyperledger Fabric区块链技术的一个实现，它的目标是成为开发应用和解决方案的基础，设计为模块化架构，允许组件如共识和成员服务模块，可以插入即用。 Hype">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html"/>
 
 
 
 
 
-  <title>java-多线程CAS原理分析 | 金声玉振</title>
+  <title>区块链技术:超级账本(Hyperledger) | 金声玉振</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java-多线程CAS原理分析</h1>
+          <h1 class="post-title" itemprop="name headline">区块链技术:超级账本(Hyperledger)</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T18:51:08+08:00">
-                2018-01-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T18:20:51+08:00">
+                2018-01-24
               </time>
             
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T20:06:08+08:00">
-                2018-01-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T18:31:34+08:00">
+                2018-01-24
               </time>
             
           </span>
@@ -327,8 +327,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/Hyperledger/" itemprop="url" rel="index">
+                    <span itemprop="name">Hyperledger</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hyperledger/区块链/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
                   </a>
                 </span>
 
@@ -345,8 +356,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018-01-14/java-多线程CAS原理分析.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-14/java-多线程CAS原理分析.html" itemprop="commentCount"></span>
+                <a href="/2018-01-24/区块链技术-超级账本-Hyperledger.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-24/区块链技术-超级账本-Hyperledger.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,29 +385,24 @@
       
 
       
-        <h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><ul>
-<li>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。悲观锁的实现，往往依靠底层提供的锁机制；悲观锁会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。</li>
-<li>乐观锁：假设不会发生并发冲突，每次不加锁而是假设没有冲突而去完成某项操作，只在提交操作时检查是否违反数据完整性。如果因为冲突失败就重试，直到成功为止。乐观锁大多是基于数据版本记录机制实现。为数据增加一个版本标识，比如在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。 <a id="more"></a>
-</li>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。</p>
+<h3 id="Hyperledger组成"><a href="#Hyperledger组成" class="headerlink" title="Hyperledger组成"></a>Hyperledger组成</h3><h4 id="Hyperledger-Fabric"><a href="#Hyperledger-Fabric" class="headerlink" title="Hyperledger Fabric"></a>Hyperledger Fabric</h4><p>区块链技术的一个实现，它的目标是成为开发应用和解决方案的基础，设计为模块化架构，允许组件如共识和成员服务模块，可以插入即用。</p>
+<p>Hyperledger Sawtooth：高度模块化的分布式账本平台，Hyperledger Sawtooth是一个模块化平台，用以创建、部署和运行分布式账本。Hyperledger Sawtooth包含诺韦尔共识算法，计时验证(PoET), 它针对的是以最小的资源消耗处理大量的分布式验证器。</p>
+<h4 id="Hyperledger-Iroha"><a href="#Hyperledger-Iroha" class="headerlink" title="Hyperledger Iroha"></a>Hyperledger Iroha</h4><p>轻量级分布式账本，侧重于移动。Hyperledger Iroha 是一个业务区块链框架，用于简单和容易地并入需要分布式账本技术的基础设施项目。</p>
+<h4 id="Hyperledger-Burrow"><a href="#Hyperledger-Burrow" class="headerlink" title="Hyperledger Burrow"></a>Hyperledger Burrow</h4><p>Hyperledger Burrow 是一个可以许可的智能合同机。Burrow发布于2014年12月，首次提供了一个模块化的、带经过许可的智能合约解释器的区块链客户端，它采用了部分以太坊虚拟机（EVM）的技术规范。</p>
+<h4 id="Hyperledger-Indy"><a href="#Hyperledger-Indy" class="headerlink" title="Hyperledger Indy"></a>Hyperledger Indy</h4><p>Hyperledger Indy 提供了工具、程序库和可重复使用的组件，用于提供基于区块链或者其它分布式账本的数字身份，从而让它们跨管理域、跨应用和其他silo进行互操作。</p>
+<h4 id="Hyperledger-Explorer"><a href="#Hyperledger-Explorer" class="headerlink" title="Hyperledger Explorer"></a>Hyperledger Explorer</h4><p>展示和查询区块链块、事务和相关的Web应用。Hyperledger Explorer 可以查看、调用、部署或者查询区块、事务和相关数据、网络信息、链码和事务序列，以及任何其它保存在账本中的相关信息。</p>
+<h4 id="Hyperledger-Cello"><a href="#Hyperledger-Cello" class="headerlink" title="Hyperledger Cello"></a>Hyperledger Cello</h4><p>Bass工具集，帮助创建、管理、终止区块链。Hyperledger Cello 的目标是将按需的 “即服务” 部署模式带给区块链生态系统，减少创建、管理和终止区块链所需要的工作量。</p>
+<h4 id="Hyperledger-Composer"><a href="#Hyperledger-Composer" class="headerlink" title="Hyperledger Composer"></a>Hyperledger Composer</h4><p>Hyperledger Composer 是一个协同工具，用以创建区块链业务网络，加速智能合约及其跨分布式账本部署的发展。</p>
+<h3 id="超级账本目标？"><a href="#超级账本目标？" class="headerlink" title="超级账本目标？"></a>超级账本目标？</h3><ul>
+<li>创建企业级的、开源的、分布式账本框架和代码库，支持商业事务</li>
+<li>通过技术和业务的治理，为市场提供一个中立的、开放的、和社区驱动的基础设施</li>
+<li>创建技术社区, 开发区块链和共享账本的POC、应用案例、现场试验和部署</li>
+<li>教育公众, 为区块链技术争取市场机会</li>
+<li>推广我们社区内各子社区, 用我们的带多个平台和框架的工具箱方法</li>
 </ul>
-<h3 id="什么是CAS？"><a href="#什么是CAS？" class="headerlink" title="什么是CAS？"></a>什么是CAS？</h3><p>CAS:Compare and Swap 比较替换。JDK 5之前Java语言是靠synchronized关键字保证同步的，这是一种独占锁，也是是悲观锁。<br>java.util.concurrent(J.U.C)种提供的atomic包中的类，使用的是乐观锁，用到的机制就是CAS。<br>CAS是同步原语，属于机器最底层对同步功能的支持之一 乐观锁是利用CAS实现的一种同步机制，一次乐观锁。CAS基于硬件实现，不需要进入内核，不需要切换线程，操作自旋几率较少，因此可以获得更高的性能</p>
-<h3 id="CAS算法理解"><a href="#CAS算法理解" class="headerlink" title="CAS算法理解"></a>CAS算法理解</h3><p>CAS是一种无锁算法，CAS有三个操作数，内存值V，旧的预期值A，要修改的新值B，当且仅当预期值A和内存值V相同时，将内存值V修改为B，否则什么都不做。<br>CAS比较与交换的伪代码表示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    备份旧数据;</span><br><span class="line">    基于旧数据构造新数据;</span><br><span class="line">&#125;<span class="keyword">while</span>(!CAS(内存地址，备份的旧数据，新数据))</span><br></pre></td></tr></table></figure></p>
-<p>如t1和t2线程同时操作变量<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>t1和t2同时去访问变量a,他们会把驻内存的数据完全copy一份到自己的工作内存空间，所以t1和t2的旧的“预期值A”都是1，</li>
-<li>假设t1在竞争获取操作权，其他线程都失败，此时t1线程更新变量值为2，然后写回主内存。</li>
-<li>此时t2不会挂起，会告知这次竞争失败了，t2可以再次发起尝试</li>
-<li>现在对t2来说内存值已经变为2了，与预期值1不一致了，就会操作失败。</li>
-</ul>
-<h3 id="CAS算法在JDK的应用"><a href="#CAS算法在JDK的应用" class="headerlink" title="CAS算法在JDK的应用"></a>CAS算法在JDK的应用</h3><p>以java.util.concurrent.atomic.AtomicInteger为例。<br>在jdk1.8中，直接使用了Unsafe的getAndAddInt方法，而在jdk1.7的Unsafe中，没有此方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字段value需要借助volatile原语，保证线程间的数据是可见的（共享的）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Atomically increments by one the current value.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the updated value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>调用了sun.misc.Unsafe库里的CAS算法。通过查看AtomicInteger的源码可以发现，受影响的还有getAndAdd、addAndGet等大部分方法。</p>
-<h3 id="CAS开销"><a href="#CAS开销" class="headerlink" title="CAS开销"></a>CAS开销</h3><p>CAS是CPU指令级的草，只有一步原子操作，速度非常快。对于资源竞争严重的情况，CAS自旋的概率会比较大，从而浪费更多的CPU资源，效率低于synchronized</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>使用CAS在线程冲突严重时，会大幅降低程序性能；CAS只适合于线程冲突较少的情况使用</li>
-<li>java.util.concurrent.atomic下很多原子操作类都是用了CAS算法</li>
-<li>synchronized在jdk1.6之后，已经改进优化。synchronized的底层实现主要依靠Lock-Free的队列，基本思路是自旋后阻塞，竞争切换后继续竞争锁，稍微牺牲了公平性，但获得了高吞吐量。</li>
-<li>synchronized在线程冲突较少的情况下，可以获得和CAS类似的性能；而线程冲突严重的情况下，性能远高于CAS。</li>
-</ul>
+<p>项目的目标是发展一个跨行业的开放式标准以及开源代码开发库，允许企业创建自定义的分布式账本解决方案，以促进区块链技术在商业当中的应用。 </p>
+<p>具体信息参考：(<a href="https://cn.hyperledger.org)[https://cn.hyperledger.org" target="_blank" rel="noopener">https://cn.hyperledger.org)[https://cn.hyperledger.org</a>]</p>
 
       
     </div>
@@ -416,7 +422,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2018-01-14/java-多线程CAS原理分析.html" title="java-多线程CAS原理分析">http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html</a>
+              <a href="/2018-01-24/区块链技术-超级账本-Hyperledger.html" title="区块链技术:超级账本(Hyperledger)">http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -465,11 +471,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/区块链/" rel="tag"># 区块链</a>
           
-            <a href="/tags/多线程/" rel="tag"># 多线程</a>
-          
-            <a href="/tags/CAS/" rel="tag"># CAS</a>
+            <a href="/tags/Hyperledger/" rel="tag"># Hyperledger</a>
           
         </div>
       
@@ -482,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-01-14/java-多线程juc集合.html" rel="next" title="java-多线程juc集合">
-                <i class="fa fa-chevron-left"></i> java-多线程juc集合
+              <a href="/2018-01-24/HyperLedger Fabric-v1-0-5安装记录.html" rel="next" title="HyperLedger Fabric v1.0.5 (1)-环境安装">
+                <i class="fa fa-chevron-left"></i> HyperLedger Fabric v1.0.5 (1)-环境安装
               </a>
             
           </div>
@@ -491,10 +495,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018-01-14/区块链技术-什么是区块链？.html" rel="prev" title="区块链技术-什么是区块链？">
-                区块链技术-什么是区块链？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -525,8 +525,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018-01-14/java-多线程CAS原理分析.html"
-           data-title="java-多线程CAS原理分析" data-url="http://jinweida.github.io/2018-01-14/java-多线程CAS原理分析.html">
+      <div class="ds-thread" data-thread-key="2018-01-24/区块链技术-超级账本-Hyperledger.html"
+           data-title="区块链技术:超级账本(Hyperledger)" data-url="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html">
       </div>
     </div>
 
@@ -643,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#锁机制"><span class="nav-number">1.</span> <span class="nav-text">锁机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是CAS？"><span class="nav-number">2.</span> <span class="nav-text">什么是CAS？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS算法理解"><span class="nav-number">3.</span> <span class="nav-text">CAS算法理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS算法在JDK的应用"><span class="nav-number">4.</span> <span class="nav-text">CAS算法在JDK的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS开销"><span class="nav-number">5.</span> <span class="nav-text">CAS开销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hyperledger组成"><span class="nav-number">2.</span> <span class="nav-text">Hyperledger组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Fabric"><span class="nav-number">2.1.</span> <span class="nav-text">Hyperledger Fabric</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Iroha"><span class="nav-number">2.2.</span> <span class="nav-text">Hyperledger Iroha</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Burrow"><span class="nav-number">2.3.</span> <span class="nav-text">Hyperledger Burrow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Indy"><span class="nav-number">2.4.</span> <span class="nav-text">Hyperledger Indy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Explorer"><span class="nav-number">2.5.</span> <span class="nav-text">Hyperledger Explorer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Cello"><span class="nav-number">2.6.</span> <span class="nav-text">Hyperledger Cello</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Composer"><span class="nav-number">2.7.</span> <span class="nav-text">Hyperledger Composer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超级账本目标？"><span class="nav-number">3.</span> <span class="nav-text">超级账本目标？</span></a></li></ol></div>
             
 
           </div>

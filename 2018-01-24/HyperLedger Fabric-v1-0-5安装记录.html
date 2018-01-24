@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang">
+<meta name="description" content="什么是Hyperledger Fabric？Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能合约，且是一个参与者可以分别管理自身交易的系统。 操作系统centos 7.3 安装相关软件先安装docker,doc">
 <meta name="keywords" content="区块链,fabric,HyperLedger">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HyperLedger Fabric v1.0.5 (1)-环境安装">
 <meta property="og:url" content="http://jinweida.github.io/2018-01-24/HyperLedger Fabric-v1-0-5安装记录.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang">
+<meta property="og:description" content="什么是Hyperledger Fabric？Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能合约，且是一个参与者可以分别管理自身交易的系统。 操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|d">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-24T10:07:12.995Z">
+<meta property="og:updated_time" content="2018-01-24T10:31:53.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HyperLedger Fabric v1.0.5 (1)-环境安装">
-<meta name="twitter:description" content="操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|docker-compose-golang">
+<meta name="twitter:description" content="什么是Hyperledger Fabric？Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能合约，且是一个参与者可以分别管理自身交易的系统。 操作系统centos 7.3 安装相关软件先安装docker,docker-compose,golang,参考 centos7 安装docker|d">
 
 
 
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T18:07:12+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T18:31:53+08:00">
                 2018-01-24
               </time>
             
@@ -385,7 +385,8 @@
       
 
       
-        <h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>centos 7.3</p>
+        <h3 id="什么是Hyperledger-Fabric？"><a href="#什么是Hyperledger-Fabric？" class="headerlink" title="什么是Hyperledger Fabric？"></a>什么是Hyperledger Fabric？</h3><p>Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。<br>Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能合约，且是一个参与者可以分别管理自身交易的系统。</p>
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>centos 7.3</p>
 <h3 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h3><p>先安装docker,docker-compose,golang,参考 <span class="color:red"><a href="/2018-01-24/centos7-安装docker-docker-compose.html">centos7 安装docker|docker-compose-golang</a></span><br><a id="more"></a></p>
 <h3 id="fabric源码"><a href="#fabric源码" class="headerlink" title="fabric源码"></a>fabric源码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/hyperledger</span><br><span class="line"># 选择tag，很重要，版本要对应</span><br><span class="line">$ git clone -b v1.0.5 https://github.com/hyperledger/fabric.git</span><br></pre></td></tr></table></figure>
 <h3 id="docker-image安装"><a href="#docker-image安装" class="headerlink" title="docker image安装"></a>docker image安装</h3><p>使用阿里云docker镜像加速<br>新增以下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line"> &quot;registry-mirrors&quot;: [&quot;https://d8b3zdiw.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -502,6 +503,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018-01-24/区块链技术-超级账本-Hyperledger.html" rel="prev" title="区块链技术:超级账本(Hyperledger)">
+                区块链技术:超级账本(Hyperledger) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -584,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +600,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -606,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -649,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统"><span class="nav-number">1.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装相关软件"><span class="nav-number">2.</span> <span class="nav-text">安装相关软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric源码"><span class="nav-number">3.</span> <span class="nav-text">fabric源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-image安装"><span class="nav-number">4.</span> <span class="nav-text">docker image安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动fabric"><span class="nav-number">5.</span> <span class="nav-text">启动fabric</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试一下fabric网络"><span class="nav-number">6.</span> <span class="nav-text">测试一下fabric网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭fabric网络"><span class="nav-number">7.</span> <span class="nav-text">关闭fabric网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Hyperledger-Fabric？"><span class="nav-number">1.</span> <span class="nav-text">什么是Hyperledger Fabric？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装相关软件"><span class="nav-number">3.</span> <span class="nav-text">安装相关软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric源码"><span class="nav-number">4.</span> <span class="nav-text">fabric源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-image安装"><span class="nav-number">5.</span> <span class="nav-text">docker image安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动fabric"><span class="nav-number">6.</span> <span class="nav-text">启动fabric</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试一下fabric网络"><span class="nav-number">7.</span> <span class="nav-text">测试一下fabric网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭fabric网络"><span class="nav-number">8.</span> <span class="nav-text">关闭fabric网络</span></a></li></ol></div>
             
 
           </div>
