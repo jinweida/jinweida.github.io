@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="区块链,Hyperledger," />
+  <meta name="keywords" content="区块链,fabric,HyperLedger," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="概述Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。">
-<meta name="keywords" content="区块链,Hyperledger">
+<meta name="description" content="2018年区块链技术必将高速发展，无论是对资本还是对行业都将产生巨大影响。抓住机会、储备技术、时刻磨刀，向前冲！！！ 什么是Hyperledger Fabric？Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能">
+<meta name="keywords" content="区块链,fabric,HyperLedger">
 <meta property="og:type" content="article">
-<meta property="og:title" content="区块链技术:超级账本(Hyperledger)">
-<meta property="og:url" content="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html">
+<meta property="og:title" content="HyperLedger Fabric v1.0.5 (1)-环境安装">
+<meta property="og:url" content="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="概述Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。">
+<meta property="og:description" content="2018年区块链技术必将高速发展，无论是对资本还是对行业都将产生巨大影响。抓住机会、储备技术、时刻磨刀，向前冲！！！ 什么是Hyperledger Fabric？Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能合约，且是一个参与者可以分别管理自身交易的系统。 操作系统centos 7.3">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T02:46:14.969Z">
+<meta property="og:updated_time" content="2018-01-24T10:58:30.881Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="区块链技术:超级账本(Hyperledger)">
-<meta name="twitter:description" content="概述Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。">
+<meta name="twitter:title" content="HyperLedger Fabric v1.0.5 (1)-环境安装">
+<meta name="twitter:description" content="2018年区块链技术必将高速发展，无论是对资本还是对行业都将产生巨大影响。抓住机会、储备技术、时刻磨刀，向前冲！！！ 什么是Hyperledger Fabric？Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能合约，且是一个参与者可以分别管理自身交易的系统。 操作系统centos 7.3">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html"/>
 
 
 
 
 
-  <title>区块链技术:超级账本(Hyperledger) | 金声玉振</title>
+  <title>HyperLedger Fabric v1.0.5 (1)-环境安装 | 金声玉振</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">区块链技术:超级账本(Hyperledger)</h1>
+          <h1 class="post-title" itemprop="name headline">HyperLedger Fabric v1.0.5 (1)-环境安装</h1>
         
 
         <div class="post-meta">
@@ -292,7 +292,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T18:20:51+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T11:55:40+08:00">
                 2018-01-24
               </time>
             
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-26T10:46:14+08:00">
-                2018-01-26
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T18:58:30+08:00">
+                2018-01-24
               </time>
             
           </span>
@@ -338,8 +338,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/Hyperledger/" itemprop="url" rel="index">
-                    <span itemprop="name">Hyperledger</span>
+                  <a href="/categories/区块链/HyperLedger/" itemprop="url" rel="index">
+                    <span itemprop="name">HyperLedger</span>
                   </a>
                 </span>
 
@@ -356,8 +356,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018-01-24/区块链技术-超级账本-Hyperledger.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-24/区块链技术-超级账本-Hyperledger.html" itemprop="commentCount"></span>
+                <a href="/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -385,24 +385,30 @@
       
 
       
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Hyperledger超级账本（简称超级账本）为Linux基金会主办的开源合作项目 , 旨在推进跨行业区块链技术。它是一个全球的合作项目, 领导者来自包括金融、银行、物联网、供应链、制造和技术领域。<br><a id="more"></a></p>
-<h3 id="Hyperledger组成"><a href="#Hyperledger组成" class="headerlink" title="Hyperledger组成"></a>Hyperledger组成</h3><h4 id="Hyperledger-Fabric"><a href="#Hyperledger-Fabric" class="headerlink" title="Hyperledger Fabric"></a>Hyperledger Fabric</h4><p>区块链技术的一个实现，它的目标是成为开发应用和解决方案的基础，设计为模块化架构，允许组件如共识和成员服务模块，可以插入即用。</p>
-<h3 id="Hyperledger-Sawtooth"><a href="#Hyperledger-Sawtooth" class="headerlink" title="Hyperledger Sawtooth"></a>Hyperledger Sawtooth</h3><p>高度模块化的分布式账本平台，Hyperledger Sawtooth是一个模块化平台，用以创建、部署和运行分布式账本。Hyperledger Sawtooth包含诺韦尔共识算法，计时验证(PoET), 它针对的是以最小的资源消耗处理大量的分布式验证器。</p>
-<h4 id="Hyperledger-Iroha"><a href="#Hyperledger-Iroha" class="headerlink" title="Hyperledger Iroha"></a>Hyperledger Iroha</h4><p>轻量级分布式账本，侧重于移动。Hyperledger Iroha 是一个业务区块链框架，用于简单和容易地并入需要分布式账本技术的基础设施项目。</p>
-<h4 id="Hyperledger-Burrow"><a href="#Hyperledger-Burrow" class="headerlink" title="Hyperledger Burrow"></a>Hyperledger Burrow</h4><p>Hyperledger Burrow 是一个可以许可的智能合同机。Burrow发布于2014年12月，首次提供了一个模块化的、带经过许可的智能合约解释器的区块链客户端，它采用了部分以太坊虚拟机（EVM）的技术规范。</p>
-<h4 id="Hyperledger-Indy"><a href="#Hyperledger-Indy" class="headerlink" title="Hyperledger Indy"></a>Hyperledger Indy</h4><p>Hyperledger Indy 提供了工具、程序库和可重复使用的组件，用于提供基于区块链或者其它分布式账本的数字身份，从而让它们跨管理域、跨应用和其他silo进行互操作。</p>
-<h4 id="Hyperledger-Explorer"><a href="#Hyperledger-Explorer" class="headerlink" title="Hyperledger Explorer"></a>Hyperledger Explorer</h4><p>展示和查询区块链块、事务和相关的Web应用。Hyperledger Explorer 可以查看、调用、部署或者查询区块、事务和相关数据、网络信息、链码和事务序列，以及任何其它保存在账本中的相关信息。</p>
-<h4 id="Hyperledger-Cello"><a href="#Hyperledger-Cello" class="headerlink" title="Hyperledger Cello"></a>Hyperledger Cello</h4><p>Bass工具集，帮助创建、管理、终止区块链。Hyperledger Cello 的目标是将按需的 “即服务” 部署模式带给区块链生态系统，减少创建、管理和终止区块链所需要的工作量。</p>
-<h4 id="Hyperledger-Composer"><a href="#Hyperledger-Composer" class="headerlink" title="Hyperledger Composer"></a>Hyperledger Composer</h4><p>Hyperledger Composer 是一个协同工具，用以创建区块链业务网络，加速智能合约及其跨分布式账本部署的发展。</p>
-<h3 id="超级账本目标？"><a href="#超级账本目标？" class="headerlink" title="超级账本目标？"></a>超级账本目标？</h3><ul>
-<li>创建企业级的、开源的、分布式账本框架和代码库，支持商业事务</li>
-<li>通过技术和业务的治理，为市场提供一个中立的、开放的、和社区驱动的基础设施</li>
-<li>创建技术社区, 开发区块链和共享账本的POC、应用案例、现场试验和部署</li>
-<li>教育公众, 为区块链技术争取市场机会</li>
-<li>推广我们社区内各子社区, 用我们的带多个平台和框架的工具箱方法</li>
+        <p>2018年区块链技术必将高速发展，无论是对资本还是对行业都将产生巨大影响。抓住机会、储备技术、时刻磨刀，向前冲！！！</p>
+<h3 id="什么是Hyperledger-Fabric？"><a href="#什么是Hyperledger-Fabric？" class="headerlink" title="什么是Hyperledger Fabric？"></a>什么是Hyperledger Fabric？</h3><p>Linux基金会于2015年成立超级账本，以推进跨行业的区块链技术。<br>Fabric是超级账本区块链中的一个项目，与其他的区块链技术一样，它具有一个账本，使用智能合约，且是一个参与者可以分别管理自身交易的系统。</p>
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>centos 7.3</p>
+<h3 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h3><p>先安装docker,docker-compose,golang,参考 <span class="color:red"><a href="/2018-01-24/centos7-安装docker-docker-compose.html">centos7 安装docker|docker-compose-golang</a></span><br><a id="more"></a></p>
+<h3 id="fabric源码"><a href="#fabric源码" class="headerlink" title="fabric源码"></a>fabric源码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd $GOPATH/src/github.com/hyperledger</span><br><span class="line"># 选择tag，很重要，版本要对应</span><br><span class="line">$ git clone -b v1.0.5 https://github.com/hyperledger/fabric.git</span><br></pre></td></tr></table></figure>
+<h3 id="docker-image安装"><a href="#docker-image安装" class="headerlink" title="docker image安装"></a>docker image安装</h3><p>使用阿里云docker镜像加速<br>新增以下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line"> &quot;registry-mirrors&quot;: [&quot;https://d8b3zdiw.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>保存并执行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> systemctl daemon-reload</span><br><span class="line"><span class="meta">$</span> systemctl restart docker</span><br></pre></td></tr></table></figure></p>
+<p>进入example/e2e_cli<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli</span><br><span class="line"><span class="meta">$</span> chmod 777 download-dockerimages.sh</span><br><span class="line"><span class="meta">#</span> 使用example/e2e_cli 中的脚本下载镜像 -c 指定fabric-ca版本,-f 指定其他镜像的版本   </span><br><span class="line"><span class="meta">$</span> ./download-dockerimages.sh -c x86_64-1.0.5 -f x86_64-1.0.5</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动fabric"><a href="#启动fabric" class="headerlink" title="启动fabric"></a>启动fabric</h3><p>使用默认配置，将会启动solo模式的网络<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli  </span><br><span class="line"><span class="meta">#</span> 启动脚本</span><br><span class="line"><span class="meta">$</span> ./network_setup.sh up</span><br></pre></td></tr></table></figure></p>
+<p>看到如下,整个Fabric网络已经通了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">===================== All GOOD, End-2-End execution completed =====================</span><br><span class="line"> _____   _   _   ____            _____   ____    _____</span><br><span class="line">| ____| | \ | | |  _ \          | ____| |___ \  | ____|</span><br><span class="line">|  _|   |  \| | | | | |  _____  |  _|     __) | |  _|</span><br><span class="line">| |___  | |\  | | |_| | |_____| | |___   / __/  | |___</span><br><span class="line">|_____| |_| \_| |____/          |_____| |_____| |_____|</span><br></pre></td></tr></table></figure></p>
+<p>启动过程做了哪些？</p>
+<ul>
+<li>编译生成Fabric公私钥、证书的程序，程序在目录：fabric/release/linux-amd64/bin</li>
+<li>基于configtx.yaml生成创世区块和通道相关信息，并保存在channel-artifacts文件夹</li>
+<li>基于crypto-config.yaml生成公私钥和证书信息，并保存在crypto-config文件夹中</li>
+<li>基于docker-compose-cli.yaml启动1Orderer+4Peer+1CLI的Fabric容器</li>
+<li>在CLI启动的时候，会运行scripts/script.sh文件，这个脚本文件包含了创建Channel，加入Channel，安装Example02，运行Example02等功能</li>
 </ul>
-<p>项目的目标是发展一个跨行业的开放式标准以及开源代码开发库，允许企业创建自定义的分布式账本解决方案，以促进区块链技术在商业当中的应用。 </p>
-<p>具体信息参考：<a href="https://cn.hyperledger.org" target="_blank" rel="noopener">https://cn.hyperledger.org</a></p>
+<h3 id="测试一下fabric网络"><a href="#测试一下fabric网络" class="headerlink" title="测试一下fabric网络"></a>测试一下fabric网络</h3><p>官方例子chaincode_example02路径在<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli/examples/chaincode/go/chaincode_example02</span><br></pre></td></tr></table></figure></p>
+<p>例子中，channel名字是mychannel，链码的名字是mycc，进入cli<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker exec cli -it bash</span><br><span class="line">root@6b5e0083beec:/opt/gopath/src/github.com/hyperledger/fabric/peer#</span><br></pre></td></tr></table></figure></p>
+<p>查询a账户的余额<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@6b5e0083beec:/opt/gopath/src/github.com/hyperledger/fabric/peer# peer chaincode query -C mychannel -n mycc -c '&#123;"Args":["query","a"]&#125;'</span><br><span class="line">2018-01-24 04:46:46.209 UTC [msp] GetLocalMSP -&gt; DEBU 001 Returning existing local MSP</span><br><span class="line">2018-01-24 04:46:46.209 UTC [msp] GetDefaultSigningIdentity -&gt; DEBU 002 Obtaining default signing identity</span><br><span class="line">2018-01-24 04:46:46.209 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 003 Using default escc</span><br><span class="line">2018-01-24 04:46:46.210 UTC [chaincodeCmd] checkChaincodeCmdParams -&gt; INFO 004 Using default vscc</span><br><span class="line">2018-01-24 04:46:46.210 UTC [msp/identity] Sign -&gt; DEBU 005 Sign: plaintext: 0A94070A6608031A0B08B69FA0D30510...6D7963631A0A0A0571756572790A0161</span><br><span class="line">2018-01-24 04:46:46.210 UTC [msp/identity] Sign -&gt; DEBU 006 Sign: digest: AF92D3837B1B474EA004D885EFFDA669F6F28EE1B2AFB901FA9CE54747CE1F91</span><br><span class="line">Query Result: 90</span><br><span class="line">2018-01-24 04:46:46.223 UTC [main] main -&gt; INFO 007 Exiting.....</span><br></pre></td></tr></table></figure></p>
+<p>可以看到余额是90<br>a转账给b用户20：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@6b5e0083beec:/opt/gopath/src/github.com/hyperledger/fabric/peer# peer chaincode invoke -o orderer.example.com:7050  --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem  -C mychannel -n mycc -c '&#123;"Args":["invoke","a","b","20"]&#125;'</span><br></pre></td></tr></table></figure></p>
+<p>再查余额变味了70了</p>
+<h3 id="关闭fabric网络"><a href="#关闭fabric网络" class="headerlink" title="关闭fabric网络"></a>关闭fabric网络</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli</span><br><span class="line"><span class="meta">$</span> ./network_setup.sh down</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -422,7 +428,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2018-01-24/区块链技术-超级账本-Hyperledger.html" title="区块链技术:超级账本(Hyperledger)">http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html</a>
+              <a href="/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html" title="HyperLedger Fabric v1.0.5 (1)-环境安装">http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -473,7 +479,9 @@
           
             <a href="/tags/区块链/" rel="tag"># 区块链</a>
           
-            <a href="/tags/Hyperledger/" rel="tag"># Hyperledger</a>
+            <a href="/tags/fabric/" rel="tag"># fabric</a>
+          
+            <a href="/tags/HyperLedger/" rel="tag"># HyperLedger</a>
           
         </div>
       
@@ -486,8 +494,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html" rel="next" title="HyperLedger Fabric v1.0.5 (1)-环境安装">
-                <i class="fa fa-chevron-left"></i> HyperLedger Fabric v1.0.5 (1)-环境安装
+              <a href="/2018-01-24/centos7-安装docker-docker-compose-golang.html" rel="next" title="centos7 安装docker|docker-compose-golang">
+                <i class="fa fa-chevron-left"></i> centos7 安装docker|docker-compose-golang
               </a>
             
           </div>
@@ -496,8 +504,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html" rel="prev" title="HyperLedger Fabric v1.0.5 (2)-技术架构">
-                HyperLedger Fabric v1.0.5 (2)-技术架构 <i class="fa fa-chevron-right"></i>
+              <a href="/2018-01-24/区块链技术-超级账本-Hyperledger.html" rel="prev" title="区块链技术:超级账本(Hyperledger)">
+                区块链技术:超级账本(Hyperledger) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -529,8 +537,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018-01-24/区块链技术-超级账本-Hyperledger.html"
-           data-title="区块链技术:超级账本(Hyperledger)" data-url="http://jinweida.github.io/2018-01-24/区块链技术-超级账本-Hyperledger.html">
+      <div class="ds-thread" data-thread-key="2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html"
+           data-title="HyperLedger Fabric v1.0.5 (1)-环境安装" data-url="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-1-安装记录.html">
       </div>
     </div>
 
@@ -647,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hyperledger组成"><span class="nav-number">2.</span> <span class="nav-text">Hyperledger组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Fabric"><span class="nav-number">2.1.</span> <span class="nav-text">Hyperledger Fabric</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hyperledger-Sawtooth"><span class="nav-number">3.</span> <span class="nav-text">Hyperledger Sawtooth</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Iroha"><span class="nav-number">3.1.</span> <span class="nav-text">Hyperledger Iroha</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Burrow"><span class="nav-number">3.2.</span> <span class="nav-text">Hyperledger Burrow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Indy"><span class="nav-number">3.3.</span> <span class="nav-text">Hyperledger Indy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Explorer"><span class="nav-number">3.4.</span> <span class="nav-text">Hyperledger Explorer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Cello"><span class="nav-number">3.5.</span> <span class="nav-text">Hyperledger Cello</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperledger-Composer"><span class="nav-number">3.6.</span> <span class="nav-text">Hyperledger Composer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超级账本目标？"><span class="nav-number">4.</span> <span class="nav-text">超级账本目标？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Hyperledger-Fabric？"><span class="nav-number">1.</span> <span class="nav-text">什么是Hyperledger Fabric？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装相关软件"><span class="nav-number">3.</span> <span class="nav-text">安装相关软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric源码"><span class="nav-number">4.</span> <span class="nav-text">fabric源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-image安装"><span class="nav-number">5.</span> <span class="nav-text">docker image安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动fabric"><span class="nav-number">6.</span> <span class="nav-text">启动fabric</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试一下fabric网络"><span class="nav-number">7.</span> <span class="nav-text">测试一下fabric网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭fabric网络"><span class="nav-number">8.</span> <span class="nav-text">关闭fabric网络</span></a></li></ol></div>
             
 
           </div>
