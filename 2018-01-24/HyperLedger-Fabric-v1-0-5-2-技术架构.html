@@ -85,7 +85,7 @@
 <meta property="og:title" content="HyperLedger Fabric v1.0.5 (2)-技术架构">
 <meta property="og:url" content="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="HyperLedger fabric 1.0概述 分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务; 基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面) 支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;  fabric1.0 逻辑架">
+<meta property="og:description" content="HyperLedger fabric 1.0概述 分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务; 基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面) 支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;  定义及术语 chain链：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/fabric/luoji.png">
 <meta property="og:image" content="http://jinweida.github.io/img/fabric/yunxingshi.png">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="http://jinweida.github.io/img/fabric/wangluotu.png">
 <meta property="og:image" content="http://jinweida.github.io/img/fabric/bushu.png">
 <meta property="og:image" content="http://jinweida.github.io/img/fabric/lian.jpg">
-<meta property="og:updated_time" content="2018-02-02T05:41:01.179Z">
+<meta property="og:updated_time" content="2018-02-05T04:57:58.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HyperLedger Fabric v1.0.5 (2)-技术架构">
-<meta name="twitter:description" content="HyperLedger fabric 1.0概述 分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务; 基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面) 支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;  fabric1.0 逻辑架">
+<meta name="twitter:description" content="HyperLedger fabric 1.0概述 分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务; 基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面) 支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;  定义及术语 chain链：">
 <meta name="twitter:image" content="http://jinweida.github.io/img/fabric/luoji.png">
 
 
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-02T13:41:01+08:00">
-                2018-02-02
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-05T12:57:58+08:00">
+                2018-02-05
               </time>
             
           </span>
@@ -397,6 +397,14 @@
 <li>分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务;</li>
 <li>基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面)</li>
 <li>支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;</li>
+</ul>
+<h3 id="定义及术语"><a href="#定义及术语" class="headerlink" title="定义及术语"></a>定义及术语</h3><ul>
+<li>chain链：1个链=1个通道+1个账本+N个成员</li>
+<li>Ordering Service：提供排序服务或共识服务的网络节点，支持可插拔，目前实现了Kafka和solo模式 </li>
+<li>Peer节点:一个网络实体，维护账本并运行chaincode容器来对账本执行read-write操作。peer由Member拥有和维护</li>
+<li>通道：建立在Fabric网络的私有区块链网络，实现了数据的隔离和保密。</li>
+<li>Ledger-账本：账本是通道中每个peer节点维护的链(chain)和当前状态数据(current state data)。</li>
+<li>Member-成员：访问和使用账本的网络节点，拥有网络唯一根证书的合法独立实体</li>
 </ul>
 <h3 id="fabric1-0-逻辑架构图"><a href="#fabric1-0-逻辑架构图" class="headerlink" title="fabric1.0 逻辑架构图"></a>fabric1.0 逻辑架构图</h3><p><img src="/img/fabric/luoji.png" alt="image"><br><a id="more"></a></p>
 <h3 id="fabric1-0-运行时架构图"><a href="#fabric1-0-运行时架构图" class="headerlink" title="fabric1.0 运行时架构图"></a>fabric1.0 运行时架构图</h3><p><img src="/img/fabric/yunxingshi.png" alt="image"></p>
@@ -662,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperLedger-fabric-1-0概述"><span class="nav-number">1.</span> <span class="nav-text">HyperLedger fabric 1.0概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-逻辑架构图"><span class="nav-number">2.</span> <span class="nav-text">fabric1.0 逻辑架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-运行时架构图"><span class="nav-number">3.</span> <span class="nav-text">fabric1.0 运行时架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多链"><span class="nav-number">4.</span> <span class="nav-text">多链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多通道-amp-子账本"><span class="nav-number">5.</span> <span class="nav-text">多通道&子账本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-网络图"><span class="nav-number">6.</span> <span class="nav-text">fabric1.0 网络图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-部署图"><span class="nav-number">7.</span> <span class="nav-text">fabric1.0 部署图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-区块链网络"><span class="nav-number">8.</span> <span class="nav-text">fabric1.0 区块链网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperLedger-fabric-1-0概述"><span class="nav-number">1.</span> <span class="nav-text">HyperLedger fabric 1.0概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义及术语"><span class="nav-number">2.</span> <span class="nav-text">定义及术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-逻辑架构图"><span class="nav-number">3.</span> <span class="nav-text">fabric1.0 逻辑架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-运行时架构图"><span class="nav-number">4.</span> <span class="nav-text">fabric1.0 运行时架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多链"><span class="nav-number">5.</span> <span class="nav-text">多链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多通道-amp-子账本"><span class="nav-number">6.</span> <span class="nav-text">多通道&子账本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-网络图"><span class="nav-number">7.</span> <span class="nav-text">fabric1.0 网络图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-部署图"><span class="nav-number">8.</span> <span class="nav-text">fabric1.0 部署图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-区块链网络"><span class="nav-number">9.</span> <span class="nav-text">fabric1.0 区块链网络</span></a></li></ol></div>
             
 
           </div>
