@@ -262,6 +262,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html" itemprop="url">HyperLedger Fabric v1.0.5 (4)-Chaincode</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T16:19:53+08:00">
+                2018-02-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-05T16:40:22+08:00">
+                2018-02-05
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Chaincode是什么？"><a href="#Chaincode是什么？" class="headerlink" title="Chaincode是什么？"></a>Chaincode是什么？</h3><ul>
+<li>Chaincode是一段Go语言（java，1.1开始支持nodejs）编写的智能合约，一个接口的实现代码</li>
+<li>部署在Fabric区块链网络节点上</li>
+<li>客户端与Fabric交互的唯一渠道</li>
+<li>生成Transaction的唯一来源</li>
+<li>智能合约在Fabric上的实现方式</li>
+</ul>
+<h3 id="Chaincode运行原理？"><a href="#Chaincode运行原理？" class="headerlink" title="Chaincode运行原理？"></a>Chaincode运行原理？</h3><p>Chaincode运行在一个受保护的Docker容器当中，与背书节点的运行互相隔离，Chaincode可通过应用提交的交易对账本状态初始化并进行管理。</p>
+<h3 id="如何编写chaincode"><a href="#如何编写chaincode" class="headerlink" title="如何编写chaincode"></a>如何编写chaincode</h3><p>必须实现的接口<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Chaincode <span class="keyword">interface</span>&#123;</span><br><span class="line">    <span class="comment">//初始化工作，一般只调用一次</span></span><br><span class="line">    Init(stub ChaincodeStubInterface) pb.Response</span><br><span class="line">    <span class="comment">//查询或更新等其他操作</span></span><br><span class="line">    Invoke(stub ChaincodeStubInterface) pb.Response</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实现一个chancode<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"github.com/hyperledger/fabric/core/chaincode/shim"</span></span><br><span class="line">    <span class="string">"github.com/hyperledger/fabric/protos/peer"</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleAsset)</span> <span class="title">Init</span><span class="params">(stub shim.ChaincodeStubInterface)</span> <span class="title">peer</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    args := stub.GetStringArgs()</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(args) != <span class="number">2</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> shim.Error(<span class="string">"Incorrect arguments. Expecting a key and a value"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> shim.Success(<span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleAsset)</span> <span class="title">Invoke</span><span class="params">(stub shim.ChaincodeStubInterface)</span> <span class="title">peer</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    fn, args := stub.GetFunctionAndParameters()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result <span class="keyword">string</span></span><br><span class="line">    <span class="keyword">var</span> err error</span><br><span class="line">    <span class="keyword">if</span> fn == <span class="string">"set"</span> &#123;</span><br><span class="line">            result, err = set(stub, args)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            result, err = get(stub, args)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> shim.Error(err.Error())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Return the result as success payload</span></span><br><span class="line">    <span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(result))</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// it will override the value with the new one</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">set</span><span class="params">(stub shim.ChaincodeStubInterface, args []<span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, error)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(args) != <span class="number">2</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>, fmt.Errorf(<span class="string">"Incorrect arguments. Expecting a key and a value"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    err := stub.PutState(args[<span class="number">0</span>], []<span class="keyword">byte</span>(args[<span class="number">1</span>]))</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>, fmt.Errorf(<span class="string">"Failed to set asset: %s"</span>, args[<span class="number">0</span>])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> args[<span class="number">1</span>], <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Get returns the value of the specified asset key</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">get</span><span class="params">(stub shim.ChaincodeStubInterface, args []<span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, error)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(args) != <span class="number">1</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>, fmt.Errorf(<span class="string">"Incorrect arguments. Expecting a key"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    value, err := stub.GetState(args[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>, fmt.Errorf(<span class="string">"Failed to get asset: %s with error: %s"</span>, args[<span class="number">0</span>], err)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> value == <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>, fmt.Errorf(<span class="string">"Asset not found: %s"</span>, args[<span class="number">0</span>])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">string</span>(value), <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//启动函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> err := shim.Start(<span class="built_in">new</span>(SimpleAsset)); err != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Printf(<span class="string">"Error starting SimpleAsset chaincode: %s"</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-02-05/HyperLedger-Fabric-v1-0-5-3-交易流程.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -309,8 +460,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-05T16:16:14+08:00">
-                2018-02-05
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-10T15:02:06+08:00">
+                2018-02-10
               </time>
             
           </span>
@@ -1814,173 +1965,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-14/java-多线程sleep和wait区别.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-01-14/java-多线程sleep和wait区别.html" itemprop="url">java-多线程sleep和wait区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T14:01:16+08:00">
-                2018-01-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:29:56+08:00">
-                2018-01-14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-01-14/java-多线程sleep和wait区别.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-14/java-多线程sleep和wait区别.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>java多线程中，sleep是让线程休眠，经过指定时间后会继续执行，wait是等待，需要唤醒才能继续执行。</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>sleep是Thread线程类的方法，而wait是Object顶级类的方法。<br>Thread.sleep()可以用在任何地方，而wait只能在同步方法或者同步块中使用。</p>
-<h3 id="CPU资源释放"><a href="#CPU资源释放" class="headerlink" title="CPU资源释放"></a>CPU资源释放</h3><p>sleep,wait 调用后都会暂停当前线程并让出cpu执行时间。不同的是sleep不会释放当前持有的对象的锁资源，到时间会自动执行。而wait会放弃所有锁资源，直到其他线程调用此对象的java.lang.Object.notify（）方法或java.lang.Object.notifyAll（）方法，或指定的时间已经过去。</p>
-<h3 id="异常捕捉"><a href="#异常捕捉" class="headerlink" title="异常捕捉"></a>异常捕捉</h3><p>sleep需要捕获异常或抛出异常，而wait不需要捕获异常。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2031,7 +2015,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
