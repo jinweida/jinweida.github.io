@@ -79,18 +79,15 @@
 
 
 
-<meta name="description" content="TCP/IP模型TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。 应用层应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OSI与TCP&#x2F;IP模型">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="TCP/IP模型TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。 应用层应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等. 传输层传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/osi.jpg">
-<meta property="og:updated_time" content="2018-01-14T07:24:02.700Z">
+<meta property="og:updated_time" content="2018-02-12T04:57:16.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OSI与TCP&#x2F;IP模型">
-<meta name="twitter:description" content="TCP/IP模型TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。 应用层应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等. 传输层传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能">
 <meta name="twitter:image" content="http://jinweida.github.io/img/osi.jpg">
 
 
@@ -309,8 +306,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:24:02+08:00">
-                2018-01-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-12T12:57:16+08:00">
+                2018-02-12
               </time>
             
           </span>
@@ -354,11 +351,31 @@
 
       
         <p><img src="/img/osi.jpg" alt="image"></p>
+<a id="more"></a>
+<h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><p>OSI 七层模型通过七个层次化的结构模型使不同的系统不同的网络之间实现可靠的通讯。</p>
+<h4 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h4><p>网卡，网线，集线器，中继器，调制解调器。主要功能是：利用传输介质为数据链路层提供物理连接，实现比特流的透明传输。实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异。</p>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4><p>网桥，交换机。负责建立和管理节点间的链路。该层的主要功能是：通过各种控制协议，将有差错的物理信道变为无差错的、能可靠传输数据帧的数据链路。具体工作是接收来自物理层的位流形式的数据，并封装成帧，传送到上一层；同样也将来自上层的数据帧，拆装为位流形式的数据转发到物理层；并且还负责处理接收端发回的确认帧的信息，以便提供可靠的数据传输。</p>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><p>路由器。一般地，数据链路层是解决同一网络内节点之间的通信，而网络层主要解决不同子网间的通信。<br>例如在广域网之间通信时，必然会遇到路由（即两节点间可能有多条路径）选择问题。<br>在实现网络层功能时，需要解决的主要问题如下：</p>
+<ul>
+<li>寻址：数据链路层中使用的物理地址（如MAC地址）仅解决网络内部的寻址问题。在不同子网之间通信时，为了识别和找到网络中的设备，每一子网中的设备都会被分配一个唯一的地址。由于各子网使用的物理技术可能不同，因此这个地址应当是逻辑地址（如IP地址）。</li>
+<li>交换：规定不同的信息交换方式。常见的交换技术有：线路交换技术和存储转发技术，后者又包括报文交换技术和分组交换技术。路由算法：当源节点和目的节点之间存在多条路径时，本层可以根据路由算法，通过网络为数据分组选择最佳路径，并将信息从最合适的路径由发送端传送到接收端。</li>
+<li>连接服务：与数据链路层流量控制不同的是，前者控制的是网络相邻节点间的流量，后者控制的是从源节点到目的节点间的流量。其目的在于防止阻塞，并进行差错检测。</li>
+</ul>
+<h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p>该层的主要任务是：向用户提供可靠的端到端的差错和流量控制，保证报文的正确传输。<br>传输层的作用是向高层屏蔽下层数据通信的细节，即向用户透明地传送报文。<br>该层常见的协议：TCP/IP中的TCP协议、Novell网络中的SPX协议和微软的NetBIOS/NetBEUI协议。</p>
+<h4 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h4><p>是用户应用程序和网络之间的接口。用户可以按照半双工、单工和全双工的方式建立会话</p>
+<h4 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h4><ul>
+<li>数据格式处理：协商和建立数据交换的格式，解决各应用程序之间在数据格式表示上的差异。。</li>
+<li>数据的编码：处理字符集和数字的转换。例如由于用户程序中的数据类型（整型或实型、有符号或无符号等)，用户标识等都可以有不同的表示方式，因此，在设备之间需要具有在不同字符集或格式之间转换的功能。。</li>
+<li>压缩和解压缩：为了减少数据的传输量，这一层还负责数据的压缩与恢复。</li>
+<li>数据的加密和解密：可以提高网络的安全性。</li>
+</ul>
+<h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>它是计算机用户，以及各种应用程序和网络之间的接口。应用层为用户提供的服务和协议有：文件服务、目录服务、文件传输服务（FTP）、远程登录服务（Telnet）、电子邮件服务（E-mail）、打印服务、安全服务、网络管理服务、数据库服务等</p>
 <h3 id="TCP-IP模型"><a href="#TCP-IP模型" class="headerlink" title="TCP/IP模型"></a>TCP/IP模型</h3><p>TCP/IP参考模型是计算机网络的祖父ARPANET和其后继的因特网使用的参考模型。ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。</p>
-<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.</p>
-<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能，保证了数据包的顺序传送及数据的完整性。该层定义了两个主要的协议：传输控制协议（TCP）和用户数据报协议（UDP).<br><a id="more"></a><br>TCP协议提供的是一种可靠的、通过“三次握手”来连接的数据传输服务；而UDP协议提供的则是不保证可靠的（并不是不可靠）、无连接的数据传输服务.</p>
-<h3 id="网际互联层"><a href="#网际互联层" class="headerlink" title="网际互联层"></a>网际互联层</h3><p>网际互联层对应于OSI参考模型的网络层，主要解决主机到主机的通信问题。它所包含的协议设计数据包在整个网络上的逻辑传输。注重重新赋予主机一个IP地址来完成对主机的寻址，它还负责数据包在多种网络中的路由。该层有三个主要协议：网际协议（IP）、互联网组管理协议（IGMP）和互联网控制报文协议（ICMP）。<br>IP协议是网际互联层最重要的协议，它提供的是一个可靠、无连接的数据报传递服务。</p>
-<h3 id="网络接入层（即主机-网络层）"><a href="#网络接入层（即主机-网络层）" class="headerlink" title="网络接入层（即主机-网络层）"></a>网络接入层（即主机-网络层）</h3><p>网络接入层与OSI参考模型中的物理层和数据链路层相对应。它负责监视数据在主机和网络之间的交换。事实上，TCP/IP本身并未定义该层的协议，而由参与互连的各网络使用自己的物理层和数据链路层协议，然后与TCP/IP的网络接入层进行连接。地址解析协议（ARP）工作在此层，即OSI参考模型的数据链路层。</p>
+<h4 id="应用层-1"><a href="#应用层-1" class="headerlink" title="应用层"></a>应用层</h4><p>应用层对应于OSI参考模型的高层，为用户提供所需要的各种服务，例如：FTP、Telnet、DNS、SMTP等.</p>
+<h4 id="传输层-1"><a href="#传输层-1" class="headerlink" title="传输层"></a>传输层</h4><p>传输层对应于OSI参考模型的传输层，为应用层实体提供端到端的通信功能，保证了数据包的顺序传送及数据的完整性。该层定义了两个主要的协议：传输控制协议（TCP）和用户数据报协议（UDP).</p>
+<p>TCP协议提供的是一种可靠的、通过“三次握手”来连接的数据传输服务；而UDP协议提供的则是不保证可靠的（并不是不可靠）、无连接的数据传输服务.</p>
+<h4 id="网际互联层"><a href="#网际互联层" class="headerlink" title="网际互联层"></a>网际互联层</h4><p>网际互联层对应于OSI参考模型的网络层，主要解决主机到主机的通信问题。它所包含的协议设计数据包在整个网络上的逻辑传输。注重重新赋予主机一个IP地址来完成对主机的寻址，它还负责数据包在多种网络中的路由。该层有三个主要协议：网际协议（IP）、互联网组管理协议（IGMP）和互联网控制报文协议（ICMP）。<br>IP协议是网际互联层最重要的协议，它提供的是一个可靠、无连接的数据报传递服务。</p>
+<h4 id="网络接入层（即主机-网络层）"><a href="#网络接入层（即主机-网络层）" class="headerlink" title="网络接入层（即主机-网络层）"></a>网络接入层（即主机-网络层）</h4><p>网络接入层与OSI参考模型中的物理层和数据链路层相对应。它负责监视数据在主机和网络之间的交换。事实上，TCP/IP本身并未定义该层的协议，而由参与互连的各网络使用自己的物理层和数据链路层协议，然后与TCP/IP的网络接入层进行连接。地址解析协议（ARP）工作在此层，即OSI参考模型的数据链路层。</p>
 
       
     </div>
@@ -595,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP模型"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用层"><span class="nav-number">2.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层"><span class="nav-number">3.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网际互联层"><span class="nav-number">4.</span> <span class="nav-text">网际互联层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络接入层（即主机-网络层）"><span class="nav-number">5.</span> <span class="nav-text">网络接入层（即主机-网络层）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI七层模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#物理层"><span class="nav-number">1.1.</span> <span class="nav-text">物理层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据链路层"><span class="nav-number">1.2.</span> <span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络层"><span class="nav-number">1.3.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传输层"><span class="nav-number">1.4.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话层"><span class="nav-number">1.5.</span> <span class="nav-text">会话层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表示层"><span class="nav-number">1.6.</span> <span class="nav-text">表示层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层"><span class="nav-number">1.7.</span> <span class="nav-text">应用层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP模型"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层-1"><span class="nav-number">2.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传输层-1"><span class="nav-number">2.2.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网际互联层"><span class="nav-number">2.3.</span> <span class="nav-text">网际互联层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络接入层（即主机-网络层）"><span class="nav-number">2.4.</span> <span class="nav-text">网络接入层（即主机-网络层）</span></a></li></ol></li></ol></div>
             
 
           </div>
