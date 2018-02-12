@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="docker安装mysql镜像1.搜索镜像 docker search mysql 123456789101112131415161718192021222324252627bogon:blog camulos$ docker search mysqlNAME                              ">
+<meta name="description" content="docker构成 namespace，容器隔离的基础，保证A容器看不到B容器.6个名空间：User,Mnt,Network,UTS,IPC,Pidcgroups，容器资源统计和隔离。主要用到的cgroups子系统：cpu,blkio,device,freezer,memoryunionfs，典型：aufs/overla">
 <meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker安装mysql并导入sql文件">
-<meta property="og:url" content="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html">
+<meta property="og:title" content="docker技术基础">
+<meta property="og:url" content="http://jinweida.github.io/2017-08-31/docker技术基础.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="docker安装mysql镜像1.搜索镜像 docker search mysql 123456789101112131415161718192021222324252627bogon:blog camulos$ docker search mysqlNAME                                                   DESCRIPTION">
+<meta property="og:description" content="docker构成 namespace，容器隔离的基础，保证A容器看不到B容器.6个名空间：User,Mnt,Network,UTS,IPC,Pidcgroups，容器资源统计和隔离。主要用到的cgroups子系统：cpu,blkio,device,freezer,memoryunionfs，典型：aufs/overlayfs，分层镜像实现的基础">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-14T07:10:59.663Z">
+<meta property="og:updated_time" content="2018-02-12T10:17:48.751Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker安装mysql并导入sql文件">
-<meta name="twitter:description" content="docker安装mysql镜像1.搜索镜像 docker search mysql 123456789101112131415161718192021222324252627bogon:blog camulos$ docker search mysqlNAME                                                   DESCRIPTION">
+<meta name="twitter:title" content="docker技术基础">
+<meta name="twitter:description" content="docker构成 namespace，容器隔离的基础，保证A容器看不到B容器.6个名空间：User,Mnt,Network,UTS,IPC,Pidcgroups，容器资源统计和隔离。主要用到的cgroups子系统：cpu,blkio,device,freezer,memoryunionfs，典型：aufs/overlayfs，分层镜像实现的基础">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2017-08-31/docker技术基础.html"/>
 
 
 
 
 
-  <title>docker安装mysql并导入sql文件 | 金声玉振</title>
+  <title>docker技术基础 | 金声玉振</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-31/docker技术基础.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">docker安装mysql并导入sql文件</h1>
+          <h1 class="post-title" itemprop="name headline">docker技术基础</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T19:28:11+08:00">
-                2017-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T21:04:38+08:00">
+                2017-08-31
               </time>
             
 
@@ -308,34 +308,12 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:10:59+08:00">
-                2018-01-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-12T18:17:48+08:00">
+                2018-02-12
               </time>
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -345,8 +323,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-09-02/docker安装mysql并导入sql文件.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-02/docker安装mysql并导入sql文件.html" itemprop="commentCount"></span>
+                <a href="/2017-08-31/docker技术基础.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-31/docker技术基础.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,14 +352,15 @@
       
 
       
-        <h4 id="docker安装mysql镜像"><a href="#docker安装mysql镜像" class="headerlink" title="docker安装mysql镜像"></a>docker安装mysql镜像</h4><p>1.搜索镜像 docker search mysql</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker search mysql</span><br><span class="line">NAME                                                   DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                                                  MySQL is a widely used, open-source relati...   4895      [OK]</span><br><span class="line">mariadb                                                MariaDB is a community-developed fork of M...   1509      [OK]</span><br><span class="line">mysql/mysql-server                                     Optimized MySQL Server Docker images. Crea...   342                  [OK]</span><br><span class="line">percona                                                Percona Server is a fork of the MySQL rela...   286       [OK]</span><br><span class="line">hypriot/rpi-mysql                                      RPi-compatible Docker Image with Mysql          67</span><br><span class="line">centurylink/mysql                                      Image containing mysql. Optimized to be li...   52                   [OK]</span><br><span class="line">zabbix/zabbix-server-mysql                             Zabbix Server with MySQL database support       51                   [OK]</span><br><span class="line">sameersbn/mysql                                                                                        47                   [OK]</span><br><span class="line">zabbix/zabbix-web-nginx-mysql                          Zabbix frontend based on Nginx web-server ...   30                   [OK]</span><br><span class="line">tutum/mysql                                            Base docker image to run a MySQL database ...   25</span><br><span class="line">1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5   ubuntu-16-nginx-php-phpmyadmin-mysql-5          13                   [OK]</span><br><span class="line">schickling/mysql-backup-s3                             Backup MySQL to S3 (supports periodic back...   13                   [OK]</span><br><span class="line">linuxserver/mysql                                      A Mysql container, brought to you by Linux...   12</span><br><span class="line">centos/mysql-57-centos7                                MySQL 5.7 SQL database server                   10</span><br><span class="line">appcontainers/mysql                                    Centos/Debian Based Customizable MySQL Con...   8                    [OK]</span><br><span class="line">openshift/mysql-55-centos7                             DEPRECATED: A Centos7 based MySQL v5.5 ima...   6</span><br><span class="line">centos/mysql-56-centos7                                MySQL 5.6 SQL database server                   5</span><br><span class="line">frodenas/mysql                                         A Docker Image for MySQL                        3                    [OK]</span><br><span class="line">dsteinkopf/backup-all-mysql                            backup all DBs in a mysql server                3                    [OK]</span><br><span class="line">circleci/mysql                                         MySQL is a widely used, open-source relati...   1</span><br><span class="line">cloudposse/mysql                                       Improved `mysql` service with support for ...   0                    [OK]</span><br><span class="line">cloudfoundry/cf-mysql-ci                               Image used in CI of cf-mysql-release            0</span><br><span class="line">astronomerio/mysql-source                              MySQL source                                    0                    [OK]</span><br><span class="line">jenkler/mysql                                          Docker Mysql package                            0</span><br><span class="line">astronomerio/mysql-sink</span><br></pre></td></tr></table></figure>
-<p>2.安装镜像 docker pusll mysql:5.6.35<br>我这里装的是5.6.35 可以装最新版本docker pull mysql:latest 默认就是最新的</p>
-<a id="more"></a>
-<p>3.创建并运行mysql容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name mysql -v /Users/camulos/Documents:/media -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:5.6.35</span><br><span class="line">-d : --detach，后台运行。</span><br><span class="line">--name : 容器名字</span><br><span class="line">-p : 映射端口，一般我们会将默认端口进行更改，避免与本机的mysql端口冲突，如果你宿主机有mysql，请更改端口，如 -p 33060:3306。</span><br><span class="line">-e : 环境变量。为mysql的root用户设置密码为123456。</span><br><span class="line">-v : 指定数据卷，意思就是将mysql容器中的/media（这个是数据库所有数据信息文件）映射到宿主机/Users/camulos/Documents里面。</span><br></pre></td></tr></table></figure></p>
-<p>4.进入到mysql容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker exec -it mysql bash</span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 14</span><br><span class="line">Server version: 5.6.35 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span>create database sc</span><br><span class="line"><span class="meta">mysql&gt;</span>exit;</span><br><span class="line">root@bed26a9bea76:/# mysql -u root -p sc &lt; /medias/qsthinkphp.sql #导入sql文件，还原数据库</span><br></pre></td></tr></table></figure></p>
-<p>可以用navicat操作mysql了</p>
-
+        <h3 id="docker构成"><a href="#docker构成" class="headerlink" title="docker构成"></a>docker构成</h3><blockquote>
+<p>namespace，容器隔离的基础，保证A容器看不到B容器.<br>6个名空间：User,Mnt,Network,UTS,IPC,Pidcgroups，<br>容器资源统计和隔离。主要用到的cgroups子系统：cpu,blkio,device,freezer,memory<br>unionfs，典型：aufs/overlayfs，分层镜像实现的基础<br><a id="more"></a></p>
+<h3 id="docker组件"><a href="#docker组件" class="headerlink" title="docker组件"></a>docker组件</h3><p>docker Client客户端————&gt;向docker服务器进程发起请求，如:创建、停止、销毁容器等操作<br>docker Server服务器进程—–&gt;处理所有docker的请求，管理所有容器<br>docker Registry镜像仓库——&gt;镜像存放的中央仓库，可看作是存放二进制的scm</p>
+</blockquote>
+<h3 id="容器相关操作"><a href="#容器相关操作" class="headerlink" title="容器相关操作"></a>容器相关操作</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker create # 创建一个容器但是不启动它</span><br><span class="line">docker run # 创建并启动一个容器</span><br><span class="line">docker stop # 停止容器运行，发送信号SIGTERM</span><br><span class="line">docker start # 启动一个停止状态的容器</span><br><span class="line">docker restart # 重启一个容器</span><br><span class="line">docker rm # 删除一个容器</span><br><span class="line">docker kill # 发送信号给容器，默认SIGKILL</span><br><span class="line">docker attach # 连接(进入)到一个正在运行的容器</span><br><span class="line">docker wait # 阻塞到一个容器，直到容器停止运行</span><br></pre></td></tr></table></figure>
+<h3 id="获取容器相关"><a href="#获取容器相关" class="headerlink" title="获取容器相关"></a>获取容器相关</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker ps # 显示状态为运行（Up）的容器</span><br><span class="line">docker ps -a # 显示所有容器,包括运行中（Up）的和退出的(Exited)</span><br><span class="line">docker inspect # 深入容器内部获取容器所有信息</span><br><span class="line">docker logs # 查看容器的日志(stdout/stderr)</span><br><span class="line">docker events # 得到docker服务器的实时的事件</span><br><span class="line">docker port # 显示容器的端口映射</span><br><span class="line">docker top # 显示容器的进程信息</span><br><span class="line">docker diff # 显示容器文件系统的前后变化</span><br><span class="line">docker cp # 从容器里向外拷贝文件或目录</span><br><span class="line">docker export # 将容器整个文件系统导出为一个tar包，不带layers、tag等信息</span><br></pre></td></tr></table></figure>
+<h3 id="docker执行命令"><a href="#docker执行命令" class="headerlink" title="docker执行命令"></a>docker执行命令</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec # 在容器里执行一个命令，可以执行bash进入交互式</span><br></pre></td></tr></table></figure>
+<h3 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker images # 显示本地所有的镜像列表</span><br><span class="line">docker import # 从一个tar包创建一个镜像，往往和export结合使用</span><br><span class="line">docker build # 使用Dockerfile创建镜像（推荐）</span><br><span class="line">docker <span class="keyword">commit</span> # 从容器创建镜像</span><br><span class="line">docker rmi # 删除一个镜像</span><br><span class="line">docker <span class="keyword">load</span> # 从一个tar包创建一个镜像，和<span class="keyword">save</span>配合使用</span><br><span class="line">docker <span class="keyword">save</span> # 将一个镜像保存为一个tar包，带layers和tag信息</span><br><span class="line">docker history # 显示生成一个镜像的历史命令</span><br><span class="line">docker tag # 为镜像起一个别名</span><br><span class="line">docker login # 登录到一个registry</span><br><span class="line">docker <span class="keyword">search</span> # 从registry仓库搜索镜像</span><br><span class="line">docker pull # 从仓库下载镜像到本地</span><br><span class="line">docker push # 将一个镜像push到registry仓库中</span><br></pre></td></tr></table></figure>
+<h3 id="docker-镜像操作"><a href="#docker-镜像操作" class="headerlink" title="docker 镜像操作"></a>docker 镜像操作</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>把镜像tag都改为latest</span><br><span class="line">docker tag IMAGEID(镜像id) REPOSITORY:TAG（仓库：标签）</span><br><span class="line">docker tag 0403fd1c72c7 docker.io/hyperledger/fabric-tools:latest</span><br><span class="line">docker rmi &lt;image id&gt;</span><br><span class="line"><span class="meta">#</span>强制删除镜像</span><br><span class="line">docker rmi -f&lt;image id&gt;</span><br><span class="line"><span class="meta">#</span>生成该镜像的tar包</span><br><span class="line">docker save 6830dcd7b9b5&gt; /tmp/docker/fabric-images/peer.tar</span><br><span class="line"><span class="meta">#</span>加载镜像文件</span><br><span class="line">docker load &lt; /tmp/docker/fabric-peer.tar</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -400,7 +379,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-09-02/docker安装mysql并导入sql文件.html" title="docker安装mysql并导入sql文件">http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html</a>
+              <a href="/2017-08-31/docker技术基础.html" title="docker技术基础">http://jinweida.github.io/2017-08-31/docker技术基础.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -462,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-08-31/docker技术基础.html" rel="next" title="docker技术基础">
-                <i class="fa fa-chevron-left"></i> docker技术基础
+              <a href="/2017-08-31/oracle使用总结.html" rel="next" title="oracle使用总结">
+                <i class="fa fa-chevron-left"></i> oracle使用总结
               </a>
             
           </div>
@@ -472,8 +451,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-09-20/ubuntu中oracle数据库.html" rel="prev" title="ubuntu中oracle数据库">
-                ubuntu中oracle数据库 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-09-02/docker安装mysql并导入sql文件.html" rel="prev" title="docker安装mysql并导入sql文件">
+                docker安装mysql并导入sql文件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,8 +484,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-09-02/docker安装mysql并导入sql文件.html"
-           data-title="docker安装mysql并导入sql文件" data-url="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html">
+      <div class="ds-thread" data-thread-key="2017-08-31/docker技术基础.html"
+           data-title="docker技术基础" data-url="http://jinweida.github.io/2017-08-31/docker技术基础.html">
       </div>
     </div>
 
@@ -623,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#docker安装mysql镜像"><span class="nav-number">1.</span> <span class="nav-text">docker安装mysql镜像</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker构成"><span class="nav-number">1.</span> <span class="nav-text">docker构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker组件"><span class="nav-number">2.</span> <span class="nav-text">docker组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器相关操作"><span class="nav-number">3.</span> <span class="nav-text">容器相关操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取容器相关"><span class="nav-number">4.</span> <span class="nav-text">获取容器相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker执行命令"><span class="nav-number">5.</span> <span class="nav-text">docker执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像操作"><span class="nav-number">6.</span> <span class="nav-text">镜像操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-镜像操作"><span class="nav-number">7.</span> <span class="nav-text">docker 镜像操作</span></a></li></ol></div>
             
 
           </div>
