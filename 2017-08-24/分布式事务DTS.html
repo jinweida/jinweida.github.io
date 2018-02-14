@@ -88,7 +88,8 @@
 <meta property="og:description" content="分布式系统特点：CAP帽子原理： 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/liangduan.png">
-<meta property="og:updated_time" content="2018-02-14T09:46:31.276Z">
+<meta property="og:image" content="http://jinweida.github.io/img/sanduan.png">
+<meta property="og:updated_time" content="2018-02-14T10:15:20.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式事务DTS">
 <meta name="twitter:description" content="分布式系统特点：CAP帽子原理： 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
@@ -310,7 +311,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T17:46:31+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T18:15:20+08:00">
                 2018-02-14
               </time>
             
@@ -388,6 +389,12 @@
 </li>
 <li><p>同步阻塞：二阶段提交执行过程中，所有服务参与者需要服从协调者的统一调度，期间处于阻塞状态，会一定程度上影响整个系统的效率。</p>
 </li>
+</ul>
+<h4 id="三段提交协议"><a href="#三段提交协议" class="headerlink" title="三段提交协议"></a>三段提交协议</h4><p>三段提交协议是两段提交协议的改进版本，它通过超时机制解决了阻塞问题。</p>
+<ul>
+<li>询问阶段：协调者询问参与者是否可以完成指令，协调者只需要回答是或不是，而不需要做真正的操作。这个阶段超时会导致中止。</li>
+<li>准备阶段：如果在询问阶段所有参与者都返回可以执行操作，则协调者向参与者发送预执行请求，然后参与者写redo和undo日志，执行操作但不能提交。如果在询问阶段任意参与者返回不能执行操作的结果，则协调者向参与者发送中止请求，这里的逻辑与两段提交协议的准备阶段是相似的。</li>
+<li>提交阶段：如果每个参与者在准备阶段返回准备成功，也就是说预留资源和执行操作成功，则协调者向参与者发起提交指令，参与者提交资源变更的事务，释放锁定的资源；如果任何参与者返回准备失败，也就是说预留资源或者执行操作失败，则协调者向参与者发送中止指令，参与者取消已经执行的事务，执行undo日志，释放预定资源，这里的逻辑与两段提交协议的提交阶段一致。<br><img src="/img/sanduan.png" alt="image"></li>
 </ul>
 
       
@@ -631,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统特点："><span class="nav-number">1.</span> <span class="nav-text">分布式系统特点：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CAP帽子原理："><span class="nav-number">1.1.</span> <span class="nav-text">CAP帽子原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACID特点："><span class="nav-number">1.2.</span> <span class="nav-text">ACID特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式事务基本介绍"><span class="nav-number">2.</span> <span class="nav-text">分布式事务基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用分布式技术介绍"><span class="nav-number">3.</span> <span class="nav-text">常用分布式技术介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2PC协议"><span class="nav-number">3.1.</span> <span class="nav-text">2PC协议</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统特点："><span class="nav-number">1.</span> <span class="nav-text">分布式系统特点：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CAP帽子原理："><span class="nav-number">1.1.</span> <span class="nav-text">CAP帽子原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACID特点："><span class="nav-number">1.2.</span> <span class="nav-text">ACID特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式事务基本介绍"><span class="nav-number">2.</span> <span class="nav-text">分布式事务基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用分布式技术介绍"><span class="nav-number">3.</span> <span class="nav-text">常用分布式技术介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2PC协议"><span class="nav-number">3.1.</span> <span class="nav-text">2PC协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三段提交协议"><span class="nav-number">3.2.</span> <span class="nav-text">三段提交协议</span></a></li></ol></li></ol></div>
             
 
           </div>
