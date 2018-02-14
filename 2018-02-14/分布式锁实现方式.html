@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-14T15:03:55.043Z">
+<meta property="og:updated_time" content="2018-02-14T15:06:35.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁实现方式">
 <meta name="twitter:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T23:03:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T23:06:35+08:00">
                 2018-02-14
               </time>
             
@@ -374,7 +374,7 @@
 <li>这把锁是非重入的，同一个线程在没有释放锁之前无法再次获得该锁。因为数据中数据已经存在了</li>
 </ul>
 <h4 id="基于数据库排它锁"><a href="#基于数据库排它锁" class="headerlink" title="基于数据库排它锁"></a>基于数据库排它锁</h4><p>上面的数据库表除了增删操作外，还可以使用数据库排它锁来实现分布式锁。基于MySql的InnoDB引擎，在查询语句后面增加for update，此方法有效的解决上面无法释放锁和阻塞锁。<br>使用排他锁来进行分布式锁，如果一个排他锁长时间不提交，就会占用数据库连接。一旦类似的连接变得多了，就可能把数据库连接池撑爆。<br>总结一下使用数据库来实现分布式锁的方式，这两种方式都是依赖数据库的一张表，一种是通过表中的记录的存在情况确定当前是否有锁存在，另外一种是通过数据库的排他锁来实现分布式锁。</p>
-<h3 id="基于缓存-redis-memcached-tair-实现分布式锁"><a href="#基于缓存-redis-memcached-tair-实现分布式锁" class="headerlink" title="基于缓存(redis,memcached,tair)实现分布式锁"></a>基于缓存(redis,memcached,tair)实现分布式锁</h3><p>基于缓存来实现在性能方面会表现的更好一点。而且很多缓存是可以集群部署的，可以解决单点问题。<br>使用Redis的 SETNX 命令可以实现分布式锁<br>SETNX<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 当且仅当key不存在时，set一个key为val的字符串，返回1；若key存在，则什么都不做，返回0</span><br><span class="line"><span class="meta">$</span> SETNX key val</span><br></pre></td></tr></table></figure></p>
+<h3 id="基于缓存实现分布式锁"><a href="#基于缓存实现分布式锁" class="headerlink" title="基于缓存实现分布式锁"></a>基于缓存实现分布式锁</h3><p>可以使用redis,memcached,tair，基于缓存来实现在性能方面会表现的更好一点。而且很多缓存是可以集群部署的，可以解决单点问题。<br>使用Redis的 SETNX 命令可以实现分布式锁<br>SETNX<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 当且仅当key不存在时，set一个key为val的字符串，返回1；若key存在，则什么都不做，返回0</span><br><span class="line"><span class="meta">$</span> SETNX key val</span><br></pre></td></tr></table></figure></p>
 <p>expire<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 为key设置一个超时时间，单位为second，超过这个时间锁会自动释放，避免死锁。</span><br><span class="line"><span class="meta">$</span> expire key timeout</span><br></pre></td></tr></table></figure></p>
 <p>delete<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> delete key</span><br></pre></td></tr></table></figure></p>
 <p>在使用Redis实现分布式锁的时候，主要就会使用到这三个命令。</p>
@@ -384,8 +384,8 @@
 <li>释放锁的时候，通过UUID判断是不是该锁，若是该锁，则执行delete进行锁释放。</li>
 </ul>
 <p><a href="https://github.com/jinweida/java-learn-cde/blob/master/src/main/java/com/king/learn/redis/RedisDistributedLock.java" target="_blank" rel="noopener">redis实现分布式锁</a></p>
-<h3 id="基于Zookeeper实现分布式锁"><a href="#基于Zookeeper实现分布式锁" class="headerlink" title="基于Zookeeper实现分布式锁"></a>基于Zookeeper实现分布式锁</h3><p>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>ZooKeeper的架构通过冗余服务实现高可用性。因此，如果第一次无应答，客户端就可以询问另一台ZooKeeper主机。ZooKeeper节点将它们的数据存储于一个分层的命名空间，非常类似于一个文件系统或一个前缀树结构。客户端可以在节点读写，从而以这种方式拥有一个共享的配置服务。更新是全序的。</p>
-<h4 id="zookeeper分布式锁实现流程"><a href="#zookeeper分布式锁实现流程" class="headerlink" title="zookeeper分布式锁实现流程"></a>zookeeper分布式锁实现流程</h4><ul>
+<h3 id="Zookeeper实现分布式锁"><a href="#Zookeeper实现分布式锁" class="headerlink" title="Zookeeper实现分布式锁"></a>Zookeeper实现分布式锁</h3><p>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>ZooKeeper的架构通过冗余服务实现高可用性。因此，如果第一次无应答，客户端就可以询问另一台ZooKeeper主机。ZooKeeper节点将它们的数据存储于一个分层的命名空间，非常类似于一个文件系统或一个前缀树结构。客户端可以在节点读写，从而以这种方式拥有一个共享的配置服务。更新是全序的。</p>
+<h4 id="zookeeper实现流程"><a href="#zookeeper实现流程" class="headerlink" title="zookeeper实现流程"></a>zookeeper实现流程</h4><ul>
 <li>在zookeeper指定节点（locks）下创建临时顺序节点node_n</li>
 <li>获取locks下所有子节点children</li>
 <li>对子节点按节点自增序号从小到大排序</li>
@@ -631,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式CAP帽子原理"><span class="nav-number">1.</span> <span class="nav-text">分布式CAP帽子原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁实现的方式"><span class="nav-number">2.</span> <span class="nav-text">分布式锁实现的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于数据库实现分布式锁"><span class="nav-number">3.</span> <span class="nav-text">基于数据库实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于数据库表"><span class="nav-number">3.1.</span> <span class="nav-text">基于数据库表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于数据库排它锁"><span class="nav-number">3.2.</span> <span class="nav-text">基于数据库排它锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于缓存-redis-memcached-tair-实现分布式锁"><span class="nav-number">4.</span> <span class="nav-text">基于缓存(redis,memcached,tair)实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现思路"><span class="nav-number">4.1.</span> <span class="nav-text">实现思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Zookeeper实现分布式锁"><span class="nav-number">5.</span> <span class="nav-text">基于Zookeeper实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zookeeper分布式锁实现流程"><span class="nav-number">5.1.</span> <span class="nav-text">zookeeper分布式锁实现流程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式CAP帽子原理"><span class="nav-number">1.</span> <span class="nav-text">分布式CAP帽子原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁实现的方式"><span class="nav-number">2.</span> <span class="nav-text">分布式锁实现的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于数据库实现分布式锁"><span class="nav-number">3.</span> <span class="nav-text">基于数据库实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于数据库表"><span class="nav-number">3.1.</span> <span class="nav-text">基于数据库表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于数据库排它锁"><span class="nav-number">3.2.</span> <span class="nav-text">基于数据库排它锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于缓存实现分布式锁"><span class="nav-number">4.</span> <span class="nav-text">基于缓存实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现思路"><span class="nav-number">4.1.</span> <span class="nav-text">实现思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zookeeper实现分布式锁"><span class="nav-number">5.</span> <span class="nav-text">Zookeeper实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zookeeper实现流程"><span class="nav-number">5.1.</span> <span class="nav-text">zookeeper实现流程</span></a></li></ol></li></ol></div>
             
 
           </div>
