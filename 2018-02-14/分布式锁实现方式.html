@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-14T14:57:23.539Z">
+<meta property="og:updated_time" content="2018-02-14T15:02:30.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁实现方式">
 <meta name="twitter:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T22:57:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T23:02:30+08:00">
                 2018-02-14
               </time>
             
@@ -389,7 +389,7 @@
 <li>获取locks下所有子节点children</li>
 <li>对子节点按节点自增序号从小到大排序</li>
 <li>判断本节点是不是第一个子节点，若是，则获取锁；若不是，则监听比该节点小的那个节点的删除事件</li>
-<li>若监听事件生效，则回到第二步重新进行判断，直到获取到锁</li>
+<li>若监听事件生效，则回到第二步重新进行判断，直到获取到锁<br><a href="https://github.com/jinweida/java-learn-cde/blob/master/src/main/java/com/king/learn/zookeeper/ZKDistributedLock.java" target="_blank" rel="noopener">zookeeper实现分布式锁</a></li>
 </ul>
 
       
