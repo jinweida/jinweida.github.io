@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="什么是高可用（High Availability）？百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。  如何保证过高可用呢？  主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用">
+<meta name="description" content="什么是高可用（High Availability）？百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。">
 <meta name="keywords" content="分布式,高可用,架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高可用高并发大型网站架构设计思路">
 <meta property="og:url" content="http://jinweida.github.io/2017-08-19/高可用高并发大型网站架构设计思路.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="什么是高可用（High Availability）？百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。  如何保证过高可用呢？  主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用">
+<meta property="og:description" content="什么是高可用（High Availability）？百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-14T13:55:07.755Z">
+<meta property="og:updated_time" content="2018-02-14T10:40:06.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高可用高并发大型网站架构设计思路">
-<meta name="twitter:description" content="什么是高可用（High Availability）？百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。  如何保证过高可用呢？  主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用">
+<meta name="twitter:description" content="什么是高可用（High Availability）？百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。">
 
 
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T21:55:07+08:00">
-                2018-01-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T18:40:06+08:00">
+                2018-02-14
               </time>
             
           </span>
@@ -352,28 +352,19 @@
       
 
       
-        <h3 id="什么是高可用（High-Availability）？"><a href="#什么是高可用（High-Availability）？" class="headerlink" title="什么是高可用（High Availability）？"></a>什么是高可用（High Availability）？</h3><p>百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。</p>
-<blockquote>
-<p>如何保证过高可用呢？</p>
-</blockquote>
-<p>主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用<br><a id="more"></a></p>
+        <h3 id="什么是高可用（High-Availability）？"><a href="#什么是高可用（High-Availability）？" class="headerlink" title="什么是高可用（High Availability）？"></a>什么是高可用（High Availability）？</h3><p>百科中描述为：一个系统经过专门的设计，从而减少停工时间，而保持其服务的高度可用性。<br><a id="more"></a></p>
+<h3 id="如何保证过高可用呢？"><a href="#如何保证过高可用呢？" class="headerlink" title="如何保证过高可用呢？"></a>如何保证过高可用呢？</h3><p>主要是避免单点，集群化，或者叫冗余，通过“自动故障转移”来实现高可用</p>
 <ul>
-<li><p>主从方式<br>原理：主机工作，备机处于监控准备状况，当主机宕机时，备机接管主机的一切工作，待主机恢复正常，按使用者的设定以自动或者手动方式将服务切换到主机上运行。数据一致性通过共享存储系统解决。</p>
-</li>
-<li><p>双机双工方式<br>两台主机同时运行各自的服务工作且相互监测情况，当任一台宕机时，另一台主机立即接管他的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。</p>
-</li>
-<li><p>集群工作方式<br>多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。</p>
-</li>
+<li>主从方式<br>原理：主机工作，备机处于监控准备状况，当主机宕机时，备机接管主机的一切工作，待主机恢复正常，按使用者的设定以自动或者手动方式将服务切换到主机上运行。数据一致性通过共享存储系统解决。</li>
+<li>双机双工方式<br>两台主机同时运行各自的服务工作且相互监测情况，当任一台宕机时，另一台主机立即接管他的一切工作，保证工作实时，应用服务系统的关键数据存放在共享存储系统中。</li>
+<li>集群工作方式<br>多台主机一起工作，各自运行一个或几个服务，各为服务定义一个或多个备用主机，当某个主机故障时，运行在其上的服务就可以被其它主机接管。</li>
 </ul>
 <h3 id="什么是高并发？"><a href="#什么是高并发？" class="headerlink" title="什么是高并发？"></a>什么是高并发？</h3><p>高并发是分布式系统架构设计中必须考虑的因素之一，通常指通过设计保证系统能够同时并行处理很多请求。</p>
-<blockquote>
-<p>如何保证高并发？  </p>
-</blockquote>
-<ul>
+<h3 id="如何保证高并发？"><a href="#如何保证高并发？" class="headerlink" title="如何保证高并发？"></a>如何保证高并发？</h3><ul>
 <li>垂直扩展：提升单机处理能力</li>
 <li>水平扩展：只要增加服务器数量，就能线性扩充系统性能。</li>
 </ul>
-<h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><h4 id="空间换时间"><a href="#空间换时间" class="headerlink" title="空间换时间"></a>空间换时间</h4><ul>
+<h3 id="设计思路？"><a href="#设计思路？" class="headerlink" title="设计思路？"></a>设计思路？</h3><h4 id="空间换时间"><a href="#空间换时间" class="headerlink" title="空间换时间"></a>空间换时间</h4><ul>
 <li>多级缓存，静态化</li>
 <li>索引</li>
 </ul>
@@ -635,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是高可用（High-Availability）？"><span class="nav-number">1.</span> <span class="nav-text">什么是高可用（High Availability）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是高并发？"><span class="nav-number">2.</span> <span class="nav-text">什么是高并发？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计思路"><span class="nav-number">3.</span> <span class="nav-text">设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#空间换时间"><span class="nav-number">3.1.</span> <span class="nav-text">空间换时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行与分布式计算"><span class="nav-number">3.2.</span> <span class="nav-text">并行与分布式计算</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是高可用（High-Availability）？"><span class="nav-number">1.</span> <span class="nav-text">什么是高可用（High Availability）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保证过高可用呢？"><span class="nav-number">2.</span> <span class="nav-text">如何保证过高可用呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是高并发？"><span class="nav-number">3.</span> <span class="nav-text">什么是高并发？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保证高并发？"><span class="nav-number">4.</span> <span class="nav-text">如何保证高并发？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计思路？"><span class="nav-number">5.</span> <span class="nav-text">设计思路？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#空间换时间"><span class="nav-number">5.1.</span> <span class="nav-text">空间换时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行与分布式计算"><span class="nav-number">5.2.</span> <span class="nav-text">并行与分布式计算</span></a></li></ol></li></ol></div>
             
 
           </div>
