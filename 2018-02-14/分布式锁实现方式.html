@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-14T15:02:30.276Z">
+<meta property="og:updated_time" content="2018-02-14T15:03:55.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁实现方式">
 <meta name="twitter:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T23:02:30+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T23:03:55+08:00">
                 2018-02-14
               </time>
             
@@ -381,16 +381,18 @@
 <h4 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h4><ul>
 <li>获取锁的时候，使用setnx加锁，并使用expire命令为锁添加一个超时时间，超过该时间则自动释放锁，锁的value值为一个随机生成的UUID，通过此在释放锁的时候进行判断。</li>
 <li>获取锁的时候还设置一个获取的超时时间，若超过这个时间则放弃获取锁</li>
-<li>释放锁的时候，通过UUID判断是不是该锁，若是该锁，则执行delete进行锁释放。<br><a href="https://github.com/jinweida/java-learn-cde/blob/master/src/main/java/com/king/learn/redis/RedisDistributedLock.java" target="_blank" rel="noopener">redis实现分布式锁</a></li>
+<li>释放锁的时候，通过UUID判断是不是该锁，若是该锁，则执行delete进行锁释放。</li>
 </ul>
+<p><a href="https://github.com/jinweida/java-learn-cde/blob/master/src/main/java/com/king/learn/redis/RedisDistributedLock.java" target="_blank" rel="noopener">redis实现分布式锁</a></p>
 <h3 id="基于Zookeeper实现分布式锁"><a href="#基于Zookeeper实现分布式锁" class="headerlink" title="基于Zookeeper实现分布式锁"></a>基于Zookeeper实现分布式锁</h3><p>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>ZooKeeper的架构通过冗余服务实现高可用性。因此，如果第一次无应答，客户端就可以询问另一台ZooKeeper主机。ZooKeeper节点将它们的数据存储于一个分层的命名空间，非常类似于一个文件系统或一个前缀树结构。客户端可以在节点读写，从而以这种方式拥有一个共享的配置服务。更新是全序的。</p>
 <h4 id="zookeeper分布式锁实现流程"><a href="#zookeeper分布式锁实现流程" class="headerlink" title="zookeeper分布式锁实现流程"></a>zookeeper分布式锁实现流程</h4><ul>
 <li>在zookeeper指定节点（locks）下创建临时顺序节点node_n</li>
 <li>获取locks下所有子节点children</li>
 <li>对子节点按节点自增序号从小到大排序</li>
 <li>判断本节点是不是第一个子节点，若是，则获取锁；若不是，则监听比该节点小的那个节点的删除事件</li>
-<li>若监听事件生效，则回到第二步重新进行判断，直到获取到锁<br><a href="https://github.com/jinweida/java-learn-cde/blob/master/src/main/java/com/king/learn/zookeeper/ZKDistributedLock.java" target="_blank" rel="noopener">zookeeper实现分布式锁</a></li>
+<li>若监听事件生效，则回到第二步重新进行判断，直到获取到锁</li>
 </ul>
+<p><a href="https://github.com/jinweida/java-learn-cde/blob/master/src/main/java/com/king/learn/zookeeper/ZKDistributedLock.java" target="_blank" rel="noopener">zookeeper实现分布式锁</a></p>
 
       
     </div>
