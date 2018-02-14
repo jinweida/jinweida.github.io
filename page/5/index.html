@@ -1141,8 +1141,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:15:12+08:00">
-                2018-01-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T11:34:32+08:00">
+                2018-02-14
               </time>
             
           </span>
@@ -1186,8 +1186,7 @@
 
       
         
-          <h3 id="分布式系统特点："><a href="#分布式系统特点：" class="headerlink" title="分布式系统特点："></a>分布式系统特点：</h3><p>####CAP特点：<br>a.一致性(Consistency):( 同样数据在分布式系统的各个节点上都是一致的)<br>b.分区容忍性(Partition Tolerance) :(如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作)<br>c.可用性(Availability):( 所有在分布式系统活跃的节点都能够处理操作且能响应查询)</p>
-<h4 id="ACID特点："><a href="#ACID特点：" class="headerlink" title="ACID特点："></a>ACID特点：</h4><p>a.原子性(Atomicity)<br>一个事务(transaction)中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。<br>b.一致性(Consistency)<br>事务的一致性指的是在一个事务执行之前和执行之后数据库都必须处于一致性状态。如果事务成功地完成，那么系统中所有变化将正确地应用，系统处于有效状态。如果在事务中出现错误，那么系统中的所有变化将自动地回滚，系统返回到原始状态。<br>c.隔离性(Isolation)<br>指的是在并发环境中，当不同的事务同时操纵相同的数据时，每个事务都有各自的完整数据空间。由并发事务所做的修改必须与任何其他并发事务所做的修改隔离。事务查看数据更新时，数据所处的状态要么是另一事务修改它之前的状态，要么是另一事务修改它之后的状态，事务不会查看到中间状态的数据。<br>d.持久性(Durability)<br>指的是只要事务成功结束，它对数据库所做的更新就必须永久保存下来。即使发生系统崩溃，重新启动数据库系统后，数据库还能恢复到事务成功结束时的状态。<br>
+          <h3 id="分布式系统特点："><a href="#分布式系统特点：" class="headerlink" title="分布式系统特点："></a>分布式系统特点：</h3><h4 id="CAP特点："><a href="#CAP特点：" class="headerlink" title="CAP特点："></a>CAP特点：</h4><p>a.一致性(Consistency):( 同样数据在分布式系统的各个节点上都是一致的)<br>b.分区容忍性(Partition Tolerance) :(如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作)<br>c.可用性(Availability):( 所有在分布式系统活跃的节点都能够处理操作且能响应查询)<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017-08-24/分布式事务DTS.html#more" rel="contents">
