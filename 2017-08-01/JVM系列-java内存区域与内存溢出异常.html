@@ -88,7 +88,7 @@
 <meta property="og:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/jinweida/worker/master/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/145540ib3ztwzt8rj13ow1.png.thumb.jpg">
-<meta property="og:updated_time" content="2018-01-10T13:59:41.570Z">
+<meta property="og:updated_time" content="2018-02-25T00:45:38.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM系列:java内存区域与内存溢出异常">
 <meta name="twitter:description" content="运行时数据区域 程序计数器 是一块较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器 如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址 如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域 线程私有的">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:59:41+08:00">
-                2018-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-25T08:45:38+08:00">
+                2018-02-25
               </time>
             
           </span>
@@ -382,7 +382,9 @@
 <li>如果线程正在执行一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址</li>
 <li>如果正在执行的是Native方法，这个计数器值则为空（undefined），此区域是唯一没有OutOfMemoryError情况的区域</li>
 <li>线程私有的 <a id="more"></a>
-<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3></li>
+</li>
+</ul>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><ul>
 <li>线程私有的</li>
 <li>描述的是Java方法执行的内存模型，每个方法执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表，操作数栈，动态连接方法出口等信息。每个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机中入栈到出栈的过程</li>
 <li>局部变量表存放了编译期的各种数据类型（boolean，byte，char，short，int，float，long，double），对象引用（reference）类型（指针或者句柄）</li>
@@ -397,7 +399,7 @@
 <li>虚拟机管理得内存中最大一块,分为新生代、老年代。<br>  新生代有分为Eden空间、FromSurvivor空间、to survivor空间。<br>  老年代是在新生代中经历了N次垃圾回收后仍然存活的对象，就会被放到老年代中</li>
 <li>被所有线程共享得，在虚拟机启启动时创建，此内存区域唯一目的是存放对象实例和数组，几乎所有对象实例和数组都在这里分配内存</li>
 <li>随着JIT编译器得发展与逃逸分析技术成熟起来，对象得分配在堆上变得不那么绝对了</li>
-<li>Java堆是蓝记收集器管理得主要区域</li>
+<li>Java堆是垃圾收集器管理得主要区域</li>
 <li>现在垃圾收集器采用分代收集算法，java堆可分为新生代和老年代</li>
 <li>java 堆可划分出多个线程私有得分配缓冲区（Thread Local Allocation Buffer,TLAB）</li>
 <li>如果在堆中没有内存完成实例分配，并且堆也无法扩展，将会抛出OutOfMemoryError异常</li>
@@ -508,8 +510,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-08-01/JVM系列-虚拟机性能监控与故障处理工具.html" rel="prev" title="JVM系列:虚拟机性能监控与故障处理工具">
-                JVM系列:虚拟机性能监控与故障处理工具 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-08-01/JVM系列-垃圾收集器.html" rel="prev" title="JVM系列:垃圾收集器与内存分配策略">
+                JVM系列:垃圾收集器与内存分配策略 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

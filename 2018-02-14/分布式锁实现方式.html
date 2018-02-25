@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-14T15:06:35.898Z">
+<meta property="og:updated_time" content="2018-02-23T01:30:19.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁实现方式">
 <meta name="twitter:description" content="分布式CAP帽子原理 一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的 分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作 可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-14T23:06:35+08:00">
-                2018-02-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-23T09:30:19+08:00">
+                2018-02-23
               </time>
             
           </span>
@@ -356,8 +356,9 @@
 <li>一致性(Consistency):同样数据在分布式系统的各个节点上都是一致的</li>
 <li>分区容忍性(Partition Tolerance) :如果出现了网络故障、一部分节点无法通信，但是系统仍能够工作</li>
 <li>可用性(Availability):所有在分布式系统活跃的节点都能够处理操作且能响应查询<a id="more"></a>
-最多只能同时满足两项，在互联网领域的绝大多数的场景中，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证“最终一致性”，只要这个最终时间是在用户可以接受的范围内即可。<br>在很多场景中，为了保证最终一致性，需要很多技术方案来支持，比如分布式事务、分布式锁等。</li>
+</li>
 </ul>
+<p>最多只能同时满足两项，在互联网领域的绝大多数的场景中，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证“最终一致性”，只要这个最终时间是在用户可以接受的范围内即可。<br>在很多场景中，为了保证最终一致性，需要很多技术方案来支持，比如分布式事务、分布式锁等。</p>
 <h3 id="分布式锁实现的方式"><a href="#分布式锁实现的方式" class="headerlink" title="分布式锁实现的方式"></a>分布式锁实现的方式</h3><ul>
 <li>基于数据库实现分布式锁</li>
 <li>基于缓存(redis,memcached,tair)实现分布式锁</li>
