@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="区块链,fabric,HyperLedger," />
+  <meta name="keywords" content="golang," />
 
 
 
@@ -79,26 +79,18 @@
 
 
 
-<meta name="description" content="HyperLedger fabric 1.0概述 分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务; 基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面) 支持更强的配置功">
-<meta name="keywords" content="区块链,fabric,HyperLedger">
+<meta name="description" content="Go的包结构go中的包类似java中的包，比如java.lang这个包，里面有String。如go中net包123456789net├── http├── internal├── mail├── rpc├── smtp├── testdata├── textproto└── url  源 件头部以 “package “">
+<meta name="keywords" content="golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HyperLedger Fabric v1.0.5 (2)-技术架构">
-<meta property="og:url" content="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html">
+<meta property="og:title" content="GO笔记一:go包管理">
+<meta property="og:url" content="http://jinweida.github.io/2018-02-28/GO笔记一-go包管理.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="HyperLedger fabric 1.0概述 分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务; 基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面) 支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;">
+<meta property="og:description" content="Go的包结构go中的包类似java中的包，比如java.lang这个包，里面有String。如go中net包123456789net├── http├── internal├── mail├── rpc├── smtp├── testdata├── textproto└── url  源 件头部以 “package “ 声明包名称 包由同一目录下的多个源码文件组成。 包名类似namespace，与">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/img/fabric/luoji.png">
-<meta property="og:image" content="http://jinweida.github.io/img/fabric/yunxingshi.png">
-<meta property="og:image" content="http://jinweida.github.io/img/fabric/duolian.jpg">
-<meta property="og:image" content="http://jinweida.github.io/img/fabric/duotong.jpg">
-<meta property="og:image" content="http://jinweida.github.io/img/fabric/wangluotu.png">
-<meta property="og:image" content="http://jinweida.github.io/img/fabric/bushu.png">
-<meta property="og:image" content="http://jinweida.github.io/img/fabric/lian.jpg">
-<meta property="og:updated_time" content="2018-02-05T08:14:05.785Z">
+<meta property="og:updated_time" content="2018-03-02T15:59:16.052Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HyperLedger Fabric v1.0.5 (2)-技术架构">
-<meta name="twitter:description" content="HyperLedger fabric 1.0概述 分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务; 基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面) 支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;">
-<meta name="twitter:image" content="http://jinweida.github.io/img/fabric/luoji.png">
+<meta name="twitter:title" content="GO笔记一:go包管理">
+<meta name="twitter:description" content="Go的包结构go中的包类似java中的包，比如java.lang这个包，里面有String。如go中net包123456789net├── http├── internal├── mail├── rpc├── smtp├── testdata├── textproto└── url  源 件头部以 “package “ 声明包名称 包由同一目录下的多个源码文件组成。 包名类似namespace，与">
 
 
 
@@ -128,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2018-02-28/GO笔记一-go包管理.html"/>
 
 
 
 
 
-  <title>HyperLedger Fabric v1.0.5 (2)-技术架构 | 金声玉振</title>
+  <title>GO笔记一:go包管理 | 金声玉振</title>
   
 
 
@@ -271,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-02-28/GO笔记一-go包管理.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -288,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HyperLedger Fabric v1.0.5 (2)-技术架构</h1>
+          <h1 class="post-title" itemprop="name headline">GO笔记一:go包管理</h1>
         
 
         <div class="post-meta">
@@ -300,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T18:54:51+08:00">
-                2018-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T23:47:29+08:00">
+                2018-02-28
               </time>
             
 
@@ -316,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-05T16:14:05+08:00">
-                2018-02-05
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-02T23:59:16+08:00">
+                2018-03-02
               </time>
             
           </span>
@@ -335,19 +327,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/HyperLedger/" itemprop="url" rel="index">
-                    <span itemprop="name">HyperLedger</span>
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
                   </a>
                 </span>
 
@@ -364,8 +345,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html" itemprop="commentCount"></span>
+                <a href="/2018-02-28/GO笔记一-go包管理.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-02-28/GO笔记一-go包管理.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -393,36 +374,30 @@
       
 
       
-        <h3 id="HyperLedger-fabric-1-0概述"><a href="#HyperLedger-fabric-1-0概述" class="headerlink" title="HyperLedger fabric 1.0概述"></a>HyperLedger fabric 1.0概述</h3><ul>
-<li>分拆Peer的功能，将Blockchain的数据维护和共识服务进行分离，共识服务从Peer节点中完全分离出来，独立为Orderer节点提供共识服务;</li>
-<li>基于新的架构，实现多通道(channel)的结构，实现了更为灵活的业务适应性(业务隔离、安全性等方面)</li>
-<li>支持更强的配置功能和策略管理功能，进一步增强系统的灵活性和适应性;<a id="more"></a>
-<h3 id="定义及术语"><a href="#定义及术语" class="headerlink" title="定义及术语"></a>定义及术语</h3></li>
-<li>chain链：1个链=1个通道+1个账本+N个成员</li>
-<li>Ordering Service：提供排序服务或共识服务的网络节点，支持可插拔，目前实现了Kafka和solo模式 </li>
-<li>Peer节点:一个网络实体，维护账本并运行chaincode容器来对账本执行read-write操作。peer由Member拥有和维护</li>
-<li>通道：建立在Fabric网络的私有区块链网络，实现了数据的隔离和保密。</li>
-<li>Ledger-账本：账本是通道中每个peer节点维护的链(chain)和当前状态数据(current state data)。</li>
-<li>Member-成员：访问和使用账本的网络节点，拥有网络唯一根证书的合法独立实体</li>
-</ul>
-<h3 id="fabric1-0-逻辑架构图"><a href="#fabric1-0-逻辑架构图" class="headerlink" title="fabric1.0 逻辑架构图"></a>fabric1.0 逻辑架构图</h3><p><img src="/img/fabric/luoji.png" alt="image"></p>
-<h3 id="fabric1-0-运行时架构图"><a href="#fabric1-0-运行时架构图" class="headerlink" title="fabric1.0 运行时架构图"></a>fabric1.0 运行时架构图</h3><p><img src="/img/fabric/yunxingshi.png" alt="image"></p>
-<h3 id="多链"><a href="#多链" class="headerlink" title="多链"></a>多链</h3><p><img src="/img/fabric/duolian.jpg" alt="image"></p>
+        <h3 id="Go的包结构"><a href="#Go的包结构" class="headerlink" title="Go的包结构"></a>Go的包结构</h3><p>go中的包类似java中的包，比如java.lang这个包，里面有String。如go中net包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">net</span><br><span class="line">├── http</span><br><span class="line">├── internal</span><br><span class="line">├── mail</span><br><span class="line">├── rpc</span><br><span class="line">├── smtp</span><br><span class="line">├── testdata</span><br><span class="line">├── textproto</span><br><span class="line">└── url</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>链=Peers+Ledger+ordering channel</li>
-<li>链将参与者和数据（chaincode）进行隔离</li>
-<li>一个Peer节点可以包含多个链 </li>
+<li>源 件头部以 “package <name>“ 声明包名称</name></li>
+<li>包由同一目录下的多个源码文件组成。</li>
+<li>包名类似namespace，与包所在目录名、编译文件名无关。</li>
+<li>目录名最好不要使用main、all、std这三个保留名称。</li>
+<li>可执件文件必须包含 package main，入口函数 main。</li>
 </ul>
-<h3 id="多通道-amp-子账本"><a href="#多通道-amp-子账本" class="headerlink" title="多通道&amp;子账本"></a>多通道&amp;子账本</h3><p><img src="/img/fabric/duotong.jpg" alt="image"></p>
+<p>包中成员以名称首字母大小写决定访问权限</p>
 <ul>
-<li>通道提供一种通讯机制，将peer和order链接在一起，形成一个个具有保密性的通讯链路</li>
-<li>Fabric的区块链网络缺省包含一个账本（称为系统账本）和一个通道；</li>
-<li>子账本可以被创建，并绑定到一个通道。</li>
+<li>public:首字母大写，可被包外访问。</li>
+<li>internal:首字母小写，仅包内成员可以访问<br>该规则适用于全局变量、全局常量、类型、结构字段、函数、方法等。<h3 id="main包"><a href="#main包" class="headerlink" title="main包"></a>main包</h3>go中可执行文件必须包含有一个名叫main的包，main是程序的入口，就像c语言、java中的main函数。<h3 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h3>使用包成员前，必须先用import关键字导入。import告诉编译器区哪里去找导入的包<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import "相对 录/包主 件名"</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="fabric1-0-网络图"><a href="#fabric1-0-网络图" class="headerlink" title="fabric1.0 网络图"></a>fabric1.0 网络图</h3><p><img src="/img/fabric/wangluotu.png" alt="image"></p>
-<h3 id="fabric1-0-部署图"><a href="#fabric1-0-部署图" class="headerlink" title="fabric1.0 部署图"></a>fabric1.0 部署图</h3><p><img src="/img/fabric/bushu.png" alt="image"></p>
-<h3 id="fabric1-0-区块链网络"><a href="#fabric1-0-区块链网络" class="headerlink" title="fabric1.0 区块链网络"></a>fabric1.0 区块链网络</h3><p><img src="/img/fabric/lian.jpg" alt="image"></p>
-<p>- </p>
+<p>编译如何去查找包呢？编译器优先在GOROOT中查找，其次是GOPATH中查找，一旦找到就停止搜索了<br>在导入时，可指定包成员访问方式。比如对包重命名，以避免同名冲突。<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>     <span class="string">"yuhen/test"</span> <span class="comment">// 默认模式: test.A</span></span><br><span class="line"><span class="keyword">import</span>  M  <span class="string">"yuhen/test"</span> <span class="comment">// 包重命名: M.A</span></span><br><span class="line"><span class="keyword">import</span>  .  <span class="string">"yuhen/test"</span> <span class="comment">// 简便模式: A</span></span><br><span class="line"><span class="keyword">import</span>  _  <span class="string">"yuhen/test"</span> <span class="comment">// 非导入模式: 仅让该包执行初始化函数。</span></span><br></pre></td></tr></table></figure></p>
+<p>导入的包未使用，会被编译器视为错误，不包括”import _”。</p>
+<h3 id="远程导入"><a href="#远程导入" class="headerlink" title="远程导入"></a>远程导入</h3><p>互联网时代，github上有大量的第三方库，可以使用go get命令递归获取github.com的URL包，放入GOPATH设置的目录里。go build命令会搜索GOPATH的设置</p>
+<h3 id="函数init"><a href="#函数init" class="headerlink" title="函数init"></a>函数init</h3><ul>
+<li>每个包都可以包含任意多个init函数，所有init函数都会在main函数之前被调用。init函数可以设置包、初始化变量等工作。</li>
+<li>编译器不保证多个初始化函数执行次序。</li>
+<li>初始化函数在单一线程被调用，仅执行一次。</li>
+<li>初始化函数在包所有全局变量初始化后执 。</li>
+<li>无法调用初始化函数。</li>
+</ul>
 
       
     </div>
@@ -442,7 +417,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html" title="HyperLedger Fabric v1.0.5 (2)-技术架构">http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html</a>
+              <a href="/2018-02-28/GO笔记一-go包管理.html" title="GO笔记一:go包管理">http://jinweida.github.io/2018-02-28/GO笔记一-go包管理.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -491,11 +466,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/区块链/" rel="tag"># 区块链</a>
-          
-            <a href="/tags/fabric/" rel="tag"># fabric</a>
-          
-            <a href="/tags/HyperLedger/" rel="tag"># HyperLedger</a>
+            <a href="/tags/golang/" rel="tag"># golang</a>
           
         </div>
       
@@ -508,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-01-24/区块链技术-超级账本-Hyperledger.html" rel="next" title="区块链技术:超级账本(Hyperledger)">
-                <i class="fa fa-chevron-left"></i> 区块链技术:超级账本(Hyperledger)
+              <a href="/2018-02-14/分布式锁实现方式.html" rel="next" title="分布式锁实现方式">
+                <i class="fa fa-chevron-left"></i> 分布式锁实现方式
               </a>
             
           </div>
@@ -518,8 +489,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018-01-27/ecs6特性.html" rel="prev" title="ecs6特新性">
-                ecs6特新性 <i class="fa fa-chevron-right"></i>
+              <a href="/2018-03-02/GO笔记二-go管理工具.html" rel="prev" title="GO笔记二:go管理工具">
+                GO笔记二:go管理工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -551,8 +522,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html"
-           data-title="HyperLedger Fabric v1.0.5 (2)-技术架构" data-url="http://jinweida.github.io/2018-01-24/HyperLedger-Fabric-v1-0-5-2-技术架构.html">
+      <div class="ds-thread" data-thread-key="2018-02-28/GO笔记一-go包管理.html"
+           data-title="GO笔记一:go包管理" data-url="http://jinweida.github.io/2018-02-28/GO笔记一-go包管理.html">
       </div>
     </div>
 
@@ -669,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperLedger-fabric-1-0概述"><span class="nav-number">1.</span> <span class="nav-text">HyperLedger fabric 1.0概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义及术语"><span class="nav-number">2.</span> <span class="nav-text">定义及术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-逻辑架构图"><span class="nav-number">3.</span> <span class="nav-text">fabric1.0 逻辑架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-运行时架构图"><span class="nav-number">4.</span> <span class="nav-text">fabric1.0 运行时架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多链"><span class="nav-number">5.</span> <span class="nav-text">多链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多通道-amp-子账本"><span class="nav-number">6.</span> <span class="nav-text">多通道&子账本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-网络图"><span class="nav-number">7.</span> <span class="nav-text">fabric1.0 网络图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-部署图"><span class="nav-number">8.</span> <span class="nav-text">fabric1.0 部署图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric1-0-区块链网络"><span class="nav-number">9.</span> <span class="nav-text">fabric1.0 区块链网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Go的包结构"><span class="nav-number">1.</span> <span class="nav-text">Go的包结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main包"><span class="nav-number">2.</span> <span class="nav-text">main包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入包"><span class="nav-number">3.</span> <span class="nav-text">导入包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程导入"><span class="nav-number">4.</span> <span class="nav-text">远程导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数init"><span class="nav-number">5.</span> <span class="nav-text">函数init</span></a></li></ol></div>
             
 
           </div>
