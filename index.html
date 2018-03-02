@@ -309,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-03T00:52:21+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-03T01:03:33+08:00">
                 2018-03-03
               </time>
             
@@ -354,49 +354,14 @@
 
       
         
-          
-            <p>golang开发工具概览<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>  go</span><br><span class="line">Go is a tool for managing Go source code.</span><br><span class="line">Usage:</span><br><span class="line">    go command [arguments]</span><br><span class="line">The commands are:</span><br><span class="line">    build       compile packages and dependencies</span><br><span class="line">    clean       remove object files</span><br><span class="line">    doc         show documentation for package or symbol</span><br><span class="line">    env         print Go environment information</span><br><span class="line">    bug         start a bug report</span><br><span class="line">    fix         run go tool fix on packages</span><br><span class="line">    fmt         run gofmt on package sources</span><br><span class="line">    generate    generate Go files by processing source</span><br><span class="line">    get         download and install packages and dependencies</span><br><span class="line">    install     compile and install packages and dependencies</span><br><span class="line">    list        list packages</span><br><span class="line">    run         compile and run Go program</span><br><span class="line">    test        test packages</span><br><span class="line">    tool        run specified go tool</span><br><span class="line">    version     print Go version</span><br><span class="line">    vet         run go tool vet on packages</span><br><span class="line">Use "go help [command]" for more information about a command.</span><br></pre></td></tr></table></figure></p>
-<h3 id="go-build"><a href="#go-build" class="headerlink" title="go build"></a>go build</h3><p>启动编译，生成可执行文件。使用go help build查看<br>| 参数 | 说明 |<br>|—–|—–|<br>| -n | 查看但不执行编译。 |<br>| -x | 查看并执行编译命令。 |<br>| -a | 强制重新编译所有依赖包。 |<br>| -v | 查看被编译的包名，包括依赖包。 |<br>| -p n | 并行编译所使用CPU core 数量。默认全部。 |<br>| -o | 输出 件名。|<br>| -v | 查看被编译的包名，包括依赖包。|<br>| -gcflags | 传递给 5g/6g/8g 编译器的参数。|<br>| -ldflags | 传递给 5l/6l/8l 链接器的参数。|<br>| -work | 查看编译临时目录。|<br>| -race | 允许数据竞争检测 (仅 持 amd64)。|</p>
-<p>下面三个执行的目录是同一个目录都是当前目录。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> go build </span><br><span class="line"><span class="meta">$</span> go build .</span><br><span class="line"><span class="meta">$</span> go build hello.go</span><br></pre></td></tr></table></figure></p>
-<h3 id="go-clean"><a href="#go-clean" class="headerlink" title="go clean"></a>go clean</h3><p>可以清除编译生成的文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> go clean hello.go</span><br></pre></td></tr></table></figure></p>
-<p>使用go help clean<br>| 参数 | 说明 |<br>|—–|—–|<br>| -n | 查看但不执行清理命令。 |<br>| -x | 查看并执行清理命令。 |<br>| -i | 删除 bin、pkg 目录下的二进制文件。 |<br>| -r | 清理所有依赖包临时文件。 |</p>
-<h3 id="go-run"><a href="#go-run" class="headerlink" title="go run"></a>go run</h3><p>此命令是先编译在执行可以执行文件，go build只编译可执行文件，需要手动运行可执行文件</p>
-<h3 id="go-fmt"><a href="#go-fmt" class="headerlink" title="go fmt"></a>go fmt</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># hello.<span class="keyword">go</span></span><br><span class="line">fuc a()&#123;fmt.<span class="built_in">print</span>(<span class="string">"abcs"</span>)&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 go fmt hello.go 格式化后<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># hello.<span class="keyword">go</span></span><br><span class="line">fuc a()&#123;</span><br><span class="line">    fmt.<span class="built_in">print</span>(<span class="string">"abcs"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="go-env"><a href="#go-env" class="headerlink" title="go env"></a>go env</h3><p>查看当前go环境信息</p>
-<h3 id="go-get"><a href="#go-get" class="headerlink" title="go get"></a>go get</h3><p>下载并安装扩展包。默认保存到 GOPATH 指定的第一个工作空间。<br>| 参数 | 说明 |<br>|—–|—–|<br>| -d | 仅下载，不执行安装命令。|<br>| -t | 下载测试所需的依赖包。|<br>| -u | 更新包，包括其依赖包。|<br>| -v | 查看并执行命令。|</p>
-<h3 id="go-test"><a href="#go-test" class="headerlink" title="go test"></a>go test</h3><p>该命令go的是命令，包含单元测试和性能测试 </p>
-<ul>
-<li>测试源码文件是名称以“_test.go”为后缀的</li>
-<li>测试函数一般是以“Test”为名称前缀</li>
-<li>测试函数有一个类型为“testing.T”的参数声明的函数.</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-c</td>
-<td>生成用于运行测试的可执行文件，但不执行它。</td>
-</tr>
-<tr>
-<td>-i</td>
-<td>安装/重新安装运行测试所需的依赖包，但不编译和运行测试代码。</td>
-</tr>
-<tr>
-<td>-o</td>
-<td>指定用于运行测试的可执行文件的名称。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="go-install"><a href="#go-install" class="headerlink" title="go install"></a>go install</h3><p>和 go build 参数相同，将生成文件拷贝到 bin、pkg 目录。优先使  GOBIN 环境变量<br>所指定目录。</p>
-<h3 id="go-vet"><a href="#go-vet" class="headerlink" title="go vet"></a>go vet</h3><p>是一个用于检查Go语言源码中静态错误的简单工具</p>
-
-          
+          <p>golang开发工具概览<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-02/GO笔记二-go管理工具.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
