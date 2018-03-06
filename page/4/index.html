@@ -262,309 +262,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/数字证书-加密通信.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-12-09/数字证书-加密通信.html" itemprop="url">数字证书-加密通信</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T16:02:31+08:00">
-                2017-12-09
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:17+08:00">
-                2018-01-10
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-12-09/数字证书-加密通信.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/数字证书-加密通信.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/img/ssl.jpg" alt="image"></p>
-<h4 id="加密通信过程"><a href="#加密通信过程" class="headerlink" title="加密通信过程"></a>加密通信过程</h4><p>服务端：生成公钥和私钥，公钥开放,自己持有私钥。客户端：通过某些途径获取公钥。使用RAS算法对通信内容进行加密。</p>
-<blockquote>
-<p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“服务器””：？？？？</p>
-</blockquote>
-<p>因为消息是在网络上传输的，有人可以冒充自己是“服务器”来向客户发送信息。例如上面的消息可以被黑客截获如下：</p>
-<blockquote>
-<p>“客户”-&gt;“服务器”：你好<br>“服务器”-&gt;“客户”：你好，我是服务器<br>“客户”-&gt;“黑客”：你好 //黑客在“客户”和“服务器”之间的某个路由器上截获“客户”发给服务器的信息，然后自己冒充“服务器”<br>“黑客”-&gt;“客户”：你好，我是服务器</p>
-</blockquote>
-<p>因此“客户”在接到消息后，并不能肯定这个消息就是由“客户”发出的，某些“黑客”也可以冒充“服务器”发出这个消息。如何确定信息是由“服务器”发过来的呢？有一个解决方法，因为只有服务器有私钥，所以如果只要能够确认对方有私钥，那么对方就是“服务器”。因此通信过程可以改进为如下：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017-12-09/数字证书-加密通信.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/数字证书-基础知识.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-12-09/数字证书-基础知识.html" itemprop="url">数字证书-基础知识</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T15:58:56+08:00">
-                2017-12-09
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:56:22+08:00">
-                2018-01-10
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-12-09/数字证书-基础知识.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/数字证书-基础知识.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/img/ssl.jpg" alt="image"></p>
-<h4 id="公钥密码体制-public-key-cryptography"><a href="#公钥密码体制-public-key-cryptography" class="headerlink" title="公钥密码体制(public-key cryptography)"></a>公钥密码体制(public-key cryptography)</h4><p>分为三个部分，公钥、私钥、加密解密算法，它的加密解密过程如下：</p>
-<p>加密：通过加密算法和公钥对内容进行加密，得到密文，加密过程需要用到公钥。 解密：通过解密算法和私钥对密文进行解密，得到明文。解密过程需要用到解密算法和私钥。 公钥密码体制的公钥和算法都是公开的，私钥是保密的。任何任都可以使用公钥进行加密，只有私钥的持有者才能解密。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017-12-09/数字证书-基础知识.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/一致性Hash算法.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1841,6 +1538,322 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-10-17/oracle备份与恢复.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-10-17/oracle备份与恢复.html" itemprop="url">oracle备份与恢复</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T09:18:25+08:00">
+                2017-10-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T15:53:07+08:00">
+                2018-01-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-10-17/oracle备份与恢复.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-10-17/oracle备份与恢复.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>oracle exp/imp命令 ，exp命令可以把数据从远程数据库服务器导出到本地的dmp文件，imp命令可以把dmp文件从本地导入到远处的数据库服务器中<br>expdp/impdp调用Server端的API在执行操作，是数据库内部的job任务。可以远程使用，但是生成的dump 文件存在于服务器上的directory里。</p>
+<h3 id="expdp-impdp"><a href="#expdp-impdp" class="headerlink" title="expdp/impdp"></a>expdp/impdp</h3><h4 id="导出dump文件"><a href="#导出dump文件" class="headerlink" title="导出dump文件"></a>导出dump文件</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp hzqgas/hzqgas@192.168.20.37/orcl file=d:\hzq170929.dmp full=y</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-10-17/oracle备份与恢复.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-20/ubuntu中oracle数据库.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-09-20/ubuntu中oracle数据库.html" itemprop="url">ubuntu中oracle数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T11:35:28+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:22:07+08:00">
+                2018-01-10
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-09-20/ubuntu中oracle数据库.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-20/ubuntu中oracle数据库.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>启动数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> su oracle</span><br><span class="line"><span class="meta">$</span> sqlplus /nolog</span><br><span class="line">SQL*Plus: Release 10.2.0.1.0 - Production on Fri Jul 8 10:14:54 2011</span><br><span class="line">Copyright (c) 1982, 2005, Oracle.  All rights reserved.</span><br><span class="line"><span class="meta">SQL&gt;</span> conn sys/超级管理员密码 as sysdba;</span><br><span class="line">Connected.</span><br><span class="line"><span class="meta">SQL&gt;</span> startup #启动</span><br><span class="line">ORACLE instance started.</span><br><span class="line">Total System Global Area  322961408 bytes</span><br><span class="line">Variable Size           104859000 bytes</span><br><span class="line">Database Buffers         213909504 bytes</span><br><span class="line">Redo Buffers               2973696 bytes</span><br><span class="line">Database mounted.</span><br><span class="line">Database opened.</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-09-20/ubuntu中oracle数据库.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1891,7 +1904,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
