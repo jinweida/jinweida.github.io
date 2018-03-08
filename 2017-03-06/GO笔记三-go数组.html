@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="golang的数组与以往的认知有很大不同。  golang的数组是值类型，赋值与传参会复制整个数组，而不是传递指针。 数组长度必须是常量，且是类型的组成部分 指针数组[n]*T,数组指针 *[n]T">
+<meta name="description" content="golang的数组与以往的认知有很大不同。  golang的数组是值类型，赋值与传参会复制整个数组，而不是传递指针。 数组长度必须是常量，且是类型的组成部分 指针数组[n]*T,数组指针*[n]T">
 <meta name="keywords" content="golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GO笔记三:go数组">
 <meta property="og:url" content="http://jinweida.github.io/2017-03-06/GO笔记三-go数组.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="golang的数组与以往的认知有很大不同。  golang的数组是值类型，赋值与传参会复制整个数组，而不是传递指针。 数组长度必须是常量，且是类型的组成部分 指针数组[n]*T,数组指针 *[n]T">
+<meta property="og:description" content="golang的数组与以往的认知有很大不同。  golang的数组是值类型，赋值与传参会复制整个数组，而不是传递指针。 数组长度必须是常量，且是类型的组成部分 指针数组[n]*T,数组指针*[n]T">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-03-06T08:40:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GO笔记三:go数组">
-<meta name="twitter:description" content="golang的数组与以往的认知有很大不同。  golang的数组是值类型，赋值与传参会复制整个数组，而不是传递指针。 数组长度必须是常量，且是类型的组成部分 指针数组[n]*T,数组指针 *[n]T">
+<meta name="twitter:description" content="golang的数组与以往的认知有很大不同。  golang的数组是值类型，赋值与传参会复制整个数组，而不是传递指针。 数组长度必须是常量，且是类型的组成部分 指针数组[n]*T,数组指针*[n]T">
 
 
 
@@ -378,7 +378,7 @@
 <ul>
 <li>golang的数组是值类型，赋值与传参会复制整个数组，而不是传递指针。</li>
 <li>数组长度必须是常量，且是类型的组成部分</li>
-<li>指针数组[n]*T,数组指针 *[n]T</li>
+<li>指针数组[n]*T,数组指针*[n]T</li>
 </ul>
 <a id="more"></a>
 <h3 id="声明和初始化"><a href="#声明和初始化" class="headerlink" title="声明和初始化"></a>声明和初始化</h3><p>声明了数组，array中的值是对应元素类型的零值，java默认是null;<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array [<span class="number">5</span>]<span class="keyword">int</span></span><br></pre></td></tr></table></figure></p>
