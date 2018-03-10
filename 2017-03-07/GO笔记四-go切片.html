@@ -382,6 +382,7 @@
 <li>slice==nil,len,cap结果都等于0</li>
 <li>切片容量&gt;=长度</li>
 </ul>
+<p>&lt;!—more—&gt;</p>
 <h3 id="数组的区别"><a href="#数组的区别" class="headerlink" title="数组的区别"></a>数组的区别</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s:=[<span class="number">5</span>]<span class="keyword">int</span>&#123;<span class="number">4</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="comment">//初始化第5个元素，其他元素都是默认值0</span></span><br><span class="line">a:=[]<span class="keyword">int</span>&#123;<span class="number">4</span>:<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="声明和初始化"><a href="#声明和初始化" class="headerlink" title="声明和初始化"></a>声明和初始化</h3><h4 id="基于数组创建"><a href="#基于数组创建" class="headerlink" title="基于数组创建"></a>基于数组创建</h4><p>使用[i:j]操作符，i表示索引开始，到j索引结束。新切片的值包含i，但不包含j索引。读写操作实际目标是底层数组。<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data := [...]<span class="keyword">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;</span><br><span class="line">slice := data[<span class="number">1</span>:<span class="number">4</span>:<span class="number">5</span>] <span class="comment">//[low : high : max]</span></span><br></pre></td></tr></table></figure></p>
 <table>
@@ -535,8 +536,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-03-09/GO笔记六:go数据类型.html" rel="prev" title="GO笔记六:go数据类型">
-                GO笔记六:go数据类型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-03-09/GO笔记五-go映射map.html" rel="prev" title="GO笔记五:go映射map">
+                GO笔记五:go映射map <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
