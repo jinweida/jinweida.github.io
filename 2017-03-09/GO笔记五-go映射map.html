@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="golang的map  引用类型 哈希表 键必须是支持相等运算符（ ==、!=），比如number、string、pointer、array、struct、以及对应的interface。 值可以是任意类型，无限制。 不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。      &amp;lt;!—more—&a">
+<meta name="description" content="golang的map  引用类型 哈希表 键必须是支持相等运算符（ ==、!=），比如number、string、pointer、array、struct、以及对应的interface。 值可以是任意类型，无限制。 不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。">
 <meta name="keywords" content="golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GO笔记五:go映射map">
 <meta property="og:url" content="http://jinweida.github.io/2017-03-09/GO笔记五-go映射map.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="golang的map  引用类型 哈希表 键必须是支持相等运算符（ ==、!=），比如number、string、pointer、array、struct、以及对应的interface。 值可以是任意类型，无限制。 不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。      &amp;lt;!—more—&amp;gt; 声明和初始化使用字面量声明1234567m:=map[int]struct&amp;#12">
+<meta property="og:description" content="golang的map  引用类型 哈希表 键必须是支持相等运算符（ ==、!=），比如number、string、pointer、array、struct、以及对应的interface。 值可以是任意类型，无限制。 不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-03-09T15:47:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GO笔记五:go映射map">
-<meta name="twitter:description" content="golang的map  引用类型 哈希表 键必须是支持相等运算符（ ==、!=），比如number、string、pointer、array、struct、以及对应的interface。 值可以是任意类型，无限制。 不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。      &amp;lt;!—more—&amp;gt; 声明和初始化使用字面量声明1234567m:=map[int]struct&amp;#12">
+<meta name="twitter:description" content="golang的map  引用类型 哈希表 键必须是支持相等运算符（ ==、!=），比如number、string、pointer、array、struct、以及对应的interface。 值可以是任意类型，无限制。 不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。">
 
 
 
@@ -382,7 +382,7 @@
 <li>值可以是任意类型，无限制。</li>
 <li>不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。    </li>
 </ul>
-<p>&lt;!—more—&gt;</p>
+<a id="more"></a>
 <h3 id="声明和初始化"><a href="#声明和初始化" class="headerlink" title="声明和初始化"></a>声明和初始化</h3><h4 id="使用字面量声明"><a href="#使用字面量声明" class="headerlink" title="使用字面量声明"></a>使用字面量声明</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">m:=<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">struct</span>&#123;</span><br><span class="line">    name <span class="keyword">string</span></span><br><span class="line">    age <span class="keyword">int</span></span><br><span class="line">&#125;&#123;</span><br><span class="line">    <span class="number">1</span>:&#123;<span class="string">"user1"</span>,<span class="number">10</span>&#125;,</span><br><span class="line">    <span class="number">2</span>:&#123;<span class="string">"user2"</span>,<span class="number">20</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="使用make函数"><a href="#使用make函数" class="headerlink" title="使用make函数"></a>使用make函数</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	m:=<span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>,<span class="number">1000</span>)</span><br><span class="line">    m[<span class="string">"a"</span>]=<span class="number">1</span></span><br><span class="line">    m[<span class="string">"b"</span>]=<span class="number">2</span></span><br><span class="line">    m[<span class="string">"c"</span>] = <span class="number">3</span></span><br><span class="line">    <span class="comment">//判断key是否存在</span></span><br><span class="line">    <span class="keyword">if</span> v,ok:=m[<span class="string">"a"</span>];ok&#123;</span><br><span class="line">        fmt.Println(v)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">delete</span>(m, <span class="string">"b"</span>)</span><br><span class="line">    <span class="built_in">println</span>(<span class="built_in">len</span>(m))</span><br><span class="line">    <span class="comment">//循环map</span></span><br><span class="line">    <span class="keyword">for</span> k, v := <span class="keyword">range</span> m &#123;</span><br><span class="line">        <span class="built_in">println</span>(k, v)</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="函数间传递map"><a href="#函数间传递map" class="headerlink" title="函数间传递map"></a>函数间传递map</h3><p>函数间传递map并不会值制造该映射的一个副本。</p>
