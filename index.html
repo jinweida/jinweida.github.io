@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-13T15:37:17+08:00">
-                2018-03-13
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T23:59:50+08:00">
+                2018-03-14
               </time>
             
           </span>
@@ -376,42 +376,15 @@
 
       
         
-          
-            <p>参考 ：<a href="https://docs.docker.com/registry/deploying/" target="_blank" rel="noopener">https://docs.docker.com/registry/deploying/</a></p>
-<h3 id="docker-registry镜像"><a href="#docker-registry镜像" class="headerlink" title="docker registry镜像"></a>docker registry镜像</h3><p>使用私有仓库，可以维护自己的镜像。docker 官方提供了 registry 的镜像，可以使用它来搭建私有仓库，</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull registry:2</span><br></pre></td></tr></table></figure>
-<p>本例子使用Docker version 18.03.0-ce-rc3, build e730959，需要具备的条件：</p>
-<ul>
-<li>v2版本仓库，需要TLS加密连接</li>
-</ul>
-<ul>
-<li>仓库URL is <a href="https://mydockerc.om" target="_blank" rel="noopener">https://mydockerc.om</a></li>
-<li>设置/etc/hosts，防火墙开放443端口访问</li>
-<li>具有ca证书</li>
-<li>两台虚拟机，IP分别为192.168.40.130（仓库服务器），192.168.40.131</li>
-</ul>
-<h3 id="设置DNS解析"><a href="#设置DNS解析" class="headerlink" title="设置DNS解析"></a>设置DNS解析</h3><p>两台虚拟机中分别执行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/hosts</span><br></pre></td></tr></table></figure>
-<p>添加</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.40.130 mydocker.com</span><br></pre></td></tr></table></figure>
-<h3 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h3><p>在192.168.40.130上执行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p ~/certs</span><br><span class="line">$ <span class="built_in">cd</span> ~/certs</span><br><span class="line">$ openssl genrsa -out mydocker.com.key 2048</span><br></pre></td></tr></table></figure>
-<p>生成密钥文件</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl req -newkey rsa:4096 -nodes -sha256 -keyout mydocker.com.key -x509 -days 365 -out mydocker.com.crt</span><br></pre></td></tr></table></figure>
-<p>输入信息</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Country Name (2 letter code) [XX]:86</span><br><span class="line">State or Province Name (full name) []:beijing</span><br><span class="line">Locality Name (eg, city) [Default City]:beijing</span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:fclink</span><br><span class="line">Organizational Unit Name (eg, section) []:fclink</span><br><span class="line">Common Name (eg, your name or your server<span class="string">'s hostname) []:mydocker.com</span></span><br><span class="line"><span class="string">Email Address []:camulos@mydocker.com</span></span><br></pre></td></tr></table></figure>
-<p>自签名证书制作完了，由于不受docker信任将证书添加到Docker 的根证书中,Docker在CentOS 7中,证书存放路径是 ：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /etc/docker/certs.d/mydocker.com</span><br><span class="line">cp ~/certs/mydocker.com.crt /etc/docker/certs.d/mydocker.com</span><br></pre></td></tr></table></figure>
-<p>在192.168.40.131上执行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /etc/docker/certs.d/mydocker.com</span><br><span class="line">$ scp root@192.168.40.130:/etc/docker/certs.d/mydocker.com/mydocker.com.crt /etc/docker/certs.d/mydocker.com/</span><br></pre></td></tr></table></figure>
-<h3 id="启动registry镜像"><a href="#启动registry镜像" class="headerlink" title="启动registry镜像"></a>启动registry镜像</h3><p>在192.168.40.130上启动仓库</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  --restart=always \</span><br><span class="line">  --name registry \</span><br><span class="line">  -v ~/certs:/certs \</span><br><span class="line">  -e REGISTRY_HTTP_ADDR=0.0.0.0:443 \</span><br><span class="line">  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/mydocker.com.crt \</span><br><span class="line">  -e REGISTRY_HTTP_TLS_KEY=/certs/mydocker.com.key \</span><br><span class="line">  -p 443:443 \</span><br><span class="line">  registry:2</span><br></pre></td></tr></table></figure>
-<h3 id="push自定义镜像到仓库"><a href="#push自定义镜像到仓库" class="headerlink" title="push自定义镜像到仓库"></a>push自定义镜像到仓库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hello-world</span><br><span class="line">$ docker tag hello-world mydocker.com/my-hello-world</span><br><span class="line">$ docker tag hello-world mydocker.com/my-hello-world</span><br></pre></td></tr></table></figure>
-<h3 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h3><p>在192.168.40.131获取镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull mydocker.com/my-hello-world</span><br></pre></td></tr></table></figure>
-<p>docker私有仓库搭建完了。</p>
-
-          
+          <p>参考 ：<a href="https://docs.docker.com/registry/deploying/" target="_blank" rel="noopener">https://docs.docker.com/registry/deploying/</a></p>
+<h3 id="docker-registry镜像"><a href="#docker-registry镜像" class="headerlink" title="docker registry镜像"></a>docker registry镜像</h3><p>使用私有仓库，可以维护自己的镜像。docker 官方提供了 registry 的镜像，可以使用它来搭建私有仓库</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-13/docker搭建私有仓库registry.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -505,7 +478,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T16:18:36+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T23:59:58+08:00">
                 2018-03-14
               </time>
             
@@ -572,25 +545,15 @@
 
       
         
-          
-            <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
+          <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
 <h3 id="构建镜像实例"><a href="#构建镜像实例" class="headerlink" title="构建镜像实例"></a>构建镜像实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p /home/dockerproject</span><br><span class="line"><span class="meta">$</span> touch /home/dockerproject/Dockerfile</span><br></pre></td></tr></table></figure>
-<p>添加指令信息</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vi /home/dockerproject/Dockerfile</span><br><span class="line">From nginx</span><br><span class="line">Run <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Dockerfile构建镜像&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
-<p>构建镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t nginx:v1 .</span><br></pre></td></tr></table></figure>
-<p>(.)表示当前目录。</p>
-<h3 id="Dockerfile常用指令"><a href="#Dockerfile常用指令" class="headerlink" title="Dockerfile常用指令"></a>Dockerfile常用指令</h3><h4 id="Add复制文件"><a href="#Add复制文件" class="headerlink" title="Add复制文件"></a>Add复制文件</h4><p>格式：add \<src\>…\<dest\>，支持url和压缩包</dest\></src\></p>
-<h3 id="Arg设置构建参数"><a href="#Arg设置构建参数" class="headerlink" title="Arg设置构建参数"></a>Arg设置构建参数</h3><h4 id="CMD容器启动指令"><a href="#CMD容器启动指令" class="headerlink" title="CMD容器启动指令"></a>CMD容器启动指令</h4><h4 id="Copy复制文件"><a href="#Copy复制文件" class="headerlink" title="Copy复制文件"></a>Copy复制文件</h4><p>类似Add指令，copy不支持url和压缩包</p>
-<h4 id="Entrypoint入口点"><a href="#Entrypoint入口点" class="headerlink" title="Entrypoint入口点"></a>Entrypoint入口点</h4><h4 id="ENV设置环境变量"><a href="#ENV设置环境变量" class="headerlink" title="ENV设置环境变量"></a>ENV设置环境变量</h4><h4 id="EXPOSE声明暴漏端口"><a href="#EXPOSE声明暴漏端口" class="headerlink" title="EXPOSE声明暴漏端口"></a>EXPOSE声明暴漏端口</h4><p>可以暴漏多个端口 eg：EXPOSE port1 port2 port3</p>
-<h4 id="From指定基础镜像"><a href="#From指定基础镜像" class="headerlink" title="From指定基础镜像"></a>From指定基础镜像</h4><h4 id="Maintainer指定维护者信息"><a href="#Maintainer指定维护者信息" class="headerlink" title="Maintainer指定维护者信息"></a>Maintainer指定维护者信息</h4><p>格式：Maintainer camulos@qq.com</p>
-<h4 id="Run执行命令"><a href="#Run执行命令" class="headerlink" title="Run执行命令"></a>Run执行命令</h4><p>eg：RUN [“/bin/bash”,”-c”,”echo hello”]</p>
-<h4 id="Label为镜像添加元素"><a href="#Label为镜像添加元素" class="headerlink" title="Label为镜像添加元素"></a>Label为镜像添加元素</h4><h4 id="User设置用户"><a href="#User设置用户" class="headerlink" title="User设置用户"></a>User设置用户</h4><p>用于设置启动镜像时的用户或UID</p>
-<h4 id="Volume指定挂载点"><a href="#Volume指定挂载点" class="headerlink" title="Volume指定挂载点"></a>Volume指定挂载点</h4><p>使容器中的一个目录具有持久化存储的功能。也可以共享给其他容器 eg：Volume [“/data”]</p>
-<h4 id="Workdir指定工作目录"><a href="#Workdir指定工作目录" class="headerlink" title="Workdir指定工作目录"></a>Workdir指定工作目录</h4><p>类似cd命令</p>
-<h3 id="Dockerfile构建一个springboot应用"><a href="#Dockerfile构建一个springboot应用" class="headerlink" title="Dockerfile构建一个springboot应用"></a>Dockerfile构建一个springboot应用</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">Add news-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line">Expose 8671</span><br><span class="line">Entrypoint [<span class="string">"java"</span>,<span class="string">"-Djava.security.egd=file:/dev/./urandom"</span>,<span class="string">"-jar"</span>,<span class="string">"app.jar"</span>]</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-13/Dockerfile构建镜像.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -821,6 +784,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-拜占庭将军问题.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="url">区块链技术-拜占庭将军问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+08:00">
+                2018-03-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T23:05:55+08:00">
+                2018-03-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/区块链/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-03-10/区块链技术-拜占庭将军问题.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>区块链中，有大量的描述拜占庭将军问题，经常会有听到某某区块链使用XXX算法解决拜占庭将军问题。</p>
+<h3 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h3>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-10/区块链技术-拜占庭将军问题.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-共识机制.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -944,175 +1076,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018-03-10/区块链技术-共识机制.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-拜占庭将军问题.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="url">区块链技术-拜占庭将军问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+08:00">
-                2018-03-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T23:05:55+08:00">
-                2018-03-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-10/区块链技术-拜占庭将军问题.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>区块链中，有大量的描述拜占庭将军问题，经常会有听到某某区块链使用XXX算法解决拜占庭将军问题。</p>
-<h3 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-10/区块链技术-拜占庭将军问题.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
