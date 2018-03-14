@@ -435,6 +435,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-03-14/GO笔记七-go函数.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-03-14/GO笔记七-go函数.html" itemprop="url">GO笔记三:go函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-14T16:40:34+08:00">
+                2017-03-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-14T16:40:34+08:00">
+                2017-03-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-03-14/GO笔记七-go函数.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-03-14/GO笔记七-go函数.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。</p>
+<h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hanshu</span><span class="params">(x, y <span class="keyword">int</span>, s <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">string</span>)</span></span> &#123; <span class="comment">// 类型相同的相邻参数可合并</span></span><br><span class="line">	n := x + y </span><br><span class="line">	<span class="keyword">return</span> n, fmt.Sprintf(s, n)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无需声明原型</li>
+<li>支持不定长参数</li>
+<li>持命名返回参数</li>
+<li>支持多返回值</li>
+<li>支持匿名函数和闭包</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">(fn <span class="keyword">func</span>()</span> <span class="title">int</span>) <span class="title">int</span></span> &#123;</span><br><span class="line">	a := fn()</span><br><span class="line">    <span class="comment">//输出100</span></span><br><span class="line">	<span class="built_in">println</span>(a)</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//直接将匿名函数当参数。</span></span><br><span class="line">	s1 := test(<span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> <span class="number">100</span> &#125;)</span><br><span class="line">    <span class="built_in">println</span>(s1)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出100</span></span><br></pre></td></tr></table></figure>
+<h3 id="变参"><a href="#变参" class="headerlink" title="变参"></a>变参</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testSlice</span><span class="params">(s <span class="keyword">string</span>, n ...<span class="keyword">int</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> x <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> _, i := <span class="keyword">range</span> n &#123;</span><br><span class="line">		x += i</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fmt.Sprintf(s, x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">	<span class="built_in">println</span>(testSlice(<span class="string">"sum: %d"</span>, s...))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<li>不能用容器对象接收多返回值。只能用多个变量，或 “_” 忽略。</li>
+<li>多返回值可直接作为其他函数调 实参。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testMake</span><span class="params">()</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;	</span><br><span class="line">    <span class="comment">//不能用容器接受多个返回值，</span></span><br><span class="line">	x, _ := testMake()</span><br><span class="line">    <span class="built_in">println</span>(x)</span><br><span class="line">	<span class="built_in">println</span>(add(testMake()))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命名返回参数允许 defer 延迟调 通过闭包读取和修改。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addDefer</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="params">(z <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		z += <span class="number">100</span></span><br><span class="line">        <span class="comment">//输出103</span></span><br><span class="line">		<span class="built_in">println</span>(z)</span><br><span class="line">	&#125;()</span><br><span class="line">	z = x + y</span><br><span class="line">    <span class="comment">//输出3</span></span><br><span class="line">	<span class="built_in">println</span>(z)</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//输出103</span></span><br><span class="line">    <span class="built_in">println</span>(addDefer(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显式 return 返回前，会先修改命名返回参数</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="params">(z <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="built_in">println</span>(z) <span class="comment">// 输出: 203</span></span><br><span class="line">	&#125;()</span><br><span class="line">	z=x+y </span><br><span class="line">	<span class="keyword">return</span> z + <span class="number">200</span> <span class="comment">// 执行顺序: (z = z + 200) -&gt; (call defer) -&gt; (ret)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="built_in">println</span>(add(<span class="number">1</span>, <span class="number">2</span>)) <span class="comment">// 输出: 203</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>匿名函数可赋值给变量，做为结构字段，或者在 channel  传送。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fn := <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123; fmt.Println(<span class="string">"Hello, World!"</span>) &#125;</span><br><span class="line">	fn()</span><br><span class="line">    fns := [](<span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span>)</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> x + <span class="number">1</span> &#125;,</span><br><span class="line">        <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> x + <span class="number">2</span> &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">println</span>(fns[<span class="number">1</span>](<span class="number">100</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>闭包复制的是原对象指针，这就很容易解释延迟引 现象。</p>
+<p>​<br>​<br>​    </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-03-09/GO笔记六-go数据类型.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1656,7 +1847,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
