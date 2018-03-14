@@ -382,9 +382,9 @@
 <p>可以压缩导出的文件 只需要加上参数 compress=y</p>
 <h3 id="expdp-impdp-1"><a href="#expdp-impdp-1" class="headerlink" title="expdp\impdp"></a>expdp\impdp</h3><h4 id="expdp-备份导出"><a href="#expdp-备份导出" class="headerlink" title="expdp 备份导出"></a>expdp 备份导出</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expdp hzqgas/hzqgas@192.168.20.37/orcl directory=file_path dumpfile=ARADMIN.dat logfile=ARADMIN.log schemas=hzqgas</span><br></pre></td></tr></table></figure>
 <h4 id="恢复dump文件"><a href="#恢复dump文件" class="headerlink" title="恢复dump文件"></a>恢复dump文件</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impdp hzqgas/hzqgas@192.168.10.216/orcl schemas=hzqgas directory=hzqgas_dir dumpfile=hzq170929.dmp REMAP_SCHEMA=hzqgas:hzqgas remap_tablespace=hzqgas:hzqgas TABLE_EXISTS_ACTION=<span class="keyword">REPLACE</span></span><br></pre></td></tr></table></figure>
-<h4 id="expdp备份表"><a href="#expdp备份表" class="headerlink" title="expdp备份表"></a>expdp备份表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> expdp hzqgas2/hzqga2@10.113.1.47/orcl tables=(gas_report_sse_diff,gas_report_ysl_diff),dept dumpfile=gas.dmp</span><br></pre></td></tr></table></figure>
+<h4 id="expdp备份表"><a href="#expdp备份表" class="headerlink" title="expdp备份表"></a>expdp备份表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> expdp hzqgas2/hzqga2@10.113.1.47/orcl tables=(gas_report_sse_diff,gas_report_ysl_diff),dept dumpfile=gas.dmp</span></span><br></pre></td></tr></table></figure>
 <p>这里可以指定directory，否则使用默认的</p>
-<h4 id="impdp恢复"><a href="#impdp恢复" class="headerlink" title="impdp恢复"></a>impdp恢复</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> impdp hzqgas/hzqgas@10.113.1.47/hzqgas dumpfile=gas.dump table_exists_action=replace remap_schema=hzqgas2:hzqgas remap_tablespace=hzqgas2:hzqgas</span><br></pre></td></tr></table></figure>
+<h4 id="impdp恢复"><a href="#impdp恢复" class="headerlink" title="impdp恢复"></a>impdp恢复</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> impdp hzqgas/hzqgas@10.113.1.47/hzqgas dumpfile=gas.dump table_exists_action=replace remap_schema=hzqgas2:hzqgas remap_tablespace=hzqgas2:hzqgas</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>remap_schema可以定义用户的切换，其格式为：remap_schema=old_schema_name:new_schema_name</li>
 <li>remap_tablespace可以定义切换对象的不同表空间，其格式为：remap_tablespace=old_tablespace_name:new_tablespace_name</li>
@@ -566,7 +566,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

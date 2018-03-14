@@ -380,7 +380,7 @@
 <p>添加以上配置后，项目就支持了热部署，非常方便集成测试。<br><a id="more"></a></p>
 <h3 id="投产上线"><a href="#投产上线" class="headerlink" title="投产上线"></a>投产上线</h3><p>一般分为两种；一种是打包成jar包直接执行，另一种是打包成war包放到tomcat服务器下。</p>
 <h3 id="打成jar包"><a href="#打成jar包" class="headerlink" title="打成jar包"></a>打成jar包</h3><p>如果你使用的是maven来管理项目，执行以下命令既可以</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd 项目跟目录（和pom.xml同级）</span><br><span class="line">mvn clean package</span><br><span class="line"><span class="meta">#</span># 或者执行下面的命令</span><br><span class="line"><span class="meta">#</span># 排除测试代码后进行打包</span><br><span class="line">mvn clean package  -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd 项目跟目录（和pom.xml同级）</span><br><span class="line">mvn clean package</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 或者执行下面的命令</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 排除测试代码后进行打包</span></span></span><br><span class="line">mvn clean package  -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
 <p>打包完成后jar包会生成到target目录下，命名一般是 项目名+版本号.jar</p>
 <h3 id="启动jar包命令"><a href="#启动jar包命令" class="headerlink" title="启动jar包命令"></a>启动jar包命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar  target/spring-boot-scheduler-1.0.0.jar</span><br></pre></td></tr></table></figure>
 <p>也可以在启动的时候选择读取不同的配置文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar app.jar --spring.profiles.active=dev</span><br></pre></td></tr></table></figure></p>
@@ -574,7 +574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

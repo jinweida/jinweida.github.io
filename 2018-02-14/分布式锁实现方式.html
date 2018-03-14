@@ -375,9 +375,9 @@
 <li>这把锁是非重入的，同一个线程在没有释放锁之前无法再次获得该锁。因为数据中数据已经存在了</li>
 </ul>
 <h4 id="基于数据库排它锁"><a href="#基于数据库排它锁" class="headerlink" title="基于数据库排它锁"></a>基于数据库排它锁</h4><p>上面的数据库表除了增删操作外，还可以使用数据库排它锁来实现分布式锁。基于MySql的InnoDB引擎，在查询语句后面增加for update，此方法有效的解决上面无法释放锁和阻塞锁。<br>使用排他锁来进行分布式锁，如果一个排他锁长时间不提交，就会占用数据库连接。一旦类似的连接变得多了，就可能把数据库连接池撑爆。<br>总结一下使用数据库来实现分布式锁的方式，这两种方式都是依赖数据库的一张表，一种是通过表中的记录的存在情况确定当前是否有锁存在，另外一种是通过数据库的排他锁来实现分布式锁。</p>
-<h3 id="基于缓存实现分布式锁"><a href="#基于缓存实现分布式锁" class="headerlink" title="基于缓存实现分布式锁"></a>基于缓存实现分布式锁</h3><p>可以使用redis,memcached,tair，基于缓存来实现在性能方面会表现的更好一点。而且很多缓存是可以集群部署的，可以解决单点问题。<br>使用Redis的 SETNX 命令可以实现分布式锁<br>SETNX<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 当且仅当key不存在时，set一个key为val的字符串，返回1；若key存在，则什么都不做，返回0</span><br><span class="line"><span class="meta">$</span> SETNX key val</span><br></pre></td></tr></table></figure></p>
-<p>expire<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 为key设置一个超时时间，单位为second，超过这个时间锁会自动释放，避免死锁。</span><br><span class="line"><span class="meta">$</span> expire key timeout</span><br></pre></td></tr></table></figure></p>
-<p>delete<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> delete key</span><br></pre></td></tr></table></figure></p>
+<h3 id="基于缓存实现分布式锁"><a href="#基于缓存实现分布式锁" class="headerlink" title="基于缓存实现分布式锁"></a>基于缓存实现分布式锁</h3><p>可以使用redis,memcached,tair，基于缓存来实现在性能方面会表现的更好一点。而且很多缓存是可以集群部署的，可以解决单点问题。<br>使用Redis的 SETNX 命令可以实现分布式锁<br>SETNX<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 当且仅当key不存在时，<span class="built_in">set</span>一个key为val的字符串，返回1；若key存在，则什么都不做，返回0</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> SETNX key val</span></span><br></pre></td></tr></table></figure></p>
+<p>expire<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 为key设置一个超时时间，单位为second，超过这个时间锁会自动释放，避免死锁。</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> expire key timeout</span></span><br></pre></td></tr></table></figure></p>
+<p>delete<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> delete key</span></span><br></pre></td></tr></table></figure></p>
 <p>在使用Redis实现分布式锁的时候，主要就会使用到这三个命令。</p>
 <h4 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h4><ul>
 <li>获取锁的时候，使用setnx加锁，并使用expire命令为锁添加一个超时时间，超过该时间则自动释放锁，锁的value值为一个随机生成的UUID，通过此在释放锁的时候进行判断。</li>
@@ -571,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
