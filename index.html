@@ -262,185 +262,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/Dockerfile构建镜像.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-13/Dockerfile构建镜像.html" itemprop="url">Dockerfile构建镜像</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T07:04:38+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T16:18:36+08:00">
-                2018-03-14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-13/Dockerfile构建镜像.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-13/Dockerfile构建镜像.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
-<h3 id="构建镜像实例"><a href="#构建镜像实例" class="headerlink" title="构建镜像实例"></a>构建镜像实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p /home/dockerproject</span><br><span class="line"><span class="meta">$</span> touch /home/dockerproject/Dockerfile</span><br></pre></td></tr></table></figure>
-<p>添加指令信息</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vi /home/dockerproject/Dockerfile</span><br><span class="line">From nginx</span><br><span class="line">Run <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Dockerfile构建镜像&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
-<p>构建镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t nginx:v1 .</span><br></pre></td></tr></table></figure>
-<p>(.)表示当前目录。</p>
-<h3 id="Dockerfile常用指令"><a href="#Dockerfile常用指令" class="headerlink" title="Dockerfile常用指令"></a>Dockerfile常用指令</h3><h4 id="Add复制文件"><a href="#Add复制文件" class="headerlink" title="Add复制文件"></a>Add复制文件</h4><p>格式：add \<src\>…\<dest\>，支持url和压缩包</dest\></src\></p>
-<h3 id="Arg设置构建参数"><a href="#Arg设置构建参数" class="headerlink" title="Arg设置构建参数"></a>Arg设置构建参数</h3><h4 id="CMD容器启动指令"><a href="#CMD容器启动指令" class="headerlink" title="CMD容器启动指令"></a>CMD容器启动指令</h4><h4 id="Copy复制文件"><a href="#Copy复制文件" class="headerlink" title="Copy复制文件"></a>Copy复制文件</h4><p>类似Add指令，copy不支持url和压缩包</p>
-<h4 id="Entrypoint入口点"><a href="#Entrypoint入口点" class="headerlink" title="Entrypoint入口点"></a>Entrypoint入口点</h4><h4 id="ENV设置环境变量"><a href="#ENV设置环境变量" class="headerlink" title="ENV设置环境变量"></a>ENV设置环境变量</h4><h4 id="EXPOSE声明暴漏端口"><a href="#EXPOSE声明暴漏端口" class="headerlink" title="EXPOSE声明暴漏端口"></a>EXPOSE声明暴漏端口</h4><p>可以暴漏多个端口 eg：EXPOSE port1 port2 port3</p>
-<h4 id="From指定基础镜像"><a href="#From指定基础镜像" class="headerlink" title="From指定基础镜像"></a>From指定基础镜像</h4><h4 id="Maintainer指定维护者信息"><a href="#Maintainer指定维护者信息" class="headerlink" title="Maintainer指定维护者信息"></a>Maintainer指定维护者信息</h4><p>格式：Maintainer camulos@qq.com</p>
-<h4 id="Run执行命令"><a href="#Run执行命令" class="headerlink" title="Run执行命令"></a>Run执行命令</h4><p>eg：RUN [“/bin/bash”,”-c”,”echo hello”]</p>
-<h4 id="Label为镜像添加元素"><a href="#Label为镜像添加元素" class="headerlink" title="Label为镜像添加元素"></a>Label为镜像添加元素</h4><h4 id="User设置用户"><a href="#User设置用户" class="headerlink" title="User设置用户"></a>User设置用户</h4><p>用于设置启动镜像时的用户或UID</p>
-<h4 id="Volume指定挂载点"><a href="#Volume指定挂载点" class="headerlink" title="Volume指定挂载点"></a>Volume指定挂载点</h4><p>使容器中的一个目录具有持久化存储的功能。也可以共享给其他容器 eg：Volume [“/data”]</p>
-<h4 id="Workdir指定工作目录"><a href="#Workdir指定工作目录" class="headerlink" title="Workdir指定工作目录"></a>Workdir指定工作目录</h4><p>类似cd命令</p>
-<h3 id="Dockerfile构建一个springboot应用"><a href="#Dockerfile构建一个springboot应用" class="headerlink" title="Dockerfile构建一个springboot应用"></a>Dockerfile构建一个springboot应用</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">Add news-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line">Expose 8671</span><br><span class="line">Entrypoint [<span class="string">"java"</span>,<span class="string">"-Djava.security.egd=file:/dev/./urandom"</span>,<span class="string">"-jar"</span>,<span class="string">"app.jar"</span>]</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/docker搭建私有仓库registry.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -589,6 +410,185 @@
 <h3 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h3><p>在192.168.40.131获取镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull mydocker.com/my-hello-world</span><br></pre></td></tr></table></figure>
 <p>docker私有仓库搭建完了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/Dockerfile构建镜像.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-03-13/Dockerfile构建镜像.html" itemprop="url">Dockerfile构建镜像</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T07:04:38+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T16:18:36+08:00">
+                2018-03-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-03-13/Dockerfile构建镜像.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-13/Dockerfile构建镜像.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
+<h3 id="构建镜像实例"><a href="#构建镜像实例" class="headerlink" title="构建镜像实例"></a>构建镜像实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p /home/dockerproject</span><br><span class="line"><span class="meta">$</span> touch /home/dockerproject/Dockerfile</span><br></pre></td></tr></table></figure>
+<p>添加指令信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vi /home/dockerproject/Dockerfile</span><br><span class="line">From nginx</span><br><span class="line">Run <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Dockerfile构建镜像&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
+<p>构建镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t nginx:v1 .</span><br></pre></td></tr></table></figure>
+<p>(.)表示当前目录。</p>
+<h3 id="Dockerfile常用指令"><a href="#Dockerfile常用指令" class="headerlink" title="Dockerfile常用指令"></a>Dockerfile常用指令</h3><h4 id="Add复制文件"><a href="#Add复制文件" class="headerlink" title="Add复制文件"></a>Add复制文件</h4><p>格式：add \<src\>…\<dest\>，支持url和压缩包</dest\></src\></p>
+<h3 id="Arg设置构建参数"><a href="#Arg设置构建参数" class="headerlink" title="Arg设置构建参数"></a>Arg设置构建参数</h3><h4 id="CMD容器启动指令"><a href="#CMD容器启动指令" class="headerlink" title="CMD容器启动指令"></a>CMD容器启动指令</h4><h4 id="Copy复制文件"><a href="#Copy复制文件" class="headerlink" title="Copy复制文件"></a>Copy复制文件</h4><p>类似Add指令，copy不支持url和压缩包</p>
+<h4 id="Entrypoint入口点"><a href="#Entrypoint入口点" class="headerlink" title="Entrypoint入口点"></a>Entrypoint入口点</h4><h4 id="ENV设置环境变量"><a href="#ENV设置环境变量" class="headerlink" title="ENV设置环境变量"></a>ENV设置环境变量</h4><h4 id="EXPOSE声明暴漏端口"><a href="#EXPOSE声明暴漏端口" class="headerlink" title="EXPOSE声明暴漏端口"></a>EXPOSE声明暴漏端口</h4><p>可以暴漏多个端口 eg：EXPOSE port1 port2 port3</p>
+<h4 id="From指定基础镜像"><a href="#From指定基础镜像" class="headerlink" title="From指定基础镜像"></a>From指定基础镜像</h4><h4 id="Maintainer指定维护者信息"><a href="#Maintainer指定维护者信息" class="headerlink" title="Maintainer指定维护者信息"></a>Maintainer指定维护者信息</h4><p>格式：Maintainer camulos@qq.com</p>
+<h4 id="Run执行命令"><a href="#Run执行命令" class="headerlink" title="Run执行命令"></a>Run执行命令</h4><p>eg：RUN [“/bin/bash”,”-c”,”echo hello”]</p>
+<h4 id="Label为镜像添加元素"><a href="#Label为镜像添加元素" class="headerlink" title="Label为镜像添加元素"></a>Label为镜像添加元素</h4><h4 id="User设置用户"><a href="#User设置用户" class="headerlink" title="User设置用户"></a>User设置用户</h4><p>用于设置启动镜像时的用户或UID</p>
+<h4 id="Volume指定挂载点"><a href="#Volume指定挂载点" class="headerlink" title="Volume指定挂载点"></a>Volume指定挂载点</h4><p>使容器中的一个目录具有持久化存储的功能。也可以共享给其他容器 eg：Volume [“/data”]</p>
+<h4 id="Workdir指定工作目录"><a href="#Workdir指定工作目录" class="headerlink" title="Workdir指定工作目录"></a>Workdir指定工作目录</h4><p>类似cd命令</p>
+<h3 id="Dockerfile构建一个springboot应用"><a href="#Dockerfile构建一个springboot应用" class="headerlink" title="Dockerfile构建一个springboot应用"></a>Dockerfile构建一个springboot应用</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">Add news-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line">Expose 8671</span><br><span class="line">Entrypoint [<span class="string">"java"</span>,<span class="string">"-Djava.security.egd=file:/dev/./urandom"</span>,<span class="string">"-jar"</span>,<span class="string">"app.jar"</span>]</span><br></pre></td></tr></table></figure>
 
           
         
