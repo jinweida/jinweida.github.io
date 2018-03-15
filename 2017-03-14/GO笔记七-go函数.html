@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。 函数定义1234func hanshu(x, y int, s string) (int, string) &amp;#123; // 类型相同的相邻参数可合并	n := x">
+<meta name="description" content="golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。">
 <meta name="keywords" content="golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GO笔记三:go函数">
 <meta property="og:url" content="http://jinweida.github.io/2017-03-14/GO笔记七-go函数.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。 函数定义1234func hanshu(x, y int, s string) (int, string) &amp;#123; // 类型相同的相邻参数可合并	n := x + y 	return n, fmt.Sprintf(s, n)&amp;#125;  无需声">
+<meta property="og:description" content="golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-03-14T08:40:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GO笔记三:go函数">
-<meta name="twitter:description" content="golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。 函数定义1234func hanshu(x, y int, s string) (int, string) &amp;#123; // 类型相同的相邻参数可合并	n := x + y 	return n, fmt.Sprintf(s, n)&amp;#125;  无需声">
+<meta name="twitter:description" content="golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。">
 
 
 
@@ -374,7 +374,7 @@
       
 
       
-        <p>golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。</p>
+        <p>golang的函数和方法并不一样，在java中函数就是方法，方法就是函数。golang中函数不属于任何结构体，也就是函数无接收者，方法有接收者。<br><a id="more"></a></p>
 <h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hanshu</span><span class="params">(x, y <span class="keyword">int</span>, s <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">string</span>)</span></span> &#123; <span class="comment">// 类型相同的相邻参数可合并</span></span><br><span class="line">	n := x + y </span><br><span class="line">	<span class="keyword">return</span> n, fmt.Sprintf(s, n)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>无需声明原型</li>
