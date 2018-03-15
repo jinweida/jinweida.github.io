@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="参考 ：https://docs.docker.com/registry/deploying/ docker registry镜像使用私有仓库，可以维护自己的镜像。docker 官方提供了 registry 的镜像，可以使用它来搭建私有仓库">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T16:01:13.816Z">
+<meta property="og:updated_time" content="2018-03-15T02:30:26.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker私有仓库registry搭建">
 <meta name="twitter:description" content="参考 ：https://docs.docker.com/registry/deploying/ docker registry镜像使用私有仓库，可以维护自己的镜像。docker 官方提供了 registry 的镜像，可以使用它来搭建私有仓库">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T00:01:13+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:30:26+08:00">
                 2018-03-15
               </time>
             
@@ -377,12 +377,10 @@
         <p>参考 ：<a href="https://docs.docker.com/registry/deploying/" target="_blank" rel="noopener">https://docs.docker.com/registry/deploying/</a></p>
 <h3 id="docker-registry镜像"><a href="#docker-registry镜像" class="headerlink" title="docker registry镜像"></a>docker registry镜像</h3><p>使用私有仓库，可以维护自己的镜像。docker 官方提供了 registry 的镜像，可以使用它来搭建私有仓库</p>
 <a id="more"></a>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull registry:2</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker pull registry:2</span><br></pre></td></tr></table></figure>
 <p>本例子使用Docker version 18.03.0-ce-rc3, build e730959，需要具备的条件：</p>
 <ul>
 <li>v2版本仓库，需要TLS加密连接</li>
-</ul>
-<ul>
 <li>仓库URL is <a href="https://mydockerc.om" target="_blank" rel="noopener">https://mydockerc.om</a></li>
 <li>设置/etc/hosts，防火墙开放443端口访问</li>
 <li>具有ca证书</li>
@@ -489,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-03-13/Dockerfile构建镜像.html" rel="next" title="Dockerfile构建镜像">
-                <i class="fa fa-chevron-left"></i> Dockerfile构建镜像
+              <a href="/2018-03-12/docker-swarm-集群部署.html" rel="next" title="docker-swarm-集群部署">
+                <i class="fa fa-chevron-left"></i> docker-swarm-集群部署
               </a>
             
           </div>
@@ -498,6 +496,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-03-13/Dockerfile构建镜像.html" rel="prev" title="Dockerfile构建镜像">
+                Dockerfile构建镜像 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>

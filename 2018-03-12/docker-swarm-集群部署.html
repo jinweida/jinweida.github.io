@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="docker-Swarm 在 docker1.12后已经集成在docker中，成为docker的一个子命令。 swarm目前docker指定的集群管理工具，有关集群的命令有：  docker swarm：集群管理，子命令有 init, join,join-token, leave, update, unlock,ca,unlock-key docker node：节点管理，子命令有 demote,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-15T02:09:15.401Z">
+<meta property="og:updated_time" content="2018-03-15T02:30:13.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker-swarm-集群部署">
 <meta name="twitter:description" content="docker-Swarm 在 docker1.12后已经集成在docker中，成为docker的一个子命令。 swarm目前docker指定的集群管理工具，有关集群的命令有：  docker swarm：集群管理，子命令有 init, join,join-token, leave, update, unlock,ca,unlock-key docker node：节点管理，子命令有 demote,">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:09:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:30:13+08:00">
                 2018-03-15
               </time>
             
@@ -383,19 +383,19 @@
 </ul>
 <a id="more"></a>
 <h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><p>准备三台机子IP分别是 192.168.40.130（manger），192.168.40.128（worker），192.168.40.131（workder）</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm init --advertise-addr </span><br><span class="line">Swarm initialized: current node (1r33fqwd2vg9efr1kb2o3pes7) is now a manager.</span><br><span class="line">To add a worker to this swarm, run the following <span class="built_in">command</span>:</span><br><span class="line">    docker swarm join --token SWMTKN-1-3hml1lk7rmyahc6ss80kdcjkktyhnjrhmwiycdprbugyok256r-d8y5fns6mhfbjbq649denz7g8 192.168.40.130:2377</span><br><span class="line">To add a manager to this swarm, run <span class="string">'docker swarm join-token manager'</span> and follow the instructions.</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker swarm init --advertise-addr </span><br><span class="line">Swarm initialized: current node (1r33fqwd2vg9efr1kb2o3pes7) is now a manager.</span><br><span class="line">To add a worker to this swarm, run the following command:</span><br><span class="line">    docker swarm join --token SWMTKN-1-3hml1lk7rmyahc6ss80kdcjkktyhnjrhmwiycdprbugyok256r-d8y5fns6mhfbjbq649denz7g8 192.168.40.130:2377</span><br><span class="line">To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.</span><br></pre></td></tr></table></figure>
 <p>分别在192.168.40.128（worker），192.168.40.131（workder）执行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm join --token SWMTKN-1-3hml1lk7rmyahc6ss80kdcjkktyhnjrhmwiycdprbugyok256r-d8y5fns6mhfbjbq649denz7g8 192.168.40.130:2377</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker swarm join --token SWMTKN-1-3hml1lk7rmyahc6ss80kdcjkktyhnjrhmwiycdprbugyok256r-d8y5fns6mhfbjbq649denz7g8 192.168.40.130:2377</span><br></pre></td></tr></table></figure>
 <p>加入集群。</p>
 <p>查看节点</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]<span class="comment"># docker node ls</span></span><br><span class="line">ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION</span><br><span class="line">1r33fqwd2vg9efr1kb2o3pes7 *   centos              Ready               Active              Leader              18.03.0-ce-rc3</span><br><span class="line">vss0y1t4mik2kax9f07hujftv     centos              Ready               Active                                  18.03.0-ce-rc3</span><br><span class="line">u2fir90jdsk71drxhqa3yd468     ubuntu              Ready               Active                                  17.05.0-ce</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]# docker node ls</span><br><span class="line">ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION</span><br><span class="line">1r33fqwd2vg9efr1kb2o3pes7 *   centos              Ready               Active              Leader              18.03.0-ce-rc3</span><br><span class="line">vss0y1t4mik2kax9f07hujftv     centos              Ready               Active                                  18.03.0-ce-rc3</span><br><span class="line">u2fir90jdsk71drxhqa3yd468     ubuntu              Ready               Active                                  17.05.0-ce</span><br></pre></td></tr></table></figure>
 <h3 id="构建nginx集群"><a href="#构建nginx集群" class="headerlink" title="构建nginx集群"></a>构建nginx集群</h3><p>在manger节点部署nginx服务，服务数量为10个，端口是8080映射容器80端口，</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker service create --replicas 10 --name mynginx --publish 8080:80  nginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker service create --replicas 10 --name mynginx --publish 8080:80  nginx</span><br></pre></td></tr></table></figure>
 <p>执行这个命令manager节点会分发任务到各个worker节点上，包括manger节点本身，都会安装nginx镜像。</p>
 <h3 id="离开swarm集群"><a href="#离开swarm集群" class="headerlink" title="离开swarm集群"></a>离开swarm集群</h3><p>在节点服务器上执行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm leave --force</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker swarm leave --force</span><br></pre></td></tr></table></figure>
 <p>更多信息参考 <a href="https://docs.docker.com/engine/reference/commandline/swarm/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/commandline/swarm/</a></p>
-<h3 id="更新service"><a href="#更新service" class="headerlink" title="更新service"></a>更新service</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker service update --image nginx mynginx</span><br></pre></td></tr></table></figure>
+<h3 id="更新service"><a href="#更新service" class="headerlink" title="更新service"></a>更新service</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker service update --image nginx mynginx</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -476,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-03-10/区块链技术-共识机制.html" rel="next" title="区块链技术-共识机制">
-                <i class="fa fa-chevron-left"></i> 区块链技术-共识机制
+              <a href="/2018-03-10/区块链技术-拜占庭将军问题.html" rel="next" title="区块链技术-拜占庭将军问题">
+                <i class="fa fa-chevron-left"></i> 区块链技术-拜占庭将军问题
               </a>
             
           </div>
@@ -486,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018-03-13/Dockerfile构建镜像.html" rel="prev" title="Dockerfile构建镜像">
-                Dockerfile构建镜像 <i class="fa fa-chevron-right"></i>
+              <a href="/2018-03-13/docker搭建私有仓库registry.html" rel="prev" title="docker私有仓库registry搭建">
+                docker私有仓库registry搭建 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
