@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="docker-Swarm 在 docker1.12后已经集成在docker中，成为docker的一个子命令。 swarm目前docker指定的集群管理工具，有关集群的命令有：  docker swarm：集群管理，子命令有 init, join,join-token, leave, update, unlock,ca,unlock-key docker node：节点管理，子命令有 demote,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-12T08:08:27.789Z">
+<meta property="og:updated_time" content="2018-03-15T02:04:33.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker-swarm-集群部署">
 <meta name="twitter:description" content="docker-Swarm 在 docker1.12后已经集成在docker中，成为docker的一个子命令。 swarm目前docker指定的集群管理工具，有关集群的命令有：  docker swarm：集群管理，子命令有 init, join,join-token, leave, update, unlock,ca,unlock-key docker node：节点管理，子命令有 demote,">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-12T16:08:27+08:00">
-                2018-03-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:04:33+08:00">
+                2018-03-15
               </time>
             
           </span>
@@ -381,7 +381,7 @@
 <li>docker node：节点管理，子命令有 demote, inspect,ls, promote, rm, ps, update</li>
 <li>docker service：服务管理，子命令有 create, inspect, ps, ls ,rm , scale, update</li>
 </ul>
-<!--mor-->
+<a id="more"></a>
 <h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><p>准备三台机子IP分别是 192.168.40.130（manger），192.168.40.128（worker），192.168.40.131（workder）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm init --advertise-addr </span><br><span class="line">Swarm initialized: current node (1r33fqwd2vg9efr1kb2o3pes7) is now a manager.</span><br><span class="line">To add a worker to this swarm, run the following <span class="built_in">command</span>:</span><br><span class="line">    docker swarm join --token SWMTKN-1-3hml1lk7rmyahc6ss80kdcjkktyhnjrhmwiycdprbugyok256r-d8y5fns6mhfbjbq649denz7g8 192.168.40.130:2377</span><br><span class="line">To add a manager to this swarm, run <span class="string">'docker swarm join-token manager'</span> and follow the instructions.</span><br></pre></td></tr></table></figure>
 <p>分别在192.168.40.128（worker），192.168.40.131（workder）执行</p>
@@ -476,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-03-10/区块链技术-拜占庭将军问题.html" rel="next" title="区块链技术-拜占庭将军问题">
-                <i class="fa fa-chevron-left"></i> 区块链技术-拜占庭将军问题
+              <a href="/2018-03-10/区块链技术-共识机制.html" rel="next" title="区块链技术-共识机制">
+                <i class="fa fa-chevron-left"></i> 区块链技术-共识机制
               </a>
             
           </div>
@@ -486,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018-03-13/Dockerfile构建镜像.html" rel="prev" title="Dockerfile构建镜像">
-                Dockerfile构建镜像 <i class="fa fa-chevron-right"></i>
+              <a href="/2018-03-13/docker搭建私有仓库registry.html" rel="prev" title="docker私有仓库registry搭建">
+                docker私有仓库registry搭建 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -821,11 +821,6 @@
     })();
   </script>
 
-  
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
