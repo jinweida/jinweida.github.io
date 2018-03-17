@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="金声玉振">
 <meta property="og:description" content="参考 ：https://docs.docker.com/registry/deploying/ docker registry镜像使用私有仓库，可以维护自己的镜像。docker 官方提供了 registry 的镜像，可以使用它来搭建私有仓库">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-15T02:30:26.056Z">
+<meta property="og:updated_time" content="2018-03-17T02:07:27.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker私有仓库registry搭建">
 <meta name="twitter:description" content="参考 ：https://docs.docker.com/registry/deploying/ docker registry镜像使用私有仓库，可以维护自己的镜像。docker 官方提供了 registry 的镜像，可以使用它来搭建私有仓库">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:30:26+08:00">
-                2018-03-15
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-17T10:07:27+08:00">
+                2018-03-17
               </time>
             
           </span>
@@ -402,7 +402,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /etc/docker/certs.d/mydocker.com</span><br><span class="line">$ scp root@192.168.40.130:/etc/docker/certs.d/mydocker.com/mydocker.com.crt /etc/docker/certs.d/mydocker.com/</span><br></pre></td></tr></table></figure>
 <h3 id="启动registry镜像"><a href="#启动registry镜像" class="headerlink" title="启动registry镜像"></a>启动registry镜像</h3><p>在192.168.40.130上启动仓库</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  --restart=always \</span><br><span class="line">  --name registry \</span><br><span class="line">  -v ~/certs:/certs \</span><br><span class="line">  -e REGISTRY_HTTP_ADDR=0.0.0.0:443 \</span><br><span class="line">  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/mydocker.com.crt \</span><br><span class="line">  -e REGISTRY_HTTP_TLS_KEY=/certs/mydocker.com.key \</span><br><span class="line">  -p 443:443 \</span><br><span class="line">  registry:2</span><br></pre></td></tr></table></figure>
-<h3 id="push自定义镜像到仓库"><a href="#push自定义镜像到仓库" class="headerlink" title="push自定义镜像到仓库"></a>push自定义镜像到仓库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hello-world</span><br><span class="line">$ docker tag hello-world mydocker.com/my-hello-world</span><br><span class="line">$ docker tag hello-world mydocker.com/my-hello-world</span><br></pre></td></tr></table></figure>
+<h3 id="push自定义镜像到仓库"><a href="#push自定义镜像到仓库" class="headerlink" title="push自定义镜像到仓库"></a>push自定义镜像到仓库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hello-world</span><br><span class="line">$ docker tag hello-world mydocker.com/my-hello-world</span><br><span class="line">$ docker push mydocker.com/my-hello-world</span><br></pre></td></tr></table></figure>
 <h3 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h3><p>在192.168.40.131获取镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull mydocker.com/my-hello-world</span><br></pre></td></tr></table></figure>
 <p>docker私有仓库搭建完了。</p>
@@ -583,7 +583,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
