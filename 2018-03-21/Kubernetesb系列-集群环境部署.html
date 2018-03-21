@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="所有节点的操作系统均为centos7.4 64位系统。参考：https://kubernetes.io/docs/setup/independent/install-kubeadm/ 注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。 安装docker12$ yum inst">
+<meta name="description" content="所有节点的操作系统均为centos7.4 64位系统。参考：https://kubernetes.io/docs/setup/independent/install-kubeadm/注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。&amp;lt;!!-more–&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kubernetesb系列-集群环境部署">
 <meta property="og:url" content="http://jinweida.github.io/2018-03-21/Kubernetesb系列-集群环境部署.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="所有节点的操作系统均为centos7.4 64位系统。参考：https://kubernetes.io/docs/setup/independent/install-kubeadm/ 注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。 安装docker12$ yum install -y docker$ systemctl enable docker &amp;">
+<meta property="og:description" content="所有节点的操作系统均为centos7.4 64位系统。参考：https://kubernetes.io/docs/setup/independent/install-kubeadm/注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。&amp;lt;!!-more–&amp;gt; 安装docker12$ yum install -y docker$ systemctl">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/k8s/k8s.jpg">
-<meta property="og:updated_time" content="2018-03-21T06:24:50.062Z">
+<meta property="og:updated_time" content="2018-03-21T06:25:37.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetesb系列-集群环境部署">
-<meta name="twitter:description" content="所有节点的操作系统均为centos7.4 64位系统。参考：https://kubernetes.io/docs/setup/independent/install-kubeadm/ 注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。 安装docker12$ yum install -y docker$ systemctl enable docker &amp;">
+<meta name="twitter:description" content="所有节点的操作系统均为centos7.4 64位系统。参考：https://kubernetes.io/docs/setup/independent/install-kubeadm/注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。&amp;lt;!!-more–&amp;gt; 安装docker12$ yum install -y docker$ systemctl">
 <meta name="twitter:image" content="http://jinweida.github.io/img/k8s/k8s.jpg">
 
 
@@ -309,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T14:24:50+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T14:25:37+08:00">
                 2018-03-21
               </time>
             
@@ -353,8 +353,7 @@
       
 
       
-        <p>所有节点的操作系统均为centos7.4 64位系统。<br>参考：<a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/independent/install-kubeadm/</a></p>
-<p>注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。</p>
+        <p>所有节点的操作系统均为centos7.4 64位系统。<br>参考：<a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/independent/install-kubeadm/</a><br>注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。<br>&lt;!!-more–&gt;</p>
 <h3 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum install -y docker</span><br><span class="line"><span class="meta">$</span> systemctl enable docker &amp;&amp; systemctl start docker</span><br></pre></td></tr></table></figure>
 <h3 id="安装kubelet-kubeadm-kubectl"><a href="#安装kubelet-kubeadm-kubectl" class="headerlink" title="安装kubelet/kubeadm/kubectl"></a>安装kubelet/kubeadm/kubectl</h3><p>所有节点都需要安装kubelet/kubeadm/kubectl。</p>
 <ul>
