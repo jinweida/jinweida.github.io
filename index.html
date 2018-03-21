@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/Dockerfile构建镜像.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-21/Kubernetesb系列-集群环境部署.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018-03-13/Dockerfile构建镜像.html" itemprop="url">Dockerfile构建镜像</a></h1>
+                <a class="post-title-link" href="/2018-03-21/Kubernetesb系列-集群环境部署.html" itemprop="url">Kubernetesb系列-集群环境部署</a></h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T07:04:38+08:00">
-                2018-03-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T09:59:57+08:00">
+                2018-03-21
               </time>
             
 
@@ -309,34 +309,12 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:29:45+08:00">
-                2018-03-15
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T14:17:36+08:00">
+                2018-03-21
               </time>
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -346,8 +324,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018-03-13/Dockerfile构建镜像.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-13/Dockerfile构建镜像.html" itemprop="commentCount"></span>
+                <a href="/2018-03-21/Kubernetesb系列-集群环境部署.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-21/Kubernetesb系列-集群环境部署.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -376,15 +354,210 @@
 
       
         
-          <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
-<h3 id="构建镜像实例"><a href="#构建镜像实例" class="headerlink" title="构建镜像实例"></a>构建镜像实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p /home/dockerproject</span><br><span class="line"><span class="meta">$</span> touch /home/dockerproject/Dockerfile</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-13/Dockerfile构建镜像.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>所有节点的操作系统均为centos7.4 64位系统。<br>参考：<a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/independent/install-kubeadm/</a></p>
+<p>注意：Kubernetes几乎所有的安装组件和Docker镜像都放在google自己的网站上。</p>
+<h3 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum install -y docker</span><br><span class="line"><span class="meta">$</span> systemctl enable docker &amp;&amp; systemctl start docker</span><br></pre></td></tr></table></figure>
+<h3 id="安装kubelet-kubeadm-kubectl"><a href="#安装kubelet-kubeadm-kubectl" class="headerlink" title="安装kubelet/kubeadm/kubectl"></a>安装kubelet/kubeadm/kubectl</h3><p>所有节点都需要安装kubelet/kubeadm/kubectl。</p>
+<ul>
+<li>kubeadm 用于引导集群</li>
+<li>kubelet 运行在集群所有节点上，负责启动pod和容器</li>
+<li>kubectl 是kubernetes命令行工具，可以部署和管理应用，查看各种资源、创建、删除、更新各种组件</li>
+</ul>
+<p>设置kubernetes仓库地址<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"><span class="meta">$</span> setenforce 0</span><br><span class="line"><span class="meta">$</span> systemctl enable kubelet &amp;&amp; systemctl start kubelet</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>禁用SELinux是为了让容器能访问主机文件系统。目前必须这么做，直到kubernetes改进。</li>
+<li>部分用户遇到iptables引起的问题，可以做如下设置</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br><span class="line"><span class="meta">$</span> sysctl --system</span><br></pre></td></tr></table></figure>
+<p>现在kubelete可能还没有正常工作，需要检查每个节点中docker与kubernetes的cgroup driver是否一致。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker info | grep -i cgroup</span><br><span class="line"><span class="meta">$</span> cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</span><br></pre></td></tr></table></figure></p>
+<p>设置kubernetes cgroup driver<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sed -i "s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</span><br></pre></td></tr></table></figure></p>
+<p>然后重启kubelet<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> systemctl daemon-reload</span><br><span class="line"><span class="meta">$</span> systemctl restart kubelet</span><br></pre></td></tr></table></figure></p>
+<h3 id="kubeadm创建集群"><a href="#kubeadm创建集群" class="headerlink" title="kubeadm创建集群"></a>kubeadm创建集群</h3><p>先更新yum源获取最新的kubeadm。现在每个节点的kubelete应该是每个几秒重启一次，等待指令告诉他做什么。</p>
+<ul>
+<li>需要选择一个 Pod Network Plugin，可以选择第三方的。这里使用flannel</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> kubeadm init --pod-network-cidr=10.244.0.0/16</span><br></pre></td></tr></table></figure>
+<p>因为使用了flannel网络方案，必须设置cidr为10.244.0.0/16,这里也可以添加 –apiserver-advertise-address=\<ip-address\>,明确制定master的那个interface与集群的其他节点通信，不指定将使用默认的。</ip-address\></p>
+<p>输出结果应该是<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">[init] Using Kubernetes version: v1.9.5</span><br><span class="line">[init] Using Authorization modes: [Node RBAC]</span><br><span class="line">[preflight] Running pre-flight checks</span><br><span class="line">[kubeadm] WARNING: starting in 1.9, tokens expire after 24 hours by default (if you require a non-expiring token use --token-ttl 0)</span><br><span class="line">[certificates] Generated ca certificate and key.</span><br><span class="line">[certificates] Generated apiserver certificate and key.</span><br><span class="line">[certificates] apiserver serving cert is signed for DNS names [kubeadm-master kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 10.138.0.4]</span><br><span class="line">[certificates] Generated apiserver-kubelet-client certificate and key.</span><br><span class="line">[certificates] Generated sa key and public key.</span><br><span class="line">[certificates] Generated front-proxy-ca certificate and key.</span><br><span class="line">[certificates] Generated front-proxy-client certificate and key.</span><br><span class="line">[certificates] Valid certificates and keys now exist in "/etc/kubernetes/pki"</span><br><span class="line">[kubeconfig] Wrote KubeConfig file to disk: "admin.conf"</span><br><span class="line">[kubeconfig] Wrote KubeConfig file to disk: "kubelet.conf"</span><br><span class="line">[kubeconfig] Wrote KubeConfig file to disk: "controller-manager.conf"</span><br><span class="line">[kubeconfig] Wrote KubeConfig file to disk: "scheduler.conf"</span><br><span class="line">[controlplane] Wrote Static Pod manifest for component kube-apiserver to "/etc/kubernetes/manifests/kube-apiserver.yaml"</span><br><span class="line">[controlplane] Wrote Static Pod manifest for component kube-controller-manager to "/etc/kubernetes/manifests/kube-controller-manager.yaml"</span><br><span class="line">[controlplane] Wrote Static Pod manifest for component kube-scheduler to "/etc/kubernetes/manifests/kube-scheduler.yaml"</span><br><span class="line">[etcd] Wrote Static Pod manifest for a local etcd instance to "/etc/kubernetes/manifests/etcd.yaml"</span><br><span class="line">[init] Waiting for the kubelet to boot up the control plane as Static Pods from directory "/etc/kubernetes/manifests"</span><br><span class="line">[init] This often takes around a minute; or longer if the control plane images have to be pulled.</span><br><span class="line">[apiclient] All control plane components are healthy after 39.511972 seconds</span><br><span class="line">[uploadconfig] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace</span><br><span class="line">[markmaster] Will mark node master as master by adding a label and a taint</span><br><span class="line">[markmaster] Master master tainted and labelled with key/value: node-role.kubernetes.io/master=""</span><br><span class="line">[bootstraptoken] Using token: &lt;token&gt;</span><br><span class="line">[bootstraptoken] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials</span><br><span class="line">[bootstraptoken] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token</span><br><span class="line">[bootstraptoken] Creating the "cluster-info" ConfigMap in the "kube-public" namespace</span><br><span class="line">[addons] Applied essential addon: kube-dns</span><br><span class="line">[addons] Applied essential addon: kube-proxy</span><br><span class="line"></span><br><span class="line">Your Kubernetes master has initialized successfully!</span><br><span class="line"></span><br><span class="line">To start using your cluster, you need to run (as a regular user):</span><br><span class="line"></span><br><span class="line">  mkdir -p $HOME/.kube</span><br><span class="line">  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">  sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br><span class="line"></span><br><span class="line">You should now deploy a pod network to the cluster.</span><br><span class="line">Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:</span><br><span class="line">  http://kubernetes.io/docs/admin/addons/</span><br><span class="line"></span><br><span class="line">You can now join any number of machines by running the following on each node</span><br><span class="line">as root:</span><br><span class="line"></span><br><span class="line">  kubeadm join --token &lt;token&gt; &lt;master-ip&gt;:&lt;master-port&gt; --discovery-token-ca-cert-hash sha256:&lt;hash&gt;</span><br></pre></td></tr></table></figure></p>
+<p>kubeadm init执行的过程：</p>
+<ul>
+<li>kubeadm执行初始化前的检查</li>
+<li>生成token和证书</li>
+<li>生成KubeConfig文件</li>
+<li>安装master组件，会从google的仓库下载，应该会较慢，国内需要翻墙。</li>
+<li>初始化提示成功</li>
+</ul>
+<p>根据提示设置master kubectl配置，完成后续的pod节点的加入。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-20/Kubernetesb系列-概述.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-03-20/Kubernetesb系列-概述.html" itemprop="url">Kubernetesb系列-概述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T19:08:18+08:00">
+                2018-03-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T09:59:09+08:00">
+                2018-03-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-03-20/Kubernetesb系列-概述.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-20/Kubernetesb系列-概述.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>kubernetes是一个开源容器集群管理系统，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>可移植: 支持公有云，私有云，混合云，多重云（multi-cloud）</li>
+<li>可扩展: 模块化, 插件化, 可挂载, 可组合</li>
+<li>自动化: 自动部署，自动重启，自动复制，自动伸缩/扩展</li>
+</ul>
+<h3 id="kubernetes能做的？"><a href="#kubernetes能做的？" class="headerlink" title="kubernetes能做的？"></a>kubernetes能做的？</h3><ul>
+<li>多个进程协同工作（pod）</li>
+<li>应用健康检测</li>
+<li>pod自动伸缩扩展</li>
+<li>自动发现</li>
+<li>负载均衡</li>
+<li>资源监控</li>
+<li>日志访问</li>
+<li>提供认证和授权</li>
+<li>应用实例的复制。</li>
+<li>微服务平台</li>
+</ul>
+<h3 id="容器的好处？"><a href="#容器的好处？" class="headerlink" title="容器的好处？"></a>容器的好处？</h3><ul>
+<li>快速创建/部署应用：与VM虚拟机相比，容器镜像的创建更加容易。</li>
+<li>持续开发、集成和部署</li>
+<li>开发和运行相分离</li>
+<li>分布式，弹性，微服务化</li>
+<li>资源隔离</li>
+<li>云平台或其他操作系统</li>
+</ul>
+
+          
         
       
     </div>
@@ -550,6 +723,175 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018-03-13/docker搭建私有仓库registry.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/Dockerfile构建镜像.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-03-13/Dockerfile构建镜像.html" itemprop="url">Dockerfile构建镜像</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T07:04:38+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:29:45+08:00">
+                2018-03-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-03-13/Dockerfile构建镜像.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-13/Dockerfile构建镜像.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
+<h3 id="构建镜像实例"><a href="#构建镜像实例" class="headerlink" title="构建镜像实例"></a>构建镜像实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p /home/dockerproject</span><br><span class="line"><span class="meta">$</span> touch /home/dockerproject/Dockerfile</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-13/Dockerfile构建镜像.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -774,6 +1116,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-拜占庭将军问题.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="url">区块链技术-拜占庭将军问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+08:00">
+                2018-03-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T15:32:49+08:00">
+                2018-03-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/区块链/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-03-10/区块链技术-拜占庭将军问题.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>区块链中，有大量的描述拜占庭将军问题，经常会有听到某某区块链使用XXX算法解决拜占庭将军问题。</p>
+<h3 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h3>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-10/区块链技术-拜占庭将军问题.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-共识机制.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -897,175 +1408,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018-03-10/区块链技术-共识机制.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-拜占庭将军问题.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="url">区块链技术-拜占庭将军问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+08:00">
-                2018-03-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T15:32:49+08:00">
-                2018-03-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-10/区块链技术-拜占庭将军问题.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>区块链中，有大量的描述拜占庭将军问题，经常会有听到某某区块链使用XXX算法解决拜占庭将军问题。</p>
-<h3 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-10/区块链技术-拜占庭将军问题.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1567,336 +1909,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-02-12/java-多线程活锁、饥饿、无锁、死锁.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-02-12/java-多线程活锁、饥饿、无锁、死锁.html" itemprop="url">java-多线程活锁、饥饿、无锁、死锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T18:10:29+08:00">
-                2018-02-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-12T18:14:46+08:00">
-                2018-02-12
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-02-12/java-多线程活锁、饥饿、无锁、死锁.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-02-12/java-多线程活锁、饥饿、无锁、死锁.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/img/java/suo.jpg" alt="image"><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-02-12/java-多线程活锁、饥饿、无锁、死锁.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html" itemprop="url">HyperLedger Fabric v1.0.5 (4)-Chaincode</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T16:19:53+08:00">
-                2018-02-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:05:40+08:00">
-                2018-03-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/HyperLedger/" itemprop="url" rel="index">
-                    <span itemprop="name">HyperLedger</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Chaincode是什么？"><a href="#Chaincode是什么？" class="headerlink" title="Chaincode是什么？"></a>Chaincode是什么？</h3><ul>
-<li>Chaincode是一段Go语言（java，1.1开始支持nodejs）编写的智能合约，一个接口的实现代码</li>
-<li>部署在Fabric区块链网络节点上</li>
-<li>客户端与Fabric交互的唯一渠道</li>
-<li>生成Transaction的唯一来源</li>
-<li>智能合约在Fabric上的实现方式
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-02-05/HyperLedger-Fabric-v1-0-5-4-Chaincode.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1947,7 +1959,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

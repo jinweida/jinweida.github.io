@@ -262,6 +262,349 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-31/oracle使用总结.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-08-31/oracle使用总结.html" itemprop="url">oracle使用总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T19:36:55+08:00">
+                2017-08-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-25T08:45:33+08:00">
+                2018-02-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-08-31/oracle使用总结.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-31/oracle使用总结.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">PROCEDURE</span> <span class="string">"P_Garbage_Charge"</span> (p_date <span class="keyword">in</span> <span class="built_in">Date</span>) <span class="keyword">is</span></span><br><span class="line">    isnormal_price <span class="built_in">NUMBER</span>;</span><br><span class="line">    cur_date VARCHAR2(15);<span class="comment">--当月月初</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="comment">-- 变量赋值</span></span><br><span class="line">    isnormal_price:=<span class="number">1.5</span>;</span><br><span class="line">    <span class="comment">-- 打印信息</span></span><br><span class="line">    dbms_output.put_line(isnormal_price || '打印信息');</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="case-when"><a href="#case-when" class="headerlink" title="case when"></a>case when</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">case when nvl(gca.LOWER_PROTECTION,0)='0' and gch.POPULATION=1 then single_price</span><br><span class="line">when nvl(gca.LOWER_PROTECTION,0)='0' and gch.POPULATION=0 then isnormal_price</span><br><span class="line">when nvl(gca.LOWER_PROTECTION,0)='0' and gch.POPULATION is null then isnormal_price</span><br><span class="line">when nvl(gca.LOWER_PROTECTION,0)='0' and gch.POPULATION&gt;1 then isnormal_price</span><br><span class="line">else 0 <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-31/oracle使用总结.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-31/JVM系列-内存分配与回收策略.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-08-31/JVM系列-内存分配与回收策略.html" itemprop="url">JVM系列-内存分配与回收策略</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T08:38:32+08:00">
+                2017-08-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:20:37+08:00">
+                2018-01-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-08-31/JVM系列-内存分配与回收策略.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-31/JVM系列-内存分配与回收策略.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="内存分配与回收策略"><a href="#内存分配与回收策略" class="headerlink" title="内存分配与回收策略"></a>内存分配与回收策略</h4><p>对象内存分配，往大方向讲就是在堆上分配（也可能经过jit编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的Eden区上，如果启动了本地线程分配缓冲，将按线程优先在TLAB上分配，少数情况也可能分配在老年代中。</p>
+<h4 id="对象优先在Eden分配"><a href="#对象优先在Eden分配" class="headerlink" title="对象优先在Eden分配"></a>对象优先在Eden分配</h4><p>在大多数情况下，对象在新生代Eden区分配。当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC</p>
+<p>相关控制参数</p>
+<blockquote>
+<p>-Xms20M 初始堆大小20m<br>-Xmx20M 最大堆大小20m<br>-Xmn10M 设置年轻代大小为20m<br>三个参数设置了java堆大小为20M，不可扩展，其中10M,分给新生代，10M分给老年代<br>-XX:SurvivorRatio=8 决定了新生代中Eden区与Survivor区 空间比例为8:1<br>-XX:NewSize 设置新生代最小空间大小<br>-XX:MaxNewSize 设置新生代最大空间大小<br>-XX:PermSize 设置永久代最小空间大小<br>-XX:MaxPermSize 设置永久代最大空间大小<br>-Xss:设置每个线程的堆栈大小</p>
+</blockquote>
+<p>老年代=堆大小-新生代<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-08-31/JVM系列-内存分配与回收策略.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-30/docker容器之nginx安装配置使用.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1509,331 +1852,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-19/java-池技术对象池连接池线程池.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-19/java-池技术对象池连接池线程池.html" itemprop="url">java-池技术对象池连接池线程池</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T08:05:22+08:00">
-                2017-08-19
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:22:58+08:00">
-                2018-01-14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-19/java-池技术对象池连接池线程池.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-19/java-池技术对象池连接池线程池.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="连接池的实现及原理"><a href="#连接池的实现及原理" class="headerlink" title="连接池的实现及原理"></a>连接池的实现及原理</h3><p>内容摘要: 对于一个复杂的数据库应用,频繁的建立、关闭连接，会极大的减低系统的性能，因为对于连接的使用成了系统性能的瓶颈。<br>有一个很著名的设计模式：资源池。该模式正是为了解决资源频繁分配、释放所造成的问题的。把该模式应用到数据库连接管理领域，就是建立一个数据库连接池，提供一套高效的连接分配、使用策略，最终目标是实现连接的高效、安全的复用。<br>数据库连接池的基本原理是在内部对象池中维护一定数量的数据库连接，并对外暴露数据库连接获取和返回方法。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>(1)． 资源重用。</li>
-<li>(2)． 更快的系统响应速度</li>
-<li>(3)． 新的资源分配手段</li>
-<li>(4)． 统一的连接管理，避免数据库连接泄漏</li>
-</ul>
-<h3 id="Java线程池总结"><a href="#Java线程池总结" class="headerlink" title="Java线程池总结"></a>Java线程池总结</h3><p>假设一个服务器完成一项任务所需时间为：T1 创建线程时间，T2 在线程中执行任务的时间，T3 销毁线程时间。当T1 + T3 远大于 T2时，采用多线程技术可以显著减少处理器单元的闲置时间，增加处理器单元的吞吐能力。<br>线程池就是一个线程的容器，每次只执行额定数量的线程，</p>
-<p>线程池作用就是限制系统中执行线程的数量。采用线程池不仅调整T1,T3产生的时间段，而且它还显著减少了创建线程的数目。</p>
-<p>为什么要用线程池:</p>
-<ul>
-<li>1）减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务</li>
-<li>2）可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机）Java1.5之后，Java 提供了自己的线程池ThreadPoolExecutor类。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建无限制线程池</span></span><br><span class="line">        ExecutorService executorService= Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        <span class="comment">//创建单个线程的线程池</span></span><br><span class="line">        ExecutorService executorService1= Executors.newSingleThreadExecutor();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService1.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(<span class="string">"single="</span>+Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService1.shutdown();</span><br><span class="line">        <span class="comment">//创建固定线程池</span></span><br><span class="line">        ExecutorService executorService2= Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService2.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(<span class="string">"fixed="</span>+Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService2.shutdown();</span><br><span class="line">        <span class="comment">//创建具有三个线程大小的定时调度线程池</span></span><br><span class="line">        ScheduledExecutorService executorService3= Executors.newScheduledThreadPool(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index=x;</span><br><span class="line">            executorService3.scheduleAtFixedRate(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(<span class="string">"fixed="</span>+Thread.currentThread().getName()+<span class="string">"、x="</span>+index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,<span class="number">3</span>,<span class="number">2</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        executorService3.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="java-对象池总结"><a href="#java-对象池总结" class="headerlink" title="java 对象池总结"></a>java 对象池总结</h3><p>对对象进行池管理，减少创建对象的开销</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-08-12/OSI与TCP-IP模型.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-08-12/OSI与TCP-IP模型.html" itemprop="url">OSI与TCP/IP模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T10:17:59+08:00">
-                2017-08-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-12T12:57:16+08:00">
-                2018-02-12
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-08-12/OSI与TCP-IP模型.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-08-12/OSI与TCP-IP模型.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/img/osi.jpg" alt="image"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017-08-12/OSI与TCP-IP模型.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1884,7 +1902,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
