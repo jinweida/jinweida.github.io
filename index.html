@@ -309,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-23T13:42:21+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-23T14:09:35+08:00">
                 2018-03-23
               </time>
             
@@ -376,23 +376,15 @@
 
       
         
-          
-            <p>了解kubernetes各个组件，有助于深刻了解kubernetes是如何工作的</p>
-<h3 id="Master组件"><a href="#Master组件" class="headerlink" title="Master组件"></a>Master组件</h3><p>Master组件提供集群的管理控制中心。通常运行在集群中的一个节点上，被称为主节点。kubernetes上所有指令都是发送给它，他来负责具体执行。master下面运行着下面这些组件。</p>
-<h4 id="kube-apiserver"><a href="#kube-apiserver" class="headerlink" title="kube-apiserver"></a>kube-apiserver</h4><p>kube-apiserver用于暴露Kubernetes API,任何的资源请求/调用操作都是通过kube-apiserver提供的接口进行。</p>
-<h4 id="etcd"><a href="#etcd" class="headerlink" title="etcd"></a>etcd</h4><p>是kubernetes提供的默认存储系统，kubernetes里的所有资源对象数据都保存这里。</p>
-<h4 id="kube-scheduler"><a href="#kube-scheduler" class="headerlink" title="kube-scheduler"></a>kube-scheduler</h4><p>集群调度组件</p>
-<h4 id="cloud-controller-manager"><a href="#cloud-controller-manager" class="headerlink" title="cloud-controller-manager"></a>cloud-controller-manager</h4><p>所有资源对象的自动化控制中心。</p>
-<h3 id="Node组件"><a href="#Node组件" class="headerlink" title="Node组件"></a>Node组件</h3><p>node节点是kubernetes的工作负载，可以一台物理机，也可以是虚拟机，提供Kubernetes运行时环境，当node节点宕机了，其上的工作负载会被master转移到其他节点上。</p>
-<h4 id="kubelet"><a href="#kubelet" class="headerlink" title="kubelet"></a>kubelet</h4><p>每个node节点上都运行的一个进程。负责pod对应的容器创建、启停等任务。同时于master密切协作，实现集群管理的功能</p>
-<h4 id="kube-proxy"><a href="#kube-proxy" class="headerlink" title="kube-proxy"></a>kube-proxy</h4><p>实现kubernetes service的通信与负载均衡机制的重要组件。</p>
-<h4 id="运行时容器"><a href="#运行时容器" class="headerlink" title="运行时容器"></a>运行时容器</h4><p>运行相应的软件，kubernetes主要主要支持docker和rkt</p>
-<p>需要将node节点注册到kubernetes集群中，这样kubelet就会定时向master节点汇报自身的运行情况，如操作系统、docker版本、cpu、内存使用情况。master根据这些信息实现均衡的资源调度策略。如果某个node节点超时未上报，会被master判定为失联，node被标记为NotReady，随后master会触发工作负载转移。</p>
-<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><h4 id="Web-UI-Dashboard"><a href="#Web-UI-Dashboard" class="headerlink" title="Web UI (Dashboard)"></a>Web UI (Dashboard)</h4><p>kube-ui提供集群状态基础信息查看</p>
-<h4 id="容器资源监控"><a href="#容器资源监控" class="headerlink" title="容器资源监控"></a>容器资源监控</h4><p>容器资源监控提供一个UI浏览监控数据。</p>
-<h4 id="Cluster-level-Logging"><a href="#Cluster-level-Logging" class="headerlink" title="Cluster-level Logging"></a>Cluster-level Logging</h4><p>Cluster-level logging，负责保存容器日志，搜索/查看日志。</p>
-
-          
+          <p>了解kubernetes各个组件，有助于深刻了解kubernetes是如何工作的</p>
+<h3 id="Master组件"><a href="#Master组件" class="headerlink" title="Master组件"></a>Master组件</h3><p>Master组件提供集群的管理控制中心。通常运行在集群中的一个节点上，被称为主节点。kubernetes上所有指令都是发送给它，他来负责具体执行。master下面运行着下面这些组件。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-21/Kubernetesb系列-组件介绍.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -776,175 +768,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/Dockerfile构建镜像.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-13/Dockerfile构建镜像.html" itemprop="url">Dockerfile构建镜像</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T07:04:38+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:29:45+08:00">
-                2018-03-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-13/Dockerfile构建镜像.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-13/Dockerfile构建镜像.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
-<h3 id="构建镜像实例"><a href="#构建镜像实例" class="headerlink" title="构建镜像实例"></a>构建镜像实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p /home/dockerproject</span><br><span class="line"><span class="meta">$</span> touch /home/dockerproject/Dockerfile</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-13/Dockerfile构建镜像.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/docker搭建私有仓库registry.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1064,6 +887,175 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018-03-13/docker搭建私有仓库registry.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-13/Dockerfile构建镜像.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-03-13/Dockerfile构建镜像.html" itemprop="url">Dockerfile构建镜像</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T07:04:38+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:29:45+08:00">
+                2018-03-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-03-13/Dockerfile构建镜像.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-13/Dockerfile构建镜像.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Dockerfile是一个文本文件，其中包含若干条指令，指令描述了构建镜像的细节。</p>
+<h3 id="构建镜像实例"><a href="#构建镜像实例" class="headerlink" title="构建镜像实例"></a>构建镜像实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir -p /home/dockerproject</span><br><span class="line"><span class="meta">$</span> touch /home/dockerproject/Dockerfile</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-13/Dockerfile构建镜像.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1288,6 +1280,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-拜占庭将军问题.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="url">区块链技术-拜占庭将军问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+08:00">
+                2018-03-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T15:32:49+08:00">
+                2018-03-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/区块链/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-03-10/区块链技术-拜占庭将军问题.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>区块链中，有大量的描述拜占庭将军问题，经常会有听到某某区块链使用XXX算法解决拜占庭将军问题。</p>
+<h3 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h3>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-03-10/区块链技术-拜占庭将军问题.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-共识机制.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1411,175 +1572,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018-03-10/区块链技术-共识机制.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-拜占庭将军问题.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="url">区块链技术-拜占庭将军问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+08:00">
-                2018-03-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T15:32:49+08:00">
-                2018-03-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-10/区块链技术-拜占庭将军问题.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>区块链中，有大量的描述拜占庭将军问题，经常会有听到某某区块链使用XXX算法解决拜占庭将军问题。</p>
-<h3 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-10/区块链技术-拜占庭将军问题.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
