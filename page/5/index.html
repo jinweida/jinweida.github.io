@@ -262,6 +262,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/一致性Hash算法.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017-12-09/一致性Hash算法.html" itemprop="url">一致性Hash算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T11:36:15+07:00">
+                2017-12-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:56:55+07:00">
+                2018-01-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017-12-09/一致性Hash算法.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/一致性Hash算法.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>参考：<a href="http://www.cnblogs.com/xrq730/p/5186728.html" target="_blank" rel="noopener">http://www.cnblogs.com/xrq730/p/5186728.html</a></p>
+</blockquote>
+<p>一致性哈希算法在1997年由麻省理工学院提出的一种分布式哈希（DHT）实现算法，设计目标是为了解决因特网中的热点(Hot spot)问题。</p>
+<h4 id="一致性hash主要用途"><a href="#一致性hash主要用途" class="headerlink" title="一致性hash主要用途"></a>一致性hash主要用途</h4><p>一致性hash作为一个负载均衡算法，可以用在分布式缓存、数据库的分库分表等场景中，还可以应用在负载均衡器中作为作为负载均衡算法。在有多台服务器时，对于某个请求资源通过hash算法，映射到某一个台服务器，当增加或减少一台服务器时，可能会改变这些资源对应的hash值，这样可能导致一部分缓存或数据失效了。一致性hash就是尽可能在将同一个资源请求路由到同一台服务器中。</p>
+<h4 id="一致性哈希算法原理"><a href="#一致性哈希算法原理" class="headerlink" title="一致性哈希算法原理"></a>一致性哈希算法原理</h4><p>先构造一个长度为232的整数环（这个环被称为一致性Hash环），根据节点名称的Hash值（其分布为[0, 2^32-1]）将服务器节点放置在这个Hash环上，然后根据数据的Key值计算得到其Hash值（其分布也为[0, 23^2-1]），接着在Hash环上顺时针查找距离这个Key值的Hash值最近的服务器节点，完成Key到服务器的映射查找。 这种算法解决了普通余数Hash算法伸缩性差的问题，可以保证在上线、下线服务器的情况下尽量有多的请求命中原来路由到的服务器。<br><img src="/img/hash.jpg" alt="image"><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017-12-09/一致性Hash算法.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/git操作.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +466,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T11:27:38+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T11:27:38+07:00">
                 2017-12-09
               </time>
             
@@ -309,7 +482,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-23T21:12:52+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-23T20:12:52+07:00">
                 2018-01-23
               </time>
             
@@ -444,7 +617,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T13:18:55+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T13:18:55+07:00">
                 2017-11-15
               </time>
             
@@ -460,7 +633,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T23:12:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:12:23+07:00">
                 2018-01-10
               </time>
             
@@ -613,7 +786,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T09:22:21+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T09:22:21+07:00">
                 2017-11-15
               </time>
             
@@ -629,7 +802,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:58:46+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:58:46+07:00">
                 2018-01-10
               </time>
             
@@ -783,7 +956,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T11:17:10+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T11:17:10+07:00">
                 2017-11-04
               </time>
             
@@ -799,7 +972,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T10:32:59+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T09:32:59+07:00">
                 2017-12-09
               </time>
             
@@ -927,7 +1100,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T10:05:31+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T10:05:31+07:00">
                 2017-11-03
               </time>
             
@@ -943,7 +1116,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:59:51+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:59:51+07:00">
                 2018-01-10
               </time>
             
@@ -1074,7 +1247,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-31T15:48:20+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-31T15:48:20+07:00">
                 2017-10-31
               </time>
             
@@ -1090,7 +1263,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T17:34:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-09T16:34:14+07:00">
                 2017-12-09
               </time>
             
@@ -1241,7 +1414,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T16:43:05+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T16:43:05+07:00">
                 2017-10-23
               </time>
             
@@ -1257,7 +1430,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:09:41+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T14:09:41+07:00">
                 2018-01-14
               </time>
             
@@ -1409,7 +1582,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T09:18:25+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T09:18:25+07:00">
                 2017-10-17
               </time>
             
@@ -1425,7 +1598,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T15:53:07+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T14:53:07+07:00">
                 2018-01-24
               </time>
             
@@ -1578,7 +1751,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T11:35:28+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T11:35:28+07:00">
                 2017-09-20
               </time>
             
@@ -1594,7 +1767,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T22:22:07+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:22:07+07:00">
                 2018-01-10
               </time>
             
@@ -1644,176 +1817,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017-09-20/ubuntu中oracle数据库.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-09-02/docker安装mysql并导入sql文件.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017-09-02/docker安装mysql并导入sql文件.html" itemprop="url">docker安装mysql并导入sql文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T19:28:11+08:00">
-                2017-09-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-14T15:10:59+08:00">
-                2018-01-14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017-09-02/docker安装mysql并导入sql文件.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-09-02/docker安装mysql并导入sql文件.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="docker安装mysql镜像"><a href="#docker安装mysql镜像" class="headerlink" title="docker安装mysql镜像"></a>docker安装mysql镜像</h4><p>1.搜索镜像 docker search mysql</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bogon:blog camulos$ docker search mysql</span><br><span class="line">NAME                                                   DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                                                  MySQL is a widely used, open-source relati...   4895      [OK]</span><br><span class="line">mariadb                                                MariaDB is a community-developed fork of M...   1509      [OK]</span><br><span class="line">mysql/mysql-server                                     Optimized MySQL Server Docker images. Crea...   342                  [OK]</span><br><span class="line">percona                                                Percona Server is a fork of the MySQL rela...   286       [OK]</span><br><span class="line">hypriot/rpi-mysql                                      RPi-compatible Docker Image with Mysql          67</span><br><span class="line">centurylink/mysql                                      Image containing mysql. Optimized to be li...   52                   [OK]</span><br><span class="line">zabbix/zabbix-server-mysql                             Zabbix Server with MySQL database support       51                   [OK]</span><br><span class="line">sameersbn/mysql                                                                                        47                   [OK]</span><br><span class="line">zabbix/zabbix-web-nginx-mysql                          Zabbix frontend based on Nginx web-server ...   30                   [OK]</span><br><span class="line">tutum/mysql                                            Base docker image to run a MySQL database ...   25</span><br><span class="line">1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5   ubuntu-16-nginx-php-phpmyadmin-mysql-5          13                   [OK]</span><br><span class="line">schickling/mysql-backup-s3                             Backup MySQL to S3 (supports periodic back...   13                   [OK]</span><br><span class="line">linuxserver/mysql                                      A Mysql container, brought to you by Linux...   12</span><br><span class="line">centos/mysql-57-centos7                                MySQL 5.7 SQL database server                   10</span><br><span class="line">appcontainers/mysql                                    Centos/Debian Based Customizable MySQL Con...   8                    [OK]</span><br><span class="line">openshift/mysql-55-centos7                             DEPRECATED: A Centos7 based MySQL v5.5 ima...   6</span><br><span class="line">centos/mysql-56-centos7                                MySQL 5.6 SQL database server                   5</span><br><span class="line">frodenas/mysql                                         A Docker Image for MySQL                        3                    [OK]</span><br><span class="line">dsteinkopf/backup-all-mysql                            backup all DBs in a mysql server                3                    [OK]</span><br><span class="line">circleci/mysql                                         MySQL is a widely used, open-source relati...   1</span><br><span class="line">cloudposse/mysql                                       Improved `mysql` service with support for ...   0                    [OK]</span><br><span class="line">cloudfoundry/cf-mysql-ci                               Image used in CI of cf-mysql-release            0</span><br><span class="line">astronomerio/mysql-source                              MySQL source                                    0                    [OK]</span><br><span class="line">jenkler/mysql                                          Docker Mysql package                            0</span><br><span class="line">astronomerio/mysql-sink</span><br></pre></td></tr></table></figure>
-<p>2.安装镜像 docker pusll mysql:5.6.35<br>我这里装的是5.6.35 可以装最新版本docker pull mysql:latest 默认就是最新的</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017-09-02/docker安装mysql并导入sql文件.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1901,7 +1904,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

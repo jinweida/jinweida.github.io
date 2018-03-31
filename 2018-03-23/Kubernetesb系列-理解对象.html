@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数字证书," />
+  <meta name="keywords" content="kubernetes,k8s," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="证书主要字段介绍Issuer (证书的发布机构) 指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。  Valid from , Valid to (证书的有效期) 也就是证书的有效时间，或者说证书">
-<meta name="keywords" content="数字证书">
+<meta name="description" content="podPod是Kubernetes创建或部署的最小/最简单的基本单位，一个Pod代表集群上正在运行的一个进程。一个Pod封装一个应用容器（也可以有多个容器），存储资源、一个独立的网络IP以及管理控制容器运行方式的策略选项。Pod代表部署的一个单位：Kubernetes中单个应用的实例，它可能由单个容器或多个容器共享组成">
+<meta name="keywords" content="kubernetes,k8s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数字证书-构成和原理">
-<meta property="og:url" content="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html">
+<meta property="og:title" content="Kubernetesb系列-理解对象">
+<meta property="og:url" content="http://jinweida.github.io/2018-03-23/Kubernetesb系列-理解对象.html">
 <meta property="og:site_name" content="金声玉振">
-<meta property="og:description" content="证书主要字段介绍Issuer (证书的发布机构) 指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。  Valid from , Valid to (证书的有效期) 也就是证书的有效时间，或者说证书的使用期限。 过了有效期限，证书就会作废，不能使用了。  Public key">
+<meta property="og:description" content="podPod是Kubernetes创建或部署的最小/最简单的基本单位，一个Pod代表集群上正在运行的一个进程。一个Pod封装一个应用容器（也可以有多个容器），存储资源、一个独立的网络IP以及管理控制容器运行方式的策略选项。Pod代表部署的一个单位：Kubernetes中单个应用的实例，它可能由单个容器或多个容器共享组成的资源。Controller可以创建和管理多个Pod，提供副本管理、滚动升级和集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jinweida.github.io/img/ssl.jpg">
-<meta property="og:updated_time" content="2018-01-10T14:56:32.937Z">
+<meta property="og:updated_time" content="2018-03-31T02:16:37.539Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数字证书-构成和原理">
-<meta name="twitter:description" content="证书主要字段介绍Issuer (证书的发布机构) 指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。  Valid from , Valid to (证书的有效期) 也就是证书的有效时间，或者说证书的使用期限。 过了有效期限，证书就会作废，不能使用了。  Public key">
-<meta name="twitter:image" content="http://jinweida.github.io/img/ssl.jpg">
+<meta name="twitter:title" content="Kubernetesb系列-理解对象">
+<meta name="twitter:description" content="podPod是Kubernetes创建或部署的最小/最简单的基本单位，一个Pod代表集群上正在运行的一个进程。一个Pod封装一个应用容器（也可以有多个容器），存储资源、一个独立的网络IP以及管理控制容器运行方式的策略选项。Pod代表部署的一个单位：Kubernetes中单个应用的实例，它可能由单个容器或多个容器共享组成的资源。Controller可以创建和管理多个Pod，提供副本管理、滚动升级和集">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html"/>
+  <link rel="canonical" href="http://jinweida.github.io/2018-03-23/Kubernetesb系列-理解对象.html"/>
 
 
 
 
 
-  <title>数字证书-构成和原理 | 金声玉振</title>
+  <title>Kubernetesb系列-理解对象 | 金声玉振</title>
   
 
 
@@ -265,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-23/Kubernetesb系列-理解对象.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="大汗">
@@ -282,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数字证书-构成和原理</h1>
+          <h1 class="post-title" itemprop="name headline">Kubernetesb系列-理解对象</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T16:14:11+07:00">
-                2017-12-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-23T14:19:12+07:00">
+                2018-03-23
               </time>
             
 
@@ -310,12 +308,34 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-10T21:56:32+07:00">
-                2018-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-31T09:16:37+07:00">
+                2018-03-31
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -325,8 +345,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017-12-09/数字证书-构成和原理.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-12-09/数字证书-构成和原理.html" itemprop="commentCount"></span>
+                <a href="/2018-03-23/Kubernetesb系列-理解对象.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-23/Kubernetesb系列-理解对象.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -354,26 +374,21 @@
       
 
       
-        <p><img src="/img/ssl.jpg" alt="image"></p>
-<h4 id="证书主要字段介绍"><a href="#证书主要字段介绍" class="headerlink" title="证书主要字段介绍"></a>证书主要字段介绍</h4><h5 id="Issuer-证书的发布机构"><a href="#Issuer-证书的发布机构" class="headerlink" title="Issuer (证书的发布机构)"></a>Issuer (证书的发布机构)</h5><blockquote>
-<p>指出什么机构发布的这个证书，也就是指明这个证书是哪个公司创建的(只是创建证书，不是指证书的使用者)。对于上面的这个证书来说，就是指”SecureTrust CA”这个机构。</p>
-</blockquote>
-<h5 id="Valid-from-Valid-to-证书的有效期"><a href="#Valid-from-Valid-to-证书的有效期" class="headerlink" title="Valid from , Valid to (证书的有效期)"></a>Valid from , Valid to (证书的有效期)</h5><blockquote>
-<p>也就是证书的有效时间，或者说证书的使用期限。 过了有效期限，证书就会作废，不能使用了。</p>
-</blockquote>
-<h5 id="Public-key-公钥"><a href="#Public-key-公钥" class="headerlink" title="Public key (公钥)"></a>Public key (公钥)</h5><blockquote>
-<p>公钥是用来对消息进行加密的，这个数字证书的公钥是2048位的。<br><a id="more"></a></p>
-<h5 id="Subject-主题"><a href="#Subject-主题" class="headerlink" title="Subject (主题)"></a>Subject (主题)</h5><p>这个证书是发布给谁的，或者说证书的所有者，一般是某个人或者某个公司名称、机构的名称、公司网站的网址等。 对于这里的证书来说，证书的所有者是Trustwave这个公司。</p>
-</blockquote>
-<h5 id="Signature-algorithm-签名所使用的算法"><a href="#Signature-algorithm-签名所使用的算法" class="headerlink" title="Signature algorithm (签名所使用的算法)"></a>Signature algorithm (签名所使用的算法)</h5><blockquote>
-<p>就是指的这个数字证书的数字签名所使用的加密算法，这样就可以使用证书发布机构的证书里面的公钥，根据这个算法对指纹进行解密。指纹的加密结果就是数字签名</p>
-</blockquote>
-<h5 id="Thumbprint-Thumbprint-algorithm-指纹以及指纹算法"><a href="#Thumbprint-Thumbprint-algorithm-指纹以及指纹算法" class="headerlink" title="Thumbprint, Thumbprint algorithm (指纹以及指纹算法)"></a>Thumbprint, Thumbprint algorithm (指纹以及指纹算法)</h5><blockquote>
-<p>这个是用来保证证书的完整性的，也就是说确保证书没有被修改过，这东西的作用和2.7中说到的第3个问题类似。 其原理就是在发布证书时，发布者根据指纹算法(一个hash算法)计算整个证书的hash值(指纹)并和证书放在一起，使用者在打开证书时，自己也根据指纹算法计算一下证书的hash值(指纹)，如果和刚开始的值对得上，就说明证书没有被修改过，因为证书的内容被修改后，根据证书的内容计算的出的hash值(指纹)是会变化的。 注意，这个指纹会使用”SecureTrust CA”这个证书机构的私钥用签名算法(Signature algorithm)加密后和证书放在一起。</p>
-</blockquote>
-<h4 id="如何向证书的发布机构去申请证书-向权威机构申请？"><a href="#如何向证书的发布机构去申请证书-向权威机构申请？" class="headerlink" title="如何向证书的发布机构去申请证书 向权威机构申请？"></a>如何向证书的发布机构去申请证书 向权威机构申请？</h4><blockquote>
-<p>向权威机构申请，如：GlobalSign、wosign,自己也可以发布，只是不够权威，没有人承认而已</p>
-</blockquote>
+        <h3 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h3><p>Pod是Kubernetes创建或部署的最小/最简单的基本单位，一个Pod代表集群上正在运行的一个进程。<br>一个Pod封装一个应用容器（也可以有多个容器），存储资源、一个独立的网络IP以及管理控制容器运行方式的策略选项。Pod代表部署的一个单位：Kubernetes中单个应用的实例，它可能由单个容器或多个容器共享组成的资源。<br>Controller可以创建和管理多个Pod，提供副本管理、滚动升级和集群级别的自愈能力。</p>
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><p>k8s通过contoller来管理pod，controller中定义了pod的部署特性，比如：几个副本，node运行情况等。</p>
+<h4 id="ReplicationController"><a href="#ReplicationController" class="headerlink" title="ReplicationController"></a>ReplicationController</h4><p>Replication Controller为Kubernetes的一个核心内容，应用托管到Kubernetes之后，需要保证应用能够持续的运行，Replication Controller就是这个保证的key，主要的功能有：</p>
+<ul>
+<li>确保pod数量</li>
+<li>确保pod健康</li>
+<li>弹性伸缩</li>
+<li>滚动升级<h4 id="ReplicaSet"><a href="#ReplicaSet" class="headerlink" title="ReplicaSet"></a>ReplicaSet</h4>ReplicaSet（RS）是Replication Controller（RC）的升级版本，ReplicaSet 和  Replication Controller之间的唯一区别是对选择器的支持。ReplicaSet能确保运行指定数量的pod，Deployment 是一个更高层次的概念，它能管理ReplicaSets，并提供对pod的更新等功能，建议你使用Deployment来管理ReplicaSets，除非你需要自定义更新编排<h4 id="Deployments"><a href="#Deployments" class="headerlink" title="Deployments"></a>Deployments</h4>Deployment比较常用的contoller，继承了ReplicationController的功能。可以管理pod的多个副本，并确保pod按照期望状态运行。使用Deployment会自动创建ReplicaSet，也就是通过ReplicaSet管理pod<h4 id="StatefulSets"><a href="#StatefulSets" class="headerlink" title="StatefulSets"></a>StatefulSets</h4>能够保证pod的每个副本在整个生命周期名称保持不变，当某个pod发生故障需要删除并重新启动时，pod的名称会发生变化。statefulsets能保证副本按着固定的顺序启动、更新或删除。<h4 id="DaemonSet"><a href="#DaemonSet" class="headerlink" title="DaemonSet"></a>DaemonSet</h4>用于每个node最多只运行一个pod副本的场景，通常用于运行与daemon</li>
+</ul>
+<h4 id="job"><a href="#job" class="headerlink" title="job"></a>job</h4><p>用于运行结束后就删除的应用，而且其他contoller中的pod通常是长期运行的。</p>
+<h4 id="CronJob"><a href="#CronJob" class="headerlink" title="CronJob"></a>CronJob</h4><p>定时执行job，kubernetes的cronjob提供了定时执行任务的功能</p>
+<h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>多个项目共有一个k8s cluseter，引入namespace来区分controoler、pod、service等。不同namespace里的资源完全是隔离的。</p>
+<p>k8s默认创建了两个namespace：default、kube-system.</p>
+<h3 id="service"><a href="#service" class="headerlink" title="service"></a>service</h3><p>Deployment可以部署多个副本，每个pod拥有自己的ip。而且这些pod随时可能会被销毁，删除，重启，ip也会发生变化。外界如何访问pod？</p>
+<p>k8s service实现了外界访问pod的方式。service也有自己的IP端口，service实际为pod提供了负载均衡</p>
 
       
     </div>
@@ -393,7 +408,7 @@
             </li>
             <li class="post-copyright-link">
               <strong>本文链接：</strong>
-              <a href="/2017-12-09/数字证书-构成和原理.html" title="数字证书-构成和原理">http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html</a>
+              <a href="/2018-03-23/Kubernetesb系列-理解对象.html" title="Kubernetesb系列-理解对象">http://jinweida.github.io/2018-03-23/Kubernetesb系列-理解对象.html</a>
             </li>
             <li class="post-copyright-license">
               <strong>版权声明： </strong>
@@ -442,7 +457,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数字证书/" rel="tag"># 数字证书</a>
+            <a href="/tags/kubernetes/" rel="tag"># kubernetes</a>
+          
+            <a href="/tags/k8s/" rel="tag"># k8s</a>
           
         </div>
       
@@ -455,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-12-09/数字证书-加密通信.html" rel="next" title="数字证书-加密通信">
-                <i class="fa fa-chevron-left"></i> 数字证书-加密通信
+              <a href="/2018-03-21/Kubernetesb系列-组件介绍.html" rel="next" title="Kubernetesb系列-组件介绍">
+                <i class="fa fa-chevron-left"></i> Kubernetesb系列-组件介绍
               </a>
             
           </div>
@@ -464,10 +481,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-12-09/java-集合框架二.html" rel="prev" title="java集合框架二">
-                java集合框架二 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -498,8 +511,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017-12-09/数字证书-构成和原理.html"
-           data-title="数字证书-构成和原理" data-url="http://jinweida.github.io/2017-12-09/数字证书-构成和原理.html">
+      <div class="ds-thread" data-thread-key="2018-03-23/Kubernetesb系列-理解对象.html"
+           data-title="Kubernetesb系列-理解对象" data-url="http://jinweida.github.io/2018-03-23/Kubernetesb系列-理解对象.html">
       </div>
     </div>
 
@@ -616,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#证书主要字段介绍"><span class="nav-number">1.</span> <span class="nav-text">证书主要字段介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Issuer-证书的发布机构"><span class="nav-number">1.1.</span> <span class="nav-text">Issuer (证书的发布机构)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Valid-from-Valid-to-证书的有效期"><span class="nav-number">1.2.</span> <span class="nav-text">Valid from , Valid to (证书的有效期)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Public-key-公钥"><span class="nav-number">1.3.</span> <span class="nav-text">Public key (公钥)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Subject-主题"><span class="nav-number">1.4.</span> <span class="nav-text">Subject (主题)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Signature-algorithm-签名所使用的算法"><span class="nav-number">1.5.</span> <span class="nav-text">Signature algorithm (签名所使用的算法)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Thumbprint-Thumbprint-algorithm-指纹以及指纹算法"><span class="nav-number">1.6.</span> <span class="nav-text">Thumbprint, Thumbprint algorithm (指纹以及指纹算法)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何向证书的发布机构去申请证书-向权威机构申请？"><span class="nav-number">2.</span> <span class="nav-text">如何向证书的发布机构去申请证书 向权威机构申请？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pod"><span class="nav-number">1.</span> <span class="nav-text">pod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller"><span class="nav-number">2.</span> <span class="nav-text">controller</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplicationController"><span class="nav-number">2.1.</span> <span class="nav-text">ReplicationController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplicaSet"><span class="nav-number">2.2.</span> <span class="nav-text">ReplicaSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deployments"><span class="nav-number">2.3.</span> <span class="nav-text">Deployments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StatefulSets"><span class="nav-number">2.4.</span> <span class="nav-text">StatefulSets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DaemonSet"><span class="nav-number">2.5.</span> <span class="nav-text">DaemonSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#job"><span class="nav-number">2.6.</span> <span class="nav-text">job</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CronJob"><span class="nav-number">2.7.</span> <span class="nav-text">CronJob</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#namespace"><span class="nav-number">3.</span> <span class="nav-text">namespace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service"><span class="nav-number">4.</span> <span class="nav-text">service</span></a></li></ol></div>
             
 
           </div>
