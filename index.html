@@ -262,6 +262,532 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-04-02/Kubernetesb系列-apiserver.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-04-02/Kubernetesb系列-apiserver.html" itemprop="url">Kubernetesb系列-apiserver</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T23:40:08+07:00">
+                2018-04-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-03T16:53:23+07:00">
+                2018-04-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-04-02/Kubernetesb系列-apiserver.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-04-02/Kubernetesb系列-apiserver.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="api-server简介"><a href="#api-server简介" class="headerlink" title="api server简介"></a>api server简介</h3><p>k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。</p>
+<ul>
+<li>提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)；</li>
+<li>提供其他模块之间的数据交互和通信的枢纽（其他模块通过API Server查询或修改数据，只有API Server才直接操作etcd）;</li>
+<li>是资源配额控制的入口；</li>
+<li>拥有完备的集群安全机制.</li>
+</ul>
+<p><img src="/img/k8s/kube-apiserver.png" alt="image"></p>
+<h3 id="访问kubernetes-api"><a href="#访问kubernetes-api" class="headerlink" title="访问kubernetes api"></a>访问kubernetes api</h3><h4 id="安全端口6443"><a href="#安全端口6443" class="headerlink" title="安全端口6443"></a>安全端口6443</h4><p>kubernetes默认在两个端口提供服务，一个基于https安全端口6443。可通过启动参数“–secure-port”的值来修改默认值；用于基于Tocken文件或客户端证书及HTTP Base的认证；</p>
+<h4 id="本地端口"><a href="#本地端口" class="headerlink" title="本地端口"></a>本地端口</h4><p>另一个基于http非安全端口8080，其中8080只限本机访问。可以通过API Server的启动参数“–insecure-port”的值来修改默认值，默认的IP地址为“localhost”，可以通过启动参数“–insecure-bind-address”的值来修改该IP地址；</p>
+<h4 id="访问形式"><a href="#访问形式" class="headerlink" title="访问形式"></a>访问形式</h4><p>1.Kubectl Proxy<br>Kubectl Proxy代理程序既能作为API Server的反向代理，也能作为普通客户端访问API Server的代理。默认使用8001访问，kubernetes 1.10以后 <a href="http://domain:8001/ui被弃用了" target="_blank" rel="noopener">http://domain:8001/ui被弃用了</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置允许任何ip访问 </span><br><span class="line"><span class="meta">$</span> kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'</span><br><span class="line"><span class="meta">#</span> 更多访问</span><br><span class="line"><span class="meta">$</span> kubectl proxy --help</span><br></pre></td></tr></table></figure></p>
+<p>2.kubelet客户端访问<br>通过命令行参数转换为对API Server的REST API调用，并将调用结果输出。<br>3.编程调用方式<br>通过用户客户端调用kubernetes api实现分布式集群搭建的目标。比如调用pod、service、rc等资源对象。<br>具体可以参考：<a href="https://github.com/kubernetes/client-go" target="_blank" rel="noopener">https://github.com/kubernetes/client-go</a></p>
+<h3 id="api-server认证"><a href="#api-server认证" class="headerlink" title="api server认证"></a>api server认证</h3><p>客户端请求6443端口，主要经过以下几步：</p>
+<ul>
+<li>认证</li>
+<li>授权</li>
+<li>准入控制</li>
+<li>实际请求<br>kubernetes集群提供了三种级别的客户端认证方式：</li>
+<li>CA证书认证</li>
+<li>Token认证</li>
+<li>Http Base认证</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-04-02/Kubernetesb系列-集群问题排查.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-04-02/Kubernetesb系列-集群问题排查.html" itemprop="url">Kubernetesb系列-集群问题排查</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T21:19:16+07:00">
+                2018-04-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T14:35:21+07:00">
+                2018-04-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-04-02/Kubernetesb系列-集群问题排查.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-04-02/Kubernetesb系列-集群问题排查.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Kubectl上下文和配置"><a href="#Kubectl上下文和配置" class="headerlink" title="Kubectl上下文和配置"></a>Kubectl上下文和配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> kubectl config view # 显示合并的 kubeconfig 设置。</span><br><span class="line"><span class="meta">#</span> 同时使用多个 kubeconfig 文件，并且查看合并的配置</span><br><span class="line"><span class="meta">$</span> KUBECONFIG=~/.kube/config:~/.kube/kubconfig2 kubectl config view</span><br><span class="line"><span class="meta">#</span> 查看名称为 “e2e” 的用户的密码</span><br><span class="line"><span class="meta">$</span> kubectl config view -o jsonpath='&#123;.users[?(@.name == "e2e")].user.password&#125;'</span><br><span class="line"><span class="meta">$</span> kubectl config current-context              # 显示当前上下文</span><br><span class="line"><span class="meta">$</span> kubectl config use-context my-cluster-name  # 设置默认的上下文为 my-cluster-name</span><br><span class="line"><span class="meta">#</span> 在 kubeconf 中添加一个支持基本鉴权的新集群。</span><br><span class="line"><span class="meta">$</span> kubectl config set-credentials kubeuser/foo.kubernetes.com --username=kubeuser --password=kubepassword</span><br><span class="line"><span class="meta">#</span> 使用特定的用户名和命名空间设置上下文。</span><br><span class="line"><span class="meta">$</span> kubectl config set-context gce --user=cluster-admin --namespace=foo \</span><br><span class="line">  &amp;&amp; kubectl config use-context gce</span><br></pre></td></tr></table></figure>
+<h3 id="查看、查找资源"><a href="#查看、查找资源" class="headerlink" title="查看、查找资源"></a>查看、查找资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 查看集群</span><br><span class="line"><span class="meta">$</span> kubectl cluster-info</span><br><span class="line"><span class="meta">#</span> 分页查看更具体的信息</span><br><span class="line"><span class="meta">$</span> kubectl cluster-info dump | more</span><br><span class="line"><span class="meta">#</span> 查看pods所在的运行节点</span><br><span class="line"><span class="meta">$</span> kubectl get pods -o wide --all-namespaces</span><br><span class="line"><span class="meta">#</span> 按selector名来查找pod</span><br><span class="line"><span class="meta">$</span> kubectl get pod --selector name=redis</span><br><span class="line"><span class="meta">#</span> 具有基本输出的 get 命令</span><br><span class="line"><span class="meta">$</span> kubectl get services                          # 列出命名空间下的所有 service</span><br><span class="line"><span class="meta">$</span> kubectl get pods --all-namespaces             # 列出所有命名空间下的 pod</span><br><span class="line"><span class="meta">$</span> kubectl get pods -o wide                      # 列出命名空间下所有 pod，带有更详细的信息</span><br><span class="line"><span class="meta">$</span> kubectl get deployment my-dep                 # 列出特定的 deployment</span><br><span class="line"><span class="meta">$</span> kubectl get pods --include-uninitialized      # 列出命名空间下所有的 pod，包括未初始化的对象</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 有详细输出的 describe 命令</span><br><span class="line"><span class="meta">$</span> kubectl describe nodes my-node</span><br><span class="line"><span class="meta">$</span> kubectl describe pods my-pod</span><br><span class="line"><span class="meta">$</span> kubectl get services --sort-by=.metadata.name # List Services Sorted by Name</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 根据重启次数排序，列出所有 pod</span><br><span class="line"><span class="meta">$</span> kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'</span><br><span class="line"><span class="meta">#</span> 查询带有标签 app=cassandra 的所有 pod，获取它们的 version 标签值</span><br><span class="line"><span class="meta">$</span> kubectl get pods --selector=app=cassandra rc -o \</span><br><span class="line">  jsonpath='&#123;.items[*].metadata.labels.version&#125;'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 获取命名空间下所有运行中的 pod</span><br><span class="line"><span class="meta">$</span> kubectl get pods --field-selector=status.phase=Running</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 所有所有节点的 ExternalIP</span><br><span class="line"><span class="meta">$</span> kubectl get nodes -o jsonpath='&#123;.items[*].status.addresses[?(@.type=="ExternalIP")].address&#125;'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 列出输出特定 RC 的所有 pod 的名称</span><br><span class="line"><span class="meta">#</span> "jq" 命令对那些 jsonpath 看来太复杂的转换非常有用，可以在这找到：https://stedolan.github.io/jq/</span><br><span class="line"><span class="meta">$</span> sel=$&#123;$(kubectl get rc my-rc --output=json | jq -j '.spec.selector | to_entries | .[] | "\(.key)=\(.value),"')%?&#125;</span><br><span class="line"><span class="meta">$</span> echo $(kubectl get pods --selector=$sel --output=jsonpath=&#123;.items..metadata.name&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 检查那些节点已经 ready</span><br><span class="line"><span class="meta">$</span> JSONPATH='&#123;range .items[*]&#125;&#123;@.metadata.name&#125;:&#123;range @.status.conditions[*]&#125;&#123;@.type&#125;=&#123;@.status&#125;;&#123;end&#125;&#123;end&#125;' \</span><br><span class="line"> &amp;&amp; kubectl get nodes -o jsonpath="$JSONPATH" | grep "Ready=True"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 列出某个 pod 目前在用的所有 Secret</span><br><span class="line"><span class="meta">$</span> kubectl get pods -o json | jq '.items[].spec.containers[].env[]?.valueFrom.secretKeyRef.name' | grep -v null | sort | uniq</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 列出通过 timestamp 排序的所有 Event</span><br><span class="line"><span class="meta">$</span> kubectl get events --sort-by=.metadata.creationTimestamp</span><br></pre></td></tr></table></figure>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> kubectl create -f ./my-manifest.yaml           # 创建资源</span><br><span class="line"><span class="meta">$</span> kubectl create -f ./my1.yaml -f ./my2.yaml     # 从多个文件创建资源</span><br><span class="line"><span class="meta">$</span> kubectl create -f ./dir                        # 通过目录下的所有清单文件创建资源</span><br><span class="line"><span class="meta">$</span> kubectl create -f https://git.io/vPieo         # 使用 url 获取清单创建资源</span><br><span class="line"><span class="meta">$</span> kubectl run nginx --image=nginx                # 开启一个 nginx 实例</span><br><span class="line"><span class="meta">$</span> kubectl explain pods,svc                       # 获取 pod 和服务清单的描述文档</span><br></pre></td></tr></table></figure>
+<h3 id="更新资源"><a href="#更新资源" class="headerlink" title="更新资源"></a>更新资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 滚动更新 pod：frontend-v1</span><br><span class="line"><span class="meta">$</span> kubectl rolling-update frontend-v1 -f frontend-v2.json </span><br><span class="line"><span class="meta">#</span> 变更资源的名称并更新镜像          </span><br><span class="line"><span class="meta">$</span> kubectl rolling-update frontend-v1 frontend-v2 --image=image:v2 </span><br><span class="line"><span class="meta">#</span> 更新 pod 的镜像 </span><br><span class="line"><span class="meta">$</span> kubectl rolling-update frontend --image=image:v2 </span><br><span class="line"><span class="meta">#</span> 中止进行中的过程                </span><br><span class="line"><span class="meta">$</span> kubectl rolling-update frontend-v1 frontend-v2 --rollback</span><br><span class="line"><span class="meta">#</span> 根据传入标准输入的 JSON 替换一个 pod        </span><br><span class="line"><span class="meta">$</span> cat pod.json | kubectl replace -f -                             </span><br><span class="line"><span class="meta">#</span> 强制替换，先删除，然后再重建资源。会导致服务中断。</span><br><span class="line"><span class="meta">$</span> kubectl replace --force -f ./pod.json</span><br><span class="line"><span class="meta">#</span> 为副本控制器（rc）创建服务，它开放 80 端口，并连接到容器的 8080 端口</span><br><span class="line"><span class="meta">$</span> kubectl expose rc nginx --port=80 --target-port=8000</span><br><span class="line"><span class="meta">#</span> 更新单容器的 pod，将其镜像版本（tag）更新到 v4</span><br><span class="line"><span class="meta">$</span> kubectl get pod mypod -o yaml | sed 's/\(image: myimage\):.*$/\1:v4/' | kubectl replace -f -</span><br><span class="line"><span class="meta">#</span> 增加标签</span><br><span class="line"><span class="meta">$</span> kubectl label pods my-pod new-label=awesome </span><br><span class="line"><span class="meta">#</span> 增加注释                     </span><br><span class="line"><span class="meta">$</span> kubectl annotate pods my-pod icon-url=http://goo.gl/XXBTWq</span><br><span class="line"><span class="meta">#</span> 将名称为 foo 的 deployment 设置为自动扩缩容       </span><br><span class="line"><span class="meta">$</span> kubectl autoscale deployment foo --min=2 --max=10</span><br></pre></td></tr></table></figure>
+<h3 id="修补资源"><a href="#修补资源" class="headerlink" title="修补资源"></a>修补资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 部分更新节点</span><br><span class="line"><span class="meta">$</span> kubectl patch node k8s-node-1 -p '&#123;"spec":&#123;"unschedulable":true&#125;&#125;' </span><br><span class="line"><span class="meta">#</span> 更新容器的镜像，spec.containers[*].name 是必需的，因为它们是一个合并键</span><br><span class="line"><span class="meta">$</span> kubectl patch pod valid-pod -p '&#123;"spec":&#123;"containers":[&#123;"name":"kubernetes-serve-hostname","image":"new image"&#125;]&#125;&#125;'</span><br><span class="line"><span class="meta">#</span> 使用带有数组位置信息的 json 修补程序更新容器镜像</span><br><span class="line"><span class="meta">$</span> kubectl patch pod valid-pod --type='json' -p='[&#123;"op": "replace", "path": "/spec/containers/0/image", "value":"new image"&#125;]'</span><br><span class="line"><span class="meta">#</span> 使用带有数组位置信息的 json 修补程序禁用 deployment 的 livenessProbe</span><br><span class="line"><span class="meta">$</span> kubectl patch deployment valid-deployment  --type json   -p='[&#123;"op": "remove", "path": "/spec/template/spec/containers/0/livenessProbe"&#125;]'</span><br><span class="line"><span class="meta">#</span> 增加新的元素到数组指定的位置中</span><br><span class="line"><span class="meta">$</span> kubectl patch sa default --type='json' -p='[&#123;"op": "add", "path": "/secrets/1", "value": &#123;"name": "whatever" &#125; &#125;]'</span><br></pre></td></tr></table></figure>
+<h3 id="缩放资源"><a href="#缩放资源" class="headerlink" title="缩放资源"></a>缩放资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 缩放名称为 'foo' 的 replicaset，调整其副本数为 3</span><br><span class="line"><span class="meta">$</span> kubectl scale --replicas=3 rs/foo                                 </span><br><span class="line"><span class="meta">#</span> 缩放在 "foo.yaml" 中指定的资源，调整其副本数为 3</span><br><span class="line"><span class="meta">$</span> kubectl scale --replicas=3 -f foo.yaml                            </span><br><span class="line"><span class="meta">#</span> 如果名称为 mysql 的 deployment 目前规模为 2，将其规模调整为 3</span><br><span class="line"><span class="meta">$</span> kubectl scale --current-replicas=2 --replicas=3 deployment/mysql</span><br><span class="line"><span class="meta">#</span> 缩放多个副本控制器</span><br><span class="line"><span class="meta">$</span> kubectl scale --replicas=5 rc/foo rc/bar rc/baz</span><br></pre></td></tr></table></figure>
+<h3 id="删除资源"><a href="#删除资源" class="headerlink" title="删除资源"></a>删除资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 使用 pod.json 中指定的类型和名称删除 pod</span><br><span class="line"><span class="meta">$</span> kubectl delete -f ./pod.json </span><br><span class="line"><span class="meta">#</span> 删除名称为 "baz" 和 "foo" 的 pod 和 service</span><br><span class="line"><span class="meta">$</span> kubectl delete pod,service baz foo  </span><br><span class="line"><span class="meta">#</span> 删除带有标签 name=myLabel 的 pod 和 service                                      </span><br><span class="line"><span class="meta">$</span> kubectl delete pods,services -l name=myLabel  </span><br><span class="line"><span class="meta">#</span> 删除带有标签 name=myLabel 的 pod 和 service，包括未初始化的对象                            </span><br><span class="line"><span class="meta">$</span> kubectl delete pods,services -l name=myLabel --include-uninitialized </span><br><span class="line"><span class="meta">#</span> 删除命名空间 my-ns 下所有的 pod 和 service，包括未初始化的对象     </span><br><span class="line"><span class="meta">$</span> kubectl -n my-ns delete po,svc --all </span><br><span class="line"><span class="meta">$</span> kubectl -n "kube-system" delete deployment tiller-deploy</span><br><span class="line"><span class="meta">$</span> kubectl -n "kube-system" delete service tiller-deploy</span><br></pre></td></tr></table></figure>
+<h3 id="与运行中的-pod-交互"><a href="#与运行中的-pod-交互" class="headerlink" title="与运行中的 pod 交互"></a>与运行中的 pod 交互</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 转储 pod 日志到标准输出</span><br><span class="line"><span class="meta">$</span> kubectl logs my-pod  </span><br><span class="line"><span class="meta">#</span> 有多个容器的情况下，转储 pod 中容器的日志到标准输出                               </span><br><span class="line"><span class="meta">$</span> kubectl logs my-pod -c my-container</span><br><span class="line"><span class="meta">#</span> pod 日志流向标准输出                 </span><br><span class="line"><span class="meta">$</span> kubectl logs -f my-pod    </span><br><span class="line"><span class="meta">#</span> 有多个容器的情况下，pod 中容器的日志流到标准输出                          </span><br><span class="line"><span class="meta">$</span> kubectl logs -f my-pod -c my-container</span><br><span class="line"><span class="meta">#</span> 使用交互的 shell 运行 pod              </span><br><span class="line"><span class="meta">$</span> kubectl run -i --tty busybox --image=busybox -- sh </span><br><span class="line"><span class="meta">#</span> 关联到运行中的容器 </span><br><span class="line"><span class="meta">$</span> kubectl attach my-pod -i  </span><br><span class="line"><span class="meta">#</span> 在本地监听 5000 端口，然后转到 my-pod 的 6000 端口                          </span><br><span class="line"><span class="meta">$</span> kubectl port-forward my-pod 5000:6000 </span><br><span class="line"><span class="meta">#</span> 1 个容器的情况下，在已经存在的 pod 中运行命令              </span><br><span class="line"><span class="meta">$</span> kubectl exec my-pod -- ls /     </span><br><span class="line"><span class="meta">#</span> 多个容器的情况下，在已经存在的 pod 中运行命令                    </span><br><span class="line"><span class="meta">$</span> kubectl exec my-pod -c my-container -- ls / </span><br><span class="line"><span class="meta">#</span> 显示 pod 及其容器的度量        </span><br><span class="line"><span class="meta">$</span> kubectl top pod POD_NAME --containers</span><br></pre></td></tr></table></figure>
+<h3 id="与-node-和集群交互"><a href="#与-node-和集群交互" class="headerlink" title="与 node 和集群交互"></a>与 node 和集群交互</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 标记节点 my-node 为不可调度</span><br><span class="line"><span class="meta">$</span> kubectl cordon my-node  </span><br><span class="line"><span class="meta">#</span> 准备维护时，排除节点 my-node                                              </span><br><span class="line"><span class="meta">$</span> kubectl drain my-node </span><br><span class="line"><span class="meta">#</span> 标记节点 my-node 为可调度                                                </span><br><span class="line"><span class="meta">$</span> kubectl uncordon my-node  </span><br><span class="line"><span class="meta">#</span> 显示给定节点的度量值                                            </span><br><span class="line"><span class="meta">$</span> kubectl top node my-node </span><br><span class="line"><span class="meta">#</span> 显示 master 和 service 的地址                                             </span><br><span class="line"><span class="meta">$</span> kubectl cluster-info  </span><br><span class="line"><span class="meta">#</span> 将集群的当前状态转储到标准输出                                                </span><br><span class="line"><span class="meta">$</span> kubectl cluster-info dump        </span><br><span class="line"><span class="meta">#</span> 将集群的当前状态转储到目录 /path/to/cluster-state </span><br><span class="line"><span class="meta">$</span> kubectl cluster-info dump --output-directory=/path/to/cluster-state</span><br><span class="line"><span class="meta">#</span> 如果带有该键和效果的污点已经存在，则将按指定的方式替换其值</span><br><span class="line"><span class="meta">$</span> kubectl taint nodes foo dedicated=special-user:NoSchedule</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-04-02/Kubernetesb系列-状态ContainerCreating.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html" itemprop="url">Kubernetesb系列-状态ContainerCreating</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T21:19:16+07:00">
+                2018-04-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T14:33:17+07:00">
+                2018-04-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-04-02/Kubernetesb系列-状态ContainerCreating.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>集群环境环境使用kubeadm v1.10.0 搭建。</p>
+<p>创建nginx集群实例<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@k8s-testnet-master-ohio:~# kubectl run my-nginx --image=nginx --replicas=2 --port=80</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-23/Kubernetesb系列-理解对象.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1435,517 +1961,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-拜占庭将军问题.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="url">区块链技术-拜占庭将军问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+07:00">
-                2018-03-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T14:32:49+07:00">
-                2018-03-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-10/区块链技术-拜占庭将军问题.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-拜占庭将军问题.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>区块链中，有大量的描述拜占庭将军问题，经常会有听到某某区块链使用XXX算法解决拜占庭将军问题。</p>
-<h3 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-10/区块链技术-拜占庭将军问题.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-10/区块链技术-共识机制.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-10/区块链技术-共识机制.html" itemprop="url">区块链技术-共识机制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T18:20:51+07:00">
-                2018-03-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T09:05:57+07:00">
-                2018-03-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-10/区块链技术-共识机制.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-10/区块链技术-共识机制.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>区块链要成为一个难以攻破的、公开的、不可篡改数据记录的去中心化诚实可信系统。需要在尽可能短的时间内做到分布式数据记录的安全、明确不可逆，提供一个最坚实且去中心化的系统，实践中，这个流程分为两个方面：</p>
-<ul>
-<li>选择一个独特的节点来产生一个区块；</li>
-<li>使分布式数据记录不可逆</li>
-</ul>
-<p>这个过程称之为共识机制。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-10/区块链技术-共识机制.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-03-08/区块链技术-词汇表.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-03-08/区块链技术-词汇表.html" itemprop="url">区块链技术-词汇表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T10:22:37+07:00">
-                2018-03-08
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T10:48:48+07:00">
-                2018-03-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-03-08/区块链技术-词汇表.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-03-08/区块链技术-词汇表.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="bitcoin"><a href="#bitcoin" class="headerlink" title="bitcoin"></a>bitcoin</h3><p>比特币，中本聪发起的数字货币</p>
-<h3 id="blockchain"><a href="#blockchain" class="headerlink" title="blockchain"></a>blockchain</h3><p>区块链，基于密码学可实现的信息化存储和处理技术，记录了所有的交易记录，从发生到最新的块。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-03-08/区块链技术-词汇表.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1996,7 +2011,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
