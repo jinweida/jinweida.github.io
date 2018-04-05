@@ -88,7 +88,7 @@
 <meta property="og:description" content="api server简介k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。  提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)； 提供其他模块之间的数据交互和通信的枢纽（其他模块通过API Server查询或修改数据，只有API Server才直接操作e">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jinweida.github.io/img/k8s/kube-apiserver.png">
-<meta property="og:updated_time" content="2018-04-03T09:53:23.627Z">
+<meta property="og:updated_time" content="2018-04-05T07:45:14.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetesb系列-apiserver">
 <meta name="twitter:description" content="api server简介k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。  提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)； 提供其他模块之间的数据交互和通信的枢纽（其他模块通过API Server查询或修改数据，只有API Server才直接操作e">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-03T16:53:23+07:00">
-                2018-04-03
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T14:45:14+07:00">
+                2018-04-05
               </time>
             
           </span>
@@ -383,6 +383,7 @@
 <li>是资源配额控制的入口；</li>
 <li>拥有完备的集群安全机制.</li>
 </ul>
+<a id="more"></a>
 <p><img src="/img/k8s/kube-apiserver.png" alt="image"></p>
 <h3 id="访问kubernetes-api"><a href="#访问kubernetes-api" class="headerlink" title="访问kubernetes api"></a>访问kubernetes api</h3><h4 id="安全端口6443"><a href="#安全端口6443" class="headerlink" title="安全端口6443"></a>安全端口6443</h4><p>kubernetes默认在两个端口提供服务，一个基于https安全端口6443。可通过启动参数“–secure-port”的值来修改默认值；用于基于Tocken文件或客户端证书及HTTP Base的认证；</p>
 <h4 id="本地端口"><a href="#本地端口" class="headerlink" title="本地端口"></a>本地端口</h4><p>另一个基于http非安全端口8080，其中8080只限本机访问。可以通过API Server的启动参数“–insecure-port”的值来修改默认值，默认的IP地址为“localhost”，可以通过启动参数“–insecure-bind-address”的值来修改该IP地址；</p>
@@ -481,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html" rel="next" title="Kubernetesb系列-状态ContainerCreating">
-                <i class="fa fa-chevron-left"></i> Kubernetesb系列-状态ContainerCreating
+              <a href="/2018-04-02/Kubernetesb系列-集群问题排查.html" rel="next" title="Kubernetesb系列-集群问题排查">
+                <i class="fa fa-chevron-left"></i> Kubernetesb系列-集群问题排查
               </a>
             
           </div>

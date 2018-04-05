@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-03T16:53:23+07:00">
-                2018-04-03
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T14:45:14+07:00">
+                2018-04-05
               </time>
             
           </span>
@@ -376,196 +376,16 @@
 
       
         
-          
-            <h3 id="api-server简介"><a href="#api-server简介" class="headerlink" title="api server简介"></a>api server简介</h3><p>k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。</p>
+          <h3 id="api-server简介"><a href="#api-server简介" class="headerlink" title="api server简介"></a>api server简介</h3><p>k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。</p>
 <ul>
 <li>提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)；</li>
 <li>提供其他模块之间的数据交互和通信的枢纽（其他模块通过API Server查询或修改数据，只有API Server才直接操作etcd）;</li>
 <li>是资源配额控制的入口；</li>
 <li>拥有完备的集群安全机制.</li>
 </ul>
-<p><img src="/img/k8s/kube-apiserver.png" alt="image"></p>
-<h3 id="访问kubernetes-api"><a href="#访问kubernetes-api" class="headerlink" title="访问kubernetes api"></a>访问kubernetes api</h3><h4 id="安全端口6443"><a href="#安全端口6443" class="headerlink" title="安全端口6443"></a>安全端口6443</h4><p>kubernetes默认在两个端口提供服务，一个基于https安全端口6443。可通过启动参数“–secure-port”的值来修改默认值；用于基于Tocken文件或客户端证书及HTTP Base的认证；</p>
-<h4 id="本地端口"><a href="#本地端口" class="headerlink" title="本地端口"></a>本地端口</h4><p>另一个基于http非安全端口8080，其中8080只限本机访问。可以通过API Server的启动参数“–insecure-port”的值来修改默认值，默认的IP地址为“localhost”，可以通过启动参数“–insecure-bind-address”的值来修改该IP地址；</p>
-<h4 id="访问形式"><a href="#访问形式" class="headerlink" title="访问形式"></a>访问形式</h4><p>1.Kubectl Proxy<br>Kubectl Proxy代理程序既能作为API Server的反向代理，也能作为普通客户端访问API Server的代理。默认使用8001访问，kubernetes 1.10以后 <a href="http://domain:8001/ui被弃用了" target="_blank" rel="noopener">http://domain:8001/ui被弃用了</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置允许任何ip访问 </span><br><span class="line"><span class="meta">$</span> kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'</span><br><span class="line"><span class="meta">#</span> 更多访问</span><br><span class="line"><span class="meta">$</span> kubectl proxy --help</span><br></pre></td></tr></table></figure></p>
-<p>2.kubelet客户端访问<br>通过命令行参数转换为对API Server的REST API调用，并将调用结果输出。<br>3.编程调用方式<br>通过用户客户端调用kubernetes api实现分布式集群搭建的目标。比如调用pod、service、rc等资源对象。<br>具体可以参考：<a href="https://github.com/kubernetes/client-go" target="_blank" rel="noopener">https://github.com/kubernetes/client-go</a></p>
-<h3 id="api-server认证"><a href="#api-server认证" class="headerlink" title="api server认证"></a>api server认证</h3><p>客户端请求6443端口，主要经过以下几步：</p>
-<ul>
-<li>认证</li>
-<li>授权</li>
-<li>准入控制</li>
-<li>实际请求<br>kubernetes集群提供了三种级别的客户端认证方式：</li>
-<li>CA证书认证</li>
-<li>Token认证</li>
-<li>Http Base认证</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-04-02/Kubernetesb系列-状态ContainerCreating.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="大汗">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金声玉振">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html" itemprop="url">Kubernetesb系列-状态ContainerCreating</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T21:19:16+07:00">
-                2018-04-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T14:33:17+07:00">
-                2018-04-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-04-02/Kubernetesb系列-状态ContainerCreating.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>集群环境环境使用kubeadm v1.10.0 搭建。</p>
-<p>创建nginx集群实例<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@k8s-testnet-master-ohio:~# kubectl run my-nginx --image=nginx --replicas=2 --port=80</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html#more" rel="contents">
+            <a class="btn" href="/2018-04-02/Kubernetesb系列-apiserver.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -742,6 +562,175 @@
 <h3 id="与-node-和集群交互"><a href="#与-node-和集群交互" class="headerlink" title="与 node 和集群交互"></a>与 node 和集群交互</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 标记节点 my-node 为不可调度</span><br><span class="line"><span class="meta">$</span> kubectl cordon my-node  </span><br><span class="line"><span class="meta">#</span> 准备维护时，排除节点 my-node                                              </span><br><span class="line"><span class="meta">$</span> kubectl drain my-node </span><br><span class="line"><span class="meta">#</span> 标记节点 my-node 为可调度                                                </span><br><span class="line"><span class="meta">$</span> kubectl uncordon my-node  </span><br><span class="line"><span class="meta">#</span> 显示给定节点的度量值                                            </span><br><span class="line"><span class="meta">$</span> kubectl top node my-node </span><br><span class="line"><span class="meta">#</span> 显示 master 和 service 的地址                                             </span><br><span class="line"><span class="meta">$</span> kubectl cluster-info  </span><br><span class="line"><span class="meta">#</span> 将集群的当前状态转储到标准输出                                                </span><br><span class="line"><span class="meta">$</span> kubectl cluster-info dump        </span><br><span class="line"><span class="meta">#</span> 将集群的当前状态转储到目录 /path/to/cluster-state </span><br><span class="line"><span class="meta">$</span> kubectl cluster-info dump --output-directory=/path/to/cluster-state</span><br><span class="line"><span class="meta">#</span> 如果带有该键和效果的污点已经存在，则将按指定的方式替换其值</span><br><span class="line"><span class="meta">$</span> kubectl taint nodes foo dedicated=special-user:NoSchedule</span><br></pre></td></tr></table></figure>
 
           
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jinweida.github.io/2018-04-02/Kubernetesb系列-状态ContainerCreating.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="大汗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金声玉振">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html" itemprop="url">Kubernetesb系列-状态ContainerCreating</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T21:19:16+07:00">
+                2018-04-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T14:33:17+07:00">
+                2018-04-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018-04-02/Kubernetesb系列-状态ContainerCreating.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>集群环境环境使用kubeadm v1.10.0 搭建。</p>
+<p>创建nginx集群实例<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@k8s-testnet-master-ohio:~# kubectl run my-nginx --image=nginx --replicas=2 --port=80</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018-04-02/Kubernetesb系列-状态ContainerCreating.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
